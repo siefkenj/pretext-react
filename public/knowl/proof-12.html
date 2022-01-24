@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-23T18:59:31-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="hiddenproof"><h4 class="heading"><span class="type">Proof</span></h4>
+<p><em xmlns:svg="http://www.w3.org/2000/svg" class="emphasis">Uniqueness.</em>  To show uniqueness we will use induction on <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(n\text{.}\)</span> The theorem is certainly true for <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(n = 2\)</span> since in this case <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(n\)</span> is prime.  Now assume that the result holds for all integers <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(m\)</span> such that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(1 \leq m \lt n\text{,}\)</span> and</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
+\begin{equation*}
+n = p_1 p_2 \cdots p_k = q_1 q_2 \cdots q_l\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p_1 \leq p_2 \leq \cdots \leq p_k\)</span> and <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(q_1 \leq q_2 \leq \cdots \leq q_l\text{.}\)</span> By <a href="" class="xref" data-knowl="./knowl/theorem-integers-prime-divisor.html" title="Lemma 2.2.5">Lemma 2.2.5</a>, <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p_1  \mid  q_i\)</span> for some <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(i = 1, \ldots, l\)</span> and <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(q_1  \mid  p_j\)</span> for some <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(j = 1, \ldots, k\text{.}\)</span>  Since all of the <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p_i\)</span>'s and <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(q_i\)</span>'s are prime, <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p_1 = q_i\)</span> and  <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(q_1 = p_j\text{.}\)</span> Hence, <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p_1 = q_1\)</span> since <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p_1 \leq p_j = q_1 \leq q_i = p_1\text{.}\)</span>  By the induction hypothesis,</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
+\begin{equation*}
+n' = p_2 \cdots p_k = q_2 \cdots q_l
+\end{equation*}
+</div>
+<p class="continuation">has a unique factorization.  Hence, <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(k = l\)</span> and <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(q_i = p_i\)</span> for <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(i = 1, \ldots, k\text{.}\)</span></p>
+<p><em xmlns:svg="http://www.w3.org/2000/svg" class="emphasis">Existence.</em> To show existence, suppose that there is some integer that cannot be written as the product of primes.  Let <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(S\)</span> be the set of all such numbers.  By the Principle of Well-Ordering, <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(S\)</span> has a smallest number, say <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a\text{.}\)</span>  If the only positive factors of <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a\)</span> are <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a\)</span> and 1, then <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a\)</span> is prime, which is a contradiction.  Hence, <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a = a_1 a_2\)</span> where <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(1 \lt a_1 \lt a\)</span> and <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(1 \lt a_2 \lt a\text{.}\)</span>  Neither <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a_1\in S\)</span> nor <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a_2 \in S\text{,}\)</span> since <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a\)</span> is the smallest element in <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(S\text{.}\)</span>  So</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
+\begin{align*}
+a_1 &amp; = p_1 \cdots p_r\\
+a_2 &amp; = q_1 \cdots q_s\text{.}
+\end{align*}
+</div>
+<p>Therefore,</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
+\begin{equation*}
+a = a_1 a_2 = p_1 \cdots p_r q_1 \cdots q_s\text{.}
+\end{equation*}
+</div>
+<p class="continuation">So <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a \notin S\text{,}\)</span> which is a contradiction.</p></article><span class="incontext"><a href="section-division-algorithm.html#proof-12">in-context</a></span>
+</body>
+</html>

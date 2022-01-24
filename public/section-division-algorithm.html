@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-23T18:59:26-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AATA The Division Algorithm</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/bundle.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/main.js"></script><link xmlns:svg="http://www.w3.org/2000/svg" href="./static/css/main.css" rel="stylesheet">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://abstract.pugetsound.edu" target="_blank"><img src="images/cover_aata_2014.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="sample-book.html"><span class="title">Abstract Algebra:</span> <span class="subtitle">PRETEXT XML SAMPLE ONLY</span></a></h1>
+<p class="byline">Thomas W. Judson, Isaac Newton (Editor)</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-math-induction.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="integers.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="integers-sage.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-math-induction.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="integers.html" title="Up">Up</a><a class="next-button button toolbar-item" href="integers-sage.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter"><span class="title">Front Matter</span></a><ul>
+<li><a href="front-colophon.html" data-scroll="front-colophon">Colophon</a></li>
+<li><a href="author-bio-TWJ.html" data-scroll="author-bio-TWJ">Author Biography</a></li>
+<li><a href="author-bio-RAB.html" data-scroll="author-bio-RAB">About Robert A. Beezer</a></li>
+<li><a href="dedication.html" data-scroll="dedication">Dedication</a></li>
+<li><a href="acknowledgement.html" data-scroll="acknowledgement">Acknowledgements</a></li>
+<li><a href="preface.html" data-scroll="preface">Preface</a></li>
+<li><a href="contributors.html" data-scroll="contributors">Contributors to the 4<span class="process-math">\(^\mathrm{th}\)</span> Edition</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">Basics</span></a></li>
+<li class="link">
+<a href="sets.html" data-scroll="sets"><span class="codenumber">1</span> <span class="title">Preliminaries</span></a><ul>
+<li><a href="section-note-on-proofs.html" data-scroll="section-note-on-proofs">A Short Note on Proofs</a></li>
+<li><a href="section-sets-and-equivalence-relations.html" data-scroll="section-sets-and-equivalence-relations">Sets and Equivalence Relations</a></li>
+<li><a href="sets-sage.html" data-scroll="sets-sage">Sage</a></li>
+<li><a href="exercises-sets.html" data-scroll="exercises-sets">Exercises</a></li>
+<li><a href="sets-sage-exercises.html" data-scroll="sets-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-1.html" data-scroll="references-1">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="integers.html" data-scroll="integers"><span class="codenumber">2</span> <span class="title">The Integers</span></a><ul>
+<li><a href="section-math-induction.html" data-scroll="section-math-induction">Mathematical Induction</a></li>
+<li><a href="section-division-algorithm.html" data-scroll="section-division-algorithm" class="active">The Division Algorithm</a></li>
+<li><a href="integers-sage.html" data-scroll="integers-sage">Sage</a></li>
+<li><a href="exercises-integers.html" data-scroll="exercises-integers">Exercises</a></li>
+<li><a href="exercises-4.html" data-scroll="exercises-4">Programming Exercises</a></li>
+<li><a href="integers-sage-exercises.html" data-scroll="integers-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-2.html" data-scroll="references-2">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-algebra.html" data-scroll="part-algebra"><span class="codenumber">II</span> <span class="title">Algebra</span></a></li>
+<li class="link">
+<a href="groups.html" data-scroll="groups"><span class="codenumber">3</span> <span class="title">Groups</span></a><ul>
+<li><a href="section-mod-n-sym.html" data-scroll="section-mod-n-sym">Integer Equivalence Classes and Symmetries</a></li>
+<li><a href="section-groups-define.html" data-scroll="section-groups-define">Definitions and Examples</a></li>
+<li><a href="section-subgroups.html" data-scroll="section-subgroups">Subgroups</a></li>
+<li><a href="groups-sage.html" data-scroll="groups-sage">Sage</a></li>
+<li><a href="exercises-groups.html" data-scroll="exercises-groups">Exercises</a></li>
+<li><a href="exercises-7.html" data-scroll="exercises-7">Additional Exercises: Detecting Errors</a></li>
+<li><a href="groups-sage-exercises.html" data-scroll="groups-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-3.html" data-scroll="references-3">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="cyclic.html" data-scroll="cyclic"><span class="codenumber">4</span> <span class="title">Cyclicity</span></a><ul>
+<li><a href="section-11.html" data-scroll="section-11">Cyclic groups</a></li>
+<li><a href="section-12.html" data-scroll="section-12">Subgroups of a Cyclic Group</a></li>
+<li><a href="section-13.html" data-scroll="section-13">Cyclic Groups of Complex Numbers</a></li>
+<li><a href="section-14.html" data-scroll="section-14">Large Powers of Integers</a></li>
+<li><a href="exercises-cyclic.html" data-scroll="exercises-cyclic">Exercises</a></li>
+<li><a href="exercises-10.html" data-scroll="exercises-10">Programming Exercises</a></li>
+<li><a href="cyclic-sage-exercises.html" data-scroll="cyclic-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-4.html" data-scroll="references-4">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-1.html" data-scroll="appendix-1"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1"><span class="codenumber">B</span> <span class="title">Hints and Answers to Selected Odd Exercises</span></a></li>
+<li class="link"><a href="solutions-2.html" data-scroll="solutions-2"><span class="codenumber">C</span> <span class="title">Hints and Answers to Selected Even Exercises</span></a></li>
+<li class="link"><a href="solutions-3.html" data-scroll="solutions-3"><span class="codenumber">D</span> <span class="title">Hints and Answers to Selected Exercises</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">E</span> <span class="title">A Structured Appendix</span></a><ul>
+<li><a href="section-15.html" data-scroll="section-15">A Section in an Appendix</a></li>
+<li><a href="section-16.html" data-scroll="section-16">Numbering in the Back Matter</a></li>
+</ul>
+</li>
+<li class="link"><a href="appendix-gfdl.html" data-scroll="appendix-gfdl"><span class="codenumber">F</span> <span class="title">GNU Free Documentation License</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+<li class="link"><a href="back-colophon.html" data-scroll="back-colophon"><span class="title">Colophon</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="section-division-algorithm"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">2.2</span> <span class="title">The Division Algorithm</span>
+</h2>
+<section class="introduction" id="introduction-7"><p id="p-266">An application of the Principle of Well-Ordering that we will use often is the division algorithm.</p>
+<article class="theorem theorem-like" id="theorem-integers-division_algorithm"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Division Algorithm.</span>
+</h3>
+<p id="p-267">Let <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> be integers, with <span class="process-math">\(b \gt 0\text{.}\)</span>  Then there exist unique integers <span class="process-math">\(q\)</span> and <span class="process-math">\(r\)</span> such that</p>
+<div class="displaymath process-math">
+\begin{equation*}
+a = bq + r
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(0 \leq r \lt b\text{.}\)</span></p></article><article class="hiddenproof" id="proof-8"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-8"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-8"><article class="hiddenproof"><p id="p-268">This is a perfect example of the existence-and-uniqueness type of proof.  We must first prove that the numbers <span class="process-math">\(q\)</span> and <span class="process-math">\(r\)</span> actually  exist. Then we must show that if  <span class="process-math">\(q'\)</span> and <span class="process-math">\(r'\)</span> are two other such numbers, then <span class="process-math">\(q = q'\)</span> and <span class="process-math">\(r = r'\text{.}\)</span></p>
+<p id="p-269"><em class="emphasis">Existence of <span class="process-math">\(q\)</span> and <span class="process-math">\(r\text{.}\)</span></em> Let</p>
+<div class="displaymath process-math">
+\begin{equation*}
+S = \{ a - bk : k \in {\mathbb Z} \text{ and } a - bk \geq 0 \}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">If <span class="process-math">\(0 \in S\text{,}\)</span> then <span class="process-math">\(b\)</span> divides <span class="process-math">\(a\text{,}\)</span> and  we can let <span class="process-math">\(q = a/b\)</span> and <span class="process-math">\(r = 0\text{.}\)</span>  If <span class="process-math">\(0 \notin S\text{,}\)</span> we can use the Well-Ordering Principle.  We must first show that <span class="process-math">\(S\)</span> is nonempty.  If <span class="process-math">\(a \gt 0\text{,}\)</span> then <span class="process-math">\(a - b \cdot 0 \in S\text{.}\)</span> If <span class="process-math">\(a \lt 0\text{,}\)</span> then <span class="process-math">\(a - b(2a) = a(1 - 2b) \in S\text{.}\)</span>  In either case <span class="process-math">\(S \neq \emptyset\text{.}\)</span>  By the Well-Ordering Principle, <span class="process-math">\(S\)</span> must have a smallest member, say <span class="process-math">\(r = a - bq\text{.}\)</span> Therefore, <span class="process-math">\(a = bq + r\text{,}\)</span> <span class="process-math">\(r \geq 0\text{.}\)</span> We now show that <span class="process-math">\(r \lt b\text{.}\)</span> Suppose that <span class="process-math">\(r \gt b\text{.}\)</span> Then</p>
+<div class="displaymath process-math">
+\begin{equation*}
+a - b(q + 1)= a - bq - b = r - b \gt 0\text{.}
+\end{equation*}
+</div>
+<p class="continuation">In this case we would have <span class="process-math">\(a - b(q + 1)\)</span> in the set <span class="process-math">\(S\text{.}\)</span> But then <span class="process-math">\(a - b(q + 1) \lt a - bq\text{,}\)</span> which would contradict the fact that <span class="process-math">\(r = a - bq\)</span> is the smallest member  of <span class="process-math">\(S\text{.}\)</span> So <span class="process-math">\(r \leq b\text{.}\)</span>  Since <span class="process-math">\(0 \notin S\text{,}\)</span> <span class="process-math">\(r \neq b\)</span> and so <span class="process-math">\(r \lt b\text{.}\)</span></p>
+<p id="p-270"><em class="emphasis">Uniqueness of <span class="process-math">\(q\)</span> and <span class="process-math">\(r\text{.}\)</span></em> Suppose there exist integers <span class="process-math">\(r\text{,}\)</span> <span class="process-math">\(r'\text{,}\)</span> <span class="process-math">\(q\text{,}\)</span> and <span class="process-math">\(q'\)</span> such that</p>
+<div class="displaymath process-math">
+\begin{equation*}
+a = bq + r, 0 \leq r \lt b \quad \text{and}\quad a = bq' + r', 0 \leq r' \lt b\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Then <span class="process-math">\(bq + r =  bq' + r'\text{.}\)</span>  Assume that <span class="process-math">\(r' \geq r\text{.}\)</span>  From the last equation we have <span class="process-math">\(b(q - q') = r' - r\text{;}\)</span> therefore, <span class="process-math">\(b\)</span> must divide <span class="process-math">\(r' - r\)</span> and <span class="process-math">\(0 \leq r'- r \leq r' \lt b\text{.}\)</span>  This is possible only if <span class="process-math">\(r' - r = 0\text{.}\)</span>  Hence, <span class="process-math">\(r = r'\)</span> and  <span class="process-math">\(q = q'\text{.}\)</span></p></article></div>
+<p id="p-271">Let <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> be integers.  If <span class="process-math">\(b = ak\)</span> for some integer <span class="process-math">\(k\text{,}\)</span> we write <span class="process-math">\(a \mid b\text{.}\)</span>  An integer <span class="process-math">\(d\)</span> is called a <dfn class="terminology">common divisor</dfn> of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> if <span class="process-math">\(d \mid a\)</span> and <span class="process-math">\(d \mid b\text{.}\)</span>  The <dfn class="terminology">greatest common divisor</dfn> of integers <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> is a positive integer <span class="process-math">\(d\)</span> such that <span class="process-math">\(d\)</span> is a common divisor  of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> and if <span class="process-math">\(d'\)</span> is any other common divisor of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{,}\)</span> then <span class="process-math">\(d' \mid d\text{.}\)</span>   We write <span class="process-math">\(d = \gcd(a, b)\text{;}\)</span> for example, <span class="process-math">\(\gcd( 24, 36) = 12\)</span> and <span class="process-math">\(\gcd(120, 102) = 6\text{.}\)</span>  We say that two integers <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are <dfn class="terminology">relatively prime</dfn> if <span class="process-math">\(\gcd( a, b ) = 1\text{.}\)</span></p>
+<article class="theorem theorem-like" id="theorem-integers-gcd"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.2</span><span class="period">.</span>
+</h3>
+<p id="p-272">Let <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> be nonzero integers. Then there exist integers <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> such that</p>
+<div class="displaymath process-math">
+\begin{equation*}
+\gcd( a, b) = ar + bs\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Furthermore, the greatest common divisor of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> is unique.</p></article><article class="hiddenproof" id="proof-9"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-9"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-9"><article class="hiddenproof"><p id="p-273">Let</p>
+<div class="displaymath process-math">
+\begin{equation*}
+S = \{ am + bn : m, n \in {\mathbb Z} \text{ and } am + bn \gt 0 \}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Clearly, the set <span class="process-math">\(S\)</span> is nonempty; hence, by the Well-Ordering Principle <span class="process-math">\(S\)</span> must have a smallest member, say <span class="process-math">\(d = ar + bs\text{.}\)</span>  We claim that <span class="process-math">\(d = \gcd( a, b)\text{.}\)</span>  Write <span class="process-math">\(a = dq + r'\)</span> where <span class="process-math">\(0 \leq r' \lt d\text{.}\)</span> If <span class="process-math">\(r' \gt 0\text{,}\)</span> then</p>
+<div class="displaymath process-math">
+\begin{align*}
+r'&amp; = a - dq\\
+&amp; = a - (ar + bs)q\\
+&amp; = a - arq - bsq\\
+&amp; = a( 1 - rq ) + b( -sq )\text{,}
+\end{align*}
+</div>
+<p class="continuation">which is in <span class="process-math">\(S\text{.}\)</span>  But this would contradict the fact that <span class="process-math">\(d\)</span> is the smallest member of <span class="process-math">\(S\text{.}\)</span>  Hence, <span class="process-math">\(r' = 0\)</span> and <span class="process-math">\(d\)</span> divides <span class="process-math">\(a\text{.}\)</span>  A similar argument shows that <span class="process-math">\(d\)</span> divides <span class="process-math">\(b\text{.}\)</span>  Therefore, <span class="process-math">\(d\)</span> is a common divisor of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span></p>
+<p id="p-274">Suppose that <span class="process-math">\(d'\)</span> is another common divisor of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{,}\)</span> and we want to show that <span class="process-math">\(d' \mid d\text{.}\)</span> If we let <span class="process-math">\(a = d'h\)</span> and <span class="process-math">\(b = d'k\text{,}\)</span> then</p>
+<div class="displaymath process-math">
+\begin{equation*}
+d = ar + bs = d'hr + d'ks = d'(hr + ks)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">So <span class="process-math">\(d'\)</span> must divide <span class="process-math">\(d\text{.}\)</span> Hence, <span class="process-math">\(d\)</span> must be the unique greatest common divisor of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span></p></article></div>
+<article class="corollary theorem-like" id="corollary-integers-coprime"><h3 class="heading">
+<span class="type">Corollary</span><span class="space"> </span><span class="codenumber">2.2.3</span><span class="period">.</span>
+</h3>
+<p id="p-275">Let <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> be two integers that are relatively prime. Then there exist  integers <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> such that <span class="process-math">\(ar + bs = 1\text{.}\)</span></p></article></section><section class="subsection" id="subsection-11"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.2.1</span> <span class="title">The Euclidean Algorithm</span>
+</h3>
+<p id="p-276">Among other things, <a href="" class="xref" data-knowl="./knowl/theorem-integers-gcd.html" title="Theorem 2.2.2">Theorem 2.2.2</a> allows us to compute the greatest common divisor of two integers.</p>
+<article class="example example-like" id="example-integers-gcd"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-integers-gcd"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Greatest Common Divisor of Two Integers.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-integers-gcd"><article class="example example-like"><p id="p-277">Let us compute the greatest common divisor of <span class="process-math">\(945\)</span> and <span class="process-math">\(2415\text{.}\)</span>  First observe that</p>
+<div class="displaymath process-math">
+\begin{align*}
+2415 &amp; = 945 \cdot 2 + 525\\
+945 &amp; = 525 \cdot 1 + 420\\
+525 &amp; = 420 \cdot 1 + 105\\
+420 &amp; = 105 \cdot 4 + 0\text{.}
+\end{align*}
+</div>
+<p id="p-278">Reversing our steps, 105 divides 420, 105 divides 525, 105 divides 945, and 105 divides 2415.  Hence, 105 divides both 945 and 2415.  If <span class="process-math">\(d\)</span> were another common divisor of 945 and 2415, then <span class="process-math">\(d\)</span> would also have to divide 105.  Therefore, <span class="process-math">\(\gcd( 945, 2415 ) = 105\text{.}\)</span></p>
+<p id="p-279">If we work backward through the above sequence of equations, we can also obtain numbers <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> such that <span class="process-math">\(945 r + 2415 s = 105\text{.}\)</span>  Observe that</p>
+<div class="displaymath process-math">
+\begin{align*}
+105 &amp; = 525 + (-1) \cdot 420\\
+&amp; = 525 + (-1) \cdot [945 + (-1) \cdot 525]\\
+&amp; = 2 \cdot 525 + (-1) \cdot 945\\
+&amp; = 2 \cdot [2415 + (-2) \cdot 945] + (-1) \cdot 945\\
+&amp; = 2 \cdot 2415 + (-5) \cdot 945\text{.}
+\end{align*}
+</div>
+<p id="p-280">So <span class="process-math">\(r = -5\)</span> and <span class="process-math">\(s= 2\text{.}\)</span>  Notice that <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> are not unique, since <span class="process-math">\(r = 41\)</span> and <span class="process-math">\(s = -16\)</span> would also work.</p></article></div>
+<p id="p-281">To compute <span class="process-math">\(\gcd(a,b) = d\text{,}\)</span> we are using repeated divisions to obtain a decreasing sequence of positive integers <span class="process-math">\(r_1 \gt r_2 \gt \cdots \gt r_n = d\text{;}\)</span> that is,</p>
+<div class="displaymath process-math">
+\begin{align*}
+b &amp; = a q_1 + r_1\\
+a &amp; = r_1 q_2 + r_2\\
+r_1 &amp; = r_2 q_3 + r_3\\
+&amp; \vdots \\
+r_{n - 2} &amp; = r_{n - 1} q_{n} + r_{n}\\
+r_{n - 1} &amp; = r_n q_{n + 1}\text{.}
+\end{align*}
+</div>
+<p id="p-282">To find <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> such that <span class="process-math">\(ar + bs = d\text{,}\)</span> we begin with this last equation and substitute results obtained from the previous equations:</p>
+<div class="displaymath process-math">
+\begin{align*}
+d &amp; = r_n\\
+&amp; = r_{n - 2} - r_{n - 1} q_n\\
+&amp; = r_{n - 2} - q_n( r_{n - 3} - q_{n - 1} r_{n - 2} )\\
+&amp; = -q_n r_{n - 3} + ( 1+ q_n q_{n-1} ) r_{n - 2}\\
+&amp; \vdots \\
+&amp; = ra + sb\text{.}
+\end{align*}
+</div>
+<p id="p-283">The algorithm that we have just used to find the greatest common divisor <span class="process-math">\(d\)</span> of two integers <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> and to write <span class="process-math">\(d\)</span> as the linear combination of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> is known as the <dfn class="terminology">Euclidean algorithm</dfn>.</p></section><section class="subsection" id="subsection-12"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.2.2</span> <span class="title">Prime Numbers</span>
+</h3>
+<p id="p-284">Let <span class="process-math">\(p\)</span> be an integer such that <span class="process-math">\(p \gt 1\text{.}\)</span>  We say that <span class="process-math">\(p\)</span> is a <dfn class="terminology">prime number</dfn>, or simply <span class="process-math">\(p\)</span> is <dfn class="terminology">prime</dfn>, if the only positive numbers that divide <span class="process-math">\(p\)</span> are 1 and <span class="process-math">\(p\)</span> itself.  An integer <span class="process-math">\(n \gt 1\)</span> that is not prime is said to be <dfn class="terminology">composite</dfn>.</p>
+<article class="lemma theorem-like" id="theorem-integers-prime-divisor"><h4 class="heading">
+<span class="type">Lemma</span><span class="space"> </span><span class="codenumber">2.2.5</span><span class="space"> </span><span class="creator">(Euclid)</span><span class="period">.</span>
+</h4>
+<p id="p-285">Let <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> be integers and <span class="process-math">\(p\)</span> be a prime number.  If <span class="process-math">\(p \mid ab\text{,}\)</span> then either <span class="process-math">\(p \mid a\)</span> or <span class="process-math">\(p \mid b\text{.}\)</span></p></article><article class="hiddenproof" id="proof-10"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-10"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-10"><article class="hiddenproof"><p id="p-286">Suppose that <span class="process-math">\(p\)</span> does not divide <span class="process-math">\(a\text{.}\)</span>  We must show that <span class="process-math">\(p \mid b\text{.}\)</span> Since <span class="process-math">\(\gcd( a, p ) = 1\text{,}\)</span> there exist integers <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> such that <span class="process-math">\(ar + ps = 1\text{.}\)</span>  So</p>
+<div class="displaymath process-math">
+\begin{equation*}
+b = b(ar + ps) = (ab)r + p(bs)\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Since <span class="process-math">\(p\)</span> divides both <span class="process-math">\(ab\)</span> and itself, <span class="process-math">\(p\)</span> must divide <span class="process-math">\(b = (ab)r + p(bs)\text{.}\)</span></p></article></div>
+<article class="theorem theorem-like" id="theorem-integers-infinite-primes"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.6</span><span class="space"> </span><span class="creator">(Euclid)</span><span class="period">.</span>
+</h4>
+<p id="p-287">There exist an infinite number of primes.</p></article><article class="hiddenproof" id="proof-11"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-11"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-11"><article class="hiddenproof"><p id="p-288">We will prove this theorem by contradiction.  Suppose that there are only a finite number of primes, say <span class="process-math">\(p_1, p_2, \ldots, p_n\text{.}\)</span>  Let <span class="process-math">\(P = p_1  p_2  \cdots  p_n + 1\text{.}\)</span>    Then <span class="process-math">\(P\)</span> must be divisible by some <span class="process-math">\(p_i\)</span> for <span class="process-math">\(1 \leq i \leq n\text{.}\)</span> In this  case, <span class="process-math">\(p_i\)</span> must divide <span class="process-math">\(P - p_1 p_2 \cdots p_n = 1\text{,}\)</span> which is a contradiction.  Hence, either <span class="process-math">\(P\)</span> is prime or there exists an additional prime number <span class="process-math">\(p \neq p_i\)</span> that divides <span class="process-math">\(P\text{.}\)</span></p></article></div>
+<article class="theorem theorem-like" id="theorem-fund-theorem-arithmetic"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">2.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Fundamental Theorem of Arithmetic.</span>
+</h4>
+<p id="p-289">Let <span class="process-math">\(n\)</span> be an integer such that <span class="process-math">\(n \gt 1\text{.}\)</span> Then</p>
+<div class="displaymath process-math">
+\begin{equation*}
+n = p_1 p_2 \cdots p_k\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(p_1, \ldots, p_k\)</span> are  primes (not necessarily distinct).  Furthermore, this factorization is unique; that is, if</p>
+<div class="displaymath process-math">
+\begin{equation*}
+n = q_1 q_2 \cdots q_l\text{,}
+\end{equation*}
+</div>
+<p class="continuation">then <span class="process-math">\(k = l\)</span> and the <span class="process-math">\(q_i\)</span>'s are just the <span class="process-math">\(p_i\)</span>'s rearranged.</p></article><article class="hiddenproof" id="proof-12"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-12"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-12"><article class="hiddenproof"><p id="p-290"><em class="emphasis">Uniqueness.</em>  To show uniqueness we will use induction on <span class="process-math">\(n\text{.}\)</span> The theorem is certainly true for <span class="process-math">\(n = 2\)</span> since in this case <span class="process-math">\(n\)</span> is prime.  Now assume that the result holds for all integers <span class="process-math">\(m\)</span> such that <span class="process-math">\(1 \leq m \lt n\text{,}\)</span> and</p>
+<div class="displaymath process-math">
+\begin{equation*}
+n = p_1 p_2 \cdots p_k = q_1 q_2 \cdots q_l\text{,}
+\end{equation*}
+</div>
+<p class="continuation">where <span class="process-math">\(p_1 \leq p_2 \leq \cdots \leq p_k\)</span> and <span class="process-math">\(q_1 \leq q_2 \leq \cdots \leq q_l\text{.}\)</span> By <a href="" class="xref" data-knowl="./knowl/theorem-integers-prime-divisor.html" title="Lemma 2.2.5">Lemma 2.2.5</a>, <span class="process-math">\(p_1  \mid  q_i\)</span> for some <span class="process-math">\(i = 1, \ldots, l\)</span> and <span class="process-math">\(q_1  \mid  p_j\)</span> for some <span class="process-math">\(j = 1, \ldots, k\text{.}\)</span>  Since all of the <span class="process-math">\(p_i\)</span>'s and <span class="process-math">\(q_i\)</span>'s are prime, <span class="process-math">\(p_1 = q_i\)</span> and  <span class="process-math">\(q_1 = p_j\text{.}\)</span> Hence, <span class="process-math">\(p_1 = q_1\)</span> since <span class="process-math">\(p_1 \leq p_j = q_1 \leq q_i = p_1\text{.}\)</span>  By the induction hypothesis,</p>
+<div class="displaymath process-math">
+\begin{equation*}
+n' = p_2 \cdots p_k = q_2 \cdots q_l
+\end{equation*}
+</div>
+<p class="continuation">has a unique factorization.  Hence, <span class="process-math">\(k = l\)</span> and <span class="process-math">\(q_i = p_i\)</span> for <span class="process-math">\(i = 1, \ldots, k\text{.}\)</span></p>
+<p id="p-291"><em class="emphasis">Existence.</em> To show existence, suppose that there is some integer that cannot be written as the product of primes.  Let <span class="process-math">\(S\)</span> be the set of all such numbers.  By the Principle of Well-Ordering, <span class="process-math">\(S\)</span> has a smallest number, say <span class="process-math">\(a\text{.}\)</span>  If the only positive factors of <span class="process-math">\(a\)</span> are <span class="process-math">\(a\)</span> and 1, then <span class="process-math">\(a\)</span> is prime, which is a contradiction.  Hence, <span class="process-math">\(a = a_1 a_2\)</span> where <span class="process-math">\(1 \lt a_1 \lt a\)</span> and <span class="process-math">\(1 \lt a_2 \lt a\text{.}\)</span>  Neither <span class="process-math">\(a_1\in S\)</span> nor <span class="process-math">\(a_2 \in S\text{,}\)</span> since <span class="process-math">\(a\)</span> is the smallest element in <span class="process-math">\(S\text{.}\)</span>  So</p>
+<div class="displaymath process-math">
+\begin{align*}
+a_1 &amp; = p_1 \cdots p_r\\
+a_2 &amp; = q_1 \cdots q_s\text{.}
+\end{align*}
+</div>
+<p id="p-292">Therefore,</p>
+<div class="displaymath process-math">
+\begin{equation*}
+a = a_1 a_2 = p_1 \cdots p_r q_1 \cdots q_s\text{.}
+\end{equation*}
+</div>
+<p class="continuation">So <span class="process-math">\(a \notin S\text{,}\)</span> which is a contradiction.</p></article></div></section><section class="subsection" id="subsection-13"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">2.2.3</span> <span class="title">Historical Note</span>
+</h3>
+<p id="p-293">Prime numbers were first studied by the ancient Greeks.  Two important results from antiquity are Euclid's proof that an infinite number of primes exist and the Sieve of Eratosthenes, a method of computing all of the prime numbers less than a fixed positive integer <span class="process-math">\(n\text{.}\)</span>  One problem in number theory is to find a function <span class="process-math">\(f\)</span> such that <span class="process-math">\(f(n)\)</span> is prime for each integer <span class="process-math">\(n\text{.}\)</span> Pierre Fermat (1601?–1665) conjectured that <span class="process-math">\(2^{2^n} + 1\)</span> was prime for all <span class="process-math">\(n\text{,}\)</span> but later it was shown by Leonhard Euler (1707–1783) that</p>
+<div class="displaymath process-math">
+\begin{equation*}
+2^{2^5} + 1 = \text{4,294,967,297}
+\end{equation*}
+</div>
+<p class="continuation">is a composite number. One of the many unproven conjectures about prime numbers is Goldbach's Conjecture.  In a letter to Euler in 1742, Christian Goldbach stated the conjecture that every even integer with the exception of 2 seemed to be the sum of two primes:  <span class="process-math">\(4 = 2 + 2\text{,}\)</span> <span class="process-math">\(6 = 3 + 3\text{,}\)</span> <span class="process-math">\(8 =3 + 5\text{,}\)</span> <span class="process-math">\(\ldots\text{.}\)</span>  Although the conjecture has been verified for the numbers up through <span class="process-math">\(4 \times 10^{18}\text{,}\)</span> it has yet to be proven in general.  Since prime numbers play an important role in public key cryptography, there is currently a great deal of interest in determining whether or not a large number is prime.</p>
+<article class="remark remark-like" id="remark-1"><h4 class="heading">
+<span class="type">Remark</span><span class="space"> </span><span class="codenumber">2.2.8</span><span class="period">.</span><span class="space"> </span><span class="title">Sage.</span>
+</h4>
+<p id="p-294">Sage's original purpose was to support research in number theory, so it is perfect for the types of computations with the integers that we have in this chapter.</p></article></section></section></div></main>
+</div>
+</body>
+</html>

@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-23T18:59:27-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AATA Definitions and Examples</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/bundle.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/main.js"></script><link xmlns:svg="http://www.w3.org/2000/svg" href="./static/css/main.css" rel="stylesheet">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://abstract.pugetsound.edu" target="_blank"><img src="images/cover_aata_2014.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="sample-book.html"><span class="title">Abstract Algebra:</span> <span class="subtitle">PRETEXT XML SAMPLE ONLY</span></a></h1>
+<p class="byline">Thomas W. Judson, Isaac Newton (Editor)</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-mod-n-sym.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="groups.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-subgroups.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-mod-n-sym.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="groups.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-subgroups.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter"><span class="title">Front Matter</span></a><ul>
+<li><a href="front-colophon.html" data-scroll="front-colophon">Colophon</a></li>
+<li><a href="author-bio-TWJ.html" data-scroll="author-bio-TWJ">Author Biography</a></li>
+<li><a href="author-bio-RAB.html" data-scroll="author-bio-RAB">About Robert A. Beezer</a></li>
+<li><a href="dedication.html" data-scroll="dedication">Dedication</a></li>
+<li><a href="acknowledgement.html" data-scroll="acknowledgement">Acknowledgements</a></li>
+<li><a href="preface.html" data-scroll="preface">Preface</a></li>
+<li><a href="contributors.html" data-scroll="contributors">Contributors to the 4<span class="process-math">\(^\mathrm{th}\)</span> Edition</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">Basics</span></a></li>
+<li class="link">
+<a href="sets.html" data-scroll="sets"><span class="codenumber">1</span> <span class="title">Preliminaries</span></a><ul>
+<li><a href="section-note-on-proofs.html" data-scroll="section-note-on-proofs">A Short Note on Proofs</a></li>
+<li><a href="section-sets-and-equivalence-relations.html" data-scroll="section-sets-and-equivalence-relations">Sets and Equivalence Relations</a></li>
+<li><a href="sets-sage.html" data-scroll="sets-sage">Sage</a></li>
+<li><a href="exercises-sets.html" data-scroll="exercises-sets">Exercises</a></li>
+<li><a href="sets-sage-exercises.html" data-scroll="sets-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-1.html" data-scroll="references-1">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="integers.html" data-scroll="integers"><span class="codenumber">2</span> <span class="title">The Integers</span></a><ul>
+<li><a href="section-math-induction.html" data-scroll="section-math-induction">Mathematical Induction</a></li>
+<li><a href="section-division-algorithm.html" data-scroll="section-division-algorithm">The Division Algorithm</a></li>
+<li><a href="integers-sage.html" data-scroll="integers-sage">Sage</a></li>
+<li><a href="exercises-integers.html" data-scroll="exercises-integers">Exercises</a></li>
+<li><a href="exercises-4.html" data-scroll="exercises-4">Programming Exercises</a></li>
+<li><a href="integers-sage-exercises.html" data-scroll="integers-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-2.html" data-scroll="references-2">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-algebra.html" data-scroll="part-algebra"><span class="codenumber">II</span> <span class="title">Algebra</span></a></li>
+<li class="link">
+<a href="groups.html" data-scroll="groups"><span class="codenumber">3</span> <span class="title">Groups</span></a><ul>
+<li><a href="section-mod-n-sym.html" data-scroll="section-mod-n-sym">Integer Equivalence Classes and Symmetries</a></li>
+<li><a href="section-groups-define.html" data-scroll="section-groups-define" class="active">Definitions and Examples</a></li>
+<li><a href="section-subgroups.html" data-scroll="section-subgroups">Subgroups</a></li>
+<li><a href="groups-sage.html" data-scroll="groups-sage">Sage</a></li>
+<li><a href="exercises-groups.html" data-scroll="exercises-groups">Exercises</a></li>
+<li><a href="exercises-7.html" data-scroll="exercises-7">Additional Exercises: Detecting Errors</a></li>
+<li><a href="groups-sage-exercises.html" data-scroll="groups-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-3.html" data-scroll="references-3">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="cyclic.html" data-scroll="cyclic"><span class="codenumber">4</span> <span class="title">Cyclicity</span></a><ul>
+<li><a href="section-11.html" data-scroll="section-11">Cyclic groups</a></li>
+<li><a href="section-12.html" data-scroll="section-12">Subgroups of a Cyclic Group</a></li>
+<li><a href="section-13.html" data-scroll="section-13">Cyclic Groups of Complex Numbers</a></li>
+<li><a href="section-14.html" data-scroll="section-14">Large Powers of Integers</a></li>
+<li><a href="exercises-cyclic.html" data-scroll="exercises-cyclic">Exercises</a></li>
+<li><a href="exercises-10.html" data-scroll="exercises-10">Programming Exercises</a></li>
+<li><a href="cyclic-sage-exercises.html" data-scroll="cyclic-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-4.html" data-scroll="references-4">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-1.html" data-scroll="appendix-1"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1"><span class="codenumber">B</span> <span class="title">Hints and Answers to Selected Odd Exercises</span></a></li>
+<li class="link"><a href="solutions-2.html" data-scroll="solutions-2"><span class="codenumber">C</span> <span class="title">Hints and Answers to Selected Even Exercises</span></a></li>
+<li class="link"><a href="solutions-3.html" data-scroll="solutions-3"><span class="codenumber">D</span> <span class="title">Hints and Answers to Selected Exercises</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">E</span> <span class="title">A Structured Appendix</span></a><ul>
+<li><a href="section-15.html" data-scroll="section-15">A Section in an Appendix</a></li>
+<li><a href="section-16.html" data-scroll="section-16">Numbering in the Back Matter</a></li>
+</ul>
+</li>
+<li class="link"><a href="appendix-gfdl.html" data-scroll="appendix-gfdl"><span class="codenumber">F</span> <span class="title">GNU Free Documentation License</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+<li class="link"><a href="back-colophon.html" data-scroll="back-colophon"><span class="title">Colophon</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="section-groups-define"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.2</span> <span class="title">Definitions and Examples</span>
+</h2>
+<section class="subsection" id="subsection-19"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.2.1</span> <span class="title">Definition of a Group</span>
+</h3>
+<p id="p-406">The integers mod <span class="process-math">\(n\)</span> and the symmetries of a triangle or a rectangle are examples of groups.  A <dfn class="terminology">binary operation</dfn> or <dfn class="terminology">law of composition</dfn> on a set <span class="process-math">\(G\)</span> is a function <span class="process-math">\(G \times G \rightarrow G\)</span> that assigns to each pair <span class="process-math">\((a,b) \in G \times G\)</span> a unique element <span class="process-math">\(a \circ b\text{,}\)</span> or <span class="process-math">\(ab\)</span> in <span class="process-math">\(G\text{,}\)</span> called the composition of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span>  A <dfn class="terminology">group</dfn> <span class="process-math">\((G, \circ )\)</span> is a set <span class="process-math">\(G\)</span> together with a law of composition <span class="process-math">\((a,b) \mapsto a \circ b\)</span> that satisfies the following axioms.</p>
+<ul class="disc">
+<li id="li-89">
+<p id="p-407">The law of composition is <dfn class="terminology">associative</dfn>. That is,</p>
+<div class="displaymath process-math">
+\begin{equation*}
+(a \circ b) \circ c = a \circ (b \circ c)
+\end{equation*}
+</div>
+<p class="continuation">for <span class="process-math">\(a, b, c \in G\text{.}\)</span></p>
+</li>
+<li id="li-90">
+<p id="p-408">There exists an element <span class="process-math">\(e \in G\text{,}\)</span> called the <dfn class="terminology">identity element</dfn>, such that for any element <span class="process-math">\(a \in G\)</span></p>
+<div class="displaymath process-math">
+\begin{equation*}
+e \circ a = a \circ e = a\text{.}
+\end{equation*}
+</div>
+</li>
+<li id="li-91">
+<p id="p-409">For each element <span class="process-math">\(a \in G\text{,}\)</span> there exists an <dfn class="terminology">inverse element</dfn> in G, denoted by <span class="process-math">\(a^{-1}\text{,}\)</span> such that</p>
+<div class="displaymath process-math">
+\begin{equation*}
+a \circ a^{-1} = a^{-1} \circ a = e\text{.}
+\end{equation*}
+</div>
+</li>
+</ul>
+<p id="p-410">A group <span class="process-math">\(G\)</span> with the property that <span class="process-math">\(a \circ b = b \circ a\)</span> for all <span class="process-math">\(a, b \in G\)</span> is called <dfn class="terminology">abelian</dfn> or <dfn class="terminology">commutative</dfn>.  Groups not satisfying this property are said to be  <dfn class="terminology">nonabelian</dfn> or <dfn class="terminology">noncommutative</dfn>.</p></section><section class="subsection" id="subsection-20"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.2.2</span> <span class="title">Examples of Groups</span>
+</h3>
+<article class="example example-like" id="example-groups-integers"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-integers"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Group of All Integers.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-integers"><article class="example example-like"><p id="p-411">The integers <span class="process-math">\({\mathbb Z } = \{ \ldots , -1, 0, 1, 2, \ldots \}\)</span> form a group under the operation of addition.  The binary operation on two integers <span class="process-math">\(m, n \in {\mathbb Z}\)</span> is just their sum.  Since the integers under addition already have a well-established notation, we will use the operator <span class="process-math">\(+\)</span> instead of <span class="process-math">\(\circ\text{;}\)</span> that is, we shall write <span class="process-math">\(m + n\)</span> instead of <span class="process-math">\(m \circ n\text{.}\)</span>  The identity is 0, and the inverse of <span class="process-math">\(n \in {\mathbb Z}\)</span> is written as <span class="process-math">\(-n\)</span> instead of <span class="process-math">\(n^{-1}\text{.}\)</span>  Notice that the set of integers under addition have the additional property that <span class="process-math">\(m + n = n + m\)</span> and therefore form an abelian group.</p></article></div>
+<p id="p-412">Most of the time we will write <span class="process-math">\(ab\)</span> instead of <span class="process-math">\(a \circ b\text{;}\)</span> however, if the group already has a natural operation such as addition in the integers, we will use that operation.  That is, if we are adding two integers, we still write <span class="process-math">\(m + n\text{,}\)</span> <span class="process-math">\(-n\)</span> for the inverse, and 0 for the identity as usual. We also write <span class="process-math">\(m - n\)</span> instead of <span class="process-math">\(m + (-n)\text{.}\)</span></p>
+<p id="p-413">It is often convenient to describe a group in terms of an addition or multiplication table.  Such a table is called a <dfn class="terminology">Cayley table</dfn>.</p>
+<article class="example example-like" id="example-groups-z5"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-z5"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Group of Integers Modulo <span class="process-math">\(5\)</span>.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-z5"><article class="example example-like"><p id="p-414">The integers mod <span class="process-math">\(n\)</span> form a group under addition modulo <span class="process-math">\(n\text{.}\)</span>  Consider <span class="process-math">\({\mathbb Z}_5\text{,}\)</span> consisting of the equivalence classes of the integers 0, 1, 2, 3, and 4.  We define the group operation on <span class="process-math">\({\mathbb Z}_5\)</span> by modular addition.  We write the binary operation on the group additively; that is, we write <span class="process-math">\(m + n\text{.}\)</span>  The element 0 is the identity of the group and each element in <span class="process-math">\({\mathbb Z}_5\)</span> has an inverse. For instance, <span class="process-math">\(2 + 3 = 3 + 2 = 0\text{.}\)</span>  <a href="" class="xref" data-knowl="./knowl/figure-z5-cayley.html" title="Figure 3.2.3">Figure 3.2.3</a> is a Cayley table for <span class="process-math">\({\mathbb Z}_5\)</span>  (Contributed by <a href="" class="xref" data-knowl="./knowl/rbeezer.html" title="Contributor">Robert Beezer</a>).  By <a href="" class="xref" data-knowl="./knowl/proposition-zn-equiv-classes.html" title="Proposition 3.1.4">Proposition 3.1.4</a>, <span class="process-math">\({\mathbb Z}_n = \{0, 1, \ldots, n-1 \}\)</span> is a group under the binary operation of addition mod <span class="process-math">\(n\text{.}\)</span></p>
+<figure class="figure figure-like" id="figure-z5-cayley"><div class="displaymath process-math" id="p-415">
+\begin{equation*}
+\begin{array}{c|ccccc}
++ &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+\hline
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+1 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 0 \\
+2 &amp; 2 &amp; 3 &amp; 4 &amp; 0 &amp; 1 \\
+3 &amp; 3 &amp; 4 &amp; 0 &amp; 1 &amp; 2 \\
+4 &amp; 4 &amp; 0 &amp; 1 &amp; 2 &amp; 3
+\end{array}
+\end{equation*}
+</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.2.3<span class="period">.</span></span><span class="space"> </span>Cayley table for <span class="process-math">\(({\mathbb Z_5}, +)\)</span></figcaption></figure></article></div>
+<article class="example example-like" id="example-groups-z6-mult"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-z6-mult"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Multiplication of Integers Modulo <span class="process-math">\(6\)</span>.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-z6-mult"><article class="example example-like"><p id="p-416">Not every set with a binary operation is a group.  For example, if we let modular multiplication be the binary operation on <span class="process-math">\({\mathbb Z}_n\text{,}\)</span> then <span class="process-math">\({\mathbb Z}_n\)</span> fails to be a group.  The element 1 acts as a group identity since <span class="process-math">\(1 \cdot k = k \cdot 1 = k\)</span> for any <span class="process-math">\(k \in {\mathbb Z}_n\text{;}\)</span> however, a multiplicative inverse for <span class="process-math">\(0\)</span> does not exist since <span class="process-math">\(0 \cdot k = k \cdot 0 = 0\)</span> for every <span class="process-math">\(k\)</span> in <span class="process-math">\({\mathbb Z}_n\text{.}\)</span>  Even if we consider the set <span class="process-math">\({\mathbb Z}_n \setminus \{0 \}\text{,}\)</span> we still may not have a group.  For instance, let <span class="process-math">\(2 \in {\mathbb Z}_6\text{.}\)</span> Then 2 has no multiplicative inverse since</p>
+<div class="displaymath process-math">
+\begin{align*}
+0 \cdot 2 &amp; = 0 \qquad 1 \cdot 2 = 2\\
+2 \cdot 2 &amp; = 4 \qquad 3 \cdot 2 = 0\\
+4 \cdot 2 &amp; = 2 \qquad 5 \cdot 2 = 4\text{.}
+\end{align*}
+</div>
+<p id="p-417">By <a href="" class="xref" data-knowl="./knowl/proposition-zn-equiv-classes.html" title="Proposition 3.1.4">Proposition 3.1.4</a>, every nonzero <span class="process-math">\(k\)</span> does have an inverse in <span class="process-math">\({\mathbb Z}_n\)</span> if <span class="process-math">\(k\)</span> is relatively prime to <span class="process-math">\(n\text{.}\)</span>  Denote the set of all such nonzero elements in <span class="process-math">\({\mathbb Z}_n\)</span> by <span class="process-math">\(U(n)\text{.}\)</span>   Then <span class="process-math">\(U(n)\)</span> is a group called the <dfn class="terminology">group of units</dfn> of <span class="process-math">\({\mathbb Z}_n\text{.}\)</span>  <a href="" class="xref" data-knowl="./knowl/figure-cayley-u8.html" title="Figure 3.2.5">Figure 3.2.5</a> is a Cayley table for the group <span class="process-math">\(U(8)\text{.}\)</span></p>
+<figure class="figure figure-like" id="figure-cayley-u8"><div class="displaymath process-math" id="p-418">
+\begin{equation*}
+\begin{array}{c|cccc}
+\cdot &amp; 1 &amp; 3 &amp; 5 &amp; 7 \\
+\hline
+1       &amp; 1 &amp; 3 &amp; 5 &amp; 7 \\
+3       &amp; 3 &amp; 1 &amp; 7 &amp; 5 \\
+5       &amp; 5 &amp; 7 &amp; 1 &amp; 3 \\
+7       &amp; 7 &amp; 5 &amp; 3 &amp; 1
+\end{array}
+\end{equation*}
+</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.2.5<span class="period">.</span></span><span class="space"> </span>Multiplication table for <span class="process-math">\(U(8)\)</span></figcaption></figure></article></div>
+<article class="example example-like" id="example-groups-nonabelian"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-nonabelian"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Symmetries of a Triangle is not Abelian.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-nonabelian"><article class="example example-like"><p id="p-419">The symmetries of an equilateral triangle described in <a href="section-mod-n-sym.html" class="internal" title="Section 3.1: Integer Equivalence Classes and Symmetries">Section 3.1</a> form a nonabelian group. As we observed, it is not necessarily true that <span class="process-math">\(\alpha \beta = \beta \alpha\)</span> for two symmetries <span class="process-math">\(\alpha\)</span> and <span class="process-math">\(\beta\text{.}\)</span>  Using <a href="" class="xref" data-knowl="./knowl/figure-s3.html" title="Figure 3.1.7">Figure 3.1.7</a>, which is a Cayley table for this group, we can easily check that the symmetries of an equilateral triangle are indeed a group. We will denote this group by either <span class="process-math">\(S_3\)</span> or <span class="process-math">\(D_3\text{,}\)</span> for reasons that will be explained later.</p></article></div>
+<article class="example example-like" id="example-groups-gl2"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-gl2"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Matrix Multiplication of <span class="process-math">\(2\times 2\)</span> Matrices is a Group.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-gl2"><article class="example example-like"><p id="p-420">We use  <span class="process-math">\({\mathbb M}_2 ( {\mathbb R})\)</span> to denote the set of all <span class="process-math">\(2 \times 2\)</span> matrices.  Let <span class="process-math">\(GL_2({\mathbb R})\)</span> be the subset of <span class="process-math">\({\mathbb M}_2 ( {\mathbb R})\)</span> consisting of invertible matrices; that is, a matrix </p>
+<div class="displaymath process-math">
+\begin{equation*}
+A =
+\begin{pmatrix}
+a &amp; b \\
+c &amp; d
+\end{pmatrix}
+\end{equation*}
+</div>
+<p class="continuation">is in  <span class="process-math">\(GL_2( {\mathbb R})\)</span> if there exists a matrix <span class="process-math">\(A^{-1}\)</span> such that <span class="process-math">\(A A^{-1} = A^{-1} A = I\text{,}\)</span> where <span class="process-math">\(I\)</span> is the <span class="process-math">\(2 \times 2\)</span> identity matrix. For <span class="process-math">\(A\)</span> to have an inverse is equivalent to requiring that the determinant of <span class="process-math">\(A\)</span> be nonzero; that is, <span class="process-math">\(\det A = ad - bc \neq 0\text{.}\)</span>  The set of invertible matrices forms a group called the <dfn class="terminology">general linear group</dfn>.   The identity of the group is the identity matrix</p>
+<div class="displaymath process-math">
+\begin{equation*}
+I =
+\begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{pmatrix}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">The inverse of <span class="process-math">\(A \in GL_2( {\mathbb R})\)</span> is</p>
+<div class="displaymath process-math">
+\begin{equation*}
+A^{-1} =
+\frac{1}{ad-bc}
+\begin{pmatrix}
+d &amp; -b \\
+-c &amp; a
+\end{pmatrix}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">The product of two invertible matrices is again invertible. Matrix multiplication is associative, satisfying the other group axiom. For matrices it is not true in general that <span class="process-math">\(AB = BA\text{;}\)</span> hence, <span class="process-math">\(GL_2({\mathbb R})\)</span> is another example of a nonabelian group.</p></article></div>
+<article class="example example-like" id="example-groups-quaterions"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-quaterions"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.8</span><span class="period">.</span><span class="space"> </span><span class="title">Group of Quaternions.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-quaterions"><article class="example example-like"><p id="p-421">Let</p>
+<div class="displaymath process-math">
+\begin{align*}
+1 &amp; = 
+\begin{pmatrix}
+1 &amp; 0\\
+0 &amp; 1
+\end{pmatrix}
+\qquad
+I
+=
+\begin{pmatrix}
+0 &amp; 1\\
+-1 &amp; 0
+\end{pmatrix}\\
+J &amp; = 
+\begin{pmatrix}
+0 &amp; i\\
+i &amp; 0
+\end{pmatrix}
+\qquad
+K =
+\begin{pmatrix}
+i &amp; 0\\
+0 &amp; -i
+\end{pmatrix}\text{,}
+\end{align*}
+</div>
+<p class="continuation">where <span class="process-math">\(i^2 = -1\text{.}\)</span> Then the relations <span class="process-math">\(I^2 = J^2 = K^2 = -1\text{,}\)</span> <span class="process-math">\(IJ=K\text{,}\)</span> <span class="process-math">\(JK = I\text{,}\)</span> <span class="process-math">\(KI = J\text{,}\)</span> <span class="process-math">\(JI = -K\text{,}\)</span> <span class="process-math">\(KJ = -I\text{,}\)</span> and <span class="process-math">\(IK = -J\)</span> hold. The set <span class="process-math">\(Q_8 = \{\pm 1, \pm I, \pm J, \pm K  \}\)</span> is a group called the <dfn class="terminology">quaternion group</dfn>. Notice that <span class="process-math">\(Q_8\)</span> is noncommutative.</p></article></div>
+<article class="example example-like" id="example-groups-c-star"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-c-star"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.9</span><span class="period">.</span><span class="space"> </span><span class="title">Group of Nonzero Complex Numbers.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-c-star"><article class="example example-like"><p id="p-422">Let <span class="process-math">\({\mathbb C}^\ast\)</span>be the set of nonzero complex numbers.  Under the operation of multiplication <span class="process-math">\({\mathbb C}^\ast\)</span> forms a group.  The identity is 1. If <span class="process-math">\(z = a+bi\)</span> is a nonzero complex number, then</p>
+<div class="displaymath process-math">
+\begin{equation*}
+z^{-1} = \frac{a -bi}{a^2 +b^2}
+\end{equation*}
+</div>
+<p class="continuation">is the inverse of <span class="process-math">\(z\text{.}\)</span>  It is easy to see that the remaining group axioms hold.</p></article></div>
+<p id="p-423">A group is <dfn class="terminology">finite</dfn>, or has <dfn class="terminology">finite order</dfn>, if it contains a finite number of elements; otherwise, the group is said to be <dfn class="terminology">infinite</dfn> or to have <dfn class="terminology">infinite order</dfn>. The <dfn class="terminology">order</dfn> of a finite group is the number of elements that it contains. If <span class="process-math">\(G\)</span> is a group containing <span class="process-math">\(n\)</span> elements, we write <span class="process-math">\(|G| = n\text{.}\)</span>  The group <span class="process-math">\({\mathbb Z}_5\)</span> is a finite group of order 5; the integers <span class="process-math">\({\mathbb Z}\)</span> form an infinite group under addition, and we sometimes write <span class="process-math">\(|{\mathbb Z}| = \infty\text{.}\)</span></p></section><section class="subsection" id="subsection-21"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.2.3</span> <span class="title">Basic Properties of Groups</span>
+</h3>
+<article class="proposition theorem-like" id="proposition-3"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.10</span><span class="period">.</span>
+</h4>
+<p id="p-424">The identity element in a group <span class="process-math">\(G\)</span> is unique; that is, there exists only one element <span class="process-math">\(e \in G\)</span> such that <span class="process-math">\(eg = ge = g\)</span> for all <span class="process-math">\(g \in G\text{.}\)</span></p></article><article class="hiddenproof" id="proof-14"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-14"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-14"><article class="hiddenproof"><p id="p-425">Suppose that <span class="process-math">\(e\)</span> and <span class="process-math">\(e'\)</span> are both identities in <span class="process-math">\(G\text{.}\)</span> Then <span class="process-math">\(eg = ge = g\)</span> and <span class="process-math">\(e'g = ge' = g\)</span> for all <span class="process-math">\(g \in G\text{.}\)</span> We need to show that <span class="process-math">\(e = e'\text{.}\)</span> If we think of <span class="process-math">\(e\)</span> as the identity, then <span class="process-math">\(ee' = e'\text{;}\)</span> but if <span class="process-math">\(e'\)</span> is the identity, then <span class="process-math">\(ee' = e\text{.}\)</span> Combining these two equations, we have <span class="process-math">\(e = ee' = e'\text{.}\)</span> (<a href="" class="xref" data-knowl="./knowl/dfarmer.html" title="Contributor">David Farmer</a> helped with this proof.)</p></article></div>
+<p id="p-426">Inverses in a group are also unique. If <span class="process-math">\(g'\)</span> and <span class="process-math">\(g''\)</span> are both inverses of an element <span class="process-math">\(g\)</span> in a group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(gg' = g'g = e\)</span> and <span class="process-math">\(gg'' = g''g = e\text{.}\)</span> We want to show that <span class="process-math">\(g' = g''\text{,}\)</span> but <span class="process-math">\(g' = g'e = g'(gg'') = (g'g)g'' = eg'' = g''\text{.}\)</span> We summarize this fact in the following proposition.</p>
+<article class="proposition theorem-like" id="proposition-4"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.11</span><span class="period">.</span>
+</h4>
+<p id="p-427">If <span class="process-math">\(g\)</span> is any element in a group <span class="process-math">\(G\text{,}\)</span> then the inverse of <span class="process-math">\(g\text{,}\)</span> denoted by <span class="process-math">\(g^{-1}\text{,}\)</span> is unique.</p></article><article class="proposition theorem-like" id="proposition-inverse-of-products"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.12</span><span class="period">.</span>
+</h4>
+<p id="p-428">Let <span class="process-math">\(G\)</span> be a group. If <span class="process-math">\(a, b \in G\text{,}\)</span> then <span class="process-math">\((ab)^{-1} = b^{-1}a^{-1}\text{.}\)</span></p></article><article class="hiddenproof" id="proof-15"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-15"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-15"><article class="hiddenproof"><p id="p-429">Let <span class="process-math">\(a, b \in G\text{.}\)</span> Then <span class="process-math">\(abb^{-1}a^{-1} = aea^{-1} = aa^{-1} = e\text{.}\)</span> Similarly, <span class="process-math">\(b^{-1}a^{-1}ab = e\text{.}\)</span> But by the previous proposition, inverses are unique; hence, <span class="process-math">\((ab)^{-1} = b^{-1}a^{-1}\text{.}\)</span></p></article></div>
+<article class="proposition theorem-like" id="proposition-6"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.13</span><span class="period">.</span>
+</h4>
+<p id="p-430">Let <span class="process-math">\(G\)</span> be a group.  For any <span class="process-math">\(a \in G\text{,}\)</span> <span class="process-math">\((a^{-1})^{-1} = a\text{.}\)</span></p></article><article class="hiddenproof" id="proof-16"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-16"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-16"><article class="hiddenproof"><p id="p-431">Observe that <span class="process-math">\(a^{-1} (a^{-1})^{-1} = e\text{.}\)</span> Consequently, multiplying both sides of this equation by <span class="process-math">\(a\text{,}\)</span> we have</p>
+<div class="displaymath process-math">
+\begin{equation*}
+(a^{-1})^{-1} = e (a^{-1})^{-1} = a a^{-1} (a^{-1})^{-1} = ae = a\text{.}
+\end{equation*}
+</div></article></div>
+<p id="p-432">It makes sense to write equations with group elements and group operations. If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are two elements in a group <span class="process-math">\(G\text{,}\)</span> does there exist an element <span class="process-math">\(x \in G\)</span> such that <span class="process-math">\(ax = b\text{?}\)</span> If such an <span class="process-math">\(x\)</span> does exist, is it unique? The following proposition answers both of these questions positively.</p>
+<article class="proposition theorem-like" id="proposition-group-equations"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.14</span><span class="period">.</span>
+</h4>
+<p id="p-433">Let <span class="process-math">\(G\)</span> be a group and <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> be any two elements in <span class="process-math">\(G\text{.}\)</span> Then the equations <span class="process-math">\(ax = b\)</span> and <span class="process-math">\(xa = b\)</span> have unique solutions in <span class="process-math">\(G\text{.}\)</span></p></article><article class="hiddenproof" id="proof-17"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-17"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-17"><article class="hiddenproof"><p id="p-434">Suppose that <span class="process-math">\(ax = b\text{.}\)</span> We must show that such an <span class="process-math">\(x\)</span> exists. Multiplying both sides of <span class="process-math">\(ax = b\)</span> by <span class="process-math">\(a^{-1}\text{,}\)</span> we have <span class="process-math">\(x = ex = a^{-1}ax = a^{-1}b\text{.}\)</span></p>
+<p id="p-435">To show uniqueness, suppose that <span class="process-math">\(x_1\)</span> and <span class="process-math">\(x_2\)</span> are both solutions of <span class="process-math">\(ax = b\text{;}\)</span> then <span class="process-math">\(ax_1 = b = ax_2\text{.}\)</span> So <span class="process-math">\(x_1 = a^{-1}ax_1 = a^{-1}ax_2 = x_2\text{.}\)</span> The proof for the existence and uniqueness of the solution of <span class="process-math">\(xa = b\)</span> is similar.</p></article></div>
+<article class="proposition theorem-like" id="proposition-8"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.15</span><span class="period">.</span>
+</h4>
+<p id="p-436">If <span class="process-math">\(G\)</span> is a group and <span class="process-math">\(a, b, c \in G\text{,}\)</span> then <span class="process-math">\(ba = ca\)</span> implies <span class="process-math">\(b = c\)</span> and <span class="process-math">\(ab = ac\)</span> implies <span class="process-math">\(b = c\text{.}\)</span></p></article><p id="p-437">This proposition tells us that the <dfn class="terminology">right and  left cancellation laws</dfn> are true in groups.  We leave the proof as an exercise.</p>
+<p id="p-438">We can use exponential notation for groups just as we do in ordinary algebra. If <span class="process-math">\(G\)</span> is a group and <span class="process-math">\(g \in G\text{,}\)</span> then we define <span class="process-math">\(g^0 = e\text{.}\)</span> For <span class="process-math">\(n \in {\mathbb N}\text{,}\)</span> we define</p>
+<div class="displaymath process-math">
+\begin{equation*}
+g^n = \underbrace{g \cdot g \cdots g}_{n \; \text{times}}
+\end{equation*}
+</div>
+<p class="continuation">and</p>
+<div class="displaymath process-math">
+\begin{equation*}
+g^{-n} = \underbrace{g^{-1} \cdot g^{-1} \cdots g^{-1}}_{n \; \text{times}}\text{.}
+\end{equation*}
+</div>
+<article class="theorem theorem-like" id="theorem-exponent-laws"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.2.16</span><span class="period">.</span>
+</h4>
+<p id="p-439">In a group, the usual laws of exponents hold; that is, for all <span class="process-math">\(g, h \in G\text{,}\)</span></p>
+<ol class="decimal">
+<li id="li-92"><p id="p-440"><span class="process-math">\(g^mg^n = g^{m+n}\)</span> for all <span class="process-math">\(m, n \in {\mathbb Z}\text{;}\)</span></p></li>
+<li id="li-93"><p id="p-441"><span class="process-math">\((g^m)^n = g^{mn}\)</span> for all <span class="process-math">\(m, n \in {\mathbb Z}\text{;}\)</span></p></li>
+<li id="li-94"><p id="p-442"><span class="process-math">\((gh)^n = (h^{-1}g^{-1})^{-n}\)</span> for all <span class="process-math">\(n \in {\mathbb Z}\text{.}\)</span> Furthermore, if <span class="process-math">\(G\)</span> is abelian, then <span class="process-math">\((gh)^n = g^nh^n\text{.}\)</span></p></li>
+</ol></article><p id="p-443">We will leave the proof of this theorem as an exercise. Notice that <span class="process-math">\((gh)^n \neq g^nh^n\)</span> in general, since the group may not be abelian. If the group is <span class="process-math">\({\mathbb Z}\)</span> or <span class="process-math">\({\mathbb Z}_n\text{,}\)</span> we write the group operation additively and the exponential operation multiplicatively; that is, we write <span class="process-math">\(ng\)</span> instead of <span class="process-math">\(g^n\text{.}\)</span> The laws of exponents now become</p>
+<ol class="decimal">
+<li id="li-95"><p id="p-444"><span class="process-math">\(mg + ng = (m+n)g\)</span> for all <span class="process-math">\(m, n \in {\mathbb Z}\text{;}\)</span></p></li>
+<li id="li-96"><p id="p-445"><span class="process-math">\(m(ng) = (mn)g\)</span> for all <span class="process-math">\(m, n \in {\mathbb Z}\text{;}\)</span></p></li>
+<li id="li-97"><p id="p-446"><span class="process-math">\(m(g + h) = mg + mh\)</span> for all <span class="process-math">\(n \in {\mathbb Z}\text{.}\)</span></p></li>
+</ol>
+<p id="p-447">It is important to realize that the last statement can be made only because <span class="process-math">\({\mathbb Z}\)</span> and  <span class="process-math">\({\mathbb Z}_n\)</span> are commutative groups.</p></section><section class="subsection" id="subsection-22"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.2.4</span> <span class="title">Historical Note</span>
+</h3>
+<p id="p-448">Although the first clear axiomatic definition of a group was not given until the late 1800s, group-theoretic methods had been employed before this time in the development of  many areas of mathematics, including geometry and the theory of algebraic equations.</p>
+<p id="p-449">Joseph-Louis Lagrange used group-theoretic methods in a 1770–1771 memoir to study methods of solving polynomial equations.  Later, Évariste Galois (1811–1832) succeeded in developing the mathematics necessary to determine exactly which polynomial equations could be  solved in terms of the polynomial's coefficients. Galois' primary tool was group theory.</p>
+<p id="p-450">The study of geometry was revolutionized in 1872 when Felix Klein proposed that geometric spaces should be studied by examining those properties that are invariant under a transformation of the space. Sophus Lie, a contemporary of Klein, used group theory to study solutions of partial differential equations.  One of the first modern treatments of group theory appeared in William Burnside's <span class="booktitle">The Theory of Groups of Finite Order</span> [1], first published in 1897.</p></section></section></div></main>
+</div>
+</body>
+</html>

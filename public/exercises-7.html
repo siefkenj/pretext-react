@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-23T18:59:28-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AATA Additional Exercises: Detecting Errors</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/bundle.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/main.js"></script><link xmlns:svg="http://www.w3.org/2000/svg" href="./static/css/main.css" rel="stylesheet">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://abstract.pugetsound.edu" target="_blank"><img src="images/cover_aata_2014.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="sample-book.html"><span class="title">Abstract Algebra:</span> <span class="subtitle">PRETEXT XML SAMPLE ONLY</span></a></h1>
+<p class="byline">Thomas W. Judson, Isaac Newton (Editor)</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="exercises-groups.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="groups.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="groups-sage-exercises.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="exercises-groups.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="groups.html" title="Up">Up</a><a class="next-button button toolbar-item" href="groups-sage-exercises.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter"><span class="title">Front Matter</span></a><ul>
+<li><a href="front-colophon.html" data-scroll="front-colophon">Colophon</a></li>
+<li><a href="author-bio-TWJ.html" data-scroll="author-bio-TWJ">Author Biography</a></li>
+<li><a href="author-bio-RAB.html" data-scroll="author-bio-RAB">About Robert A. Beezer</a></li>
+<li><a href="dedication.html" data-scroll="dedication">Dedication</a></li>
+<li><a href="acknowledgement.html" data-scroll="acknowledgement">Acknowledgements</a></li>
+<li><a href="preface.html" data-scroll="preface">Preface</a></li>
+<li><a href="contributors.html" data-scroll="contributors">Contributors to the 4<span class="process-math">\(^\mathrm{th}\)</span> Edition</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">Basics</span></a></li>
+<li class="link">
+<a href="sets.html" data-scroll="sets"><span class="codenumber">1</span> <span class="title">Preliminaries</span></a><ul>
+<li><a href="section-note-on-proofs.html" data-scroll="section-note-on-proofs">A Short Note on Proofs</a></li>
+<li><a href="section-sets-and-equivalence-relations.html" data-scroll="section-sets-and-equivalence-relations">Sets and Equivalence Relations</a></li>
+<li><a href="sets-sage.html" data-scroll="sets-sage">Sage</a></li>
+<li><a href="exercises-sets.html" data-scroll="exercises-sets">Exercises</a></li>
+<li><a href="sets-sage-exercises.html" data-scroll="sets-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-1.html" data-scroll="references-1">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="integers.html" data-scroll="integers"><span class="codenumber">2</span> <span class="title">The Integers</span></a><ul>
+<li><a href="section-math-induction.html" data-scroll="section-math-induction">Mathematical Induction</a></li>
+<li><a href="section-division-algorithm.html" data-scroll="section-division-algorithm">The Division Algorithm</a></li>
+<li><a href="integers-sage.html" data-scroll="integers-sage">Sage</a></li>
+<li><a href="exercises-integers.html" data-scroll="exercises-integers">Exercises</a></li>
+<li><a href="exercises-4.html" data-scroll="exercises-4">Programming Exercises</a></li>
+<li><a href="integers-sage-exercises.html" data-scroll="integers-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-2.html" data-scroll="references-2">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-algebra.html" data-scroll="part-algebra"><span class="codenumber">II</span> <span class="title">Algebra</span></a></li>
+<li class="link">
+<a href="groups.html" data-scroll="groups"><span class="codenumber">3</span> <span class="title">Groups</span></a><ul>
+<li><a href="section-mod-n-sym.html" data-scroll="section-mod-n-sym">Integer Equivalence Classes and Symmetries</a></li>
+<li><a href="section-groups-define.html" data-scroll="section-groups-define">Definitions and Examples</a></li>
+<li><a href="section-subgroups.html" data-scroll="section-subgroups">Subgroups</a></li>
+<li><a href="groups-sage.html" data-scroll="groups-sage">Sage</a></li>
+<li><a href="exercises-groups.html" data-scroll="exercises-groups">Exercises</a></li>
+<li><a href="exercises-7.html" data-scroll="exercises-7" class="active">Additional Exercises: Detecting Errors</a></li>
+<li><a href="groups-sage-exercises.html" data-scroll="groups-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-3.html" data-scroll="references-3">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="cyclic.html" data-scroll="cyclic"><span class="codenumber">4</span> <span class="title">Cyclicity</span></a><ul>
+<li><a href="section-11.html" data-scroll="section-11">Cyclic groups</a></li>
+<li><a href="section-12.html" data-scroll="section-12">Subgroups of a Cyclic Group</a></li>
+<li><a href="section-13.html" data-scroll="section-13">Cyclic Groups of Complex Numbers</a></li>
+<li><a href="section-14.html" data-scroll="section-14">Large Powers of Integers</a></li>
+<li><a href="exercises-cyclic.html" data-scroll="exercises-cyclic">Exercises</a></li>
+<li><a href="exercises-10.html" data-scroll="exercises-10">Programming Exercises</a></li>
+<li><a href="cyclic-sage-exercises.html" data-scroll="cyclic-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-4.html" data-scroll="references-4">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-1.html" data-scroll="appendix-1"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1"><span class="codenumber">B</span> <span class="title">Hints and Answers to Selected Odd Exercises</span></a></li>
+<li class="link"><a href="solutions-2.html" data-scroll="solutions-2"><span class="codenumber">C</span> <span class="title">Hints and Answers to Selected Even Exercises</span></a></li>
+<li class="link"><a href="solutions-3.html" data-scroll="solutions-3"><span class="codenumber">D</span> <span class="title">Hints and Answers to Selected Exercises</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">E</span> <span class="title">A Structured Appendix</span></a><ul>
+<li><a href="section-15.html" data-scroll="section-15">A Section in an Appendix</a></li>
+<li><a href="section-16.html" data-scroll="section-16">Numbering in the Back Matter</a></li>
+</ul>
+</li>
+<li class="link"><a href="appendix-gfdl.html" data-scroll="appendix-gfdl"><span class="codenumber">F</span> <span class="title">GNU Free Documentation License</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+<li class="link"><a href="back-colophon.html" data-scroll="back-colophon"><span class="title">Colophon</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="exercises" id="exercises-7"><h2 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">3.6</span> <span class="title">Additional Exercises: Detecting Errors</span>
+</h2>
+<article class="exercise exercise-like" id="exercise-131"><h3 class="heading">
+<span class="codenumber">1<span class="period">.</span></span><span class="space"> </span><span class="title">UPC Symbols.</span>
+</h3>
+<p id="p-595">Universal Product Code (UPC) symbols are found on most products in grocery and retail stores. The UPC symbol is a 12-digit code identifying the manufacturer of a product and the product itself (<a href="" class="xref" data-knowl="./knowl/figure-upc-codes.html" title="Figure 3.6.1">Figure 3.6.1</a>). The first 11 digits contain information about the product; the twelfth digit is used for error detection. If <span class="process-math">\(d_1 d_2 \cdots d_{12}\)</span> is a valid UPC number, then</p>
+<div class="displaymath process-math">
+\begin{equation*}
+3 \cdot d_1 + 1 \cdot d_2 + 3 \cdot d_3 + \cdots + 3 \cdot d_{11} + 1 \cdot d_{12} \equiv 0 \pmod{10}\text{.}
+\end{equation*}
+</div>
+<ol class="lower-alpha">
+<li id="li-111"><p id="p-596">Show that the UPC number  0-50000-30042-6, which appears in <a href="" class="xref" data-knowl="./knowl/figure-upc-codes.html" title="Figure 3.6.1">Figure 3.6.1</a>, is a valid UPC number.</p></li>
+<li id="li-112"><p id="p-597">Show that the number 0-50000-30043-6 is not a valid UPC number.</p></li>
+<li id="li-113"><p id="p-598">Write a  formula to calculate the check digit, <span class="process-math">\(d_{12}\text{,}\)</span> in the UPC number.</p></li>
+<li id="li-114"><p id="p-599">The  UPC error detection scheme can detect most transposition errors; that is, it can determine if two digits have been interchanged.  Show that the transposition error 0-05000-30042-6 is not detected.  Find a transposition error that is detected.  Can you find a general rule for the types of transposition errors that can be detected?</p></li>
+<li id="li-115"><p id="p-600">Write a program that will determine whether or not a UPC number is valid.</p></li>
+</ol>
+<figure class="figure figure-like" id="figure-upc-codes"><div class="image-box" style="width: 30%; margin-left: 35%; margin-right: 35%;"><img src="images/UPCcode.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.6.1<span class="period">.</span></span><span class="space"> </span>A UPC code</figcaption></figure></article><article class="exercise exercise-like" id="exercise-132"><h3 class="heading"><span class="codenumber">2<span class="period">.</span></span></h3>
+<p id="p-601">It is often useful to use an inner product notation for this type of error detection scheme; hence, we will use the notion</p>
+<div class="displaymath process-math">
+\begin{equation*}
+(d_1, d_2, \ldots, d_k ) \cdot (w_1, w_2, \ldots, w_k ) \equiv 0 \pmod{ n }
+\end{equation*}
+</div>
+<p class="continuation">to mean</p>
+<div class="displaymath process-math">
+\begin{equation*}
+d_1 w_1 +  d_2 w_2 + \cdots +  d_k w_k  \equiv 0  \pmod{ n}\text{.}
+\end{equation*}
+</div>
+<p id="p-602">Suppose that <span class="process-math">\((d_1, d_2, \ldots, d_k ) \cdot (w_1, w_2, \ldots, w_k ) \equiv 0 \pmod{ n}\)</span> is an error detection scheme for the <span class="process-math">\(k\)</span>-digit identification number <span class="process-math">\(d_1 d_2 \cdots d_k\text{,}\)</span> where <span class="process-math">\(0 \leq d_i \lt n\text{.}\)</span>  Prove that all single-digit errors are detected if and only if <span class="process-math">\(\gcd( w_i, n ) = 1\)</span> for  <span class="process-math">\(1 \leq i \leq k\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-133"><h3 class="heading"><span class="codenumber">3<span class="period">.</span></span></h3>
+<p id="p-603">Let <span class="process-math">\((d_1, d_2, \ldots, d_k ) \cdot (w_1, w_2, \ldots, w_k ) \equiv 0 \pmod{ n}\)</span> be an error detection scheme for the <span class="process-math">\(k\)</span>-digit identification number <span class="process-math">\(d_1 d_2 \cdots d_k\text{,}\)</span> where <span class="process-math">\(0 \leq d_i \lt n\text{.}\)</span>  Prove that all transposition errors of two digits <span class="process-math">\(d_i\)</span> and <span class="process-math">\(d_j\)</span> are detected if and only if <span class="process-math">\(\gcd( w_i - w_j, n ) = 1\)</span> for <span class="process-math">\(i\)</span> and  <span class="process-math">\(j\)</span> between 1 and <span class="process-math">\(k\text{.}\)</span></p></article><article class="exercise exercise-like" id="exercise-134"><h3 class="heading">
+<span class="codenumber">4<span class="period">.</span></span><span class="space"> </span><span class="title">ISBN Codes.</span>
+</h3>
+<p id="p-604">Every book has an International Standard Book Number (ISBN) code.  This is a 10-digit code indicating the book's publisher and title.  The tenth digit is a check digit satisfying</p>
+<div class="displaymath process-math">
+\begin{equation*}
+(d_1, d_2, \ldots, d_{10} ) \cdot (10, 9, \ldots, 1 )  \equiv 0 \pmod{11}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">One problem is that <span class="process-math">\(d_{10}\)</span> might have to be a 10 to make the inner product zero; in this case, 11 digits would be  needed to make this scheme work.  Therefore, the character X is used for the eleventh digit.  So ISBN 3-540-96035-X is a valid ISBN code.</p>
+<ol class="lower-alpha">
+<li id="li-116"><p id="p-605">Is ISBN 0-534-91500-0 a valid ISBN code?  What about ISBN 0-534-91700-0 and ISBN 0-534-19500-0?</p></li>
+<li id="li-117"><p id="p-606">Does this method detect all single-digit errors?  What about all transposition errors?</p></li>
+<li id="li-118"><p id="p-607">How many different ISBN codes are there?</p></li>
+<li id="li-119"><p id="p-608">Write a computer program that will calculate the check digit for the first nine digits of an ISBN code.</p></li>
+<li id="li-120"><p id="p-609">A publisher has houses in Germany and the United States.  Its German prefix is <code class="code-inline tex2jax_ignore">3-540</code>.  If its United States prefix will be <code class="code-inline tex2jax_ignore">0-abc</code>, find <code class="code-inline tex2jax_ignore">abc</code> such that the rest of the ISBN code will be the same for a book printed in Germany and in the United States. Under the ISBN coding method the first digit identifies the language; German is <code class="code-inline tex2jax_ignore">3</code> and English is <code class="code-inline tex2jax_ignore">0</code>.  The next group of numbers identifies the publisher, and the last group identifies the specific book.</p></li>
+</ol></article></section></div></main>
+</div>
+</body>
+</html>

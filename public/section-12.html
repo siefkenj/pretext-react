@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-23T18:59:28-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AATA Subgroups of a Cyclic Group</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/bundle.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/main.js"></script><link xmlns:svg="http://www.w3.org/2000/svg" href="./static/css/main.css" rel="stylesheet">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://abstract.pugetsound.edu" target="_blank"><img src="images/cover_aata_2014.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="sample-book.html"><span class="title">Abstract Algebra:</span> <span class="subtitle">PRETEXT XML SAMPLE ONLY</span></a></h1>
+<p class="byline">Thomas W. Judson, Isaac Newton (Editor)</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-11.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="cyclic.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-13.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-11.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="cyclic.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-13.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter"><span class="title">Front Matter</span></a><ul>
+<li><a href="front-colophon.html" data-scroll="front-colophon">Colophon</a></li>
+<li><a href="author-bio-TWJ.html" data-scroll="author-bio-TWJ">Author Biography</a></li>
+<li><a href="author-bio-RAB.html" data-scroll="author-bio-RAB">About Robert A. Beezer</a></li>
+<li><a href="dedication.html" data-scroll="dedication">Dedication</a></li>
+<li><a href="acknowledgement.html" data-scroll="acknowledgement">Acknowledgements</a></li>
+<li><a href="preface.html" data-scroll="preface">Preface</a></li>
+<li><a href="contributors.html" data-scroll="contributors">Contributors to the 4<span class="process-math">\(^\mathrm{th}\)</span> Edition</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">Basics</span></a></li>
+<li class="link">
+<a href="sets.html" data-scroll="sets"><span class="codenumber">1</span> <span class="title">Preliminaries</span></a><ul>
+<li><a href="section-note-on-proofs.html" data-scroll="section-note-on-proofs">A Short Note on Proofs</a></li>
+<li><a href="section-sets-and-equivalence-relations.html" data-scroll="section-sets-and-equivalence-relations">Sets and Equivalence Relations</a></li>
+<li><a href="sets-sage.html" data-scroll="sets-sage">Sage</a></li>
+<li><a href="exercises-sets.html" data-scroll="exercises-sets">Exercises</a></li>
+<li><a href="sets-sage-exercises.html" data-scroll="sets-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-1.html" data-scroll="references-1">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="integers.html" data-scroll="integers"><span class="codenumber">2</span> <span class="title">The Integers</span></a><ul>
+<li><a href="section-math-induction.html" data-scroll="section-math-induction">Mathematical Induction</a></li>
+<li><a href="section-division-algorithm.html" data-scroll="section-division-algorithm">The Division Algorithm</a></li>
+<li><a href="integers-sage.html" data-scroll="integers-sage">Sage</a></li>
+<li><a href="exercises-integers.html" data-scroll="exercises-integers">Exercises</a></li>
+<li><a href="exercises-4.html" data-scroll="exercises-4">Programming Exercises</a></li>
+<li><a href="integers-sage-exercises.html" data-scroll="integers-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-2.html" data-scroll="references-2">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-algebra.html" data-scroll="part-algebra"><span class="codenumber">II</span> <span class="title">Algebra</span></a></li>
+<li class="link">
+<a href="groups.html" data-scroll="groups"><span class="codenumber">3</span> <span class="title">Groups</span></a><ul>
+<li><a href="section-mod-n-sym.html" data-scroll="section-mod-n-sym">Integer Equivalence Classes and Symmetries</a></li>
+<li><a href="section-groups-define.html" data-scroll="section-groups-define">Definitions and Examples</a></li>
+<li><a href="section-subgroups.html" data-scroll="section-subgroups">Subgroups</a></li>
+<li><a href="groups-sage.html" data-scroll="groups-sage">Sage</a></li>
+<li><a href="exercises-groups.html" data-scroll="exercises-groups">Exercises</a></li>
+<li><a href="exercises-7.html" data-scroll="exercises-7">Additional Exercises: Detecting Errors</a></li>
+<li><a href="groups-sage-exercises.html" data-scroll="groups-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-3.html" data-scroll="references-3">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="cyclic.html" data-scroll="cyclic"><span class="codenumber">4</span> <span class="title">Cyclicity</span></a><ul>
+<li><a href="section-11.html" data-scroll="section-11">Cyclic groups</a></li>
+<li><a href="section-12.html" data-scroll="section-12" class="active">Subgroups of a Cyclic Group</a></li>
+<li><a href="section-13.html" data-scroll="section-13">Cyclic Groups of Complex Numbers</a></li>
+<li><a href="section-14.html" data-scroll="section-14">Large Powers of Integers</a></li>
+<li><a href="exercises-cyclic.html" data-scroll="exercises-cyclic">Exercises</a></li>
+<li><a href="exercises-10.html" data-scroll="exercises-10">Programming Exercises</a></li>
+<li><a href="cyclic-sage-exercises.html" data-scroll="cyclic-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-4.html" data-scroll="references-4">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-1.html" data-scroll="appendix-1"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1"><span class="codenumber">B</span> <span class="title">Hints and Answers to Selected Odd Exercises</span></a></li>
+<li class="link"><a href="solutions-2.html" data-scroll="solutions-2"><span class="codenumber">C</span> <span class="title">Hints and Answers to Selected Even Exercises</span></a></li>
+<li class="link"><a href="solutions-3.html" data-scroll="solutions-3"><span class="codenumber">D</span> <span class="title">Hints and Answers to Selected Exercises</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">E</span> <span class="title">A Structured Appendix</span></a><ul>
+<li><a href="section-15.html" data-scroll="section-15">A Section in an Appendix</a></li>
+<li><a href="section-16.html" data-scroll="section-16">Numbering in the Back Matter</a></li>
+</ul>
+</li>
+<li class="link"><a href="appendix-gfdl.html" data-scroll="appendix-gfdl"><span class="codenumber">F</span> <span class="title">GNU Free Documentation License</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+<li class="link"><a href="back-colophon.html" data-scroll="back-colophon"><span class="title">Colophon</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="section-12"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">4.2</span> <span class="title">Subgroups of a Cyclic Group</span>
+</h2>
+<p id="p-632">We can ask some interesting questions about cyclic subgroups of a group and subgroups of a cyclic group.  If <span class="process-math">\(G\)</span> is a group, which subgroups of <span class="process-math">\(G\)</span> are cyclic? If <span class="process-math">\(G\)</span> is a cyclic group, what type of subgroups does <span class="process-math">\(G\)</span> possess?</p>
+<article class="theorem theorem-like" id="theorem-cyclic-subgroups"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.2.1</span><span class="period">.</span>
+</h3>
+<p id="p-633">Every subgroup of a cyclic group is cyclic.</p></article><article class="hiddenproof" id="proof-22"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-22"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-22"><article class="hiddenproof"><p id="p-634">The main tools used in this proof are the division algorithm and the Principle of Well-Ordering. Let <span class="process-math">\(G\)</span> be a cyclic group generated by <span class="process-math">\(a\)</span> and suppose that <span class="process-math">\(H\)</span> is a subgroup of <span class="process-math">\(G\text{.}\)</span> If <span class="process-math">\(H = \{ e \}\text{,}\)</span> then trivially <span class="process-math">\(H\)</span> is cyclic. Suppose that <span class="process-math">\(H\)</span> contains some other element <span class="process-math">\(g\)</span> distinct from the identity. Then <span class="process-math">\(g\)</span> can be written as <span class="process-math">\(a^n\)</span> for some integer <span class="process-math">\(n\text{.}\)</span> Since <span class="process-math">\(H\)</span> is a subgroup, <span class="process-math">\(g^{-1} = a^{n}\)</span> must also be in <span class="process-math">\(H\text{.}\)</span>  Since either <span class="process-math">\(n\)</span> or <span class="process-math">\(-n\)</span> is positive, we can assume that <span class="process-math">\(H\)</span> contains positive powers of <span class="process-math">\(a\)</span> and <span class="process-math">\(n \gt 0\text{.}\)</span> Let <span class="process-math">\(m\)</span> be the smallest natural number such that <span class="process-math">\(a^m \in H\text{.}\)</span> Such an <span class="process-math">\(m\)</span> exists by the Principle of Well-Ordering.</p>
+<p id="p-635">We claim that <span class="process-math">\(h = a^m\)</span> is a generator for <span class="process-math">\(H\text{.}\)</span>  We must show that every <span class="process-math">\(h' \in H\)</span> can be written as a power of <span class="process-math">\(h\text{.}\)</span> Since <span class="process-math">\(h' \in H\)</span> and <span class="process-math">\(H\)</span> is a subgroup of <span class="process-math">\(G\text{,}\)</span> <span class="process-math">\(h' = a^k\)</span> for some integer <span class="process-math">\(k\text{.}\)</span> Using the division algorithm, we can find numbers <span class="process-math">\(q\)</span> and <span class="process-math">\(r\)</span> such that <span class="process-math">\(k = mq +r\)</span> where <span class="process-math">\(0 \leq r \lt m\text{;}\)</span> hence,</p>
+<div class="displaymath process-math">
+\begin{equation*}
+a^k = a^{mq +r} = (a^m)^q a^r = h^q a^r\text{.}
+\end{equation*}
+</div>
+<p class="continuation">So <span class="process-math">\(a^r = a^k h^{-q}\text{.}\)</span> Since <span class="process-math">\(a^k\)</span> and <span class="process-math">\(h^{-q}\)</span> are in <span class="process-math">\(H\text{,}\)</span> <span class="process-math">\(a^r\)</span> must also be in <span class="process-math">\(H\text{.}\)</span>  However, <span class="process-math">\(m\)</span> was the smallest positive number such that <span class="process-math">\(a^m\)</span> was in <span class="process-math">\(H\text{;}\)</span> consequently, <span class="process-math">\(r=0\)</span> and so <span class="process-math">\(k=mq\text{.}\)</span> Therefore,</p>
+<div class="displaymath process-math">
+\begin{equation*}
+h' = a^k = a^{mq} =  h^q
+\end{equation*}
+</div>
+<p class="continuation">and <span class="process-math">\(H\)</span> is generated by <span class="process-math">\(h\text{.}\)</span></p></article></div>
+<article class="corollary theorem-like" id="corollary-3"><h3 class="heading">
+<span class="type">Corollary</span><span class="space"> </span><span class="codenumber">4.2.2</span><span class="period">.</span>
+</h3>
+<p id="p-636">The subgroups of <span class="process-math">\({\mathbb Z}\)</span> are exactly <span class="process-math">\(n{\mathbb Z}\)</span> for <span class="process-math">\(n = 0, 1, 2,\ldots\text{.}\)</span></p></article><article class="proposition theorem-like" id="proposition-cyclic-subgrp-order"><h3 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">4.2.3</span><span class="period">.</span>
+</h3>
+<p id="p-637">Let <span class="process-math">\(G\)</span> be a cyclic group of order <span class="process-math">\(n\)</span> and suppose that <span class="process-math">\(a\)</span> is a generator for  <span class="process-math">\(G\text{.}\)</span> Then <span class="process-math">\(a^k=e\)</span> if and only if <span class="process-math">\(n\)</span> divides <span class="process-math">\(k\text{.}\)</span></p></article><article class="hiddenproof" id="proof-23"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-23"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-23"><article class="hiddenproof"><p id="p-638">First suppose that <span class="process-math">\(a^k=e\text{.}\)</span> By the division algorithm, <span class="process-math">\(k = nq + r\)</span> where <span class="process-math">\(0 \leq r \lt n\text{;}\)</span> hence,</p>
+<div class="displaymath process-math">
+\begin{equation*}
+e = a^k = a^{nq + r} = a^{nq} a^r = e a^r = a^r\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Since the smallest positive integer <span class="process-math">\(m\)</span> such that <span class="process-math">\(a^m = e\)</span> is <span class="process-math">\(n\text{,}\)</span> <span class="process-math">\(r= 0\text{.}\)</span></p>
+<p id="p-639">Conversely, if <span class="process-math">\(n\)</span> divides <span class="process-math">\(k\text{,}\)</span> then <span class="process-math">\(k=ns\)</span> for some integer <span class="process-math">\(s\text{.}\)</span> Consequently,</p>
+<div class="displaymath process-math">
+\begin{equation*}
+a^k = a^{ns} = (a^n)^s = e^s = e\text{.}
+\end{equation*}
+</div></article></div>
+<article class="theorem theorem-like" id="theorem-cyclic-orders"><h3 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">4.2.4</span><span class="period">.</span>
+</h3>
+<p id="p-640">Let <span class="process-math">\(G\)</span> be a cyclic group of order <span class="process-math">\(n\)</span> and suppose that <span class="process-math">\(a \in G\)</span> is a generator of the group.  If <span class="process-math">\(b = a^k\text{,}\)</span> then the order of <span class="process-math">\(b\)</span> is <span class="process-math">\(n/d\text{,}\)</span> where <span class="process-math">\(d = \gcd(k,n)\text{.}\)</span></p></article><article class="hiddenproof" id="proof-24"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-24"><h3 class="heading"><span class="type">Proof<span class="period">.</span></span></h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-24"><article class="hiddenproof"><p id="p-641">We wish to find the smallest integer <span class="process-math">\(m\)</span> such that <span class="process-math">\(e = b^m = a^{km}\text{.}\)</span> By <a href="" class="xref" data-knowl="./knowl/proposition-cyclic-subgrp-order.html" title="Proposition 4.2.3">Proposition 4.2.3</a>, this is the smallest integer <span class="process-math">\(m\)</span> such that <span class="process-math">\(n\)</span> divides <span class="process-math">\(km\)</span> or, equivalently, <span class="process-math">\(n/d\)</span> divides <span class="process-math">\(m(k/d)\text{.}\)</span>  Since <span class="process-math">\(d\)</span> is the greatest common divisor of <span class="process-math">\(n\)</span> and <span class="process-math">\(k\text{,}\)</span> <span class="process-math">\(n/d\)</span> and <span class="process-math">\(k/d\)</span> are relatively prime. Hence, for <span class="process-math">\(n/d\)</span> to divide <span class="process-math">\(m(k/d)\)</span> it must divide <span class="process-math">\(m\text{.}\)</span>  The smallest such <span class="process-math">\(m\)</span> is <span class="process-math">\(n/d\text{.}\)</span></p></article></div>
+<article class="corollary theorem-like" id="corollary-cyclic-modngenerators"><h3 class="heading">
+<span class="type">Corollary</span><span class="space"> </span><span class="codenumber">4.2.5</span><span class="period">.</span>
+</h3>
+<p id="p-642">The generators of <span class="process-math">\({\mathbb Z}_n\)</span> are the integers <span class="process-math">\(r\)</span> such that <span class="process-math">\(1 \leq r \lt n\)</span> and <span class="process-math">\(\gcd(r,n) =  1\text{.}\)</span></p></article><article class="example example-like" id="example-cyclic-z16"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-cyclic-z16"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">A Finite Cyclic Group of Order <span class="process-math">\(16\)</span>.</span>
+</h3></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-cyclic-z16"><article class="example example-like"><p id="p-643">Let us examine the group <span class="process-math">\({\mathbb Z}_{16}\text{.}\)</span>  The numbers 1, 3, 5, 7, 9, 11, 13, and 15 are the elements of <span class="process-math">\({\mathbb Z}_{16}\)</span> that are relatively prime to 16.  Each of these elements generates <span class="process-math">\({\mathbb Z}_{16}\text{.}\)</span> For example,</p>
+<div class="displaymath process-math">
+\begin{align*}
+1 \cdot 9  &amp; =  9  &amp;  2 \cdot 9  &amp; = 2  &amp; 3 \cdot 9  &amp; = 11\\
+4 \cdot 9  &amp; =  4  &amp;  5 \cdot 9  &amp; = 13 &amp;     6 \cdot 9 &amp; = 6\\
+7 \cdot 9  &amp; =  15 &amp; 8 \cdot 9  &amp; = 8  &amp;  9 \cdot 9 &amp;  = 1\\
+10 \cdot 9 &amp; =  10 &amp; 11 \cdot 9 &amp; = 3  &amp; 12 \cdot 9 &amp;  = 12\\
+13 \cdot 9 &amp; =  5 &amp; 14 \cdot 9 &amp; = 14 &amp;   15 \cdot 9 &amp; = 7\text{.}
+\end{align*}
+</div></article></div></section></div></main>
+</div>
+</body>
+</html>

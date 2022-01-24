@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-23T18:59:30-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><article class="example example-like"><p>Let <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(A\)</span> and <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(B\)</span> be <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(2 \times 2\)</span> matrices with entries in the real numbers. We can define an equivalence relation on the set of <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(2 \times 2\)</span> matrices, by saying <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(A \sim B\)</span> if there exists an invertible matrix <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(P\)</span> such that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(PAP^{-1} = B\text{.}\)</span>  For example, if</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
+\begin{equation*}
+A =
+\begin{pmatrix}
+1 &amp; 2 \\
+-1 &amp; 1
+\end{pmatrix}
+\quad \text{and} \quad
+B =
+\begin{pmatrix}
+-18 &amp; 33 \\
+-11 &amp; 20
+\end{pmatrix}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">then <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(A \sim B\)</span> since <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(PAP^{-1} = B\)</span> for</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
+\begin{equation*}
+P =
+\begin{pmatrix}
+2 &amp; 5 \\
+1 &amp; 3
+\end{pmatrix}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Let <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(I\)</span> be the <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(2 \times 2\)</span> identity matrix; that is,</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
+\begin{equation*}
+I =
+\begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{pmatrix}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Then <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(IAI^{-1} = IAI = A\text{;}\)</span> therefore, the relation is reflexive.  To show symmetry, suppose that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(A \sim B\text{.}\)</span>  Then there exists an invertible matrix <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(P\)</span> such that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(PAP^{-1} = B\text{.}\)</span>  So</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
+\begin{equation*}
+A = P^{-1} B P = P^{-1} B (P^{-1})^{-1}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Finally, suppose that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(A \sim B\)</span> and <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(B \sim C\text{.}\)</span>  Then there exist invertible matrices <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(P\)</span> and <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(Q\)</span> such that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(PAP^{-1} = B\)</span> and  <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(QBQ^{-1} = C\text{.}\)</span>  Since</p>
+<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
+\begin{equation*}
+C = QBQ^{-1} = QPAP^{-1} Q^{-1} = (QP)A(QP)^{-1}\text{,}
+\end{equation*}
+</div>
+<p class="continuation">the relation is transitive.  Two matrices that are equivalent in this manner are said to be <dfn xmlns:svg="http://www.w3.org/2000/svg" class="terminology">similar</dfn>.</p></article></body>
+</html>

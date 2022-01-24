@@ -1,0 +1,325 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-23T18:59:27-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>AATA Integer Equivalence Classes and Symmetries</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/bundle.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="/static/js/main.js"></script><link xmlns:svg="http://www.w3.org/2000/svg" href="./static/css/main.css" rel="stylesheet">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</head>
+<body class="pretext-book ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="http://abstract.pugetsound.edu" target="_blank"><img src="images/cover_aata_2014.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="sample-book.html"><span class="title">Abstract Algebra:</span> <span class="subtitle">PRETEXT XML SAMPLE ONLY</span></a></h1>
+<p class="byline">Thomas W. Judson, Isaac Newton (Editor)</p>
+</div>
+</div></div>
+<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="groups.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="groups.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-groups-define.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="groups.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="groups.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-groups-define.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter">
+<a href="frontmatter.html" data-scroll="frontmatter"><span class="title">Front Matter</span></a><ul>
+<li><a href="front-colophon.html" data-scroll="front-colophon">Colophon</a></li>
+<li><a href="author-bio-TWJ.html" data-scroll="author-bio-TWJ">Author Biography</a></li>
+<li><a href="author-bio-RAB.html" data-scroll="author-bio-RAB">About Robert A. Beezer</a></li>
+<li><a href="dedication.html" data-scroll="dedication">Dedication</a></li>
+<li><a href="acknowledgement.html" data-scroll="acknowledgement">Acknowledgements</a></li>
+<li><a href="preface.html" data-scroll="preface">Preface</a></li>
+<li><a href="contributors.html" data-scroll="contributors">Contributors to the 4<span class="process-math">\(^\mathrm{th}\)</span> Edition</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">Basics</span></a></li>
+<li class="link">
+<a href="sets.html" data-scroll="sets"><span class="codenumber">1</span> <span class="title">Preliminaries</span></a><ul>
+<li><a href="section-note-on-proofs.html" data-scroll="section-note-on-proofs">A Short Note on Proofs</a></li>
+<li><a href="section-sets-and-equivalence-relations.html" data-scroll="section-sets-and-equivalence-relations">Sets and Equivalence Relations</a></li>
+<li><a href="sets-sage.html" data-scroll="sets-sage">Sage</a></li>
+<li><a href="exercises-sets.html" data-scroll="exercises-sets">Exercises</a></li>
+<li><a href="sets-sage-exercises.html" data-scroll="sets-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-1.html" data-scroll="references-1">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="integers.html" data-scroll="integers"><span class="codenumber">2</span> <span class="title">The Integers</span></a><ul>
+<li><a href="section-math-induction.html" data-scroll="section-math-induction">Mathematical Induction</a></li>
+<li><a href="section-division-algorithm.html" data-scroll="section-division-algorithm">The Division Algorithm</a></li>
+<li><a href="integers-sage.html" data-scroll="integers-sage">Sage</a></li>
+<li><a href="exercises-integers.html" data-scroll="exercises-integers">Exercises</a></li>
+<li><a href="exercises-4.html" data-scroll="exercises-4">Programming Exercises</a></li>
+<li><a href="integers-sage-exercises.html" data-scroll="integers-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-2.html" data-scroll="references-2">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link part"><a href="part-algebra.html" data-scroll="part-algebra"><span class="codenumber">II</span> <span class="title">Algebra</span></a></li>
+<li class="link">
+<a href="groups.html" data-scroll="groups"><span class="codenumber">3</span> <span class="title">Groups</span></a><ul>
+<li><a href="section-mod-n-sym.html" data-scroll="section-mod-n-sym" class="active">Integer Equivalence Classes and Symmetries</a></li>
+<li><a href="section-groups-define.html" data-scroll="section-groups-define">Definitions and Examples</a></li>
+<li><a href="section-subgroups.html" data-scroll="section-subgroups">Subgroups</a></li>
+<li><a href="groups-sage.html" data-scroll="groups-sage">Sage</a></li>
+<li><a href="exercises-groups.html" data-scroll="exercises-groups">Exercises</a></li>
+<li><a href="exercises-7.html" data-scroll="exercises-7">Additional Exercises: Detecting Errors</a></li>
+<li><a href="groups-sage-exercises.html" data-scroll="groups-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-3.html" data-scroll="references-3">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="cyclic.html" data-scroll="cyclic"><span class="codenumber">4</span> <span class="title">Cyclicity</span></a><ul>
+<li><a href="section-11.html" data-scroll="section-11">Cyclic groups</a></li>
+<li><a href="section-12.html" data-scroll="section-12">Subgroups of a Cyclic Group</a></li>
+<li><a href="section-13.html" data-scroll="section-13">Cyclic Groups of Complex Numbers</a></li>
+<li><a href="section-14.html" data-scroll="section-14">Large Powers of Integers</a></li>
+<li><a href="exercises-cyclic.html" data-scroll="exercises-cyclic">Exercises</a></li>
+<li><a href="exercises-10.html" data-scroll="exercises-10">Programming Exercises</a></li>
+<li><a href="cyclic-sage-exercises.html" data-scroll="cyclic-sage-exercises">Sage Exercises</a></li>
+<li><a href="references-4.html" data-scroll="references-4">References and Suggested Readings</a></li>
+</ul>
+</li>
+<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
+<li class="link"><a href="appendix-1.html" data-scroll="appendix-1"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="solutions-1.html" data-scroll="solutions-1"><span class="codenumber">B</span> <span class="title">Hints and Answers to Selected Odd Exercises</span></a></li>
+<li class="link"><a href="solutions-2.html" data-scroll="solutions-2"><span class="codenumber">C</span> <span class="title">Hints and Answers to Selected Even Exercises</span></a></li>
+<li class="link"><a href="solutions-3.html" data-scroll="solutions-3"><span class="codenumber">D</span> <span class="title">Hints and Answers to Selected Exercises</span></a></li>
+<li class="link">
+<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">E</span> <span class="title">A Structured Appendix</span></a><ul>
+<li><a href="section-15.html" data-scroll="section-15">A Section in an Appendix</a></li>
+<li><a href="section-16.html" data-scroll="section-16">Numbering in the Back Matter</a></li>
+</ul>
+</li>
+<li class="link"><a href="appendix-gfdl.html" data-scroll="appendix-gfdl"><span class="codenumber">F</span> <span class="title">GNU Free Documentation License</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
+<li class="link"><a href="back-colophon.html" data-scroll="back-colophon"><span class="title">Colophon</span></a></li>
+</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="section" id="section-mod-n-sym"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.1</span> <span class="title">Integer Equivalence Classes and Symmetries</span>
+</h2>
+<p class="byline">Carl Friedrich Gauß, Leonhard Euler</p>
+<section class="introduction" id="introduction-11"><p id="p-381">Let us now investigate some mathematical structures that can be viewed as sets with single operations.</p></section><section class="subsection" id="subsection-17"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.1.1</span> <span class="title">The Integers mod <span class="process-math">\(n\)</span></span>
+</h3>
+<p class="byline">Gottfried Wilhelm Leibniz</p>
+<p id="p-382">The integers mod <span class="process-math">\(n\)</span> have become indispensable in the theory and applications of algebra.  In mathematics they are used in cryptography, coding theory, and the detection of errors in identification codes.</p>
+<p id="p-383">We have already seen that two integers <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are equivalent mod <span class="process-math">\(n\)</span> if <span class="process-math">\(n\)</span> divides <span class="process-math">\(a - b\text{.}\)</span>  The integers mod <span class="process-math">\(n\)</span> also partition <span class="process-math">\({\mathbb Z}\)</span> into <span class="process-math">\(n\)</span> different equivalence classes; we will denote the set of these equivalence classes by <span class="process-math">\({\mathbb Z}_n\text{.}\)</span>  Consider the integers modulo 12 and the corresponding partition of the integers:</p>
+<div class="displaymath process-math">
+\begin{align*}
+{[0]} &amp; = \{ \ldots, -12, 0, 12, 24, \ldots \}\\
+{[1]} &amp; = \{ \ldots, -11, 1, 13, 25, \ldots \}\\
+&amp; \vdots\\
+{[11]} &amp; = \{ \ldots, -1, 11, 23, 35, \ldots \}\text{.}
+\end{align*}
+</div>
+<p id="p-384">When no confusion can arise, we will use <span class="process-math">\(0, 1, \ldots, 11\)</span> to indicate the equivalence classes  <span class="process-math">\({[0]}, {[1]}, \ldots, {[11]}\)</span> respectively.  We can do arithmetic on <span class="process-math">\({\mathbb Z}_n\text{.}\)</span>  For two integers <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{,}\)</span> define addition modulo <span class="process-math">\(n\)</span> to be <span class="process-math">\((a + b) \pmod{n}\text{;}\)</span> that is, the remainder when <span class="process-math">\(a + b\)</span> is divided by <span class="process-math">\(n\text{.}\)</span>  Similarly, multiplication modulo <span class="process-math">\(n\)</span> is defined as <span class="process-math">\((a  b) \pmod{ n}\text{,}\)</span> the remainder when <span class="process-math">\(a  b\)</span> is divided by <span class="process-math">\(n\text{.}\)</span></p>
+<article class="example example-like" id="example-groups-zn-addition"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-zn-addition"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.1.1</span><span class="period">.</span><span class="space"> </span><span class="title">Modular Addition.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-zn-addition"><article class="example example-like"><p id="p-385">The following examples illustrate integer arithmetic modulo <span class="process-math">\(n\text{:}\)</span></p>
+<div class="displaymath process-math">
+\begin{align*}
+7 + 4  &amp; \equiv  1 \pmod{ 5}   &amp; 7 \cdot 3 &amp; \equiv 1 \pmod{ 5}\\
+3 + 5  &amp; \equiv  0 \pmod{ 8}   &amp; 3 \cdot 5 &amp; \equiv 7 \pmod{ 8}\\
+3 + 4  &amp; \equiv  7 \pmod{ 12}  &amp; 3 \cdot 4 &amp; \equiv 0 \pmod{ 12}\text{.}
+\end{align*}
+</div>
+<p id="p-386">In particular, notice that it is possible that the product of two nonzero numbers modulo <span class="process-math">\(n\)</span> can be equivalent to <span class="process-math">\(0 \)</span> modulo <span class="process-math">\(n\text{.}\)</span></p></article></div>
+<article class="example example-like" id="example-groups-zn-arithmetic-laws"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-zn-arithmetic-laws"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.1.2</span><span class="period">.</span><span class="space"> </span><span class="title">Modular Arithmetic.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-zn-arithmetic-laws"><article class="example example-like"><p id="p-387">Most, but not all, of the usual laws of arithmetic hold for addition and multiplication in <span class="process-math">\({\mathbb Z}_n\text{.}\)</span>  For instance, it is not necessarily true that there is a multiplicative inverse.  Consider the multiplication table for <span class="process-math">\({\mathbb Z}_8\)</span> in <a href="" class="xref" data-knowl="./knowl/figure-z8-mult.html" title="Figure 3.1.3">Figure 3.1.3</a>.  Notice that 2, 4, and 6 do not have multiplicative inverses; that is, for <span class="process-math">\(n = 2\text{,}\)</span> 4, or 6, there is no integer <span class="process-math">\(k\)</span> such that <span class="process-math">\(k n \equiv 1 \pmod{ 8}\text{.}\)</span></p>
+<figure class="figure figure-like" id="figure-z8-mult"><div class="displaymath process-math" id="p-388">
+\begin{equation*}
+\begin{array}{c|cccccccc}
+\cdot &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 \\
+\hline
+0       &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 &amp; 0 \\
+1       &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 &amp; 7 \\
+2       &amp; 0 &amp; 2 &amp; 4 &amp; 6 &amp; 0 &amp; 2 &amp; 4 &amp; 6 \\
+3       &amp; 0 &amp; 3 &amp; 6 &amp; 1 &amp; 4 &amp; 7 &amp; 2 &amp; 5 \\
+4       &amp; 0 &amp; 4 &amp; 0 &amp; 4 &amp; 0 &amp; 4 &amp; 0 &amp; 4 \\
+5       &amp; 0 &amp; 5 &amp; 2 &amp; 7 &amp; 4 &amp; 1 &amp; 6 &amp; 3 \\
+6       &amp; 0 &amp; 6 &amp; 4 &amp; 2 &amp; 0 &amp; 6 &amp; 4 &amp; 2 \\
+7       &amp; 0 &amp; 7 &amp; 6 &amp; 5 &amp; 4 &amp; 3 &amp; 2 &amp; 1 
+\end{array}
+\end{equation*}
+</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.1.3<span class="period">.</span></span><span class="space"> </span>Multiplication table for <span class="process-math">\({\mathbb Z_8}\)</span></figcaption></figure></article></div>
+<article class="proposition theorem-like" id="proposition-zn-equiv-classes"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.1.4</span><span class="period">.</span>
+</h4>
+<p id="p-389">Let <span class="process-math">\({\mathbb Z}_n\)</span> be the set of equivalence classes of the integers mod <span class="process-math">\(n\)</span> and <span class="process-math">\(a, b, c \in {\mathbb Z}_n\text{.}\)</span></p>
+<ol class="decimal">
+<li id="li-83">
+<p id="p-390">Addition and multiplication are commutative:</p>
+<div class="displaymath process-math">
+\begin{align*}
+a + b  &amp; \equiv  b + a \pmod{ n}\\
+a  b   &amp; \equiv  b  a \pmod{ n}. 
+\end{align*}
+</div>
+</li>
+<li id="li-84">
+<p id="p-391">Addition and multiplication are associative:</p>
+<div class="displaymath process-math">
+\begin{align*}
+(a + b) + c  &amp; \equiv  a + (b + c)\pmod{ n}\\
+(a  b)  c    &amp; \equiv  a   (b  c) \pmod{ n}\text{.}
+\end{align*}
+</div>
+</li>
+<li id="li-85">
+<p id="p-392">There are both additive and multiplicative identities:</p>
+<div class="displaymath process-math">
+\begin{align*}
+a + 0  &amp; \equiv  a \pmod{ n}\\
+a \cdot  1  &amp; \equiv  a \pmod{ n}\text{.}
+\end{align*}
+</div>
+</li>
+<li id="li-86">
+<p id="p-393">Multiplication distributes over addition:</p>
+<div class="displaymath process-math">
+\begin{gather*}
+a  (b  + c)  \equiv a  b + a  c  \pmod{ n}\text{.}
+\end{gather*}
+</div>
+</li>
+<li id="li-87">
+<p id="p-394">For every integer <span class="process-math">\(a\)</span> there is an additive inverse <span class="process-math">\(-a\text{:}\)</span></p>
+<div class="displaymath process-math">
+\begin{gather*}
+a + (-a)  \equiv 0 \pmod{ n}\text{.}
+\end{gather*}
+</div>
+</li>
+<li id="li-88">
+<p id="p-395">Let <span class="process-math">\(a\)</span> be a nonzero integer.  Then <span class="process-math">\(\gcd(a,n) = 1\)</span> if and only if there exists a multiplicative inverse <span class="process-math">\(b\)</span> for <span class="process-math">\(a \pmod{n}\text{;}\)</span> that is, a nonzero integer <span class="process-math">\(b\)</span> such that</p>
+<div class="displaymath process-math">
+\begin{equation*}
+a  b  \equiv 1 \pmod{ n}\text{.}
+\end{equation*}
+</div>
+</li>
+</ol></article><article class="hiddenproof" id="proof-13"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-13"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-13"><article class="hiddenproof"><p id="p-396">We will prove (1) and (6) and leave the remaining properties to be proven in the exercises.</p>
+<p id="p-397">(1) Addition and multiplication are commutative modulo <span class="process-math">\(n\)</span> since the remainder of <span class="process-math">\(a + b\)</span> divided by <span class="process-math">\(n\)</span> is the same as the remainder of <span class="process-math">\(b + a\)</span> divided by <span class="process-math">\(n\text{.}\)</span></p>
+<p id="p-398">(6) Suppose that <span class="process-math">\(\gcd(a, n) = 1\text{.}\)</span>  Then there exist integers <span class="process-math">\(r\)</span> and <span class="process-math">\(s\)</span> such that <span class="process-math">\(ar + ns = 1\text{.}\)</span>  Since <span class="process-math">\(ns = 1 - ar\text{,}\)</span> it must be the case that <span class="process-math">\(ar \equiv 1 \pmod{n}\text{.}\)</span>  Letting <span class="process-math">\(b\)</span> be the equivalence class of <span class="process-math">\(r\text{,}\)</span> <span class="process-math">\(a b \equiv 1\pmod{n}\text{.}\)</span></p>
+<p id="p-399">Conversely, suppose that there exists an integer <span class="process-math">\(b\)</span> such that <span class="process-math">\(ab  \equiv 1 \pmod{ n}\text{.}\)</span>  Then <span class="process-math">\(n\)</span> divides <span class="process-math">\(ab -1\text{,}\)</span> so there is an integer <span class="process-math">\(k\)</span> such that <span class="process-math">\(ab - nk = 1\text{.}\)</span>  Let <span class="process-math">\(d = \gcd(a,n)\text{.}\)</span>  Since <span class="process-math">\(d\)</span> divides <span class="process-math">\(ab - nk\text{,}\)</span> <span class="process-math">\(d\)</span> must also divide 1; hence, <span class="process-math">\(d = 1\text{.}\)</span></p></article></div></section><section class="subsection" id="subsection-18"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.1.2</span> <span class="title">Symmetries</span>
+</h3>
+<figure class="figure figure-like" id="figure-groups-rectangle"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/groups-rectangle.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.1.5<span class="period">.</span></span><span class="space"> </span>Rigid motions of a rectangle</figcaption></figure><p id="p-400">A <dfn class="terminology">symmetry</dfn> of a geometric figure is a rearrangement of the figure preserving the arrangement of its sides and vertices as well as its distances and angles.  A map from the plane to itself preserving the symmetry of an object is called a <dfn class="terminology">rigid motion</dfn>.  For example, if we look at the rectangle in <a href="" class="xref" data-knowl="./knowl/figure-groups-rectangle.html" title="Figure 3.1.5">Figure 3.1.5</a>, it is easy to see that a rotation of <span class="process-math">\(180^{\circ}\)</span> or <span class="process-math">\(360^{\circ}\)</span> returns a rectangle in the plane with the same orientation as the original rectangle and the same relationship among the vertices.  A reflection of the rectangle across either the vertical axis or the horizontal axis can also be seen to be a symmetry.  However, a <span class="process-math">\(90^{\circ}\)</span> rotation in either direction cannot be a symmetry unless the rectangle is a square.</p>
+<figure class="figure figure-like" id="figure-s3-symmetry"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/groups-s3-symmetry.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.1.6<span class="period">.</span></span><span class="space"> </span>Symmetries of a triangle</figcaption></figure><p id="p-401">Let us find the symmetries of the equilateral triangle <span class="process-math">\(\bigtriangleup ABC\text{.}\)</span>  To find a symmetry of <span class="process-math">\(\bigtriangleup ABC\text{,}\)</span> we must first examine the permutations of the vertices <span class="process-math">\(A\text{,}\)</span> <span class="process-math">\(B\text{,}\)</span> and <span class="process-math">\(C\)</span> and then ask if a permutation extends to a symmetry of the triangle.  Recall that a <dfn class="terminology">permutation</dfn> of a set <span class="process-math">\(S\)</span> is a one-to-one and onto map <span class="process-math">\(\pi :S \rightarrow S\text{.}\)</span>  The three vertices have <span class="process-math">\(3! = 6\)</span> permutations, so the triangle has at most six symmetries.  To see that there are six permutations, observe there are three different possibilities for the first vertex, and two for the second, and the remaining vertex is determined by the placement of the first two.  So we have <span class="process-math">\(3 \cdot 2 \cdot 1 = 3! = 6\)</span> different arrangements.  To denote the permutation of the vertices of an equilateral triangle that sends <span class="process-math">\(A\)</span> to <span class="process-math">\(B\text{,}\)</span> <span class="process-math">\(B\)</span> to <span class="process-math">\(C\text{,}\)</span> and <span class="process-math">\(C\)</span> to <span class="process-math">\(A\text{,}\)</span> we write the array</p>
+<div class="displaymath process-math">
+\begin{equation*}
+\begin{pmatrix}
+A &amp; B &amp; C \\
+B &amp; C &amp; A
+\end{pmatrix}\text{.}
+\end{equation*}
+</div>
+<p class="continuation">Notice that this particular permutation corresponds to the rigid motion of rotating the triangle by <span class="process-math">\(120^{\circ}\)</span> in a clockwise direction.  In fact, every permutation gives rise to a symmetry of the triangle.  All of these symmetries are shown in <a href="" class="xref" data-knowl="./knowl/figure-s3-symmetry.html" title="Figure 3.1.6">Figure 3.1.6</a>.</p>
+<p id="p-402">A natural question to ask is what happens if one motion of the triangle <span class="process-math">\(\bigtriangleup ABC\)</span> is followed by another.  Which symmetry is <span class="process-math">\(\mu_1 \rho_1\text{;}\)</span> that is, what happens when we do the permutation <span class="process-math">\(\rho_1\)</span> and then the permutation <span class="process-math">\(\mu_1\text{?}\)</span>  <em class="emphasis">Remember that we are composing functions here.  Although we usually multiply left to right, we compose functions right to left.</em> We have</p>
+<div class="displaymath process-math">
+\begin{align*}
+(\mu_1 \rho_1)(A) &amp; = \mu_1( \rho_1( A ) ) = \mu_1( B ) = C\\
+(\mu_1 \rho_1)(B) &amp; = \mu_1( \rho_1( B ) ) = \mu_1( C ) = B\\
+(\mu_1 \rho_1)(C) &amp; = \mu_1( \rho_1( C ) ) = \mu_1( A ) = A\text{.}
+\end{align*}
+</div>
+<p id="p-403">This is the same symmetry as <span class="process-math">\(\mu_2\text{.}\)</span> Suppose we do these motions in the opposite order, <span class="process-math">\(\rho_1\)</span> then <span class="process-math">\(\mu_1\text{.}\)</span>  It is easy to determine that this is the same as the symmetry <span class="process-math">\(\mu_3\text{;}\)</span> hence, <span class="process-math">\(\rho_1 \mu_1 \neq \mu_1 \rho_1\text{.}\)</span>  A multiplication table for the symmetries of an equilateral triangle <span class="process-math">\(\bigtriangleup ABC\)</span> is given in <a href="" class="xref" data-knowl="./knowl/figure-s3.html" title="Figure 3.1.7">Figure 3.1.7</a>.</p>
+<p id="p-404">Notice that in the multiplication table for the symmetries of an equilateral triangle, for every motion of the triangle <span class="process-math">\(\alpha\)</span> there is another motion <span class="process-math">\(\beta\)</span> such that <span class="process-math">\(\alpha \beta = id\text{;}\)</span> that is, for every motion there is another  motion that takes the triangle back to its original orientation.</p>
+<figure class="figure figure-like" id="figure-s3"><div class="displaymath process-math" id="p-405">
+\begin{equation*}
+\begin{array}{c|cccccc}
+\circ  &amp; id     &amp; \rho_1 &amp; \rho_2 &amp; \mu_1 &amp; \mu_2 &amp; \mu_3 \\
+\hline
+id     &amp; id     &amp; \rho_1 &amp; \rho_2 &amp; \mu_1 &amp; \mu_2 &amp; \mu_3 \\
+\rho_1 &amp; \rho_1 &amp; \rho_2 &amp; id     &amp; \mu_3 &amp; \mu_1 &amp; \mu_2 \\
+\rho_2 &amp; \rho_2 &amp; id     &amp; \rho_1 &amp; \mu_2 &amp; \mu_3 &amp; \mu_1 \\
+\mu_1  &amp; \mu_1  &amp; \mu_2  &amp; \mu_3  &amp; id    &amp; \rho_1&amp; \rho_2\\
+\mu_2  &amp; \mu_2  &amp; \mu_3  &amp; \mu_1  &amp; \rho_2 &amp; id    &amp; \rho_1\\
+\mu_3  &amp; \mu_3  &amp; \mu_1  &amp; \mu_2  &amp; \rho_1 &amp; \rho_2&amp; id
+\end{array}
+\end{equation*}
+</div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.1.7<span class="period">.</span></span><span class="space"> </span>Symmetries of an equilateral triangle</figcaption></figure></section></section></div></main>
+</div>
+</body>
+</html>
