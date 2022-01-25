@@ -3,7 +3,7 @@ import { useAppSelector } from "../../app/hooks";
 import { currentPageSelector, tocSelector } from "../../features/nav/navSlice";
 import { TocEntryType } from "../../utils/extract-toc";
 import { InternalAnchor } from "../links";
-import { MathJaxRenderer } from "../mathjax";
+import { MathJaxOneTimeRenderer } from "../mathjax";
 
 function TocEntry({ entry }: { entry: TocEntryType }) {
     const currentPage = useAppSelector(currentPageSelector);
@@ -14,7 +14,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                 entry.level === "part" ? entry.level : ""
             }`}
         >
-            <MathJaxRenderer>
+            <MathJaxOneTimeRenderer>
                 <InternalAnchor
                     href={entry.href || "#"}
                     pageId={entry.id || undefined}
@@ -25,7 +25,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                     )}
                     <span className="title">{entry.title}</span>
                 </InternalAnchor>
-            </MathJaxRenderer>
+            </MathJaxOneTimeRenderer>
             {entry.children && (
                 <ul>
                     {entry.children.map((entry, i) => (

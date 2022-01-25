@@ -7,10 +7,13 @@ import HTMLReactParser, {
 import React from "react";
 import ReactDOM from "react-dom";
 import { reTypesetMathJax } from "../../utils/mathjax";
+import { CachedComponent } from "../cached-component";
 import { replaceKnowlIfNeeded } from "../knowl/knowls";
 import { replaceSageKnowlIfNeeded } from "../knowl/sage-knowl";
 import { InternalAnchor } from "../links";
 import { PreparedParsers } from "./types";
+import md5 from "crypto-js/md5";
+import { MathJaxOneTimeRenderer, MathJaxRenderer } from "../mathjax";
 
 export const ParserContext = React.createContext<PreparedParsers>({
     parser: (html) => (
@@ -35,6 +38,36 @@ function hasParentWithClass(
     );
 }
 
+const options: HTMLReactParserOptions = {
+    replace: (domNode) => {
+        if (
+            domNode instanceof Element &&
+            domNode.name === "a" &&
+            (domNode.attribs["class"]?.includes("internal") ||
+                hasParentWithClass(domNode, "summary-links"))
+        ) {
+            return (
+                <InternalAnchor
+                    href={domNode.attribs.href}
+                    className={domNode.attribs["class"]}
+                    title={domNode.attribs.title}
+                >
+                    {domToReact(domNode.children)}
+                </InternalAnchor>
+            );
+        }
+
+        return (
+            replaceKnowlIfNeeded(domNode, parsers) ||
+            replaceSageKnowlIfNeeded(domNode, parsers)
+        );
+    },
+};
+const parsers: PreparedParsers = {
+    parser: (html) => HTMLReactParser(html, options),
+    domToReact: (nodes) => domToReact(nodes, options),
+};
+
 /**
  * Render a page's content in the content area. This element returns a portal
  * that is automatically rendered in the correct location.
@@ -42,6 +75,17 @@ function hasParentWithClass(
 export function ContentPage({ content }: { content: string }) {
     const [haveClearedInnerHtml, setHaveClearedInnerHtml] =
         React.useState(false);
+
+    // Render the content on demand. Since the content is cached, it will not
+    // need to be re-rendered when it is asked to be displayed again.
+    const childRenderer = React.useCallback(
+        () => (
+            <MathJaxOneTimeRenderer>
+                {HTMLReactParser(content, options)}
+            </MathJaxOneTimeRenderer>
+        ),
+        [content]
+    );
 
     const contentNode = document.querySelector("#content");
     React.useEffect(() => {
@@ -53,13 +97,6 @@ export function ContentPage({ content }: { content: string }) {
         }
     }, [haveClearedInnerHtml, contentNode]);
 
-    React.useEffect(() => {
-        if (!MathJax) {
-            return;
-        }
-        reTypesetMathJax();
-    });
-
     // If we haven't cleared the HTML, we wait until that is done to render anything meaningful
     if (!haveClearedInnerHtml) {
         return null;
@@ -70,41 +107,16 @@ export function ContentPage({ content }: { content: string }) {
         return null;
     }
 
-    const options: HTMLReactParserOptions = {
-        replace: (domNode) => {
-            if (
-                domNode instanceof Element &&
-                domNode.name === "a" &&
-                (domNode.attribs["class"]?.includes("internal") ||
-                    hasParentWithClass(domNode, "summary-links"))
-            ) {
-                return (
-                    <InternalAnchor
-                        href={domNode.attribs.href}
-                        className={domNode.attribs["class"]}
-                        title={domNode.attribs.title}
-                    >
-                        {domToReact(domNode.children)}
-                    </InternalAnchor>
-                );
-            }
-
-            return (
-                replaceKnowlIfNeeded(domNode, parsers) ||
-                replaceSageKnowlIfNeeded(domNode, parsers)
-            );
-        },
-    };
-    const parsers: PreparedParsers = {
-        parser: (html) => HTMLReactParser(html, options),
-        domToReact: (nodes) => domToReact(nodes, options),
-    };
-
-    const rendered = HTMLReactParser(content, options);
     // Since child components may need to render HTML, we pass down the necessary parsers.
     return (
         <ParserContext.Provider value={parsers}>
-            {ReactDOM.createPortal(rendered, contentNode)}
+            {ReactDOM.createPortal(
+                <CachedComponent
+                    cacheId={"" + md5(content)}
+                    childRenderer={childRenderer}
+                />,
+                contentNode
+            )}
         </ParserContext.Provider>
     );
 }

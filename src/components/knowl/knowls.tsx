@@ -86,6 +86,8 @@ function KnowlContent({ show, url }: { show: boolean; url: string }) {
     const parser = React.useContext(ParserContext);
     const fetchingRef = React.useRef(false);
     const [fetchedData, setFetchedData] = React.useState<string | null>(null);
+    const [renderedContent, setRenderedContent] =
+        React.useState<React.ReactNode>(null);
 
     React.useEffect(() => {
         if (
@@ -108,18 +110,21 @@ function KnowlContent({ show, url }: { show: boolean; url: string }) {
         }
     }, [show, fetchedData, url]);
 
+    React.useEffect(() => {
+        if (!fetchedData) {
+            return;
+        }
+        setRenderedContent(parser.parser(fetchedData));
+    }, [fetchedData, parser]);
+
     if (!show) {
         return null;
     }
 
-    let body: React.ReactNode = "Content not yet loaded...";
-
-    if (fetchedData) {
-        body = parser.parser(fetchedData);
-    }
+    const body = renderedContent || "Content not yet loaded...";
 
     return (
-        <div className="knowl-output" tabIndex={0} style={{ display: "block" }}>
+        <div className="knowl-output" style={{ display: "block" }}>
             <div className="knowl">
                 <div className="knowl-content">
                     <MathJaxRenderer>{body}</MathJaxRenderer>
@@ -158,7 +163,10 @@ function PreloadedKnowl({
                 console.log("Preloaded Knowl clicked", refId);
                 setContentVisible(!contentVisible);
             }}
+            onKeyDown={() => {}}
             data-knowl
+            role="button"
+            tabIndex={0}
         >
             {children}
         </a>
