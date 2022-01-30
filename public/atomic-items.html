@@ -1,0 +1,1220 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-30T15:46:08-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SA Atomic Objects</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl', 'sfrac']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+/* support for the sfrac command in MathJax (Beveled fraction) */
+  startup: {
+    ready() {
+      //
+      // Creating a simple "sfrac" package on-the-fly
+      //
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      
+      new CommandMap('sfrac', {
+        sfrac: 'SFrac'
+        }, {
+        SFrac(parser, name) {
+        const num = parser.ParseArg(name);
+        const den = parser.ParseArg(name);
+        const frac = parser.create('node', 'mfrac', [num, den], {bevelled: true});
+        parser.Push(frac);
+        }
+      });
+      //
+      // Create the package for the overridden macros
+      //
+      Configuration.create('sfrac', {
+        handler: {macro: ['sfrac']}
+      });
+      
+    MathJax.startup.defaultReady();
+    }
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script defer src="./static/js/bundle.js"></script><script defer src="./static/js/main.js"></script><link href="./static/css/main.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<script src="http://pythontutor.com/build/pytutor-embed.bundle.js?cc25af72af"></script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+<body id="pretext-SA" class="pretext-article ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{cancel}\newcommand{\definiteintegral}[4]{\int_{#1}^{#2}\,#3\,d#4} 
+\newcommand{\myequation}[2]{#1\amp =#2} 
+\newcommand{\indefiniteintegral}[2]{\int#1\,d#2}
+\newcommand{\testingescapedpercent}{ \% } 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="https://pretextbook.org" target="_blank"><img src="misc/book-cover-google-art-project.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="derivatives.html"><span class="title">Derivatives and Integrals:</span> <span class="subtitle">An Annotated Discourse</span></a></h1>
+<p class="byline">Robert Beezer</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="poetry.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="derivatives.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="advanced-numbering.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="poetry.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="derivatives.html" title="Up">Up</a><a class="next-button button toolbar-item" href="advanced-numbering.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a></li>
+<li class="link"><a href="section-1.html" data-scroll="section-1" class="internal"><span class="codenumber">1</span> <span class="title">Introduction</span></a></li>
+<li class="link"><a href="section-fundamental-theorem.html" data-scroll="section-fundamental-theorem" class="internal"><span class="codenumber">2</span> <span class="title">The Fundamental Theorem</span></a></li>
+<li class="link"><a href="section-sage-cells.html" data-scroll="Abc" class="internal"><span class="codenumber">3</span> <span class="title">Computing Integrals with Sage (<span class="process-math">\(\int\)</span>)</span></a></li>
+<li class="link">
+<a href="interesting-corollary.html" data-scroll="interesting-corollary" class="internal"><span class="codenumber">4</span> <span class="title">An Interesting Corollary</span></a><ul>
+<li><a href="interesting-corollary.html#subsection-second-FTC" data-scroll="subsection-second-FTC" class="internal">Second Version of <abbr class="acronym">FTC</abbr></a></li>
+<li><a href="interesting-corollary.html#subsection-2" data-scroll="subsection-2" class="internal">A Pedagogical Note about Subsection 4.1</a></li>
+<li><a href="interesting-corollary.html#subsection-3" data-scroll="subsection-3" class="internal">Theorem-Like Environments</a></li>
+<li><a href="interesting-corollary.html#subsection-4" data-scroll="subsection-4" class="internal">Linking Sage Cells</a></li>
+<li><a href="interesting-corollary.html#subsection-5" data-scroll="subsection-5" class="internal">Hierarchy</a></li>
+<li><a href="interesting-corollary.html#subsection-intro-conclude" data-scroll="subsection-intro-conclude" class="internal">Introductions and Conclusions</a></li>
+<li><a href="interesting-corollary.html#subsection-paragraph-markup" data-scroll="subsection-paragraph-markup" class="internal">Some Paragraph-Level Markup</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-5.html" data-scroll="Bcd" class="internal"><span class="codenumber">5</span> <span class="title">Some Facts and Figures</span></a></li>
+<li class="link"><a href="section-6.html" data-scroll="section-6" class="internal"><span class="codenumber">6</span> <span class="title">Some Advanced Ideas</span></a></li>
+<li class="link">
+<a href="section-7.html" data-scroll="section-7" class="internal"><span class="codenumber">7</span> <span class="title">Mathematics</span></a><ul>
+<li><a href="section-7.html#subsection-8" data-scroll="subsection-8" class="internal">Basic Mathematics</a></li>
+<li><a href="section-7.html#subsection-9" data-scroll="subsection-9" class="internal">Displayed Mathematics</a></li>
+<li><a href="section-7.html#subsection-10" data-scroll="subsection-10" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Packages and MathJax Extensions</a></li>
+<li><a href="section-7.html#subsection-11" data-scroll="subsection-11" class="internal">Advanced Mathematics</a></li>
+<li><a href="section-7.html#subsection-12" data-scroll="subsection-12" class="internal">Local Tags on Equations</a></li>
+<li><a href="section-7.html#commutative-diagrams" data-scroll="commutative-diagrams" class="internal">Commutative Diagrams</a></li>
+<li><a href="section-7.html#line-breaking-math" data-scroll="line-breaking-math" class="internal">Line-Breaking after Mathematics</a></li>
+<li><a href="section-7.html#font-math" data-scroll="font-math" class="internal">Fonts and Mathematics</a></li>
+<li><a href="section-7.html#miscellaneous-math" data-scroll="miscellaneous-math" class="internal">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="text-in-paragraphs.html" data-scroll="text-in-paragraphs" class="internal"><span class="codenumber">8</span> <span class="title">Text in Paragraphs</span></a><ul>
+<li><a href="text-in-paragraphs.html#subsection-xml-escape" data-scroll="subsection-xml-escape" class="internal">Special <abbr class="initialism">XML</abbr> characters</a></li>
+<li><a href="text-in-paragraphs.html#subsection-18" data-scroll="subsection-18" class="internal">Quotations</a></li>
+<li><a href="text-in-paragraphs.html#subsection-19" data-scroll="subsection-19" class="internal">Groupings</a></li>
+<li><a href="text-in-paragraphs.html#subsection-20" data-scroll="subsection-20" class="internal">Characters, Symbols, and Constructions</a></li>
+<li><a href="text-in-paragraphs.html#subsection-21" data-scroll="subsection-21" class="internal">Currency</a></li>
+<li><a href="text-in-paragraphs.html#subsection-icons-in-text" data-scroll="subsection-icons-in-text" class="internal">Icons in Text</a></li>
+<li><a href="text-in-paragraphs.html#subsection-keyboard" data-scroll="subsection-keyboard" class="internal">Keyboard Keys</a></li>
+<li><a href="text-in-paragraphs.html#section-urls" data-scroll="section-urls" class="internal">URLs, such as <code class="code-inline tex2jax_ignore">http://example.com</code></a></li>
+<li><a href="text-in-paragraphs.html#subsection-25" data-scroll="subsection-25" class="internal">Biological Names</a></li>
+<li><a href="text-in-paragraphs.html#subsection-26" data-scroll="subsection-26" class="internal">Verbatim in titles, <code class="code-inline tex2jax_ignore">\a&amp;b#c%d~e{f}g$h_i^j</code>, OK</a></li>
+<li><a href="text-in-paragraphs.html#subsection-special-situations" data-scroll="subsection-special-situations" class="internal">Special Situations</a></li>
+<li><a href="text-in-paragraphs.html#subsection-jupyter-dollars" data-scroll="subsection-jupyter-dollars" class="internal">Jupyter Notebook, Markdown, MathJax, Delimiters</a></li>
+<li><a href="text-in-paragraphs.html#subsection-29" data-scroll="subsection-29" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Characters, Ligatures, and More</a></li>
+<li><a href="text-in-paragraphs.html#subsection-30" data-scroll="subsection-30" class="internal"><abbr class="initialism">HTML</abbr> and accidental mathematics</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="graphics.html" data-scroll="graphics" class="internal"><span class="codenumber">9</span> <span class="title">Graphics</span></a><ul>
+<li><a href="graphics.html#subsection-31" data-scroll="subsection-31" class="internal">Images from External Sources</a></li>
+<li><a href="graphics.html#subsection-32" data-scroll="subsection-32" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> images</a></li>
+<li><a href="graphics.html#subsection-33" data-scroll="subsection-33" class="internal">Asymptote, 2D</a></li>
+<li><a href="graphics.html#graphics-asymptote-webgl" data-scroll="graphics-asymptote-webgl" class="internal">Asymptote, 3D via WebGL</a></li>
+<li><a href="graphics.html#subsection-35" data-scroll="subsection-35" class="internal">Sage Plots</a></li>
+<li><a href="graphics.html#subsection-36" data-scroll="subsection-36" class="internal">Inkscape Images</a></li>
+<li><a href="graphics.html#subsection-37" data-scroll="subsection-37" class="internal">Copies of Images</a></li>
+<li><a href="graphics.html#subsection-38" data-scroll="subsection-38" class="internal">Caption Testing</a></li>
+<li><a href="graphics.html#captionless-images" data-scroll="captionless-images" class="internal">Captionless Images</a></li>
+<li><a href="graphics.html#subsection-40" data-scroll="subsection-40" class="internal">Technical Details</a></li>
+<li><a href="graphics.html#subsection-tactile-graphics" data-scroll="subsection-tactile-graphics" class="internal">Experimental Tactile Graphics</a></li>
+<li><a href="graphics.html#subsection-42" data-scroll="subsection-42" class="internal">Accessibility</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-10.html" data-scroll="section-10" class="internal"><span class="codenumber">10</span> <span class="title">Demonstrations</span></a></li>
+<li class="link">
+<a href="section-11.html" data-scroll="section-11" class="internal"><span class="codenumber">11</span> <span class="title">Further Reading</span></a><ul>
+<li><a href="section-11.html#subsection-43" data-scroll="subsection-43" class="internal">Specialized Subdivisions</a></li>
+<li><a href="section-11.html#exercises-3" data-scroll="exercises-3" class="internal">Exercises</a></li>
+<li><a href="section-11.html#exercises-section-multiple" data-scroll="exercises-section-multiple" class="internal">More Exercises</a></li>
+<li><a href="section-11.html#references-section" data-scroll="references-section" class="internal">References</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="lists.html" data-scroll="lists" class="internal"><span class="codenumber">12</span> <span class="title">List Calisthenics</span></a><ul>
+<li><a href="lists.html#subsection-44" data-scroll="subsection-44" class="internal">Lists, Generally</a></li>
+<li><a href="lists.html#subsection-45" data-scroll="subsection-45" class="internal">List Spacing, I</a></li>
+<li><a href="lists.html#subsection-46" data-scroll="subsection-46" class="internal">List Spacing, II</a></li>
+<li><a href="lists.html#test-second" data-scroll="test-second" class="internal">List items containing only inline math</a></li>
+<li><a href="lists.html#subsection-48" data-scroll="subsection-48" class="internal">Description Lists</a></li>
+<li><a href="lists.html#subsection-49" data-scroll="subsection-49" class="internal">Named Lists</a></li>
+<li><a href="lists.html#subsection-50" data-scroll="subsection-50" class="internal">Testing List Decompositions</a></li>
+<li><a href="lists.html#exercises-5" data-scroll="exercises-5" class="internal">Exercises (with lists)</a></li>
+<li><a href="lists.html#references-2" data-scroll="references-2" class="internal">References (with lists in Annotations)</a></li>
+</ul>
+</li>
+<li class="link"><a href="table-calisthenics.html" data-scroll="table-calisthenics" class="internal"><span class="codenumber">13</span> <span class="title">Table Calisthenics</span></a></li>
+<li class="link">
+<a href="section-interactive-authored.html" data-scroll="section-interactive-authored" class="internal"><span class="codenumber">14</span> <span class="title">Interactive Elements, Authored</span></a><ul>
+<li><a href="section-interactive-authored.html#interactive-html5-canvas" data-scroll="interactive-html5-canvas" class="internal">HTML5 Canvas</a></li>
+<li><a href="section-interactive-authored.html#subsection-52" data-scroll="subsection-52" class="internal">D3.js</a></li>
+<li><a href="section-interactive-authored.html#subsection-53" data-scroll="subsection-53" class="internal">SVG</a></li>
+<li><a href="section-interactive-authored.html#subsection-54" data-scroll="subsection-54" class="internal">JSXGraph</a></li>
+<li><a href="section-interactive-authored.html#subsection-55" data-scroll="subsection-55" class="internal">JessieCode</a></li>
+<li><a href="section-interactive-authored.html#subsection-56" data-scroll="subsection-56" class="internal">Sage Interacts</a></li>
+<li><a href="section-interactive-authored.html#subsection-57" data-scroll="subsection-57" class="internal">Geogebra</a></li>
+<li><a href="section-interactive-authored.html#interactive-iframes" data-scroll="interactive-iframes" class="internal">IFrames</a></li>
+<li><a href="section-interactive-authored.html#interactive-threejs" data-scroll="interactive-threejs" class="internal">threejs</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-interactive-server.html" data-scroll="section-interactive-server" class="internal"><span class="codenumber">15</span> <span class="title">Interactive Elements, Server</span></a><ul>
+<li><a href="section-interactive-server.html#subsection-geogebra-server" data-scroll="subsection-geogebra-server" class="internal">GeoGebra</a></li>
+<li><a href="section-interactive-server.html#subsection-61" data-scroll="subsection-61" class="internal">Desmos Graphs</a></li>
+<li><a href="section-interactive-server.html#subsection-62" data-scroll="subsection-62" class="internal">CalcPlot3D</a></li>
+<li><a href="section-interactive-server.html#subsection-63" data-scroll="subsection-63" class="internal">Wolfram CDF</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-audio.html" data-scroll="section-audio" class="internal"><span class="codenumber">16</span> <span class="title">Audio</span></a></li>
+<li class="link">
+<a href="section-video.html" data-scroll="section-video" class="internal"><span class="codenumber">17</span> <span class="title">Video</span></a><ul>
+<li><a href="section-video.html#subsection-64" data-scroll="subsection-64" class="internal">Video Files</a></li>
+<li><a href="section-video.html#subsection-65" data-scroll="subsection-65" class="internal">YouTube</a></li>
+<li><a href="section-video.html#subsection-66" data-scroll="subsection-66" class="internal">Vimeo</a></li>
+<li><a href="section-video.html#subsection-67" data-scroll="subsection-67" class="internal">Captions and Subtitles</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-cross-referencing.html" data-scroll="section-cross-referencing" class="internal"><span class="codenumber">18</span> <span class="title">Cross-Referencing</span></a></li>
+<li class="link"><a href="section-internationalization.html" data-scroll="section-internationalization" class="internal"><span class="codenumber">19</span> <span class="title">Internationalization</span></a></li>
+<li class="link"><a href="section-20.html" data-scroll="section-20" class="internal"><span class="codenumber">20</span> <span class="title">Pre-Formatted Text</span></a></li>
+<li class="link"><a href="section-programs.html" data-scroll="section-programs" class="internal"><span class="codenumber">21</span> <span class="title">Program Listings</span></a></li>
+<li class="link"><a href="section-22.html" data-scroll="section-22" class="internal"><span class="codenumber">22</span> <span class="title">Units of Measure</span></a></li>
+<li class="link">
+<a href="section-side-by-side.html" data-scroll="section-side-by-side" class="internal"><span class="codenumber">23</span> <span class="title">Side-By-Side Panels</span></a><ul>
+<li><a href="section-side-by-side.html#subsection-68" data-scroll="subsection-68" class="internal">Figures with Numbers Side-By-Side</a></li>
+<li><a href="section-side-by-side.html#subsection-69" data-scroll="subsection-69" class="internal">Images</a></li>
+<li><a href="section-side-by-side.html#subsection-70" data-scroll="subsection-70" class="internal">Common Side-By-Side Constructions</a></li>
+<li><a href="section-side-by-side.html#subsection-71" data-scroll="subsection-71" class="internal">Vertical Alignment</a></li>
+<li><a href="section-side-by-side.html#subsection-72" data-scroll="subsection-72" class="internal">Text Next to Text and Images</a></li>
+<li><a href="section-side-by-side.html#subsection-73" data-scroll="subsection-73" class="internal">Image Formats, Side-by-Sides</a></li>
+<li><a href="section-side-by-side.html#subsection-74" data-scroll="subsection-74" class="internal">Tables Side-By-Side</a></li>
+<li><a href="section-side-by-side.html#subsection-75" data-scroll="subsection-75" class="internal">Tables Next to Figures</a></li>
+<li><a href="section-side-by-side.html#subsection-76" data-scroll="subsection-76" class="internal">Tables Next to Text</a></li>
+<li><a href="section-side-by-side.html#subsection-77" data-scroll="subsection-77" class="internal">Tabular Next to Each Other</a></li>
+<li><a href="section-side-by-side.html#subsection-78" data-scroll="subsection-78" class="internal">Lists in Side-by-Sides</a></li>
+<li><a href="section-side-by-side.html#stacking-side-by-side" data-scroll="stacking-side-by-side" class="internal">Stacking: Back to Vertical Flow</a></li>
+<li><a href="section-side-by-side.html#subsection-sbs-other-panels" data-scroll="subsection-sbs-other-panels" class="internal">Other Panels</a></li>
+<li><a href="section-side-by-side.html#subsection-81" data-scroll="subsection-81" class="internal">Poems as Side-By-Side Panels</a></li>
+<li><a href="section-side-by-side.html#subsection-sbsgroup" data-scroll="subsection-sbsgroup" class="internal">Side-By-Side Groups</a></li>
+<li><a href="section-side-by-side.html#subsection-83" data-scroll="subsection-83" class="internal">Testing a Side-By-Side First</a></li>
+<li><a href="section-side-by-side.html#subsection-84" data-scroll="subsection-84" class="internal">Testing Styling of Related Elements</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-24.html" data-scroll="section-24" class="internal"><span class="codenumber">24</span> <span class="title">Side-by-Side Gallery</span></a></li>
+<li class="link"><a href="poetry.html" data-scroll="poetry" class="internal"><span class="codenumber">25</span> <span class="title">Poetry</span></a></li>
+<li class="link active">
+<a href="atomic-items.html" data-scroll="atomic-items" class="internal"><span class="codenumber">26</span> <span class="title">Atomic Objects</span></a><ul>
+<li><a href="atomic-items.html#atomic-image" data-scroll="atomic-image" class="internal"><code class="code-inline tex2jax_ignore">&lt;image&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-video" data-scroll="atomic-video" class="internal"><code class="code-inline tex2jax_ignore">&lt;video&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-program" data-scroll="atomic-program" class="internal"><code class="code-inline tex2jax_ignore">&lt;program&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;console&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-tabular" data-scroll="atomic-tabular" class="internal"><code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code></a></li>
+</ul>
+</li>
+<li class="link">
+<a href="advanced-numbering.html" data-scroll="advanced-numbering" class="internal"><span class="codenumber">27</span> <span class="title">Advanced Numbering</span></a><ul>
+<li><a href="advanced-numbering.html#subsection-89" data-scroll="subsection-89" class="internal">One</a></li>
+<li><a href="advanced-numbering.html#subsection-90" data-scroll="subsection-90" class="internal">Two</a></li>
+<li><a href="advanced-numbering.html#subsection-91" data-scroll="subsection-91" class="internal">Three</a></li>
+<li><a href="advanced-numbering.html#subsection-92" data-scroll="subsection-92" class="internal">Four</a></li>
+<li><a href="advanced-numbering.html#subsection-93" data-scroll="subsection-93" class="internal">Five</a></li>
+<li><a href="advanced-numbering.html#subsection-local-theorems" data-scroll="subsection-local-theorems" class="internal">Theorems in This Section</a></li>
+<li><a href="advanced-numbering.html#subsection-with-an-exercise" data-scroll="subsection-with-an-exercise" class="internal">A Title with ] a Right Bracket</a></li>
+<li><a href="advanced-numbering.html#subsection-96" data-scroll="subsection-96" class="internal">A Title with } a Right Brace</a></li>
+<li><a href="advanced-numbering.html#subsection-97" data-scroll="subsection-97" class="internal">A Title with <span class="process-math">\(a]b\)</span> a Math Right Bracket</a></li>
+<li><a href="advanced-numbering.html#subsection-98" data-scroll="subsection-98" class="internal">Just an Exercise</a></li>
+<li><a href="advanced-numbering.html#solutions-2" data-scroll="solutions-2" class="internal">Solutions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-28.html" data-scroll="section-28" class="internal"><span class="codenumber">28</span> <span class="title">Customizations</span></a><ul>
+<li><a href="section-28.html#rename-facility" data-scroll="rename-facility" class="internal">Renaming Document Parts, Plus This Is A Really Long Title So That We Can Test How Well It Reacts To The Right Margin And Wraps Around To Form A Couple Of Lines, Plus How It Sits Relative To The Number Of The Subsection</a></li>
+<li><a href="section-28.html#subsection-100" data-scroll="subsection-100" class="internal">Customizing Phrases</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-myopenmath.html" data-scroll="section-myopenmath" class="internal"><span class="codenumber">29</span> <span class="title">MyOpenMath Interactive Problems</span></a></li>
+<li class="link"><a href="ancillaries.html" data-scroll="ancillaries" class="internal"><span class="codenumber">30</span> <span class="title">Ancillaries</span></a></li>
+<li class="link">
+<a href="worksheets.html" data-scroll="worksheets" class="internal"><span class="codenumber">31</span> <span class="title">Worksheets</span></a><ul>
+<li><a href="worksheets.html#subsection-101" data-scroll="subsection-101" class="internal">About Worksheets</a></li>
+<li><a href="worksheets.html#worksheet-1" data-scroll="worksheet-1" class="internal">A Geometric Prelude</a></li>
+<li><a href="worksheets.html#worksheet-2" data-scroll="worksheet-2" class="internal">Networks Worksheet</a></li>
+<li><a href="worksheets.html#worksheet-3" data-scroll="worksheet-3" class="internal">Worksheet</a></li>
+<li><a href="worksheets.html#worksheet-4" data-scroll="worksheet-4" class="internal">Dot products and projection</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="exercises-single.html" data-scroll="exercises-single" class="internal"><span class="codenumber">32</span> <span class="title">Exercises, One Subsection</span></a><ul>
+<li><a href="exercises-single.html#exercise-collection" data-scroll="exercise-collection" class="internal">Exercise Collection</a></li>
+<li><a href="exercises-single.html#references-3" data-scroll="references-3" class="internal">More Reading</a></li>
+</ul>
+</li>
+<li class="link"><a href="exercises-7.html" data-scroll="exercises-7" class="internal"><span class="codenumber">33</span> <span class="title">Exercise Section, Structured</span></a></li>
+<li class="link">
+<a href="exercises-multiple.html" data-scroll="exercises-multiple" class="internal"><span class="codenumber">34</span> <span class="title">Exercises, Multiple Subsections</span></a><ul>
+<li><a href="exercises-multiple.html#subsection-102" data-scroll="subsection-102" class="internal">Faux Subsection</a></li>
+<li><a href="exercises-multiple.html#exercises-drill" data-scroll="exercises-drill" class="internal">Drill Exercises</a></li>
+<li><a href="exercises-multiple.html#exercises-9" data-scroll="exercises-9" class="internal">Challenging Exercises</a></li>
+<li><a href="exercises-multiple.html#exercises-10" data-scroll="exercises-10" class="internal">Impossible Exercises</a></li>
+<li><a href="exercises-multiple.html#references-4" data-scroll="references-4" class="internal">More Reading</a></li>
+</ul>
+</li>
+<li class="link"><a href="exercises.html" data-scroll="exercises" class="internal"><span class="codenumber">35</span> <span class="title">Exercises, Top-Level</span></a></li>
+<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter" class="internal"><span class="title">Reference</span></a></li>
+<li class="link"><a href="appendix-1.html" data-scroll="appendix-1" class="internal"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="solutions-backmatter.html" data-scroll="solutions-backmatter" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-4.html" data-scroll="solutions-4" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to a Single Exercises Division</span></a></li>
+<li class="link"><a href="solutions-5.html" data-scroll="solutions-5" class="internal"><span class="codenumber">D</span> <span class="title">All Solutions that are Answers</span></a></li>
+<li class="link"><a href="solutions-6.html" data-scroll="solutions-6" class="internal"><span class="codenumber">E</span> <span class="title">All Solutions that are Answers to Odd Exercises</span></a></li>
+<li class="link"><a href="appendix-results.html" data-scroll="appendix-results" class="internal"><span class="codenumber">F</span> <span class="title">List of Results</span></a></li>
+<li class="link"><a href="appendix-exercise-lists.html" data-scroll="appendix-exercise-lists" class="internal"><span class="codenumber">G</span> <span class="title">Lists of Exercises</span></a></li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4" class="internal"><span class="codenumber">H</span> <span class="title">A Structured Appendix</span></a><ul><li><a href="appendix-4.html#subsection-103" data-scroll="subsection-103" class="internal">A Subsection in an Appendix</a></li></ul>
+</li>
+<li class="link"><a href="appendix-5.html" data-scroll="appendix-5" class="internal"><span class="codenumber">I</span> <span class="title">Index</span></a></li>
+<li class="link">
+<a href="references.html" data-scroll="references" class="internal"><span class="codenumber">J</span> <span class="title">Multiple References</span></a><ul>
+<li><a href="references.html#subsection-104" data-scroll="subsection-104" class="internal">Multiple Specialized References</a></li>
+<li><a href="references.html#references-5" data-scroll="references-5" class="internal">General References</a></li>
+<li><a href="references.html#references-6" data-scroll="references-6" class="internal">Specialized References</a></li>
+</ul>
+</li>
+<li class="link"><a href="references-backmatter.html" data-scroll="references-backmatter" class="internal"><span class="title">References</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+<li class="link"><a href="colophon-1.html" data-scroll="colophon-1" class="internal"><span class="title">Colophon</span></a></li>
+</ul></nav><div class="extras"><nav><a class="feedback-link" href="not-implemented.html" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content">
+<section class="section" id="atomic-items"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">26</span> <span class="title">Atomic Objects</span>
+</h2>
+<section class="introduction" id="introduction-33"><p id="p-1149">Some PreTeXt objects are relatively indivisable and are used as components of other structures.  We call them <dfn class="terminology">atomic</dfn>, even if the term is not perfect.  A good example is <code class="code-inline tex2jax_ignore">&lt;image&gt;</code> (next, <a href="atomic-items.html#atomic-image" class="internal" title="Subsection 26.1: &lt;image&gt;">26.1</a>).  This section is arranged according to these objects and tests the various ways they can be employed.</p>
+<p id="p-1150">We frequently include some nonsense text inside short intervening paragraphs to test spacing and establish margins.</p></section><section class="subsection" id="atomic-image"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">26.1</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;image&gt;</code></span>
+</h3>
+<p id="p-1151">An <code class="code-inline tex2jax_ignore">&lt;image&gt;</code> can be placed in five different ways:</p>
+<ol class="decimal">
+<li id="li-401"><p id="p-derived-li-401">all by itself, as a peer of <code class="code-inline tex2jax_ignore">&lt;p&gt;</code> typically, with layout control,</p></li>
+<li id="li-402"><p id="p-derived-li-402">inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code>, earning a number and caption,</p></li>
+<li id="li-403"><p id="p-derived-li-403">inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, with size and layout configured,</p></li>
+<li id="li-404"><p id="p-derived-li-404">inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, with size and layout configured, with a number and caption, and</p></li>
+<li id="li-405"><p id="p-derived-li-405">inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code>, with size and layout configured, with a number and caption, but now sub-numbered ((a), (b), (c),…).</p></li>
+</ol>
+<p class="continuation">Examples of each, and more.</p>
+<p id="p-1152">All by itsef, with no layout specified, so showing the default size and placement.  Vivamus in congue massa. Morbi condimentum ac magna at accumsan. Vestibulum ac augue eu lorem semper gravida.</p>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/nz-landscape.jpg" class="contained"></div>
+<p id="p-1153">Width set at 40%, so equal margins and thus centered.  Aenean faucibus augue tellus, et sollicitudin tortor finibus non. Maecenas semper dolor quis diam placerat, iaculis sollicitudin augue finibus. Vestibulum facilisis ligula lectus, ac tristique nisl aliquet non.</p>
+<div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;"><img src="images/nz-landscape.jpg" class="contained"></div>
+<p id="p-1154">Asymmetric margins of 20% and 40% given, implying 40% width, equal to previous instance.  Vivamus suscipit diam eget mi cursus viverra.</p>
+<div class="image-box" style="width: 40%; margin-left: 20%; margin-right: 40%;"><img src="images/nz-landscape.jpg" class="contained"></div>
+<p id="p-1155">As a plain component of a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>.  Widths here are 20% and 30%, margins and gaps are automatic, default alignment on top edges.  Nulla pharetra imperdiet elit, in sodales nibh blandit ultricies. Maecenas efficitur ac felis ut pharetra.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:12.5%;margin-right:12.5%;">
+<div class="sbspanel top" style="width:26.6666666666667%;"><img src="images/nz-landscape.jpg" class="contained"></div>
+<div class="sbspanel top" style="width:40%;"><img src="images/nz-landscape.jpg" class="contained"></div>
+</div></div>
+<p id="p-1156">Inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> with no adjustments, so default behavior.  Note how a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> occupies the entire width of the page, so then does the caption.</p>
+<figure class="figure figure-like" id="figure-171"><div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/nz-landscape.jpg" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.1<span class="period">.</span></span><span class="space"> </span>New Zealand Landscape</figcaption></figure><p id="p-1157">Inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> with asymmetric (large) margins of 30% and 60%.  Quisque finibus augue sit amet facilisis fringilla. Aenean faucibus augue tellus, et sollicitudin tortor finibus non.</p>
+<figure class="figure figure-like" id="figure-172"><div class="image-box" style="width: 10%; margin-left: 30%; margin-right: 60%;"><img src="images/nz-landscape.jpg" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.2<span class="period">.</span></span><span class="space"> </span>New Zealand Landscape</figcaption></figure><p id="p-1158">Inside figures inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>.  Same widths as previous <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> but alignment on bottoms of the panels, to partially align captions.  Note how the captions are constrained in width by the width of the panels of the side-by-side.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:12.5%;margin-right:12.5%;">
+<div class="sbspanel bottom" style="width:26.6666666666667%;"><figure class="figure figure-like" id="figure-173"><img src="images/nz-landscape.jpg" class="contained"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.3<span class="period">.</span></span><span class="space"> </span>NZ Landscape</figcaption></figure></div>
+<div class="sbspanel bottom" style="width:40%;"><figure class="figure figure-like" id="figure-174"><img src="images/nz-landscape.jpg" class="contained"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.4<span class="period">.</span></span><span class="space"> </span>New Zealand Terrascape</figcaption></figure></div>
+</div></div>
+<p id="p-1159">Identical code to previous example, but now wrapped in an overall <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code>, which has its own caption and number, leaving the interior figures to be sub-numbered.  Cross-references use the full number: <a href="" class="xref" data-knowl="./knowl/nz-land.html" title="Figure 26.5.(b)">Figure 26.5.(b)</a>.</p>
+<figure class="figure figure-like" id="figure-175"><div class="sidebyside"><div class="sbsrow" style="margin-left:12.5%;margin-right:12.5%;">
+<div class="sbspanel bottom" style="width:26.6666666666667%;"><figure class="figure figure-like" id="figure-176"><img src="images/nz-landscape.jpg" class="contained"><figcaption><span class="codenumber">(a)</span><span class="space"> </span>NZ Landscape</figcaption></figure></div>
+<div class="sbspanel bottom" style="width:40%;"><figure class="figure figure-like" id="nz-land"><img src="images/nz-landscape.jpg" class="contained"><figcaption><span class="codenumber">(b)</span><span class="space"> </span>New Zealand Terrascape</figcaption></figure></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.5<span class="period">.</span></span><span class="space"> </span>Amalgamation of Scapes</figcaption></figure></section><section class="subsection" id="atomic-video"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">26.2</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;video&gt;</code></span>
+</h3>
+<p id="p-1160">An <code class="code-inline tex2jax_ignore">&lt;video&gt;</code> can be placed in five different ways:</p>
+<ol class="decimal">
+<li id="li-406"><p id="p-derived-li-406">all by itself, as a peer of <code class="code-inline tex2jax_ignore">&lt;p&gt;</code> typically, with layout control,</p></li>
+<li id="li-407"><p id="p-derived-li-407">inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code>, earning a number and caption,</p></li>
+<li id="li-408"><p id="p-derived-li-408">inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, with size and layout configured,</p></li>
+<li id="li-409"><p id="p-derived-li-409">inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, with size and layout configured, with a number and caption, and</p></li>
+<li id="li-410"><p id="p-derived-li-410">inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code>, with size and layout configured, with a number and caption, but now sub-numbered ((a), (b), (c),…).</p></li>
+</ol>
+<p class="continuation">Examples of each, and more.</p>
+<p id="p-1161">Videos can be realized in many forms, and can come from a variety of sources.  See <a href="section-video.html" class="internal" title="Section 17: Video">Section 17</a> for tests of some of that variety.  Here we are testing placement within surroundings and testing the schema for location.  But we do have two videos in each test, one provided as a local file and one embedded from a service.</p>
+<p id="p-1162">All by itsef, with no layout specified, so showing the default size and placement.  Vivamus in congue massa. Morbi condimentum ac magna at accumsan. Vestibulum ac augue eu lorem semper gravida.</p>
+<div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><video id="ups-promo-7" class="video" controls="" poster="preview/ups-promo-preview.jpg"><source src="video/ups-visitor-guide-360.ogv" type="video/ogg"></source><source src="video/ups-visitor-guide-360.webm" type="video/webm"></source><source src="video/ups-visitor-guide-360.mp4" type="video/mp4"></source><source src="video/ups-visitor-guide-360.ogg" type="video/ogg"></source>Your browser does not support the &lt;video&gt; tag.</video></div>
+<p id="p-1163">Vestibulum facilisis ligula lectus, ac tristique nisl aliquet non. Quisque ornare felis arcu. Vivamus suscipit diam eget mi cursus viverra.</p>
+<div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><iframe id="pre-roll-countdown-7" class="video" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/Srmdij0CU1U?&amp;modestbranding=1&amp;rel=0"></iframe></div>
+<p id="p-1164">Width set at 40%, so equal margins and thus centered.  Aenean faucibus augue tellus, et sollicitudin tortor finibus non. Maecenas semper dolor quis diam placerat, iaculis sollicitudin augue finibus. Vestibulum facilisis ligula lectus, ac tristique nisl aliquet non.</p>
+<div class="video-box" style="width: 40%;padding-top: 22.5%; margin-left: 30%; margin-right: 30%;"><video id="ups-promo-8" class="video" controls="" poster="preview/ups-promo-preview.jpg"><source src="video/ups-visitor-guide-360.ogv" type="video/ogg"></source><source src="video/ups-visitor-guide-360.webm" type="video/webm"></source><source src="video/ups-visitor-guide-360.mp4" type="video/mp4"></source><source src="video/ups-visitor-guide-360.ogg" type="video/ogg"></source>Your browser does not support the &lt;video&gt; tag.</video></div>
+<p id="p-1165">Vestibulum facilisis ligula lectus, ac tristique nisl aliquet non. Quisque ornare felis arcu. Vivamus suscipit diam eget mi cursus viverra.</p>
+<div class="video-box" style="width: 40%;padding-top: 22.5%; margin-left: 30%; margin-right: 30%;"><iframe id="pre-roll-countdown-8" class="video" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/Srmdij0CU1U?&amp;modestbranding=1&amp;rel=0"></iframe></div>
+<p id="p-1166">Asymmetric margins of 20% and 40% given, implying 40% width, equal to previous instance.  Vivamus suscipit diam eget mi cursus viverra.</p>
+<div class="video-box" style="width: 40%;padding-top: 22.5%; margin-left: 20%; margin-right: 40%;"><video id="ups-promo-9" class="video" controls="" poster="preview/ups-promo-preview.jpg"><source src="video/ups-visitor-guide-360.ogv" type="video/ogg"></source><source src="video/ups-visitor-guide-360.webm" type="video/webm"></source><source src="video/ups-visitor-guide-360.mp4" type="video/mp4"></source><source src="video/ups-visitor-guide-360.ogg" type="video/ogg"></source>Your browser does not support the &lt;video&gt; tag.</video></div>
+<p id="p-1167">Vestibulum facilisis ligula lectus, ac tristique nisl aliquet non. Quisque ornare felis arcu. Vivamus suscipit diam eget mi cursus viverra.</p>
+<div class="video-box" style="width: 40%;padding-top: 22.5%; margin-left: 20%; margin-right: 40%;"><iframe id="pre-roll-countdown-9" class="video" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/Srmdij0CU1U?&amp;modestbranding=1&amp;rel=0"></iframe></div>
+<p id="p-1168">As a plain component of a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>.  Widths here are 20% and 30%, margins and gaps are automatic, default alignment on top edges.  Nulla pharetra imperdiet elit, in sodales nibh blandit ultricies. Maecenas efficitur ac felis ut pharetra.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:12.5%;margin-right:12.5%;">
+<div class="sbspanel top" style="width:26.6666666666667%;"><div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><video id="ups-promo-10" class="video" controls="" poster="preview/ups-promo-preview.jpg"><source src="video/ups-visitor-guide-360.ogv" type="video/ogg"></source><source src="video/ups-visitor-guide-360.webm" type="video/webm"></source><source src="video/ups-visitor-guide-360.mp4" type="video/mp4"></source><source src="video/ups-visitor-guide-360.ogg" type="video/ogg"></source>Your browser does not support the &lt;video&gt; tag.</video></div></div>
+<div class="sbspanel top" style="width:40%;"><div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><iframe id="pre-roll-countdown-10" class="video" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/Srmdij0CU1U?&amp;modestbranding=1&amp;rel=0"></iframe></div></div>
+</div></div>
+<p id="p-1169">Inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> with no adjustments, so default behavior.  Note how a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> occupies the entire width of the page, so then does the caption.</p>
+<figure class="figure figure-like" id="figure-178"><div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><video id="ups-promo-11" class="video" controls="" poster="preview/ups-promo-preview.jpg"><source src="video/ups-visitor-guide-360.ogv" type="video/ogg"></source><source src="video/ups-visitor-guide-360.webm" type="video/webm"></source><source src="video/ups-visitor-guide-360.mp4" type="video/mp4"></source><source src="video/ups-visitor-guide-360.ogg" type="video/ogg"></source>Your browser does not support the &lt;video&gt; tag.</video></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.6<span class="period">.</span></span><span class="space"> </span>University of Puget Sound Promotional Video</figcaption></figure><p id="p-1170">Vestibulum facilisis ligula lectus, ac tristique nisl aliquet non. Quisque ornare felis arcu. Vivamus suscipit diam eget mi cursus viverra.</p>
+<figure class="figure figure-like" id="figure-179"><div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><iframe id="pre-roll-countdown-11" class="video" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/Srmdij0CU1U?&amp;modestbranding=1&amp;rel=0"></iframe></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.7<span class="period">.</span></span><span class="space"> </span>Pre-Roll Countdown</figcaption></figure><p id="p-1171">Inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> with asymmetric (large) margins of 30% and 60%.  Quisque finibus augue sit amet facilisis fringilla. Aenean faucibus augue tellus, et sollicitudin tortor finibus non.</p>
+<figure class="figure figure-like" id="figure-180"><div class="video-box" style="width: 10%;padding-top: 5.624999999999999%; margin-left: 30%; margin-right: 60%;"><video id="ups-promo-12" class="video" controls="" poster="preview/ups-promo-preview.jpg"><source src="video/ups-visitor-guide-360.ogv" type="video/ogg"></source><source src="video/ups-visitor-guide-360.webm" type="video/webm"></source><source src="video/ups-visitor-guide-360.mp4" type="video/mp4"></source><source src="video/ups-visitor-guide-360.ogg" type="video/ogg"></source>Your browser does not support the &lt;video&gt; tag.</video></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.8<span class="period">.</span></span><span class="space"> </span>University of Puget Sound Promotional Video</figcaption></figure><p id="p-1172">Vestibulum facilisis ligula lectus, ac tristique nisl aliquet non. Quisque ornare felis arcu. Vivamus suscipit diam eget mi cursus viverra.</p>
+<figure class="figure figure-like" id="figure-181"><div class="video-box" style="width: 10%;padding-top: 5.624999999999999%; margin-left: 30%; margin-right: 60%;"><iframe id="pre-roll-countdown-12" class="video" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/Srmdij0CU1U?&amp;modestbranding=1&amp;rel=0"></iframe></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.9<span class="period">.</span></span><span class="space"> </span>Pre-Roll Countdown</figcaption></figure><p id="p-1173">Inside figures inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>.  Same widths as previous <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> but alignment on bottoms of the panels, to partially align captions.  Note how the captions are constrained in width by the width of the panels of the side-by-side.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:12.5%;margin-right:12.5%;">
+<div class="sbspanel bottom" style="width:26.6666666666667%;"><figure class="figure figure-like" id="figure-182"><div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><iframe id="pre-roll-countdown-13" class="video" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/Srmdij0CU1U?&amp;modestbranding=1&amp;rel=0"></iframe></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.10<span class="period">.</span></span><span class="space"> </span>Pre-Roll Countdown</figcaption></figure></div>
+<div class="sbspanel bottom" style="width:40%;"><figure class="figure figure-like" id="figure-183"><div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><video id="ups-promo-13" class="video" controls="" poster="preview/ups-promo-preview.jpg"><source src="video/ups-visitor-guide-360.ogv" type="video/ogg"></source><source src="video/ups-visitor-guide-360.webm" type="video/webm"></source><source src="video/ups-visitor-guide-360.mp4" type="video/mp4"></source><source src="video/ups-visitor-guide-360.ogg" type="video/ogg"></source>Your browser does not support the &lt;video&gt; tag.</video></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.11<span class="period">.</span></span><span class="space"> </span>University of Puget Sound Promotional Video</figcaption></figure></div>
+</div></div>
+<p id="p-1174">Identical code to previous example, but now wrapped in an overall <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code>, which has its own caption and number, leaving the interior figures to be sub-numbered.  Cross-references use the full number: <a href="" class="xref" data-knowl="./knowl/ups-video.html" title="Figure 26.12.(b)">Figure 26.12.(b)</a>.</p>
+<figure class="figure figure-like" id="figure-184"><div class="sidebyside"><div class="sbsrow" style="margin-left:12.5%;margin-right:12.5%;">
+<div class="sbspanel bottom" style="width:26.6666666666667%;"><figure class="figure figure-like" id="figure-185"><div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><iframe id="pre-roll-countdown-14" class="video" allowfullscreen="" src="https://www.youtube-nocookie.com/embed/Srmdij0CU1U?&amp;modestbranding=1&amp;rel=0"></iframe></div>
+<figcaption><span class="codenumber">(a)</span><span class="space"> </span>Pre-Roll Countdown</figcaption></figure></div>
+<div class="sbspanel bottom" style="width:40%;"><figure class="figure figure-like" id="ups-video"><div class="video-box" style="width: 100%;padding-top: 56.25%; margin-left: 0%; margin-right: 0%;"><video id="ups-promo-14" class="video" controls="" poster="preview/ups-promo-preview.jpg"><source src="video/ups-visitor-guide-360.ogv" type="video/ogg"></source><source src="video/ups-visitor-guide-360.webm" type="video/webm"></source><source src="video/ups-visitor-guide-360.mp4" type="video/mp4"></source><source src="video/ups-visitor-guide-360.ogg" type="video/ogg"></source>Your browser does not support the &lt;video&gt; tag.</video></div>
+<figcaption><span class="codenumber">(b)</span><span class="space"> </span>University of Puget Sound Promotional Video</figcaption></figure></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.12<span class="period">.</span></span><span class="space"> </span>Amalgamation of Videos</figcaption></figure></section><section class="subsection" id="atomic-program"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">26.3</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;program&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;console&gt;</code></span>
+</h3>
+<p id="p-1175">A <code class="code-inline tex2jax_ignore">&lt;program&gt;</code> and/or <code class="code-inline tex2jax_ignore">&lt;console&gt;</code> can be placed in at least six  different ways:</p>
+<ol class="decimal">
+<li id="li-411"><p id="p-derived-li-411">all by itself, as a peer of <code class="code-inline tex2jax_ignore">&lt;p&gt;</code> typically, with layout control</p></li>
+<li id="li-412"><p id="p-derived-li-412">inside a <code class="code-inline tex2jax_ignore">&lt;listing&gt;</code>, earning a number and caption, with layout control</p></li>
+<li id="li-413"><p id="p-derived-li-413">inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, with size and layout configured</p></li>
+<li id="li-414"><p id="p-derived-li-414">inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, with size and layout configured, and inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code></p></li>
+<li id="li-415"><p id="p-derived-li-415">inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, with size and layout configured, with each inside a <code class="code-inline tex2jax_ignore">&lt;listing&gt;</code>, earning different numbers</p></li>
+<li id="li-416"><p id="p-derived-li-416">inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;listing&gt;</code>, with size and layout configured, with a number and caption, but now sub-numbered ((a), (b), (c),…).</p></li>
+</ol>
+<p class="continuation">Examples of each, and more.</p>
+<p id="p-1176">Programs can be realized in many forms, and can come from a variety of sources.  See <a href="section-video.html" class="internal" title="Section 17: Video">Section 17</a> for tests of some of that variety.  Here we are testing placement within surroundings and testing the schema for location.  But we do have two videos in each test, one provided as a local file and one embedded from a service.</p>
+<p id="p-1177">All by itsef, with no layout specified, so showing the default size and placement.  Vivamus in congue massa. Morbi condimentum ac magna at accumsan. Vestibulum ac augue eu lorem semper gravida.</p>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-r">n_loops &lt;- 10
+x.means &lt;- numeric(n_loops)  # create a vector of zeros for results
+for (i in 1:n_loops){
+    x &lt;- as.integer(runif(100, 1, 7))  # 1 to 6, uniformly
+    x.means[i] &lt;- mean(x)
+}
+x.means
+</code></pre></div>
+<p id="p-1178">Now a program with shorter lines, with no layout control.</p>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-c">/* Hello World program */
+
+#include&lt;stdio.h&gt;
+
+main()
+{
+    printf("Hello, World!");
+}
+</code></pre></div>
+<p id="p-1179">And a <code class="code-inline tex2jax_ignore">&lt;console&gt;</code> element, also with no layout control.</p>
+<div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="console"><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>gcc -o intAndFloat intAndFloat.c
+</b><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>./intAndFloat
+</b>The integer is 19088743 and the float is 19088.742188
+<span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>
+</b></pre></div>
+<p id="p-1180">Now similar examples, but with layout control: margins and width.</p>
+<p id="p-1181">A <code class="code-inline tex2jax_ignore">&lt;program&gt;</code> with a <code class="code-inline tex2jax_ignore">@width</code> attribute, so centered and with equal margins.  Note how the lines word wrap due to the smaller width.</p>
+<div class="code-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><pre class="program"><code class="language-r">n_loops &lt;- 10
+x.means &lt;- numeric(n_loops)  # create a vector of zeros for results
+for (i in 1:n_loops){
+    x &lt;- as.integer(runif(100, 1, 7))  # 1 to 6, uniformly
+    x.means[i] &lt;- mean(x)
+}
+x.means
+</code></pre></div>
+<p id="p-1182">A <code class="code-inline tex2jax_ignore">&lt;program&gt;</code> with short lines, so significant, and asymmetric margins, which experimentally do not induce any word-wrapping.</p>
+<div class="code-box" style="width: 65%; margin-left: 15%; margin-right: 20%;"><pre class="program"><code class="language-c">/* Hello World program */
+
+#include&lt;stdio.h&gt;
+
+main()
+{
+    printf("Hello, World!");
+}
+</code></pre></div>
+<p id="p-1183">A longer <code class="code-inline tex2jax_ignore">&lt;console&gt;</code>, with margins so significant the appearance is ill-advised.</p>
+<div class="code-box" style="width: 35%; margin-left: 50%; margin-right: 15%;"><pre class="console"><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>gcc -Wall -o intAndFloat intAndFloat.c
+</b><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>./intAndFloat
+</b>The integer is 19088743 and the float is 19088.742188
+<span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>
+</b></pre></div>
+<p id="p-1184">Two <code class="code-inline tex2jax_ignore">&lt;listing&gt;</code>, with <code class="code-inline tex2jax_ignore">&lt;caption&gt;</code>, and no layout control.</p>
+<figure class="listing figure-like" id="listing-8"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="program"><code class="language-c">/* Hello World program */
+
+#include&lt;stdio.h&gt;
+
+main()
+{
+    printf("Hello, World!");
+}
+</code></pre></div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">26.13<span class="period">.</span></span><span class="space"> </span>Hello, World! in C</figcaption></figure><figure class="listing figure-like" id="listing-9"><div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="console"><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>gcc -Wall -o intAndFloat intAndFloat.c
+</b><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>./intAndFloat
+</b>The integer is 19088743 and the float is 19088.742188
+<span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>
+</b></pre></div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">26.14<span class="period">.</span></span><span class="space"> </span>A console session on a Raspberry Pi</figcaption></figure><p id="p-1185">Same two <code class="code-inline tex2jax_ignore">&lt;listing&gt;</code>, but now with layout control on the <code class="code-inline tex2jax_ignore">&lt;program&gt;</code> and <code class="code-inline tex2jax_ignore">&lt;console&gt;</code>.</p>
+<figure class="listing figure-like" id="listing-10"><div class="code-box" style="width: 40%; margin-left: 40%; margin-right: 20%;"><pre class="program"><code class="language-c">/* Hello World program */
+
+#include&lt;stdio.h&gt;
+
+main()
+{
+    printf("Hello, World!");
+}
+</code></pre></div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">26.15<span class="period">.</span></span><span class="space"> </span>Hello, World! in C</figcaption></figure><figure class="listing figure-like" id="listing-11"><div class="code-box" style="width: 80%; margin-left: 10%; margin-right: 10%;"><pre class="console"><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>gcc -Wall -o intAndFloat intAndFloat.c
+</b><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>./intAndFloat
+</b>The integer is 19088743 and the float is 19088.742188
+<span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>
+</b></pre></div>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">26.16<span class="period">.</span></span><span class="space"> </span>A console session on a Raspberry Pi</figcaption></figure><p id="p-1186">This <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> gives each panel a 30% width.  The remaining 10% is apportioned for margins and separation.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1.666666666666667%;margin-right:1.666666666666667%;">
+<div class="sbspanel top" style="width:31.0344827586207%;"><pre class="program"><code class="language-c">/* Hello World program */
+
+#include&lt;stdio.h&gt;
+
+main()
+{
+    printf("Hello, World!");
+}
+</code></pre></div>
+<div class="sbspanel top" style="width:31.0344827586207%;"><pre class="console"><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>gcc -Wall -o intAndFloat intAndFloat.c
+</b><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>./intAndFloat
+</b>The integer is 19088743 and the float is 19088.742188
+<span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>
+</b></pre></div>
+<div class="sbspanel top" style="width:31.0344827586207%;"><pre class="program"><code class="language-r">n_loops &lt;- 10
+x.means &lt;- numeric(n_loops)  # create a vector of zeros for results
+for (i in 1:n_loops){
+    x &lt;- as.integer(runif(100, 1, 7))  # 1 to 6, uniformly
+    x.means[i] &lt;- mean(x)
+}
+x.means
+</code></pre></div>
+</div></div>
+<p id="p-1187">This is the same three-panel <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, but now inside of a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code>, earning a number and a <code class="code-inline tex2jax_ignore">&lt;caption&gt;</code>.</p>
+<figure class="figure figure-like" id="figure-187"><div class="sidebyside"><div class="sbsrow" style="margin-left:1.666666666666667%;margin-right:1.666666666666667%;">
+<div class="sbspanel top" style="width:31.0344827586207%;"><pre class="program"><code class="language-c">/* Hello World program */
+
+#include&lt;stdio.h&gt;
+
+main()
+{
+    printf("Hello, World!");
+}
+</code></pre></div>
+<div class="sbspanel top" style="width:31.0344827586207%;"><pre class="console"><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>gcc -Wall -o intAndFloat intAndFloat.c
+</b><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>./intAndFloat
+</b>The integer is 19088743 and the float is 19088.742188
+<span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>
+</b></pre></div>
+<div class="sbspanel top" style="width:31.0344827586207%;"><pre class="program"><code class="language-r">n_loops &lt;- 10
+x.means &lt;- numeric(n_loops)  # create a vector of zeros for results
+for (i in 1:n_loops){
+    x &lt;- as.integer(runif(100, 1, 7))  # 1 to 6, uniformly
+    x.means[i] &lt;- mean(x)
+}
+x.means
+</code></pre></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.17<span class="period">.</span></span><span class="space"> </span>Some Code Samples</figcaption></figure><p id="p-1188">Finally, a smaller <code class="code-inline tex2jax_ignore">&lt;program&gt;</code> and a smaller <code class="code-inline tex2jax_ignore">&lt;console&gt;</code>, each inside a <code class="code-inline tex2jax_ignore">&lt;listing&gt;</code>, as the two panels of a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> with no margins, and slightly different widths (to control word-wrapping).  The panels have been aligned vertically so their captions align.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel bottom" style="width:35%;"><figure class="listing figure-like" id="listing-12"><pre class="program"><code class="language-c">/* Hello World program */
+
+#include&lt;stdio.h&gt;
+
+main()
+{
+    printf("Hello, World!");
+}
+</code></pre>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">26.18<span class="period">.</span></span><span class="space"> </span>Hello!</figcaption></figure></div>
+<div class="sbspanel bottom" style="width:55%;"><figure class="listing figure-like" id="listing-13"><pre class="console"><span class="prompt unselectable">$ </span><b>gcc -Wall -o intAndFloat intAndFloat.c
+</b><span class="prompt unselectable">$ </span><b>./intAndFloat
+</b>The integer is 19088743 and the float is 19088.742188
+<span class="prompt unselectable">$ </span><b>
+</b></pre>
+<figcaption><span class="type">Listing</span><span class="space"> </span><span class="codenumber">26.19<span class="period">.</span></span><span class="space"> </span>Raspberry Pi</figcaption></figure></div>
+</div></div>
+<p id="p-1189">And again, the two-panel <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> of <code class="code-inline tex2jax_ignore">&lt;listing&gt;</code>, but now inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code> that has a number and a caption.  And then the <code class="code-inline tex2jax_ignore">&lt;listing&gt;</code> are sub-numbered as (a) and (b).</p>
+<figure class="figure figure-like" id="figure-188"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel bottom" style="width:35%;"><figure class="listing figure-like" id="listing-14"><pre class="program"><code class="language-c">/* Hello World program */
+
+#include&lt;stdio.h&gt;
+
+main()
+{
+    printf("Hello, World!");
+}
+</code></pre>
+<figcaption><span class="codenumber">(a)</span><span class="space"> </span>Hello!</figcaption></figure></div>
+<div class="sbspanel bottom" style="width:55%;"><figure class="listing figure-like" id="listing-15"><pre class="console"><span class="prompt unselectable">$ </span><b>gcc -Wall -o intAndFloat intAndFloat.c
+</b><span class="prompt unselectable">$ </span><b>./intAndFloat
+</b>The integer is 19088743 and the float is 19088.742188
+<span class="prompt unselectable">$ </span><b>
+</b></pre>
+<figcaption><span class="codenumber">(b)</span><span class="space"> </span>Raspberry Pi</figcaption></figure></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.20<span class="period">.</span></span><span class="space"> </span>Two Code Listings</figcaption></figure></section><section class="subsection" id="atomic-tabular"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">26.4</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code></span>
+</h3>
+<p id="p-1190">A <code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code> can be placed in six different ways:</p>
+<ol class="decimal">
+<li id="li-417"><p id="p-derived-li-417">all by itself, as a peer of <code class="code-inline tex2jax_ignore">&lt;p&gt;</code> typically, with no layout control and hence with a “natural width,” and centered</p></li>
+<li id="li-418"><p id="p-derived-li-418">all by itself, as a peer of <code class="code-inline tex2jax_ignore">&lt;p&gt;</code> typically, with explicit layout control,</p></li>
+<li id="li-419"><p id="p-derived-li-419">inside a <code class="code-inline tex2jax_ignore">&lt;table&gt;</code>, earning a number and title,</p></li>
+<li id="li-420"><p id="p-derived-li-420">inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, with size and layout configured,</p></li>
+<li id="li-421"><p id="p-derived-li-421">inside a <code class="code-inline tex2jax_ignore">&lt;table&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, with size and layout configured, with a number and title, and</p></li>
+<li id="li-422"><p id="p-derived-li-422">inside a <code class="code-inline tex2jax_ignore">&lt;table&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code>, with size and layout configured, with a number and title, but now sub-numbered ((a), (b), (c),…).</p></li>
+</ol>
+<p class="continuation">Examples of each, and more.</p>
+<p id="p-1191">A <code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code> realized by <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> for PDF/print will normally be as wide as necessary to hold the content, without word-wrapping the content of any cell that is not explicitly authored that way.  This is the most rigid of the content types we call “planar.”  So for PreTeXt output as <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span>, when you explicitly constrain the width to be less than the “natural width” (including use as a panel of a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, or even setting margins) the table will be scaled <em class="emphasis">down</em> in width, which can result in an apparent font size very much smaller than that of the surrounding text.  Note that we do not ever scale a tabular up to be wider with a larger font size.  Note also that if there is no attempt to control the space for the table (no layout control, not in a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>) then no scaling is attempted at all and the table may be wider than the text and protrude into the right margin.  For more, see the three examples at: <a href="" class="xref" data-knowl="./knowl/natural-too-wide.html" title="Table 26.25: Tabular too wide, no layout control">Table 26.25</a> , <a href="" class="xref" data-knowl="./knowl/scale-down-auto.html" title="Table 26.26: Tabular too wide, scale to automatic width">Table 26.26</a>, <a href="" class="xref" data-knowl="./knowl/scale-down-100.html" title="Table 26.27: Tabular too wide, scale to 100% width">Table 26.27</a>.  Generally, much of the commentary and testing here is about <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span>/PDF/print.  While for <abbr class="initialism">HTML</abbr> output the cells will usually automatically word-wrap to fit in the available space, without adjusting the font size.  Some might like this behavior and some might not.</p>
+<p id="p-1192">Data in a table form can be placed in amongst a series of paragraphs.  With no layout control, it will occupy its “natural width” and be centered.</p>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div>
+<p id="p-1193">The same effect can be had by specifying that the <code class="code-inline tex2jax_ignore">@width</code> attribute have the value <code class="code-inline tex2jax_ignore">auto</code>, but do not specify any <code class="code-inline tex2jax_ignore">@margins</code>.  We test multiple footnotes in a <code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code>, not included in a <code class="code-inline tex2jax_ignore">&lt;table&gt;</code>.</p>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State<a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-81" id="fn-81"><sup> 1 </sup></a>
+</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223<a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-82" id="fn-82"><sup> 2 </sup></a>
+</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div>
+<p id="p-1194">In amongst a run of paragraphs (or similar) a <code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code> can be placed with layout control.  For <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> output, this will scale the table to fit within the explicit, or implicit, width.  This can result in obvious differences in the apparent font size.  We first have a <code class="code-inline tex2jax_ignore">@width</code> that is experimentally similar to the natural width, with asymetric margins.  Then a narrow width, and a wide width, as an illustration.</p>
+<div class="tabular-box" style="width: 81.61%; margin-left: 9.195%; margin-right: 9.195%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div>
+<p id="p-1195">Narrow.  45% width.  20% margin left, 35% margin right.</p>
+<div class="tabular-box" style="width: 45%; margin-left: 20%; margin-right: 35%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div>
+<p id="p-1196">Wide.  97% width. 1% margin left, 2% right.</p>
+<div class="tabular-box" style="width: 97%; margin-left: 1%; margin-right: 2%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div>
+<p id="p-1197">Naturally, a <code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code> can be placed inside a <code class="code-inline tex2jax_ignore">&lt;table&gt;</code>, earning a number and a title.</p>
+<figure class="table table-like" id="table-48"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">26.21<span class="period">.</span></span><span class="space"> </span>Natural Width</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div></figure><p id="p-1198">A little narrower, but still centered by default.</p>
+<figure class="table table-like" id="table-49"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">26.22<span class="period">.</span></span><span class="space"> </span>Width of 60%, automatic centering</figcaption><div class="tabular-box" style="width: 60%; margin-left: 20%; margin-right: 20%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div></figure><p id="p-1199">Very narrow, asymmetric margins.</p>
+<figure class="table table-like" id="table-50"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">26.23<span class="period">.</span></span><span class="space"> </span>Width of 30%, 30% left margin, 40% right margin</figcaption><div class="tabular-box" style="width: 30%; margin-left: 30%; margin-right: 40%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div></figure><p id="p-1200">Wider than necessary, asymmetric margins.</p>
+<figure class="table table-like" id="table-51"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">26.24<span class="period">.</span></span><span class="space"> </span>Width of 90%, 8% left margin, 2% right margin</figcaption><div class="tabular-box" style="width: 90%; margin-left: 8%; margin-right: 2%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div></figure><p id="p-1201">The next table is purposely much too wide.  In <a href="" class="xref" data-knowl="./knowl/natural-too-wide.html" title="Table 26.25: Tabular too wide, no layout control">Table 26.25</a> we make no attempt to control the width, and so it will extend into the margins.  In <a href="" class="xref" data-knowl="./knowl/scale-down-auto.html" title="Table 26.26: Tabular too wide, scale to automatic width">Table 26.26</a> we have simple added the attribute <code class="code-inline tex2jax_ignore">width="auto"</code>.  This attempt to use layout control will cause an automatic reduction in width and a smaller apparent font size.  Adjusting margins providing an explicit percentage width, or placing the tabular as a panel of <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> will have the same effect.  In <a href="" class="xref" data-knowl="./knowl/scale-down-100.html" title="Table 26.27: Tabular too wide, scale to 100% width">Table 26.27</a> we have set the width explicity to 100% and so it should be identical to the automatic width case just prior.</p>
+<figure class="table table-like" id="natural-too-wide"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">26.25<span class="period">.</span></span><span class="space"> </span>Tabular too wide, no layout control</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Capitol City</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Largest City</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+<td class="l m b0 r0 l0 t0 lines">Olympia</td>
+<td class="l m b0 r0 l0 t0 lines">Seattle</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+<td class="l m b0 r0 l0 t0 lines">Salem</td>
+<td class="l m b0 r0 l0 t0 lines">Portland</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+<td class="l m b0 r0 l0 t0 lines">Sacremento</td>
+<td class="l m b0 r0 l0 t0 lines">Los Angeles</td>
+</tr>
+</table></div></figure><figure class="table table-like" id="scale-down-auto"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">26.26<span class="period">.</span></span><span class="space"> </span>Tabular too wide, scale to automatic width</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Capitol City</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Largest City</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+<td class="l m b0 r0 l0 t0 lines">Olympia</td>
+<td class="l m b0 r0 l0 t0 lines">Seattle</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+<td class="l m b0 r0 l0 t0 lines">Salem</td>
+<td class="l m b0 r0 l0 t0 lines">Portland</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+<td class="l m b0 r0 l0 t0 lines">Sacremento</td>
+<td class="l m b0 r0 l0 t0 lines">Los Angeles</td>
+</tr>
+</table></div></figure><figure class="table table-like" id="scale-down-100"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">26.27<span class="period">.</span></span><span class="space"> </span>Tabular too wide, scale to 100% width</figcaption><div class="tabular-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Capitol City</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Largest City</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+<td class="l m b0 r0 l0 t0 lines">Olympia</td>
+<td class="l m b0 r0 l0 t0 lines">Seattle</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+<td class="l m b0 r0 l0 t0 lines">Salem</td>
+<td class="l m b0 r0 l0 t0 lines">Portland</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+<td class="l m b0 r0 l0 t0 lines">Sacremento</td>
+<td class="l m b0 r0 l0 t0 lines">Los Angeles</td>
+</tr>
+</table></div></figure><p id="p-1202">Now into <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> in various ways and with various sizes. First, two <code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code> as panels with widths at 60% and 30%.  Note that in <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span>/PDF/print the tabular of functional values does not need the full 30% width, so it is at its natural size and centered within its panel.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:2.5%;margin-right:2.5%;">
+<div class="sbspanel fixed-width top" style="width:63.1578947368421%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div>
+<div class="sbspanel fixed-width top" style="width:31.5789473684211%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines"><span class="process-math">\(x\)</span></th>
+<th scope="col" class="l m b0 r0 l0 t0 lines"><span class="process-math">\(f(x)\)</span></th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">3</td>
+<td class="l m b0 r0 l0 t0 lines">9.734</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">5</td>
+<td class="l m b0 r0 l0 t0 lines">2.175</td>
+</tr>
+</table></div>
+</div></div>
+<p id="p-1203">Let's do that again, but with widths experimentally set to make font sizes match (approximately).</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1.41%;margin-right:1.41%;">
+<div class="sbspanel fixed-width top" style="width:83.9781848116896%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></div>
+<div class="sbspanel fixed-width top" style="width:13.1199835357069%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines"><span class="process-math">\(x\)</span></th>
+<th scope="col" class="l m b0 r0 l0 t0 lines"><span class="process-math">\(f(x)\)</span></th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">3</td>
+<td class="l m b0 r0 l0 t0 lines">9.734</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">5</td>
+<td class="l m b0 r0 l0 t0 lines">2.175</td>
+</tr>
+</table></div>
+</div></div>
+<p id="p-1204">Same tabular, which fills roughly 80% by itself, packed into a single <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code> with just a 2% gap, and no side margins.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel fixed-width top" style="width:49%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l2 t2 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t2 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t2 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r2 l0 t2 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l2 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r2 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l2 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r2 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b2 r0 l2 t0 lines">California</td>
+<td class="l m b2 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b2 r0 l0 t0 lines">163,696</td>
+<td class="l m b2 r2 l0 t0 lines">1850</td>
+</tr>
+</table></div>
+<div class="sbspanel fixed-width top" style="width:49%;"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l2 t2 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t2 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t2 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r2 l0 t2 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l2 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r2 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l2 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r2 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b2 r0 l2 t0 lines">California</td>
+<td class="l m b2 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b2 r0 l0 t0 lines">163,696</td>
+<td class="l m b2 r2 l0 t0 lines">1850</td>
+</tr>
+</table></div>
+</div></div>
+<p id="p-1205">Natural widths, but now as a pair of tables.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1.41%;margin-right:1.41%;">
+<div class="sbspanel fixed-width top" style="width:83.9781848116896%;"><figure class="table table-like" id="table-55"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">26.28<span class="period">.</span></span><span class="space"> </span>West Coast</figcaption><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table></figure></div>
+<div class="sbspanel fixed-width top" style="width:13.1199835357069%;"><figure class="table table-like" id="table-56"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">26.29<span class="period">.</span></span><span class="space"> </span>Function Values</figcaption><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines"><span class="process-math">\(x\)</span></th>
+<th scope="col" class="l m b0 r0 l0 t0 lines"><span class="process-math">\(f(x)\)</span></th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">3</td>
+<td class="l m b0 r0 l0 t0 lines">9.734</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">5</td>
+<td class="l m b0 r0 l0 t0 lines">2.175</td>
+</tr>
+</table></figure></div>
+</div></div>
+<p id="p-1206">Finally, as two individual <code class="code-inline tex2jax_ignore">&lt;table&gt;</code>, grouped and laid out via a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, and collected as a <code class="code-inline tex2jax_ignore">&lt;figure&gt;</code>.  Which causes sub-numbering of the two enclosed <code class="code-inline tex2jax_ignore">&lt;table&gt;</code>.</p>
+<figure class="figure figure-like" id="figure-189"><div class="sidebyside"><div class="sbsrow" style="margin-left:1.41%;margin-right:1.41%;">
+<div class="sbspanel fixed-width top" style="width:83.9781848116896%;"><figure class="table table-like" id="table-57"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines">State</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Population</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Area (sq. mi.)</th>
+<th scope="col" class="l m b0 r0 l0 t0 lines">Statehood (Year)</th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Washington</td>
+<td class="l m b0 r0 l0 t0 lines">7,614,893</td>
+<td class="l m b0 r0 l0 t0 lines">71,362</td>
+<td class="l m b0 r0 l0 t0 lines">1889</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Oregon</td>
+<td class="l m b0 r0 l0 t0 lines">4,217,737</td>
+<td class="l m b0 r0 l0 t0 lines">98,381</td>
+<td class="l m b0 r0 l0 t0 lines">1859</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">California</td>
+<td class="l m b0 r0 l0 t0 lines">39,512,223</td>
+<td class="l m b0 r0 l0 t0 lines">163,696</td>
+<td class="l m b0 r0 l0 t0 lines">1850</td>
+</tr>
+</table>
+<figcaption><span class="codenumber">(a)</span><span class="space"> </span>West Coast</figcaption></figure></div>
+<div class="sbspanel fixed-width top" style="width:13.1199835357069%;"><figure class="table table-like" id="table-58"><table class="tabular">
+<tr class="header-horizontal">
+<th scope="col" class="l m b0 r0 l0 t0 lines"><span class="process-math">\(x\)</span></th>
+<th scope="col" class="l m b0 r0 l0 t0 lines"><span class="process-math">\(f(x)\)</span></th>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">3</td>
+<td class="l m b0 r0 l0 t0 lines">9.734</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">5</td>
+<td class="l m b0 r0 l0 t0 lines">2.175</td>
+</tr>
+</table>
+<figcaption><span class="codenumber">(b)</span><span class="space"> </span>Function Values</figcaption></figure></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">26.30<span class="period">.</span></span><span class="space"> </span>Geography and Mathematics</figcaption></figure></section></section><div class="hidden-content tex2jax_ignore" id="hk-fn-81"><div class="fn">Only from the West Coast.</div></div>
+<div class="hidden-content tex2jax_ignore" id="hk-fn-82"><div class="fn">Wow! That is as big as many countries.</div></div>
+</div></main>
+</div>
+<script>createAllVisualizersFromHtmlAttrs();</script><script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

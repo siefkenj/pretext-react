@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-30T15:46:18-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h4 class="heading"><span class="title">Accessible Labels.</span></h4>
+<p>In a TikZ diagram, name locations of interest explicitly, with the <code class="code-inline tex2jax_ignore">\coordinate</code> macro, such as</p>
+<pre class="code-display tex2jax_ignore">\coordinate (positive-y-axis) at (4,6);</pre>
+<p class="continuation">Both Cartesian and polar coordinates are supported by TikZ using different syntax.  These names will not be seen by your reader, they are just used in the TikZ code.</p>
+<p>Then use the names of these locations for the placement of labels.  A large filled circle is a good shape to use.  A radius that will scale to a radius of about 3 millimeters is a good choice.  You will want to move your label away from the shape so there is no overlap, and thus the radius of your circle would be a good offset.  The label can move in one of eight directions:  <code class="code-inline tex2jax_ignore">south</code>, <code class="code-inline tex2jax_ignore">southwest</code>, <code class="code-inline tex2jax_ignore">west</code>, etc.  Try to arrange the direction of your label so that it does not overwrite other graphics elements of your diagram—this will be confusing to a blind reader.  So an example (spread over two lines) is</p>
+<pre class="code-display tex2jax_ignore">&lt;label xml:id="pos-y-axis" location="positive-y-axis"
+direction="northeast" offset="3mm"&gt;&lt;m&gt;y&lt;/m&gt;-axis&lt;/label&gt;
+</pre>
+<p class="continuation">The <code class="code-inline tex2jax_ignore">@xml:id</code> is not strictly necessary, but can be useful for debugging.</p>
+<p>When producing a tactile version of this diagram, the graphics elements of the diagram will be scaled up as much as possible to fit a whole 11.5 inch by 11 inch embossable page.  The content will be replaced by braille cells (which are not scaled).  The braille cells will get a 4 millimeter margin all around them, which will be a no-emboss zone.  Finally, the offset will be scaled along with the graphics so the label should stay off of the shape being labeled.</p></section><span class="incontext"><a href="graphics.html#paragraphs-7">in-context</a></span>
+</body>
+</html>

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-01-23T20:55:49-05:00       *-->
+<!--*       on 2022-01-30T15:46:18-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,8 +14,32 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>Different books, different authors, different software all have different ideas about the order in which to write multiplication of functions.  This textbook builds on the idea of composition of functions, so that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(fg\)</span> is the composition <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\((fg)(x)=f(g(x))\)</span> and it is natural to apply <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(g\)</span> first.  Sage takes the opposite view and since we write <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(fg\text{,}\)</span> Sage will understand that we want to do <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(f\)</span> first.  Neither approach is wrong, and neither is necessarily superior, they are just different and there are good arguments for either one.  When you consult other books that work with permutation groups, you want to first determine which approach it takes.</p>
-<span class="incontext"><a href="groups-sage.html#p-478">in-context</a></span>
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<p>One of the few things you can place inside of mathematics is a “fill-in” blank.  We demonstrate a few scenarios here.  See details on syntax in <a href="interesting-corollary.html#subsection-paragraph-markup" class="internal" title="Subsection 4.7: Some Paragraph-Level Markup">Subsection 4.7</a>–the use is identical within mathematics.</p>
+<ul class="disc">
+<li><p>Inside inline math (short, 4 characters): <span class="process-math">\(\sin(\underline{\hspace{1.818181818181818em}})\)</span></p></li>
+<li><p>Inside inline math (default, 10 characters): <span class="process-math">\(\sin(\underline{\hspace{4.545454545454546em}})\)</span></p></li>
+<li><p>Inside exponents and subscripts (2 characters each).  In this case, be sure to wrap your exponents and subscripts in braces, as would be good <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> practice anyway: <span class="process-math">\(x^{5+\underline{\hspace{0.909090909090909em}}}\,y_{\underline{\hspace{0.909090909090909em}}}\)</span></p></li>
+<li><p>Inside inline math (too long for this line probably, 40 characters long): <span class="process-math">\(\tan(\underline{\hspace{18.1818181818182em}})\)</span></p></li>
+<li>
+<p>So use inside a displayed equation</p>
+<div class="displaymath process-math">
+\begin{equation*}
+16\log\space\underline{\hspace{3.636363636363636em}}
+\end{equation*}
+</div>
+<p class="continuation">like this one.</p>
+</li>
+<li>
+<p>Inside the second line of a multi-line display:</p>
+<div class="displaymath process-math">
+\begin{align*}
+y &amp;= x^7\,x^8\\
+&amp;= x^{\underline{\hspace{1.363636363636364em}}}
+\end{align*}
+</div>
+</li>
+</ul>
+<span class="incontext"><a href="section-11.html#p-478">in-context</a></span>
 </body>
 </html>

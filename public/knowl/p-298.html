@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-01-23T20:55:48-05:00       *-->
+<!--*       on 2022-01-30T15:46:18-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -15,7 +15,18 @@
 </head>
 <body class="ignore-math">
 <h4 class="heading"><span class="type">Paragraph</span></h4>
-<p>A remainder of zero indicates divisibility.  So <code xmlns:svg="http://www.w3.org/2000/svg" class="code-inline tex2jax_ignore">(a % b) == 0</code> will return <code xmlns:svg="http://www.w3.org/2000/svg" class="code-inline tex2jax_ignore">True</code> if <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(b\)</span> divides <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a\text{,}\)</span> and will otherwise return <code xmlns:svg="http://www.w3.org/2000/svg" class="code-inline tex2jax_ignore">False</code>.</p>
-<span class="incontext"><a href="integers-sage.html#p-298">in-context</a></span>
+<p>The following example is a good stress-test of using the <code class="code-inline tex2jax_ignore">\text{}</code> macro to achieve certain effects.  Note the Unicode left and right smart quotes.  This a contribution from Alex Jordan as part of his work on <span class="booktitle">APEX Calculus</span>.</p>
+<div class="displaymath process-math">
+\begin{gather*}
+y \rightarrow \frac{\sin(0) }{0} \rightarrow {{\text{“}}\atop{}}\frac{0}{0}{{\text{”}}\atop{}}\text{.}
+\end{gather*}
+</div>
+<p class="continuation">And another one from Alex.  Note the use of the <code class="code-inline tex2jax_ignore">\mathord{}</code> and <code class="code-inline tex2jax_ignore">\mathrel{}</code> macros to control spacing around the mathematical symbols.  Examine the source to see how the quotation marks have been authored with <abbr class="initialism">XML</abbr> syntax for Unicode characters, since we do not allow most markup inside mathematics.</p>
+<div class="displaymath process-math">
+\begin{gather*}
+\zeta(1)=\sum_{n=1}^{\infty}\frac{1}{n}\mathrel{\text{ “}\mathord{=}{\text{” }}}\prod_{p}\left(\frac{1}{1-1/p}\right)=\prod_{p}\left(\frac{1}{1-p^{-1}}\right)
+\end{gather*}
+</div>
+<span class="incontext"><a href="section-7.html#p-298">in-context</a></span>
 </body>
 </html>

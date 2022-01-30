@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-30T15:46:11-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SA Worksheets</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl', 'sfrac']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+/* support for the sfrac command in MathJax (Beveled fraction) */
+  startup: {
+    ready() {
+      //
+      // Creating a simple "sfrac" package on-the-fly
+      //
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      
+      new CommandMap('sfrac', {
+        sfrac: 'SFrac'
+        }, {
+        SFrac(parser, name) {
+        const num = parser.ParseArg(name);
+        const den = parser.ParseArg(name);
+        const frac = parser.create('node', 'mfrac', [num, den], {bevelled: true});
+        parser.Push(frac);
+        }
+      });
+      //
+      // Create the package for the overridden macros
+      //
+      Configuration.create('sfrac', {
+        handler: {macro: ['sfrac']}
+      });
+      
+    MathJax.startup.defaultReady();
+    }
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script defer src="./static/js/bundle.js"></script><script defer src="./static/js/main.js"></script><link href="./static/css/main.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<script src="http://pythontutor.com/build/pytutor-embed.bundle.js?cc25af72af"></script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+<body id="pretext-SA" class="pretext-article ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{cancel}\newcommand{\definiteintegral}[4]{\int_{#1}^{#2}\,#3\,d#4} 
+\newcommand{\myequation}[2]{#1\amp =#2} 
+\newcommand{\indefiniteintegral}[2]{\int#1\,d#2}
+\newcommand{\testingescapedpercent}{ \% } 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="https://pretextbook.org" target="_blank"><img src="misc/book-cover-google-art-project.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="derivatives.html"><span class="title">Derivatives and Integrals:</span> <span class="subtitle">An Annotated Discourse</span></a></h1>
+<p class="byline">Robert Beezer</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="ancillaries.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="derivatives.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="exercises-single.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="ancillaries.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="derivatives.html" title="Up">Up</a><a class="next-button button toolbar-item" href="exercises-single.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a></li>
+<li class="link"><a href="section-1.html" data-scroll="section-1" class="internal"><span class="codenumber">1</span> <span class="title">Introduction</span></a></li>
+<li class="link"><a href="section-fundamental-theorem.html" data-scroll="section-fundamental-theorem" class="internal"><span class="codenumber">2</span> <span class="title">The Fundamental Theorem</span></a></li>
+<li class="link"><a href="section-sage-cells.html" data-scroll="Abc" class="internal"><span class="codenumber">3</span> <span class="title">Computing Integrals with Sage (<span class="process-math">\(\int\)</span>)</span></a></li>
+<li class="link">
+<a href="interesting-corollary.html" data-scroll="interesting-corollary" class="internal"><span class="codenumber">4</span> <span class="title">An Interesting Corollary</span></a><ul>
+<li><a href="interesting-corollary.html#subsection-second-FTC" data-scroll="subsection-second-FTC" class="internal">Second Version of <abbr class="acronym">FTC</abbr></a></li>
+<li><a href="interesting-corollary.html#subsection-2" data-scroll="subsection-2" class="internal">A Pedagogical Note about Subsection 4.1</a></li>
+<li><a href="interesting-corollary.html#subsection-3" data-scroll="subsection-3" class="internal">Theorem-Like Environments</a></li>
+<li><a href="interesting-corollary.html#subsection-4" data-scroll="subsection-4" class="internal">Linking Sage Cells</a></li>
+<li><a href="interesting-corollary.html#subsection-5" data-scroll="subsection-5" class="internal">Hierarchy</a></li>
+<li><a href="interesting-corollary.html#subsection-intro-conclude" data-scroll="subsection-intro-conclude" class="internal">Introductions and Conclusions</a></li>
+<li><a href="interesting-corollary.html#subsection-paragraph-markup" data-scroll="subsection-paragraph-markup" class="internal">Some Paragraph-Level Markup</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-5.html" data-scroll="Bcd" class="internal"><span class="codenumber">5</span> <span class="title">Some Facts and Figures</span></a></li>
+<li class="link"><a href="section-6.html" data-scroll="section-6" class="internal"><span class="codenumber">6</span> <span class="title">Some Advanced Ideas</span></a></li>
+<li class="link">
+<a href="section-7.html" data-scroll="section-7" class="internal"><span class="codenumber">7</span> <span class="title">Mathematics</span></a><ul>
+<li><a href="section-7.html#subsection-8" data-scroll="subsection-8" class="internal">Basic Mathematics</a></li>
+<li><a href="section-7.html#subsection-9" data-scroll="subsection-9" class="internal">Displayed Mathematics</a></li>
+<li><a href="section-7.html#subsection-10" data-scroll="subsection-10" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Packages and MathJax Extensions</a></li>
+<li><a href="section-7.html#subsection-11" data-scroll="subsection-11" class="internal">Advanced Mathematics</a></li>
+<li><a href="section-7.html#subsection-12" data-scroll="subsection-12" class="internal">Local Tags on Equations</a></li>
+<li><a href="section-7.html#commutative-diagrams" data-scroll="commutative-diagrams" class="internal">Commutative Diagrams</a></li>
+<li><a href="section-7.html#line-breaking-math" data-scroll="line-breaking-math" class="internal">Line-Breaking after Mathematics</a></li>
+<li><a href="section-7.html#font-math" data-scroll="font-math" class="internal">Fonts and Mathematics</a></li>
+<li><a href="section-7.html#miscellaneous-math" data-scroll="miscellaneous-math" class="internal">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="text-in-paragraphs.html" data-scroll="text-in-paragraphs" class="internal"><span class="codenumber">8</span> <span class="title">Text in Paragraphs</span></a><ul>
+<li><a href="text-in-paragraphs.html#subsection-xml-escape" data-scroll="subsection-xml-escape" class="internal">Special <abbr class="initialism">XML</abbr> characters</a></li>
+<li><a href="text-in-paragraphs.html#subsection-18" data-scroll="subsection-18" class="internal">Quotations</a></li>
+<li><a href="text-in-paragraphs.html#subsection-19" data-scroll="subsection-19" class="internal">Groupings</a></li>
+<li><a href="text-in-paragraphs.html#subsection-20" data-scroll="subsection-20" class="internal">Characters, Symbols, and Constructions</a></li>
+<li><a href="text-in-paragraphs.html#subsection-21" data-scroll="subsection-21" class="internal">Currency</a></li>
+<li><a href="text-in-paragraphs.html#subsection-icons-in-text" data-scroll="subsection-icons-in-text" class="internal">Icons in Text</a></li>
+<li><a href="text-in-paragraphs.html#subsection-keyboard" data-scroll="subsection-keyboard" class="internal">Keyboard Keys</a></li>
+<li><a href="text-in-paragraphs.html#section-urls" data-scroll="section-urls" class="internal">URLs, such as <code class="code-inline tex2jax_ignore">http://example.com</code></a></li>
+<li><a href="text-in-paragraphs.html#subsection-25" data-scroll="subsection-25" class="internal">Biological Names</a></li>
+<li><a href="text-in-paragraphs.html#subsection-26" data-scroll="subsection-26" class="internal">Verbatim in titles, <code class="code-inline tex2jax_ignore">\a&amp;b#c%d~e{f}g$h_i^j</code>, OK</a></li>
+<li><a href="text-in-paragraphs.html#subsection-special-situations" data-scroll="subsection-special-situations" class="internal">Special Situations</a></li>
+<li><a href="text-in-paragraphs.html#subsection-jupyter-dollars" data-scroll="subsection-jupyter-dollars" class="internal">Jupyter Notebook, Markdown, MathJax, Delimiters</a></li>
+<li><a href="text-in-paragraphs.html#subsection-29" data-scroll="subsection-29" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Characters, Ligatures, and More</a></li>
+<li><a href="text-in-paragraphs.html#subsection-30" data-scroll="subsection-30" class="internal"><abbr class="initialism">HTML</abbr> and accidental mathematics</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="graphics.html" data-scroll="graphics" class="internal"><span class="codenumber">9</span> <span class="title">Graphics</span></a><ul>
+<li><a href="graphics.html#subsection-31" data-scroll="subsection-31" class="internal">Images from External Sources</a></li>
+<li><a href="graphics.html#subsection-32" data-scroll="subsection-32" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> images</a></li>
+<li><a href="graphics.html#subsection-33" data-scroll="subsection-33" class="internal">Asymptote, 2D</a></li>
+<li><a href="graphics.html#graphics-asymptote-webgl" data-scroll="graphics-asymptote-webgl" class="internal">Asymptote, 3D via WebGL</a></li>
+<li><a href="graphics.html#subsection-35" data-scroll="subsection-35" class="internal">Sage Plots</a></li>
+<li><a href="graphics.html#subsection-36" data-scroll="subsection-36" class="internal">Inkscape Images</a></li>
+<li><a href="graphics.html#subsection-37" data-scroll="subsection-37" class="internal">Copies of Images</a></li>
+<li><a href="graphics.html#subsection-38" data-scroll="subsection-38" class="internal">Caption Testing</a></li>
+<li><a href="graphics.html#captionless-images" data-scroll="captionless-images" class="internal">Captionless Images</a></li>
+<li><a href="graphics.html#subsection-40" data-scroll="subsection-40" class="internal">Technical Details</a></li>
+<li><a href="graphics.html#subsection-tactile-graphics" data-scroll="subsection-tactile-graphics" class="internal">Experimental Tactile Graphics</a></li>
+<li><a href="graphics.html#subsection-42" data-scroll="subsection-42" class="internal">Accessibility</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-10.html" data-scroll="section-10" class="internal"><span class="codenumber">10</span> <span class="title">Demonstrations</span></a></li>
+<li class="link">
+<a href="section-11.html" data-scroll="section-11" class="internal"><span class="codenumber">11</span> <span class="title">Further Reading</span></a><ul>
+<li><a href="section-11.html#subsection-43" data-scroll="subsection-43" class="internal">Specialized Subdivisions</a></li>
+<li><a href="section-11.html#exercises-3" data-scroll="exercises-3" class="internal">Exercises</a></li>
+<li><a href="section-11.html#exercises-section-multiple" data-scroll="exercises-section-multiple" class="internal">More Exercises</a></li>
+<li><a href="section-11.html#references-section" data-scroll="references-section" class="internal">References</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="lists.html" data-scroll="lists" class="internal"><span class="codenumber">12</span> <span class="title">List Calisthenics</span></a><ul>
+<li><a href="lists.html#subsection-44" data-scroll="subsection-44" class="internal">Lists, Generally</a></li>
+<li><a href="lists.html#subsection-45" data-scroll="subsection-45" class="internal">List Spacing, I</a></li>
+<li><a href="lists.html#subsection-46" data-scroll="subsection-46" class="internal">List Spacing, II</a></li>
+<li><a href="lists.html#test-second" data-scroll="test-second" class="internal">List items containing only inline math</a></li>
+<li><a href="lists.html#subsection-48" data-scroll="subsection-48" class="internal">Description Lists</a></li>
+<li><a href="lists.html#subsection-49" data-scroll="subsection-49" class="internal">Named Lists</a></li>
+<li><a href="lists.html#subsection-50" data-scroll="subsection-50" class="internal">Testing List Decompositions</a></li>
+<li><a href="lists.html#exercises-5" data-scroll="exercises-5" class="internal">Exercises (with lists)</a></li>
+<li><a href="lists.html#references-2" data-scroll="references-2" class="internal">References (with lists in Annotations)</a></li>
+</ul>
+</li>
+<li class="link"><a href="table-calisthenics.html" data-scroll="table-calisthenics" class="internal"><span class="codenumber">13</span> <span class="title">Table Calisthenics</span></a></li>
+<li class="link">
+<a href="section-interactive-authored.html" data-scroll="section-interactive-authored" class="internal"><span class="codenumber">14</span> <span class="title">Interactive Elements, Authored</span></a><ul>
+<li><a href="section-interactive-authored.html#interactive-html5-canvas" data-scroll="interactive-html5-canvas" class="internal">HTML5 Canvas</a></li>
+<li><a href="section-interactive-authored.html#subsection-52" data-scroll="subsection-52" class="internal">D3.js</a></li>
+<li><a href="section-interactive-authored.html#subsection-53" data-scroll="subsection-53" class="internal">SVG</a></li>
+<li><a href="section-interactive-authored.html#subsection-54" data-scroll="subsection-54" class="internal">JSXGraph</a></li>
+<li><a href="section-interactive-authored.html#subsection-55" data-scroll="subsection-55" class="internal">JessieCode</a></li>
+<li><a href="section-interactive-authored.html#subsection-56" data-scroll="subsection-56" class="internal">Sage Interacts</a></li>
+<li><a href="section-interactive-authored.html#subsection-57" data-scroll="subsection-57" class="internal">Geogebra</a></li>
+<li><a href="section-interactive-authored.html#interactive-iframes" data-scroll="interactive-iframes" class="internal">IFrames</a></li>
+<li><a href="section-interactive-authored.html#interactive-threejs" data-scroll="interactive-threejs" class="internal">threejs</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-interactive-server.html" data-scroll="section-interactive-server" class="internal"><span class="codenumber">15</span> <span class="title">Interactive Elements, Server</span></a><ul>
+<li><a href="section-interactive-server.html#subsection-geogebra-server" data-scroll="subsection-geogebra-server" class="internal">GeoGebra</a></li>
+<li><a href="section-interactive-server.html#subsection-61" data-scroll="subsection-61" class="internal">Desmos Graphs</a></li>
+<li><a href="section-interactive-server.html#subsection-62" data-scroll="subsection-62" class="internal">CalcPlot3D</a></li>
+<li><a href="section-interactive-server.html#subsection-63" data-scroll="subsection-63" class="internal">Wolfram CDF</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-audio.html" data-scroll="section-audio" class="internal"><span class="codenumber">16</span> <span class="title">Audio</span></a></li>
+<li class="link">
+<a href="section-video.html" data-scroll="section-video" class="internal"><span class="codenumber">17</span> <span class="title">Video</span></a><ul>
+<li><a href="section-video.html#subsection-64" data-scroll="subsection-64" class="internal">Video Files</a></li>
+<li><a href="section-video.html#subsection-65" data-scroll="subsection-65" class="internal">YouTube</a></li>
+<li><a href="section-video.html#subsection-66" data-scroll="subsection-66" class="internal">Vimeo</a></li>
+<li><a href="section-video.html#subsection-67" data-scroll="subsection-67" class="internal">Captions and Subtitles</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-cross-referencing.html" data-scroll="section-cross-referencing" class="internal"><span class="codenumber">18</span> <span class="title">Cross-Referencing</span></a></li>
+<li class="link"><a href="section-internationalization.html" data-scroll="section-internationalization" class="internal"><span class="codenumber">19</span> <span class="title">Internationalization</span></a></li>
+<li class="link"><a href="section-20.html" data-scroll="section-20" class="internal"><span class="codenumber">20</span> <span class="title">Pre-Formatted Text</span></a></li>
+<li class="link"><a href="section-programs.html" data-scroll="section-programs" class="internal"><span class="codenumber">21</span> <span class="title">Program Listings</span></a></li>
+<li class="link"><a href="section-22.html" data-scroll="section-22" class="internal"><span class="codenumber">22</span> <span class="title">Units of Measure</span></a></li>
+<li class="link">
+<a href="section-side-by-side.html" data-scroll="section-side-by-side" class="internal"><span class="codenumber">23</span> <span class="title">Side-By-Side Panels</span></a><ul>
+<li><a href="section-side-by-side.html#subsection-68" data-scroll="subsection-68" class="internal">Figures with Numbers Side-By-Side</a></li>
+<li><a href="section-side-by-side.html#subsection-69" data-scroll="subsection-69" class="internal">Images</a></li>
+<li><a href="section-side-by-side.html#subsection-70" data-scroll="subsection-70" class="internal">Common Side-By-Side Constructions</a></li>
+<li><a href="section-side-by-side.html#subsection-71" data-scroll="subsection-71" class="internal">Vertical Alignment</a></li>
+<li><a href="section-side-by-side.html#subsection-72" data-scroll="subsection-72" class="internal">Text Next to Text and Images</a></li>
+<li><a href="section-side-by-side.html#subsection-73" data-scroll="subsection-73" class="internal">Image Formats, Side-by-Sides</a></li>
+<li><a href="section-side-by-side.html#subsection-74" data-scroll="subsection-74" class="internal">Tables Side-By-Side</a></li>
+<li><a href="section-side-by-side.html#subsection-75" data-scroll="subsection-75" class="internal">Tables Next to Figures</a></li>
+<li><a href="section-side-by-side.html#subsection-76" data-scroll="subsection-76" class="internal">Tables Next to Text</a></li>
+<li><a href="section-side-by-side.html#subsection-77" data-scroll="subsection-77" class="internal">Tabular Next to Each Other</a></li>
+<li><a href="section-side-by-side.html#subsection-78" data-scroll="subsection-78" class="internal">Lists in Side-by-Sides</a></li>
+<li><a href="section-side-by-side.html#stacking-side-by-side" data-scroll="stacking-side-by-side" class="internal">Stacking: Back to Vertical Flow</a></li>
+<li><a href="section-side-by-side.html#subsection-sbs-other-panels" data-scroll="subsection-sbs-other-panels" class="internal">Other Panels</a></li>
+<li><a href="section-side-by-side.html#subsection-81" data-scroll="subsection-81" class="internal">Poems as Side-By-Side Panels</a></li>
+<li><a href="section-side-by-side.html#subsection-sbsgroup" data-scroll="subsection-sbsgroup" class="internal">Side-By-Side Groups</a></li>
+<li><a href="section-side-by-side.html#subsection-83" data-scroll="subsection-83" class="internal">Testing a Side-By-Side First</a></li>
+<li><a href="section-side-by-side.html#subsection-84" data-scroll="subsection-84" class="internal">Testing Styling of Related Elements</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-24.html" data-scroll="section-24" class="internal"><span class="codenumber">24</span> <span class="title">Side-by-Side Gallery</span></a></li>
+<li class="link"><a href="poetry.html" data-scroll="poetry" class="internal"><span class="codenumber">25</span> <span class="title">Poetry</span></a></li>
+<li class="link">
+<a href="atomic-items.html" data-scroll="atomic-items" class="internal"><span class="codenumber">26</span> <span class="title">Atomic Objects</span></a><ul>
+<li><a href="atomic-items.html#atomic-image" data-scroll="atomic-image" class="internal"><code class="code-inline tex2jax_ignore">&lt;image&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-video" data-scroll="atomic-video" class="internal"><code class="code-inline tex2jax_ignore">&lt;video&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-program" data-scroll="atomic-program" class="internal"><code class="code-inline tex2jax_ignore">&lt;program&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;console&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-tabular" data-scroll="atomic-tabular" class="internal"><code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code></a></li>
+</ul>
+</li>
+<li class="link">
+<a href="advanced-numbering.html" data-scroll="advanced-numbering" class="internal"><span class="codenumber">27</span> <span class="title">Advanced Numbering</span></a><ul>
+<li><a href="advanced-numbering.html#subsection-89" data-scroll="subsection-89" class="internal">One</a></li>
+<li><a href="advanced-numbering.html#subsection-90" data-scroll="subsection-90" class="internal">Two</a></li>
+<li><a href="advanced-numbering.html#subsection-91" data-scroll="subsection-91" class="internal">Three</a></li>
+<li><a href="advanced-numbering.html#subsection-92" data-scroll="subsection-92" class="internal">Four</a></li>
+<li><a href="advanced-numbering.html#subsection-93" data-scroll="subsection-93" class="internal">Five</a></li>
+<li><a href="advanced-numbering.html#subsection-local-theorems" data-scroll="subsection-local-theorems" class="internal">Theorems in This Section</a></li>
+<li><a href="advanced-numbering.html#subsection-with-an-exercise" data-scroll="subsection-with-an-exercise" class="internal">A Title with ] a Right Bracket</a></li>
+<li><a href="advanced-numbering.html#subsection-96" data-scroll="subsection-96" class="internal">A Title with } a Right Brace</a></li>
+<li><a href="advanced-numbering.html#subsection-97" data-scroll="subsection-97" class="internal">A Title with <span class="process-math">\(a]b\)</span> a Math Right Bracket</a></li>
+<li><a href="advanced-numbering.html#subsection-98" data-scroll="subsection-98" class="internal">Just an Exercise</a></li>
+<li><a href="advanced-numbering.html#solutions-2" data-scroll="solutions-2" class="internal">Solutions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-28.html" data-scroll="section-28" class="internal"><span class="codenumber">28</span> <span class="title">Customizations</span></a><ul>
+<li><a href="section-28.html#rename-facility" data-scroll="rename-facility" class="internal">Renaming Document Parts, Plus This Is A Really Long Title So That We Can Test How Well It Reacts To The Right Margin And Wraps Around To Form A Couple Of Lines, Plus How It Sits Relative To The Number Of The Subsection</a></li>
+<li><a href="section-28.html#subsection-100" data-scroll="subsection-100" class="internal">Customizing Phrases</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-myopenmath.html" data-scroll="section-myopenmath" class="internal"><span class="codenumber">29</span> <span class="title">MyOpenMath Interactive Problems</span></a></li>
+<li class="link"><a href="ancillaries.html" data-scroll="ancillaries" class="internal"><span class="codenumber">30</span> <span class="title">Ancillaries</span></a></li>
+<li class="link active">
+<a href="worksheets.html" data-scroll="worksheets" class="internal"><span class="codenumber">31</span> <span class="title">Worksheets</span></a><ul>
+<li><a href="worksheets.html#subsection-101" data-scroll="subsection-101" class="internal">About Worksheets</a></li>
+<li><a href="worksheets.html#worksheet-1" data-scroll="worksheet-1" class="internal">A Geometric Prelude</a></li>
+<li><a href="worksheets.html#worksheet-2" data-scroll="worksheet-2" class="internal">Networks Worksheet</a></li>
+<li><a href="worksheets.html#worksheet-3" data-scroll="worksheet-3" class="internal">Worksheet</a></li>
+<li><a href="worksheets.html#worksheet-4" data-scroll="worksheet-4" class="internal">Dot products and projection</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="exercises-single.html" data-scroll="exercises-single" class="internal"><span class="codenumber">32</span> <span class="title">Exercises, One Subsection</span></a><ul>
+<li><a href="exercises-single.html#exercise-collection" data-scroll="exercise-collection" class="internal">Exercise Collection</a></li>
+<li><a href="exercises-single.html#references-3" data-scroll="references-3" class="internal">More Reading</a></li>
+</ul>
+</li>
+<li class="link"><a href="exercises-7.html" data-scroll="exercises-7" class="internal"><span class="codenumber">33</span> <span class="title">Exercise Section, Structured</span></a></li>
+<li class="link">
+<a href="exercises-multiple.html" data-scroll="exercises-multiple" class="internal"><span class="codenumber">34</span> <span class="title">Exercises, Multiple Subsections</span></a><ul>
+<li><a href="exercises-multiple.html#subsection-102" data-scroll="subsection-102" class="internal">Faux Subsection</a></li>
+<li><a href="exercises-multiple.html#exercises-drill" data-scroll="exercises-drill" class="internal">Drill Exercises</a></li>
+<li><a href="exercises-multiple.html#exercises-9" data-scroll="exercises-9" class="internal">Challenging Exercises</a></li>
+<li><a href="exercises-multiple.html#exercises-10" data-scroll="exercises-10" class="internal">Impossible Exercises</a></li>
+<li><a href="exercises-multiple.html#references-4" data-scroll="references-4" class="internal">More Reading</a></li>
+</ul>
+</li>
+<li class="link"><a href="exercises.html" data-scroll="exercises" class="internal"><span class="codenumber">35</span> <span class="title">Exercises, Top-Level</span></a></li>
+<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter" class="internal"><span class="title">Reference</span></a></li>
+<li class="link"><a href="appendix-1.html" data-scroll="appendix-1" class="internal"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="solutions-backmatter.html" data-scroll="solutions-backmatter" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-4.html" data-scroll="solutions-4" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to a Single Exercises Division</span></a></li>
+<li class="link"><a href="solutions-5.html" data-scroll="solutions-5" class="internal"><span class="codenumber">D</span> <span class="title">All Solutions that are Answers</span></a></li>
+<li class="link"><a href="solutions-6.html" data-scroll="solutions-6" class="internal"><span class="codenumber">E</span> <span class="title">All Solutions that are Answers to Odd Exercises</span></a></li>
+<li class="link"><a href="appendix-results.html" data-scroll="appendix-results" class="internal"><span class="codenumber">F</span> <span class="title">List of Results</span></a></li>
+<li class="link"><a href="appendix-exercise-lists.html" data-scroll="appendix-exercise-lists" class="internal"><span class="codenumber">G</span> <span class="title">Lists of Exercises</span></a></li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4" class="internal"><span class="codenumber">H</span> <span class="title">A Structured Appendix</span></a><ul><li><a href="appendix-4.html#subsection-103" data-scroll="subsection-103" class="internal">A Subsection in an Appendix</a></li></ul>
+</li>
+<li class="link"><a href="appendix-5.html" data-scroll="appendix-5" class="internal"><span class="codenumber">I</span> <span class="title">Index</span></a></li>
+<li class="link">
+<a href="references.html" data-scroll="references" class="internal"><span class="codenumber">J</span> <span class="title">Multiple References</span></a><ul>
+<li><a href="references.html#subsection-104" data-scroll="subsection-104" class="internal">Multiple Specialized References</a></li>
+<li><a href="references.html#references-5" data-scroll="references-5" class="internal">General References</a></li>
+<li><a href="references.html#references-6" data-scroll="references-6" class="internal">Specialized References</a></li>
+</ul>
+</li>
+<li class="link"><a href="references-backmatter.html" data-scroll="references-backmatter" class="internal"><span class="title">References</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+<li class="link"><a href="colophon-1.html" data-scroll="colophon-1" class="internal"><span class="title">Colophon</span></a></li>
+</ul></nav><div class="extras"><nav><a class="feedback-link" href="not-implemented.html" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content"><section class="section" id="worksheets"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">31</span> <span class="title">Worksheets</span>
+</h2>
+<section class="subsection" id="subsection-101"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">31.1</span> <span class="title">About Worksheets</span>
+</h3>
+<p id="p-1274">This is a section full of worksheets.  Each is a division of its own, via the <code class="code-inline tex2jax_ignore">&lt;worksheet&gt;</code> element.  This is a necessary initial <code class="code-inline tex2jax_ignore">&lt;subsection&gt;</code> to the current <code class="code-inline tex2jax_ignore">&lt;section&gt;</code>, since we will have multiple worksheets.  In practice you might want to rip out all the worksheets of an entire book and bundle them up as an “activity book.”</p>
+<p id="p-1275">If you make PDF output you will notice an increased amount of control over layout.  Also, with the command-line argument</p>
+<pre class="code-display tex2jax_ignore">-stringparam latex.draft yes
+</pre>
+<p class="continuation">there will be visual indicators of prescribed whitespace.</p></section><section class="worksheet" id="worksheet-1"><h3 class="heading hide-type">
+<span class="type">Worksheet</span> <span class="codenumber">31.2</span> <span class="title">A Geometric Prelude</span><div class="print-links">
+<a href="worksheet-1-a4.html" class="a4">A4</a><a href="worksheet-1-letter.html" class="us">US</a>
+</div>
+</h3>
+<article class="objectives goal-like" id="objectives"><h4 class="heading"><span class="type">Objectives</span></h4>
+<ul class="disc">
+<li id="li-425"><p id="p-derived-li-425">Practice visualizing vector addition</p></li>
+<li id="li-426"><p id="p-derived-li-426">Use vectors without explicit coordinates</p></li>
+</ul></article><section class="introduction" id="introduction-40"><p id="p-1276">This two-page worksheet was generously donated to the sample article by Dave Rosoff at a CuratedCourses workshop in August 2018.  It has the default (skinny) margins.</p>
+<p id="p-1277">It was known to Euclid, and probably earlier, that the midpoints of the sides of any quadrilateral all lie in the same plane (even if the vertices of the quadrilateral do not). In fact, these midpoints are the vertices of a parallelogram, as pictured in <a href="" class="xref" data-knowl="./knowl/figure-midpoints-of-quadrilateral.html" title="Figure 31.1">Figure 31.1</a>.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:1.666666666666667%;margin-right:1.666666666666667%;">
+<div class="sbspanel top" style="width:31.0344827586207%;"><figure class="figure figure-like" id="figure-midpoints-of-quadrilateral"><img src="images/worksheet-midpoints-of-quadrilateral.svg" role="img" class="contained"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">31.1<span class="period">.</span></span><span class="space"> </span>The midpoints of the sides of a quadrilateral are the vertices of a parallelogram.</figcaption></figure></div>
+<div class="sbspanel top" style="width:31.0344827586207%;"><figure class="figure figure-like" id="figure-triangle-cyclic-vectors"><img src="images/worksheet-triangle-cyclic-vectors.svg" role="img" class="contained"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">31.2<span class="period">.</span></span><span class="space"> </span>The sides of a triangle presented as vectors.</figcaption></figure></div>
+<div class="sbspanel top" style="width:31.0344827586207%;"><figure class="figure figure-like" id="figure-triangle-cyclic-medians"><img src="images/worksheet-triangle-cyclic-medians.svg" role="img" class="contained"><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">31.3<span class="period">.</span></span><span class="space"> </span>The medians of the triangle are <span class="process-math">\(\vec{M}_1\text{,}\)</span> <span class="process-math">\(\vec{M}_2\text{,}\)</span> and <span class="process-math">\(\vec{M}_3\text{.}\)</span></figcaption></figure></div>
+</div></div>
+<p id="p-1278">In this exercise, we'll use vectors to show that the medians of any triangle (<a href="" class="xref" data-knowl="./knowl/figure-triangle-cyclic-vectors.html" title="Figure 31.2">Figure 31.2</a>) intersect at a point. Recall that medians are the lines connecting the vertices of the triangle to the midpoints of their opposite edges, as in the figure. We'll do this in a few steps.</p></section><section class="onepage" id="page-1"><article class="exercise exercise-like" id="ex-cyclic"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<p id="p-1279">What is the value of <span class="process-math">\(\vec{A} + \vec{B} + \vec{C}\text{?}\)</span></p>
+<div class="workspace" data-space="4in"></div></article></section><section class="onepage" id="page-2"><p id="p-1280"><a href="" class="xref" data-knowl="./knowl/figure-triangle-cyclic-medians.html" title="Figure 31.3">Figure 31.3</a> from the previous page is reproduced for your convenience.</p>
+<figure class="figure figure-like" id="figure-triangle-cyclic-medians-copy"><div class="image-box" style="width: 50%; margin-left: 25%; margin-right: 25%;"><img src="images/worksheet-triangle-cyclic-medians-copy.svg" role="img" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">31.4<span class="period">.</span></span><span class="space"> </span>The medians of the triangle are <span class="process-math">\(\vec{M}_1\text{,}\)</span> <span class="process-math">\(\vec{M}_2\text{,}\)</span> and <span class="process-math">\(\vec{M}_3\text{.}\)</span></figcaption></figure><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:30%;"><article class="exercise exercise-like" id="exercise-vector-addition"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<p id="p-1281">Show that <span class="process-math">\(\vec{M}_{1} + \vec{M}_{2} + \vec{M}_{3} = 0\text{.}\)</span></p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-18" id="hint-18"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-18"><div class="hint solution-like"><p id="p-1282">Use <a href="" class="xref" data-knowl="./knowl/ex-cyclic.html" title="Worksheet Exercise 31.2.1">Worksheet Exercise 31.2.1</a>.</p></div></div>
+</div>
+<div class="workspace" data-space="4.5in"></div></article></div>
+<div class="sbspanel top" style="width:60%;"><article class="exercise exercise-like" id="exercise-59"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<p id="p-1283">To show that the point <span class="process-math">\(P\)</span> exists (as the common intersection of the <span class="process-math">\(\vec{M}_{i}\)</span>), show that</p>
+<div class="displaymath process-math">
+\begin{equation*}
+\vec{A} + \frac{2}{3} \vec{M}_{3} = \frac{2}{3} \vec{M}_{2} = \underline{\hspace{4.545454545454546em}}\text{.}
+\end{equation*}
+</div>
+<div class="workspace" data-space="2in"></div></article></div>
+</div></div>
+<article class="exercise exercise-like" id="exercise-60"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<p id="p-1284">If you have time, try to devise a vector proof of Euclid's result presented at the beginning of the workshop. Recall that a <dfn class="terminology">parallelogram</dfn> is a four-sided polygon whose opposite sides are parallel.</p>
+<div class="workspace" data-space="2.54cm"></div></article></section><section class="conclusion" id="conclusion-24"><h4 class="heading">Wrap-up.<span></span>
+</h4>
+<p id="p-1285">It's possible to do interesting things with vector arithmetic in a coordinate-free way: we didn't specify an origin, or any entries of any vectors in the examples.</p></section></section><section class="worksheet" id="worksheet-2"><h3 class="heading hide-type">
+<span class="type">Worksheet</span> <span class="codenumber">31.3</span> <span class="title">Networks Worksheet</span><div class="print-links">
+<a href="worksheet-2-a4.html" class="a4">A4</a><a href="worksheet-2-letter.html" class="us">US</a>
+</div>
+</h3>
+<section class="introduction" id="introduction-41"><h4 class="heading">Basic laws for electrical circuits.<span></span>
+</h4>
+<p id="p-1286">This two-page worksheet was generously donated to the sample article by Virgil Pierce at a CuratedCourses workshop in August 2018.  It has default (skinny) left and right margins, but we have specified longer top and bottom margins, with the top being the larger of the two.</p>
+<article class="theorem theorem-like" id="theorem-21"><h5 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">31.5</span><span class="period">.</span><span class="space"> </span><span class="title">Ohms Law.</span>
+</h5>
+<p id="p-1287">The current through a resistor is proportional to the ratio of the <em class="emphasis">Voltage</em> to the <em class="emphasis">Resistance</em></p>
+<div class="displaymath process-math">
+\begin{equation*}
+I = \frac{V}{R} 
+\end{equation*}
+</div>
+<p class="continuation">Or for our purposes</p>
+<div class="displaymath process-math">
+\begin{equation*}
+I R = V 
+\end{equation*}
+</div></article><article class="theorem theorem-like" id="theorem-22"><h5 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">31.6</span><span class="period">.</span><span class="space"> </span><span class="title">Kirchoffs Current Law.</span>
+</h5>
+<p id="p-1288">The sum of the currents in a network meeting at a point is zero.</p>
+<div class="displaymath process-math">
+\begin{equation*}
+\sum_{k=1}^n I_k = 0 
+\end{equation*}
+</div></article><article class="example example-like" id="example-9"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-9"><h5 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">31.7</span><span class="period">.</span><span class="space"> </span><span class="title">Kirchoff's Current Law.</span>
+</h5></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-9"><article class="example example-like"><p id="p-1289">For the circuit below <span class="process-math">\(I_1 + I_2 = I_3 \text{.}\)</span></p>
+<div class="image-box" style="width: 40%; margin-left: 30%; margin-right: 30%;"><img src="images/worksheet-kirchoff-law.svg" role="img" class="contained"></div></article></div>
+<article class="theorem theorem-like" id="theorem-23"><h5 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">31.8</span><span class="period">.</span><span class="space"> </span><span class="title">Kirchoffs Voltage Law.</span>
+</h5>
+<p id="p-1290">The sum of the voltages around any closed circuit (or subcircuit) is zero.</p>
+<div class="displaymath process-math">
+\begin{equation*}
+\sum_{k=1}^n V_k = 0 
+\end{equation*}
+</div></article><p id="p-1291">Kirchoffs Current Law and Kirkoffs Voltage Law combined with Ohms Law gives for any circuit of resistors and sources a linear system that may (or may not) determine the currents.</p></section><section class="onepage" id="page-3"></section><section class="onepage" id="page-4"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:45%;"><article class="exercise exercise-like" id="exercise-61"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<p id="p-1292">For the simple network pictured, calculuate the amperage in each part of the network by setting up a system of linear equations for the amperages.</p>
+<img src="images/worksheet-simple-network.svg" role="img" class="contained"><div class="workspace" data-space="1.5in"></div></article></div>
+<div class="sbspanel top" style="width:45%;"><article class="exercise exercise-like" id="exercise-62"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<p id="p-1293">Compare it with a parallel circuit network. Calculate the amperage in each part of the network by setting up a system of linear equations for the amperages.</p>
+<img src="images/worksheet-parallel-circuit.svg" role="img" class="contained"><div class="workspace" data-space="2in"></div></article></div>
+</div></div>
+<article class="exercise exercise-like" id="exercise-63"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<p id="p-1294">Now for a more complicated network. Calculate the amperage in each part of the network by setting up a system of linear equations for the amperages.</p>
+<div class="image-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><img src="images/worksheet-complicated-network.svg" role="img" class="contained"></div>
+<div class="workspace" data-space="1in"></div></article></section><section class="onepage" id="page-5"><article class="exercise exercise-like" id="exercise-64"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<p id="p-1295">Now generalize these ideas to a context outside of electrical circuits. Consider the network of streets given in the diagram (with one-way directions as indicated).</p>
+<div class="image-box" style="width: 65%; margin-left: 17.5%; margin-right: 17.5%;"><img src="images/worksheet-street-network.svg" role="img" class="contained"></div>
+<p id="p-1296">A traffic engineer counts the hourly flow of cars into and out of this network at the entrances.  They get (EB = East Bound; WB = West Bound):</p>
+<figure class="table table-like" id="table-59"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">31.9<span class="period">.</span></span><span class="space"> </span>Estimated hourly traffic flow for the road network</figcaption><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b0 r0 l0 t0 lines"></td>
+<td class="l m b0 r0 l0 t0 lines">EB Winooski</td>
+<td class="l m b0 r0 l0 t0 lines">WB Winooski</td>
+<td class="l m b0 r0 l0 t0 lines">Shelburne St</td>
+<td class="l m b0 r0 l0 t0 lines">Willow</td>
+<td class="l m b0 r0 l0 t0 lines">Jay</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">into</td>
+<td class="l m b0 r0 l0 t0 lines">50</td>
+<td class="l m b0 r0 l0 t0 lines">400</td>
+<td class="l m b0 r0 l0 t0 lines">0</td>
+<td class="l m b0 r0 l0 t0 lines">10</td>
+<td class="l m b0 r0 l0 t0 lines">50</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">out of</td>
+<td class="l m b0 r0 l0 t0 lines">55</td>
+<td class="l m b0 r0 l0 t0 lines">390</td>
+<td class="l m b0 r0 l0 t0 lines">20</td>
+<td class="l m b0 r0 l0 t0 lines">15</td>
+<td class="l m b0 r0 l0 t0 lines">30</td>
+</tr>
+</table></div></figure><p id="p-1297">Use a variable for each segment inside of the network and set up a system of linear equations restricting the flow. Solve the system.  Note that you should not get a unique solution as traffic should be able to flow through the network in various ways.</p>
+<div class="workspace" data-space="3in"></div></article></section></section><section class="worksheet" id="worksheet-3"><h3 class="heading hide-type">
+<span class="type">Worksheet</span> <span class="codenumber">31.4</span> <span class="title">Worksheet</span><div class="print-links">
+<a href="worksheet-3-a4.html" class="a4">A4</a><a href="worksheet-3-letter.html" class="us">US</a>
+</div>
+</h3>
+<section class="introduction" id="introduction-42"><p id="p-1298">This is a mock one-page worksheet for testing purposes. We have specified an overall margin just slightly less than the default.</p></section><section class="onepage" id="page-6"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:45%;"><article class="exercise exercise-like" id="exercise-65"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<p id="p-1299">Praesent rutrum scelerisque felis sit amet adipiscing. Phasellus in mollis velit. Nunc malesuada felis sit amet massa cursus, eget elementum neque viverra.</p>
+<div class="workspace" data-space="1in"></div></article></div>
+<div class="sbspanel top" style="width:45%;"><article class="exercise exercise-like" id="exercise-66"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<p id="p-1300">Integer sagittis dictum turpis vel aliquet. Fusce ut suscipit dolor, nec tristique nisl. Aenean luctus, leo et ornare fermentum, nibh dui vulputate leo, nec tincidunt augue ipsum sed odio. Nunc non erat sollicitudin, iaculis eros consequat, dapibus eros.</p>
+<div class="workspace" data-space="1in"></div></article></div>
+</div></div>
+<p id="p-1301">A two-line paragraph interspersed to check on spacing, breaks and all that.</p>
+<article class="exercise exercise-like" id="exercise-67"><h4 class="heading">
+<span class="codenumber">3<span class="period">.</span></span><span class="space"> </span><span class="title">A full-width exercise.</span>
+</h4>
+<p id="p-1302">Praesent rutrum scelerisque felis sit amet adipiscing. Phasellus in mollis velit. Nunc malesuada felis sit amet massa cursus, eget elementum neque viverra.</p>
+<p id="p-1303">Integer sagittis dictum turpis vel aliquet. Fusce ut suscipit dolor, nec tristique nisl. Aenean luctus, leo et ornare fermentum, nibh dui vulputate leo, nec tincidunt augue ipsum sed odio. Nunc non erat sollicitudin, iaculis eros consequat, dapibus eros.</p>
+<div class="workspace" data-space="1.5in"></div></article><p id="p-1304">Another two-line paragraph interspersed to check on spacing, breaks and all that.</p>
+<div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:30%;"><article class="exercise exercise-like" id="exercise-68"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<p id="p-1305">Praesent rutrum scelerisque felis sit amet adipiscing. Phasellus in mollis velit. Nunc malesuada felis sit amet massa cursus, eget elementum neque viverra.</p></article></div>
+<div class="sbspanel top" style="width:30%;"><article class="exercise exercise-like" id="exercise-69"><h4 class="heading"><span class="codenumber">5<span class="period">.</span></span></h4>
+<p id="p-1306">Integer sagittis dictum turpis vel aliquet. Fusce ut suscipit dolor, nec tristique nisl. Aenean luctus, leo et ornare fermentum, nibh dui vulputate leo, nec tincidunt augue ipsum sed odio. Nunc non erat sollicitudin, iaculis eros consequat, dapibus eros.</p>
+<div class="workspace" data-space="0.5in"></div></article></div>
+<div class="sbspanel top" style="width:30%;"><article class="exercise exercise-like" id="exercise-70"><h4 class="heading"><span class="codenumber">6<span class="period">.</span></span></h4>
+<p id="p-1307">Praesent rutrum scelerisque felis sit amet adipiscing. Phasellus in mollis velit. Nunc malesuada felis sit amet massa cursus, eget elementum neque viverra.</p>
+<div class="workspace" data-space="1in"></div></article></div>
+</div></div>
+<article class="activity project-like" id="activity-3"><h4 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">31.1</span><span class="period">.</span><span class="space"> </span><span class="title">A Mock Activity.</span>
+</h4>
+<p id="p-1308">The problem, as we see it.</p>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-19" id="hint-19"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-19"><div class="hint solution-like"><p id="p-1309">A worksheet could have hints, no?  But no spacing. Note row below has widths set to balance the heights.</p></div></div>
+</div></article><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:25%;"><article class="exercise exercise-like" id="exercise-71"><h4 class="heading"><span class="codenumber">7<span class="period">.</span></span></h4>
+<p id="p-1310">Praesent rutrum scelerisque felis sit amet adipiscing. Phasellus in mollis velit. Nunc malesuada felis sit amet massa cursus, eget elementum neque viverra.</p>
+<div class="workspace" data-space="0.5in"></div></article></div>
+<div class="sbspanel top" style="width:40%;"><article class="exercise exercise-like" id="exercise-72"><h4 class="heading"><span class="codenumber">8<span class="period">.</span></span></h4>
+<p id="p-1311">Integer sagittis dictum turpis vel aliquet. Fusce ut suscipit dolor, nec tristique nisl. Aenean luctus, leo et ornare fermentum, nibh dui vulputate leo, nec tincidunt augue ipsum sed odio. Nunc non erat sollicitudin, iaculis eros consequat, dapibus eros.</p>
+<div class="workspace" data-space="0.5in"></div></article></div>
+<div class="sbspanel top" style="width:25%;"><article class="exercise exercise-like" id="exercise-73"><h4 class="heading"><span class="codenumber">9<span class="period">.</span></span></h4>
+<p id="p-1312">Praesent rutrum scelerisque felis sit amet adipiscing. Phasellus in mollis velit. Nunc malesuada felis sit amet massa cursus, eget elementum neque viverra.</p>
+<div class="workspace" data-space="0.5in"></div></article></div>
+</div></div></section></section><section class="worksheet" id="worksheet-4"><h3 class="heading hide-type">
+<span class="type">Worksheet</span> <span class="codenumber">31.5</span> <span class="title">Dot products and projection</span><div class="print-links">
+<a href="worksheet-4-a4.html" class="a4">A4</a><a href="worksheet-4-letter.html" class="us">US</a>
+</div>
+</h3>
+<section class="onepage" id="page-7"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:45%;"><article class="exercise exercise-like" id="exercise-74"><h4 class="heading"><span class="codenumber">1<span class="period">.</span></span></h4>
+<div class="introduction" id="introduction-43"><p id="p-1313">Let <span class="process-math">\({\vec v}_1 = (-4,1)\text{,}\)</span> <span class="process-math">\({\vec v}_2 = (2,2)\text{,}\)</span> <span class="process-math">\({\vec v}_3 = (1,2,3)\text{,}\)</span> <span class="process-math">\({\vec v}_4 = (-2,1,0)\text{.}\)</span> Find the values of the following expressions:</p></div>
+<article class="task exercise-like" id="task-31"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<span class="process-math">\({\vec v}_1 \cdot {\vec v}_2 = \underline{\hspace{4.545454545454546em}}\)</span><div class="workspace" data-space="1in"></div></article><article class="task exercise-like" id="task-32"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<span class="process-math">\({\vec v}_3 \cdot {\vec v}_4 = \underline{\hspace{4.545454545454546em}}\)</span><div class="workspace" data-space="1.0in"></div></article><article class="task exercise-like" id="task-33"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<span class="process-math">\(\lVert{\vec v}_1\rVert = \underline{\hspace{4.545454545454546em}}\)</span><div class="workspace" data-space="1in"></div></article><article class="task exercise-like" id="task-34"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<span class="process-math">\(\lVert{\vec v}_4\rVert = \underline{\hspace{4.545454545454546em}}\)</span><div class="workspace" data-space="1in"></div></article><article class="task exercise-like" id="task-35"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<p id="p-1314">Are any of these vectors perpendicular to each other? <span class="fillin" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span></p>
+<div class="workspace" data-space="1in"></div></article></article></div>
+<div class="sbspanel top" style="width:45%;"><article class="exercise exercise-like" id="exercise-75"><h4 class="heading"><span class="codenumber">2<span class="period">.</span></span></h4>
+<p id="p-1315">The vectors <span class="process-math">\(\vec a = (3,9)\)</span> and <span class="process-math">\(\vec u = (4,2)\)</span> are pictured below.  Derive the formula for projection on a line and use it to find the projection of <span class="process-math">\(\vec a\)</span> on the line spanned by <span class="process-math">\(\vec u\text{.}\)</span> Also compute the length of the residual vector.</p>
+<img src="images/projection1.png" class="contained" alt="two vectors..."><div class="workspace" data-space="3in"></div></article></div>
+</div></div></section><section class="onepage" id="page-8"><div class="sidebyside"><div class="sbsrow" style="margin-left:0%;margin-right:0%;">
+<div class="sbspanel top" style="width:48%;"><article class="exercise exercise-like" id="exercise-76"><h4 class="heading"><span class="codenumber">3<span class="period">.</span></span></h4>
+<div class="introduction" id="introduction-44">
+<p id="p-1316">Consider the vector equation</p>
+<div class="displaymath process-math">
+\begin{equation*}
+m \begin{bmatrix}2 \\ 5\end{bmatrix} = \begin{bmatrix}3 \\ 7\end{bmatrix}\text{.}
+\end{equation*}
+</div>
+</div>
+<article class="task exercise-like" id="task-36"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<p id="p-1317">Check that there is no solution <span class="process-math">\(m\)</span> that makes the equation true.</p>
+<div class="workspace" data-space="1.25in"></div></article><article class="task exercise-like" id="task-37"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<p id="p-1318">Use projection to find the best approximation <span class="process-math">\(\hat m\text{.}\)</span></p>
+<div class="workspace" data-space="1.25in"></div></article><article class="task exercise-like" id="task-38"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<p id="p-1319">Compute <span class="process-math">\(\hat m \begin{bmatrix}2 \\ 5\end{bmatrix} \text{.}\)</span></p>
+<div class="workspace" data-space="1.25in"></div></article><article class="task exercise-like" id="task-39"><h5 class="heading"><span class="codenumber">(d)</span></h5>
+<p id="p-1320">Compute the residual vector.</p>
+<div class="workspace" data-space="1.25in"></div></article><article class="task exercise-like" id="task-40"><h5 class="heading"><span class="codenumber">(e)</span></h5>
+<p id="p-1321">Compute the length of the residual vector and explain what it means.</p>
+<div class="workspace" data-space="1.25in"></div></article></article></div>
+<div class="sbspanel top" style="width:48%;"><article class="exercise exercise-like" id="exercise-77"><h4 class="heading"><span class="codenumber">4<span class="period">.</span></span></h4>
+<div class="introduction" id="introduction-45">
+<p id="p-1322">Consider the system of equations</p>
+<div class="displaymath process-math">
+\begin{align*}
+3t \amp =5\\
+2t \amp = 9 \text{.}
+\end{align*}
+</div>
+</div>
+<article class="task exercise-like" id="task-41"><h5 class="heading"><span class="codenumber">(a)</span></h5>
+<p id="p-1323">Write the system in vector form.</p>
+<div class="workspace" data-space="2in"></div></article><article class="task exercise-like" id="task-42"><h5 class="heading"><span class="codenumber">(b)</span></h5>
+<p id="p-1324">Find the best estimate, <span class="process-math">\(\hat t\text{,}\)</span> of <span class="process-math">\(t\)</span> using projection.</p>
+<div class="workspace" data-space="3.9in"></div></article><article class="task exercise-like" id="task-43"><h5 class="heading"><span class="codenumber">(c)</span></h5>
+<p id="p-1325">Compute the length of the residual vector.</p>
+<div class="workspace" data-space="2in"></div></article></article></div>
+</div></div></section></section></section></div></main>
+</div>
+<script>createAllVisualizersFromHtmlAttrs();</script><script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

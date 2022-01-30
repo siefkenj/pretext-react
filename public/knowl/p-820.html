@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-01-23T20:55:51-05:00       *-->
+<!--*       on 2022-01-30T15:46:22-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,8 +14,24 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h2 class="heading"><span class="type">Paragraph</span></h2>
-<p>The Document may include Warranty Disclaimers next to the notice which states that this License applies to the Document. These Warranty Disclaimers are considered to be included by reference in this License, but only as regards disclaiming warranties: any other implication that these Warranty Disclaimers may have is void and has no effect on the meaning of this License.</p>
-<span class="incontext"><a href="appendix-gfdl.html#p-820">in-context</a></span>
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>The following two examples are meant to be instructive (<em class="emphasis">only</em>).  The end result is accomplished in a much more straightforward way be the method in <a href="section-interactive-authored.html#interactive-iframes" class="internal" title="Subsection 14.8: IFrames">Subsection 14.8</a>.  We illustrate a way to get a <code class="code-inline tex2jax_ignore">three.js</code> image out of an <abbr class="initialism">HTML</abbr> page as a Javascript file and render it on a PreTeXt <code class="code-inline tex2jax_ignore">&lt;slate&gt;</code>.  We follow the second method in a <a class="external" href="https://golem.ph.utexas.edu/category/2017/12/sagemath_and_3d_models_in_webp.html" target="_blank">blog post from the <span class="process-math">\(n\)</span>-Category Cafe</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-59-hidden.html" title="Footnote 14.21"><sup> 21 </sup></a>.</p>
+<ol class="decimal">
+<li><p>Open a Jupyter Notebook that utilizes a Sage kernel.  This can be done easily at <a class="external" href="https://cocalc.com" target="_blank">CoCalc</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-60-hidden.html" title="Footnote 14.22"><sup> 22 </sup></a> (and for free initially).</p></li>
+<li><p>Sketch a surface using Sage code.  We recycle the suggestion from Juan Carlos Bustamante in <a href="section-interactive-authored.html#interactive-iframes" class="internal" title="Subsection 14.8: IFrames">Subsection 14.8</a>:<pre class="code-display tex2jax_ignore">var('x,y')
+plot3d(x^2 - y^2, (x,-1,1), (y,-1,1), color="orange", mesh=true)
+</pre></p></li>
+<li><p>Look for a button (in the lower-right) which will provide a menu option <code class="code-inline tex2jax_ignore">Save as HTML</code>.  Save the resulting <abbr class="initialism">HTML</abbr> file, and open a <em class="emphasis">copy</em> in a text editor.</p></li>
+<li>
+<p>You are now looking for two <abbr class="initialism">HTML</abbr> <code class="code-inline tex2jax_ignore">script</code> elements.  One will tell you just which version of <code class="code-inline tex2jax_ignore">three.js</code> is being used, vis a <code class="code-inline tex2jax_ignore">@src</code> attribute.  For the second example below we located</p>
+<pre class="code-display tex2jax_ignore">https://cdn.jsdelivr.net/gh/sagemath/threejs-sage@r122/build/three.min.js
+</pre>
+<p class="continuation">The <code class="code-inline tex2jax_ignore">@r122</code> will likely be a version number, which is a good thing for the longevity of your work.  This will get used in the <code class="code-inline tex2jax_ignore">@source</code> attribute of your <code class="code-inline tex2jax_ignore">&lt;interactive&gt;</code>, which will have <code class="code-inline tex2jax_ignore">@platform</code> set to <code class="code-inline tex2jax_ignore">javascript</code>.</p>
+<p>The second <code class="code-inline tex2jax_ignore">script</code> element is likely huge and has many generic functions defined it.  There may be a huge variable full of data points computed by Sage.  Copy the <em class="emphasis">contents</em> of this <code class="code-inline tex2jax_ignore">script</code> element into a new Javascript file (so use a <code class="code-inline tex2jax_ignore">.js</code> extension).  Do not edit in any way until you read further.  Once adjusted, this file too gets specified in the <code class="code-inline tex2jax_ignore">@source</code> attribute of your <code class="code-inline tex2jax_ignore">&lt;interactive&gt;</code>.</p>
+</li>
+<li><p>Your <code class="code-inline tex2jax_ignore">&lt;interactive&gt;</code> needs a <code class="code-inline tex2jax_ignore">&lt;slate&gt;</code> element for the graphic to draw on, and you will need to give it a proper <code class="code-inline tex2jax_ignore">@xml:id</code> attribute, plus teh <code class="code-inline tex2jax_ignore">@surface</code> will be set to <code class="code-inline tex2jax_ignore">div</code>.  Then you need to edit the Javascript file to connect the graphic with the slate, via IDs in your PreTeXt source and on teh <abbr class="initialism">HTML</abbr> <code class="code-inline tex2jax_ignore">div</code> created by the slate.  Look at the provided examples to see how.  Do not make any other edits to this file, even if tempted.</p></li>
+<li><p>Study the two examples below, and mimic how they were constructed.</p></li>
+</ol>
+<span class="incontext"><a href="section-interactive-authored.html#p-820">in-context</a></span>
 </body>
 </html>

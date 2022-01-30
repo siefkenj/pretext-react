@@ -6,14 +6,13 @@ import HTMLReactParser, {
 } from "html-react-parser";
 import React from "react";
 import ReactDOM from "react-dom";
-import { reTypesetMathJax } from "../../utils/mathjax";
+import md5 from "crypto-js/md5";
 import { CachedComponent } from "../cached-component";
 import { replaceKnowlIfNeeded } from "../knowl/knowls";
 import { replaceSageKnowlIfNeeded } from "../knowl/sage-knowl";
 import { InternalAnchor } from "../links";
 import { PreparedParsers } from "./types";
-import md5 from "crypto-js/md5";
-import { MathJaxOneTimeRenderer, MathJaxRenderer } from "../mathjax";
+import { MathJaxOneTimeRenderer } from "../mathjax";
 
 export const ParserContext = React.createContext<PreparedParsers>({
     parser: (html) => (

@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-01-23T20:55:48-05:00       *-->
+<!--*       on 2022-01-30T15:46:17-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -14,14 +14,31 @@
 <meta name="robots" content="noindex, nofollow">
 </head>
 <body class="ignore-math">
-<h5 class="heading"><span class="type">Paragraph</span></h5>
-<p>Suppose that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p\)</span> does not divide <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(a\text{.}\)</span>  We must show that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p \mid b\text{.}\)</span> Since <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(\gcd( a, p ) = 1\text{,}\)</span> there exist integers <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(r\)</span> and <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(s\)</span> such that <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(ar + ps = 1\text{.}\)</span>  So</p>
-<div xmlns:svg="http://www.w3.org/2000/svg" class="displaymath process-math">
-\begin{equation*}
-b = b(ar + ps) = (ab)r + p(bs)\text{.}
-\end{equation*}
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<p>The AMSmath <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> package's <code class="code-inline tex2jax_ignore">alignat</code> environment is a third variant of alignment.  It never happens automatically, you need to ask for it with <code class="code-inline tex2jax_ignore">alignment="alignat"</code>.  It is very similar to <code class="code-inline tex2jax_ignore">align</code> but adds no space between the equation columns.  So you can leave it that way, or you can add your own “extra” space to suit.  Here is a previous example with no inter-column space:</p>
+<div class="displaymath process-math">
+\begin{alignat*}{3}
+\frac{dx}{dt} \amp = x^2 - 4x - y + 4 \amp \frac{dy}{dt} \amp = x^3 - y          \amp\amp x, y\text{ version}\\
+\frac{dw}{dt} \amp = z^3 - w          \amp \frac{dz}{dt} \amp = z^2 - 4z - w + 4 \amp\amp z, w\text{ version}\text{.}
+\end{alignat*}
 </div>
-<p class="continuation">Since <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p\)</span> divides both <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(ab\)</span> and itself, <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(p\)</span> must divide <span xmlns:svg="http://www.w3.org/2000/svg" class="process-math">\(b = (ab)r + p(bs)\text{.}\)</span></p>
-<span class="incontext"><a href="section-division-algorithm.html#p-286">in-context</a></span>
+<p class="continuation">This modified example has a middle row with three columns, while the other rows have just one column, as a test of our routines for determining the <code class="code-inline tex2jax_ignore">mrow</code> with the greatest number of ampersands (and how many there are),</p>
+<div class="displaymath process-math">
+\begin{alignat*}{3}
+\frac{dw}{dt} &amp;= z^3 - w\\
+\frac{dx}{dt} &amp;= x^2 - 4x - y + 4 &amp; \frac{dy}{dt} &amp;= x^3 - y&amp;&amp; x, y\text{ third column}\\
+\frac{dw}{dt} &amp; = z^3 - w\text{.}
+\end{alignat*}
+</div>
+<p class="continuation">Final example demonstrates that ampersands in other objects (matrices here) can wreak havoc with computing the number of columns.  So we provide yet another attribute to override automatic detection, <code class="code-inline tex2jax_ignore">alignat-columns</code>.  This is the number of <em class="emphasis">columns</em> not the number of <em class="emphasis">ampersands</em>.  Generally, for <span class="process-math">\(c\)</span> columns, there will be <span class="process-math">\(2c-1\)</span> ampersands.</p>
+<div class="displaymath process-math">
+\begin{alignat*}{2}
+A &amp;= \begin{bmatrix}1 &amp; 2 \\ 3 &amp; 4\end{bmatrix}
+&amp;
+I &amp;= \begin{bmatrix}1 &amp; 0 \\ 0 &amp; 1\end{bmatrix}\text{.}
+\end{alignat*}
+</div>
+<p class="continuation">One caveat: if your number of ampersands is even (see advice above about using an odd number) behavior should still be correct, as in next example.</p>
+<span class="incontext"><a href="section-7.html#p-286">in-context</a></span>
 </body>
 </html>

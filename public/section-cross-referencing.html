@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*       on 2022-01-30T15:46:05-05:00       *-->
+<!--*   A recent stable commit (2020-08-09):   *-->
+<!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SA Cross-Referencing</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+<script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    useLabelIds: true,
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl', 'sfrac']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.88,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+/* support for the sfrac command in MathJax (Beveled fraction) */
+  startup: {
+    ready() {
+      //
+      // Creating a simple "sfrac" package on-the-fly
+      //
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      
+      new CommandMap('sfrac', {
+        sfrac: 'SFrac'
+        }, {
+        SFrac(parser, name) {
+        const num = parser.ParseArg(name);
+        const den = parser.ParseArg(name);
+        const frac = parser.create('node', 'mfrac', [num, den], {bevelled: true});
+        parser.Push(frac);
+        }
+      });
+      //
+      // Create the package for the overridden macros
+      //
+      Configuration.create('sfrac', {
+        handler: {macro: ['sfrac']}
+      });
+      
+    MathJax.startup.defaultReady();
+    }
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script defer src="./static/js/bundle.js"></script><script defer src="./static/js/main.js"></script><link href="./static/css/main.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<script src="http://pythontutor.com/build/pytutor-embed.bundle.js?cc25af72af"></script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+<body id="pretext-SA" class="pretext-article ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{cancel}\newcommand{\definiteintegral}[4]{\int_{#1}^{#2}\,#3\,d#4} 
+\newcommand{\myequation}[2]{#1\amp =#2} 
+\newcommand{\indefiniteintegral}[2]{\int#1\,d#2}
+\newcommand{\testingescapedpercent}{ \% } 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\)</span></div>
+<header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
+<a id="logo-link" href="https://pretextbook.org" target="_blank"><img src="misc/book-cover-google-art-project.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="derivatives.html"><span class="title">Derivatives and Integrals:</span> <span class="subtitle">An Annotated Discourse</span></a></h1>
+<p class="byline">Robert Beezer</p>
+</div>
+</div></div>
+<nav id="primary-navbar" class="navbar"><div class="container">
+<div class="navbar-top-buttons">
+<button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
+<a class="index-button toolbar-item button" href="index-1.html" title="Index">Index</a><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="section-video.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="derivatives.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="section-internationalization.html" title="Next">Next</a></span>
+</div>
+</div>
+<div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="section-video.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="derivatives.html" title="Up">Up</a><a class="next-button button toolbar-item" href="section-internationalization.html" title="Next">Next</a>
+</div>
+</div></nav></header><div class="page">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<nav id="toc"><ul>
+<li class="link frontmatter"><a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a></li>
+<li class="link"><a href="section-1.html" data-scroll="section-1" class="internal"><span class="codenumber">1</span> <span class="title">Introduction</span></a></li>
+<li class="link"><a href="section-fundamental-theorem.html" data-scroll="section-fundamental-theorem" class="internal"><span class="codenumber">2</span> <span class="title">The Fundamental Theorem</span></a></li>
+<li class="link"><a href="section-sage-cells.html" data-scroll="Abc" class="internal"><span class="codenumber">3</span> <span class="title">Computing Integrals with Sage (<span class="process-math">\(\int\)</span>)</span></a></li>
+<li class="link">
+<a href="interesting-corollary.html" data-scroll="interesting-corollary" class="internal"><span class="codenumber">4</span> <span class="title">An Interesting Corollary</span></a><ul>
+<li><a href="interesting-corollary.html#subsection-second-FTC" data-scroll="subsection-second-FTC" class="internal">Second Version of <abbr class="acronym">FTC</abbr></a></li>
+<li><a href="interesting-corollary.html#subsection-2" data-scroll="subsection-2" class="internal">A Pedagogical Note about Subsection 4.1</a></li>
+<li><a href="interesting-corollary.html#subsection-3" data-scroll="subsection-3" class="internal">Theorem-Like Environments</a></li>
+<li><a href="interesting-corollary.html#subsection-4" data-scroll="subsection-4" class="internal">Linking Sage Cells</a></li>
+<li><a href="interesting-corollary.html#subsection-5" data-scroll="subsection-5" class="internal">Hierarchy</a></li>
+<li><a href="interesting-corollary.html#subsection-intro-conclude" data-scroll="subsection-intro-conclude" class="internal">Introductions and Conclusions</a></li>
+<li><a href="interesting-corollary.html#subsection-paragraph-markup" data-scroll="subsection-paragraph-markup" class="internal">Some Paragraph-Level Markup</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-5.html" data-scroll="Bcd" class="internal"><span class="codenumber">5</span> <span class="title">Some Facts and Figures</span></a></li>
+<li class="link"><a href="section-6.html" data-scroll="section-6" class="internal"><span class="codenumber">6</span> <span class="title">Some Advanced Ideas</span></a></li>
+<li class="link">
+<a href="section-7.html" data-scroll="section-7" class="internal"><span class="codenumber">7</span> <span class="title">Mathematics</span></a><ul>
+<li><a href="section-7.html#subsection-8" data-scroll="subsection-8" class="internal">Basic Mathematics</a></li>
+<li><a href="section-7.html#subsection-9" data-scroll="subsection-9" class="internal">Displayed Mathematics</a></li>
+<li><a href="section-7.html#subsection-10" data-scroll="subsection-10" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Packages and MathJax Extensions</a></li>
+<li><a href="section-7.html#subsection-11" data-scroll="subsection-11" class="internal">Advanced Mathematics</a></li>
+<li><a href="section-7.html#subsection-12" data-scroll="subsection-12" class="internal">Local Tags on Equations</a></li>
+<li><a href="section-7.html#commutative-diagrams" data-scroll="commutative-diagrams" class="internal">Commutative Diagrams</a></li>
+<li><a href="section-7.html#line-breaking-math" data-scroll="line-breaking-math" class="internal">Line-Breaking after Mathematics</a></li>
+<li><a href="section-7.html#font-math" data-scroll="font-math" class="internal">Fonts and Mathematics</a></li>
+<li><a href="section-7.html#miscellaneous-math" data-scroll="miscellaneous-math" class="internal">Miscellaneous</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="text-in-paragraphs.html" data-scroll="text-in-paragraphs" class="internal"><span class="codenumber">8</span> <span class="title">Text in Paragraphs</span></a><ul>
+<li><a href="text-in-paragraphs.html#subsection-xml-escape" data-scroll="subsection-xml-escape" class="internal">Special <abbr class="initialism">XML</abbr> characters</a></li>
+<li><a href="text-in-paragraphs.html#subsection-18" data-scroll="subsection-18" class="internal">Quotations</a></li>
+<li><a href="text-in-paragraphs.html#subsection-19" data-scroll="subsection-19" class="internal">Groupings</a></li>
+<li><a href="text-in-paragraphs.html#subsection-20" data-scroll="subsection-20" class="internal">Characters, Symbols, and Constructions</a></li>
+<li><a href="text-in-paragraphs.html#subsection-21" data-scroll="subsection-21" class="internal">Currency</a></li>
+<li><a href="text-in-paragraphs.html#subsection-icons-in-text" data-scroll="subsection-icons-in-text" class="internal">Icons in Text</a></li>
+<li><a href="text-in-paragraphs.html#subsection-keyboard" data-scroll="subsection-keyboard" class="internal">Keyboard Keys</a></li>
+<li><a href="text-in-paragraphs.html#section-urls" data-scroll="section-urls" class="internal">URLs, such as <code class="code-inline tex2jax_ignore">http://example.com</code></a></li>
+<li><a href="text-in-paragraphs.html#subsection-25" data-scroll="subsection-25" class="internal">Biological Names</a></li>
+<li><a href="text-in-paragraphs.html#subsection-26" data-scroll="subsection-26" class="internal">Verbatim in titles, <code class="code-inline tex2jax_ignore">\a&amp;b#c%d~e{f}g$h_i^j</code>, OK</a></li>
+<li><a href="text-in-paragraphs.html#subsection-special-situations" data-scroll="subsection-special-situations" class="internal">Special Situations</a></li>
+<li><a href="text-in-paragraphs.html#subsection-jupyter-dollars" data-scroll="subsection-jupyter-dollars" class="internal">Jupyter Notebook, Markdown, MathJax, Delimiters</a></li>
+<li><a href="text-in-paragraphs.html#subsection-29" data-scroll="subsection-29" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Characters, Ligatures, and More</a></li>
+<li><a href="text-in-paragraphs.html#subsection-30" data-scroll="subsection-30" class="internal"><abbr class="initialism">HTML</abbr> and accidental mathematics</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="graphics.html" data-scroll="graphics" class="internal"><span class="codenumber">9</span> <span class="title">Graphics</span></a><ul>
+<li><a href="graphics.html#subsection-31" data-scroll="subsection-31" class="internal">Images from External Sources</a></li>
+<li><a href="graphics.html#subsection-32" data-scroll="subsection-32" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> images</a></li>
+<li><a href="graphics.html#subsection-33" data-scroll="subsection-33" class="internal">Asymptote, 2D</a></li>
+<li><a href="graphics.html#graphics-asymptote-webgl" data-scroll="graphics-asymptote-webgl" class="internal">Asymptote, 3D via WebGL</a></li>
+<li><a href="graphics.html#subsection-35" data-scroll="subsection-35" class="internal">Sage Plots</a></li>
+<li><a href="graphics.html#subsection-36" data-scroll="subsection-36" class="internal">Inkscape Images</a></li>
+<li><a href="graphics.html#subsection-37" data-scroll="subsection-37" class="internal">Copies of Images</a></li>
+<li><a href="graphics.html#subsection-38" data-scroll="subsection-38" class="internal">Caption Testing</a></li>
+<li><a href="graphics.html#captionless-images" data-scroll="captionless-images" class="internal">Captionless Images</a></li>
+<li><a href="graphics.html#subsection-40" data-scroll="subsection-40" class="internal">Technical Details</a></li>
+<li><a href="graphics.html#subsection-tactile-graphics" data-scroll="subsection-tactile-graphics" class="internal">Experimental Tactile Graphics</a></li>
+<li><a href="graphics.html#subsection-42" data-scroll="subsection-42" class="internal">Accessibility</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-10.html" data-scroll="section-10" class="internal"><span class="codenumber">10</span> <span class="title">Demonstrations</span></a></li>
+<li class="link">
+<a href="section-11.html" data-scroll="section-11" class="internal"><span class="codenumber">11</span> <span class="title">Further Reading</span></a><ul>
+<li><a href="section-11.html#subsection-43" data-scroll="subsection-43" class="internal">Specialized Subdivisions</a></li>
+<li><a href="section-11.html#exercises-3" data-scroll="exercises-3" class="internal">Exercises</a></li>
+<li><a href="section-11.html#exercises-section-multiple" data-scroll="exercises-section-multiple" class="internal">More Exercises</a></li>
+<li><a href="section-11.html#references-section" data-scroll="references-section" class="internal">References</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="lists.html" data-scroll="lists" class="internal"><span class="codenumber">12</span> <span class="title">List Calisthenics</span></a><ul>
+<li><a href="lists.html#subsection-44" data-scroll="subsection-44" class="internal">Lists, Generally</a></li>
+<li><a href="lists.html#subsection-45" data-scroll="subsection-45" class="internal">List Spacing, I</a></li>
+<li><a href="lists.html#subsection-46" data-scroll="subsection-46" class="internal">List Spacing, II</a></li>
+<li><a href="lists.html#test-second" data-scroll="test-second" class="internal">List items containing only inline math</a></li>
+<li><a href="lists.html#subsection-48" data-scroll="subsection-48" class="internal">Description Lists</a></li>
+<li><a href="lists.html#subsection-49" data-scroll="subsection-49" class="internal">Named Lists</a></li>
+<li><a href="lists.html#subsection-50" data-scroll="subsection-50" class="internal">Testing List Decompositions</a></li>
+<li><a href="lists.html#exercises-5" data-scroll="exercises-5" class="internal">Exercises (with lists)</a></li>
+<li><a href="lists.html#references-2" data-scroll="references-2" class="internal">References (with lists in Annotations)</a></li>
+</ul>
+</li>
+<li class="link"><a href="table-calisthenics.html" data-scroll="table-calisthenics" class="internal"><span class="codenumber">13</span> <span class="title">Table Calisthenics</span></a></li>
+<li class="link">
+<a href="section-interactive-authored.html" data-scroll="section-interactive-authored" class="internal"><span class="codenumber">14</span> <span class="title">Interactive Elements, Authored</span></a><ul>
+<li><a href="section-interactive-authored.html#interactive-html5-canvas" data-scroll="interactive-html5-canvas" class="internal">HTML5 Canvas</a></li>
+<li><a href="section-interactive-authored.html#subsection-52" data-scroll="subsection-52" class="internal">D3.js</a></li>
+<li><a href="section-interactive-authored.html#subsection-53" data-scroll="subsection-53" class="internal">SVG</a></li>
+<li><a href="section-interactive-authored.html#subsection-54" data-scroll="subsection-54" class="internal">JSXGraph</a></li>
+<li><a href="section-interactive-authored.html#subsection-55" data-scroll="subsection-55" class="internal">JessieCode</a></li>
+<li><a href="section-interactive-authored.html#subsection-56" data-scroll="subsection-56" class="internal">Sage Interacts</a></li>
+<li><a href="section-interactive-authored.html#subsection-57" data-scroll="subsection-57" class="internal">Geogebra</a></li>
+<li><a href="section-interactive-authored.html#interactive-iframes" data-scroll="interactive-iframes" class="internal">IFrames</a></li>
+<li><a href="section-interactive-authored.html#interactive-threejs" data-scroll="interactive-threejs" class="internal">threejs</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-interactive-server.html" data-scroll="section-interactive-server" class="internal"><span class="codenumber">15</span> <span class="title">Interactive Elements, Server</span></a><ul>
+<li><a href="section-interactive-server.html#subsection-geogebra-server" data-scroll="subsection-geogebra-server" class="internal">GeoGebra</a></li>
+<li><a href="section-interactive-server.html#subsection-61" data-scroll="subsection-61" class="internal">Desmos Graphs</a></li>
+<li><a href="section-interactive-server.html#subsection-62" data-scroll="subsection-62" class="internal">CalcPlot3D</a></li>
+<li><a href="section-interactive-server.html#subsection-63" data-scroll="subsection-63" class="internal">Wolfram CDF</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-audio.html" data-scroll="section-audio" class="internal"><span class="codenumber">16</span> <span class="title">Audio</span></a></li>
+<li class="link">
+<a href="section-video.html" data-scroll="section-video" class="internal"><span class="codenumber">17</span> <span class="title">Video</span></a><ul>
+<li><a href="section-video.html#subsection-64" data-scroll="subsection-64" class="internal">Video Files</a></li>
+<li><a href="section-video.html#subsection-65" data-scroll="subsection-65" class="internal">YouTube</a></li>
+<li><a href="section-video.html#subsection-66" data-scroll="subsection-66" class="internal">Vimeo</a></li>
+<li><a href="section-video.html#subsection-67" data-scroll="subsection-67" class="internal">Captions and Subtitles</a></li>
+</ul>
+</li>
+<li class="link active"><a href="section-cross-referencing.html" data-scroll="section-cross-referencing" class="internal"><span class="codenumber">18</span> <span class="title">Cross-Referencing</span></a></li>
+<li class="link"><a href="section-internationalization.html" data-scroll="section-internationalization" class="internal"><span class="codenumber">19</span> <span class="title">Internationalization</span></a></li>
+<li class="link"><a href="section-20.html" data-scroll="section-20" class="internal"><span class="codenumber">20</span> <span class="title">Pre-Formatted Text</span></a></li>
+<li class="link"><a href="section-programs.html" data-scroll="section-programs" class="internal"><span class="codenumber">21</span> <span class="title">Program Listings</span></a></li>
+<li class="link"><a href="section-22.html" data-scroll="section-22" class="internal"><span class="codenumber">22</span> <span class="title">Units of Measure</span></a></li>
+<li class="link">
+<a href="section-side-by-side.html" data-scroll="section-side-by-side" class="internal"><span class="codenumber">23</span> <span class="title">Side-By-Side Panels</span></a><ul>
+<li><a href="section-side-by-side.html#subsection-68" data-scroll="subsection-68" class="internal">Figures with Numbers Side-By-Side</a></li>
+<li><a href="section-side-by-side.html#subsection-69" data-scroll="subsection-69" class="internal">Images</a></li>
+<li><a href="section-side-by-side.html#subsection-70" data-scroll="subsection-70" class="internal">Common Side-By-Side Constructions</a></li>
+<li><a href="section-side-by-side.html#subsection-71" data-scroll="subsection-71" class="internal">Vertical Alignment</a></li>
+<li><a href="section-side-by-side.html#subsection-72" data-scroll="subsection-72" class="internal">Text Next to Text and Images</a></li>
+<li><a href="section-side-by-side.html#subsection-73" data-scroll="subsection-73" class="internal">Image Formats, Side-by-Sides</a></li>
+<li><a href="section-side-by-side.html#subsection-74" data-scroll="subsection-74" class="internal">Tables Side-By-Side</a></li>
+<li><a href="section-side-by-side.html#subsection-75" data-scroll="subsection-75" class="internal">Tables Next to Figures</a></li>
+<li><a href="section-side-by-side.html#subsection-76" data-scroll="subsection-76" class="internal">Tables Next to Text</a></li>
+<li><a href="section-side-by-side.html#subsection-77" data-scroll="subsection-77" class="internal">Tabular Next to Each Other</a></li>
+<li><a href="section-side-by-side.html#subsection-78" data-scroll="subsection-78" class="internal">Lists in Side-by-Sides</a></li>
+<li><a href="section-side-by-side.html#stacking-side-by-side" data-scroll="stacking-side-by-side" class="internal">Stacking: Back to Vertical Flow</a></li>
+<li><a href="section-side-by-side.html#subsection-sbs-other-panels" data-scroll="subsection-sbs-other-panels" class="internal">Other Panels</a></li>
+<li><a href="section-side-by-side.html#subsection-81" data-scroll="subsection-81" class="internal">Poems as Side-By-Side Panels</a></li>
+<li><a href="section-side-by-side.html#subsection-sbsgroup" data-scroll="subsection-sbsgroup" class="internal">Side-By-Side Groups</a></li>
+<li><a href="section-side-by-side.html#subsection-83" data-scroll="subsection-83" class="internal">Testing a Side-By-Side First</a></li>
+<li><a href="section-side-by-side.html#subsection-84" data-scroll="subsection-84" class="internal">Testing Styling of Related Elements</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-24.html" data-scroll="section-24" class="internal"><span class="codenumber">24</span> <span class="title">Side-by-Side Gallery</span></a></li>
+<li class="link"><a href="poetry.html" data-scroll="poetry" class="internal"><span class="codenumber">25</span> <span class="title">Poetry</span></a></li>
+<li class="link">
+<a href="atomic-items.html" data-scroll="atomic-items" class="internal"><span class="codenumber">26</span> <span class="title">Atomic Objects</span></a><ul>
+<li><a href="atomic-items.html#atomic-image" data-scroll="atomic-image" class="internal"><code class="code-inline tex2jax_ignore">&lt;image&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-video" data-scroll="atomic-video" class="internal"><code class="code-inline tex2jax_ignore">&lt;video&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-program" data-scroll="atomic-program" class="internal"><code class="code-inline tex2jax_ignore">&lt;program&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;console&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-tabular" data-scroll="atomic-tabular" class="internal"><code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code></a></li>
+</ul>
+</li>
+<li class="link">
+<a href="advanced-numbering.html" data-scroll="advanced-numbering" class="internal"><span class="codenumber">27</span> <span class="title">Advanced Numbering</span></a><ul>
+<li><a href="advanced-numbering.html#subsection-89" data-scroll="subsection-89" class="internal">One</a></li>
+<li><a href="advanced-numbering.html#subsection-90" data-scroll="subsection-90" class="internal">Two</a></li>
+<li><a href="advanced-numbering.html#subsection-91" data-scroll="subsection-91" class="internal">Three</a></li>
+<li><a href="advanced-numbering.html#subsection-92" data-scroll="subsection-92" class="internal">Four</a></li>
+<li><a href="advanced-numbering.html#subsection-93" data-scroll="subsection-93" class="internal">Five</a></li>
+<li><a href="advanced-numbering.html#subsection-local-theorems" data-scroll="subsection-local-theorems" class="internal">Theorems in This Section</a></li>
+<li><a href="advanced-numbering.html#subsection-with-an-exercise" data-scroll="subsection-with-an-exercise" class="internal">A Title with ] a Right Bracket</a></li>
+<li><a href="advanced-numbering.html#subsection-96" data-scroll="subsection-96" class="internal">A Title with } a Right Brace</a></li>
+<li><a href="advanced-numbering.html#subsection-97" data-scroll="subsection-97" class="internal">A Title with <span class="process-math">\(a]b\)</span> a Math Right Bracket</a></li>
+<li><a href="advanced-numbering.html#subsection-98" data-scroll="subsection-98" class="internal">Just an Exercise</a></li>
+<li><a href="advanced-numbering.html#solutions-2" data-scroll="solutions-2" class="internal">Solutions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-28.html" data-scroll="section-28" class="internal"><span class="codenumber">28</span> <span class="title">Customizations</span></a><ul>
+<li><a href="section-28.html#rename-facility" data-scroll="rename-facility" class="internal">Renaming Document Parts, Plus This Is A Really Long Title So That We Can Test How Well It Reacts To The Right Margin And Wraps Around To Form A Couple Of Lines, Plus How It Sits Relative To The Number Of The Subsection</a></li>
+<li><a href="section-28.html#subsection-100" data-scroll="subsection-100" class="internal">Customizing Phrases</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-myopenmath.html" data-scroll="section-myopenmath" class="internal"><span class="codenumber">29</span> <span class="title">MyOpenMath Interactive Problems</span></a></li>
+<li class="link"><a href="ancillaries.html" data-scroll="ancillaries" class="internal"><span class="codenumber">30</span> <span class="title">Ancillaries</span></a></li>
+<li class="link">
+<a href="worksheets.html" data-scroll="worksheets" class="internal"><span class="codenumber">31</span> <span class="title">Worksheets</span></a><ul>
+<li><a href="worksheets.html#subsection-101" data-scroll="subsection-101" class="internal">About Worksheets</a></li>
+<li><a href="worksheets.html#worksheet-1" data-scroll="worksheet-1" class="internal">A Geometric Prelude</a></li>
+<li><a href="worksheets.html#worksheet-2" data-scroll="worksheet-2" class="internal">Networks Worksheet</a></li>
+<li><a href="worksheets.html#worksheet-3" data-scroll="worksheet-3" class="internal">Worksheet</a></li>
+<li><a href="worksheets.html#worksheet-4" data-scroll="worksheet-4" class="internal">Dot products and projection</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="exercises-single.html" data-scroll="exercises-single" class="internal"><span class="codenumber">32</span> <span class="title">Exercises, One Subsection</span></a><ul>
+<li><a href="exercises-single.html#exercise-collection" data-scroll="exercise-collection" class="internal">Exercise Collection</a></li>
+<li><a href="exercises-single.html#references-3" data-scroll="references-3" class="internal">More Reading</a></li>
+</ul>
+</li>
+<li class="link"><a href="exercises-7.html" data-scroll="exercises-7" class="internal"><span class="codenumber">33</span> <span class="title">Exercise Section, Structured</span></a></li>
+<li class="link">
+<a href="exercises-multiple.html" data-scroll="exercises-multiple" class="internal"><span class="codenumber">34</span> <span class="title">Exercises, Multiple Subsections</span></a><ul>
+<li><a href="exercises-multiple.html#subsection-102" data-scroll="subsection-102" class="internal">Faux Subsection</a></li>
+<li><a href="exercises-multiple.html#exercises-drill" data-scroll="exercises-drill" class="internal">Drill Exercises</a></li>
+<li><a href="exercises-multiple.html#exercises-9" data-scroll="exercises-9" class="internal">Challenging Exercises</a></li>
+<li><a href="exercises-multiple.html#exercises-10" data-scroll="exercises-10" class="internal">Impossible Exercises</a></li>
+<li><a href="exercises-multiple.html#references-4" data-scroll="references-4" class="internal">More Reading</a></li>
+</ul>
+</li>
+<li class="link"><a href="exercises.html" data-scroll="exercises" class="internal"><span class="codenumber">35</span> <span class="title">Exercises, Top-Level</span></a></li>
+<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter" class="internal"><span class="title">Reference</span></a></li>
+<li class="link"><a href="appendix-1.html" data-scroll="appendix-1" class="internal"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="solutions-backmatter.html" data-scroll="solutions-backmatter" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-4.html" data-scroll="solutions-4" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to a Single Exercises Division</span></a></li>
+<li class="link"><a href="solutions-5.html" data-scroll="solutions-5" class="internal"><span class="codenumber">D</span> <span class="title">All Solutions that are Answers</span></a></li>
+<li class="link"><a href="solutions-6.html" data-scroll="solutions-6" class="internal"><span class="codenumber">E</span> <span class="title">All Solutions that are Answers to Odd Exercises</span></a></li>
+<li class="link"><a href="appendix-results.html" data-scroll="appendix-results" class="internal"><span class="codenumber">F</span> <span class="title">List of Results</span></a></li>
+<li class="link"><a href="appendix-exercise-lists.html" data-scroll="appendix-exercise-lists" class="internal"><span class="codenumber">G</span> <span class="title">Lists of Exercises</span></a></li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4" class="internal"><span class="codenumber">H</span> <span class="title">A Structured Appendix</span></a><ul><li><a href="appendix-4.html#subsection-103" data-scroll="subsection-103" class="internal">A Subsection in an Appendix</a></li></ul>
+</li>
+<li class="link"><a href="appendix-5.html" data-scroll="appendix-5" class="internal"><span class="codenumber">I</span> <span class="title">Index</span></a></li>
+<li class="link">
+<a href="references.html" data-scroll="references" class="internal"><span class="codenumber">J</span> <span class="title">Multiple References</span></a><ul>
+<li><a href="references.html#subsection-104" data-scroll="subsection-104" class="internal">Multiple Specialized References</a></li>
+<li><a href="references.html#references-5" data-scroll="references-5" class="internal">General References</a></li>
+<li><a href="references.html#references-6" data-scroll="references-6" class="internal">Specialized References</a></li>
+</ul>
+</li>
+<li class="link"><a href="references-backmatter.html" data-scroll="references-backmatter" class="internal"><span class="title">References</span></a></li>
+<li class="link"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+<li class="link"><a href="colophon-1.html" data-scroll="colophon-1" class="internal"><span class="title">Colophon</span></a></li>
+</ul></nav><div class="extras"><nav><a class="feedback-link" href="not-implemented.html" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+</div></div>
+<main class="main"><div id="content" class="pretext-content">
+<section class="section" id="section-cross-referencing"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">18</span> <span class="title">Cross-Referencing</span>
+</h2>
+<p id="p-873">Cross-references are easy, since that is a key reason for having a highly structured document.  Here is a useful feature if you elect to use it.  Any <code class="code-inline tex2jax_ignore">&lt;xref&gt;</code> will “know” what it points to, so you can let it provide the “naming” part of the cross-reference text.  You can turn this on globally with the command-line parameter <code class="code-inline tex2jax_ignore">autoname</code> set to <code class="code-inline tex2jax_ignore">'yes'</code>.  If you do that, you will see most of the names in this document doubled, since the names are written into the source already in most places outside of this section.  Try it and see: use <code class="code-inline tex2jax_ignore">--stringparam autoname 'yes'</code> as an argument to <code class="code-inline tex2jax_ignore">xsltproc</code>.</p>
+<p id="p-874">Moreover, the names themselves will change with the use of the one language dependent file.  And another bonus is that with an autoname, you automatically get a <em class="emphasis">non-breaking</em> space between the name and the reference.  The autoname switch makes no sense for “provisional” cross-references, since there is no information about what they point to.</p>
+<p id="p-875">Here is a reference that has no indication of its type in the source:  <a href="" class="xref" data-knowl="./knowl/theorem-FTC.html" title="Theorem 2.1: The Fundamental Theorem of Calculus">2.1</a>.  So by default you will just see a number that you can click on.  If you use the <code class="code-inline tex2jax_ignore">text="type-global"</code> switch then you should see “Theorem” prepended.  Note that if you changed the theorem to a lemma, then that change would be reflected here automatically when autonaming is in effect.</p>
+<p id="p-876">If you set the autonaming behavior globally, or accept the default behavior, there will still be instances where you want to override that choice.  Simple: just say <code class="code-inline tex2jax_ignore">text="type-global"</code> or <code class="code-inline tex2jax_ignore">text="global"</code> as part of the <code class="code-inline tex2jax_ignore">xref</code>.  Each example below should look the same each time this article is processed, no matter how the global <code class="code-inline tex2jax_ignore">autoname</code> is set.</p>
+<ul class="disc">
+<li id="li-267"><p id="p-877">No name ever: <a href="" class="xref" data-knowl="./knowl/corollary-FTC-derivative.html" title="Corollary 4.1">4.1</a></p></li>
+<li id="li-268"><p id="p-878">Always named: <a href="" class="xref" data-knowl="./knowl/corollary-FTC-derivative.html" title="Corollary 4.1">Corollary 4.1</a></p></li>
+</ul>
+<p id="p-879">You might also wish to provide a prefix to a cross-reference and have it incorporated into the text of what you would click on in an electronic version.  So if you make an <code class="code-inline tex2jax_ignore">xref</code> with some content, then that content will prefix the cross-reference within the clickable/pokeable text and be attached with a non-breaking space.  This <code class="code-inline tex2jax_ignore">xref</code> content totally overrides any prefix that might happen otherwise.  So the name of an item (e.g. “corollary”) could be replaced, and if you make a cross-reference with custom text, that will be the clickable also.  An example:</p>
+<ul class="disc">
+<li id="li-269"><p id="p-880">A grand result: <a href="" class="xref" data-knowl="./knowl/corollary-FTC-derivative.html" title="Corollary 4.1">Major Corollary 4.1</a></p></li>
+<li id="li-270"><p id="p-881">A grand result: <a href="" class="xref" data-knowl="./knowl/corollary-FTC-derivative.html" title="Corollary 4.1">a nice corollary</a></p></li>
+</ul>
+<p id="p-882">Suppose you want to reference two theorems, so you might want to say something like “Theorems 4.6 and 5.2.”  With global autonaming on, you can override the first <code class="code-inline tex2jax_ignore">Theorem</code> by providing the content <code class="code-inline tex2jax_ignore">Theorems</code> on the first <code class="code-inline tex2jax_ignore">xref</code> and <code class="code-inline tex2jax_ignore">text="global"</code> on the second <code class="code-inline tex2jax_ignore">xref</code>.  (With global autonaming off, you will also get what you want/expect.)   Here is the test, which should look correct no matter what the global switch is:  <a href="section-cross-referencing.html" class="internal" title="Section 18: Cross-Referencing">Sections 18</a> and <a href="section-internationalization.html" class="internal" title="Section 19: Internationalization">19</a>.  (But notice that it is up to you to be certain the types of these targets do not change without you changing the content of the first <code class="code-inline tex2jax_ignore">xref</code>.  The “author-tools” mode and careful choices of <code class="code-inline tex2jax_ignore">xml:id</code> strings can help avoid this trap.)</p>
+<p id="p-883">If you set the value of <code class="code-inline tex2jax_ignore">@text</code> to <code class="code-inline tex2jax_ignore">title</code>, then the title you assigned to the theorem will be used as the link for a cross-reference.  Here is a the final example, which refers to a fundamental theorem by name <a href="" class="xref" data-knowl="./knowl/theorem-FTC.html" title="Theorem 2.1: The Fundamental Theorem of Calculus">The Fundamental Theorem of Calculus</a>.</p>
+<p id="p-884">Cross-references to exercises with hard-coded numbers should respect the supplied number.  Exercise <a href="" class="xref" data-knowl="./knowl/exercise-with-hardcoded-number.html" title="Exercise 35.42a: An Exercise with a Hard-Coded Problem Number">35.42a</a> should reference problem 42a.</p>
+<p id="p-885">Here we form a list to test pointing at various structures.  Each of the following should open a knowl in the HTML version, otherwise it will be a traditional hyperlink (if possible).  Note that if a knowl opens, there will always be an “in-context” link which will take you to the actual location, should you have  wished instead to just go there.</p>
+<ul class="disc">
+<li id="li-271"><p id="p-886">Footnotes: Fermat allusion at <a href="" class="xref" data-knowl="./knowl/footnote-fermat.html" title="Footnote 2.1">2.1</a>.</p></li>
+<li id="li-272"><p id="p-887">Citations: Judson's AATA with annotation at <a href="" class="xref" data-knowl="./knowl/biblio-judson-AATA.html" title="Bibliographic Entry 1: Abstract Algebra: Theory and Applications">[1]</a></p></li>
+<li id="li-273"><p id="p-888">Citations: Judson's AATA with autoname that should have zero effect <a href="" class="xref" data-knowl="./knowl/biblio-judson-AATA.html" title="Bibliographic Entry 1: Abstract Algebra: Theory and Applications">[1]</a></p></li>
+<li id="li-274"><p id="p-889">Citations: In a <code class="code-inline tex2jax_ignore">&lt;references&gt;</code> division inside an appendix <a href="" class="xref" data-knowl="./knowl/biblio-strang-article-uno.html" title="Bibliographic Entry J.2.1: The Fundamental Theorem of Linear Algebra">[J.2.1]</a></p></li>
+<li id="li-275"><p id="p-890">Note: just the annotation of previous citation at <a href="" class="xref" data-knowl="./knowl/note-judson-AATA.html" title="Note 1.1">1.1</a></p></li>
+<li id="li-276"><p id="p-891">Examples: Mystery derivative at <a href="" class="xref" data-knowl="./knowl/example-mysterious.html" title="Example 4.2: A Mysterious Derivative!">4.2</a>, or a question at <a href="" class="xref" data-knowl="./knowl/sample-question.html" title="Question 4.6: An Example of a Question">4.6</a>.</p></li>
+<li id="li-277"><p id="p-892">Definition-like: A mathematical statement with no proof <a href="" class="xref" data-knowl="./knowl/principle-principle.html" title="Principle 4.13: The Title Principle">4.13</a>.</p></li>
+<li id="li-278"><p id="p-893">A numbered Note: <a href="" class="xref" data-knowl="./knowl/note-remark.html" title="Note 4.9: A Note on Remarks">4.9</a></p></li>
+<li id="li-279"><p id="p-894">A link to a <code class="code-inline tex2jax_ignore">proposition</code> element, while this document has globally renamed <code class="code-inline tex2jax_ignore">proposition</code>s as “Conundrum”s, so this link should use the new name: <a href="" class="xref" data-knowl="./knowl/proposition-as-conundrum.html" title="Conundrum 28.1">Conundrum 28.1</a></p></li>
+<li id="li-280"><p id="p-895">Theorems: Fundamental Theorem of Calculus, with proof at <a href="" class="xref" data-knowl="./knowl/theorem-FTC.html" title="Theorem 2.1: The Fundamental Theorem of Calculus">2.1</a></p></li>
+<li id="li-281"><p id="p-896">Proof: of second version of FTC at <a href="" class="xref" data-knowl="./knowl/proof-FTC-corollary.html" title="Proof 4.1.1">4.1.1</a></p></li>
+<li id="li-282"><p id="p-897">Figures: A plot with a derivative at <a href="" class="xref" data-knowl="./knowl/figure-function-derivative.html" title="Figure 5.2">5.2</a>.</p></li>
+<li id="li-283"><p id="p-898">A Figure within a side-by-side panel, with its own number: <a href="" class="xref" data-knowl="./knowl/another-regular-figure.html" title="Figure 23.5">23.5</a></p></li>
+<li id="li-284"><p id="p-899">A Table within a side-by-side panel, with a subnumber: <a href="" class="xref" data-knowl="./knowl/table-sidebyside-subtable.html" title="Table 23.14.(a): width=50%">23.14.(a)</a></p></li>
+<li id="li-285"><p id="p-900">A Figure, containing a side-by-side with two sub-captioned images: <a href="" class="xref" data-knowl="./knowl/fig-sidebyside-global.html" title="Figure 23.1">23.1</a></p></li>
+<li id="li-286"><p id="p-901">Display Mathematics: single, first with no name: <a href="" class="xref" data-knowl="./knowl/equation-alternate-FTC.html" title="Equation 4.1">(4.1)</a>.  Then with an autoname: <a href="" class="xref" data-knowl="./knowl/equation-alternate-FTC.html" title="Equation 4.1">(4.1)</a>.</p></li>
+<li id="li-287"><p id="p-902">Display Mathematics: multi-row, first with no name: <a href="" class="xref" data-knowl="./knowl/equation-use-FTC.html" title="Equation 4.2">(4.2)</a>.  Then with an autoname: <a href="" class="xref" data-knowl="./knowl/equation-use-FTC.html" title="Equation 4.2">(4.2)</a>.  And two, with a plural form: <a href="" class="xref" data-knowl="./knowl/equation-alternate-FTC.html" title="Equation 4.1">Equations (4.1)</a> and <a href="" class="xref" data-knowl="./knowl/equation-use-FTC.html" title="Equation 4.2">(4.2)</a>.</p></li>
+<li id="li-288"><p id="p-903">You can cross-reference <a href="" class="xref" data-knowl="./knowl/equation-use-FTC.html" title="Equation 4.2">The Fundamental Theorem of Calculus</a> via custom text of your choice.</p></li>
+<li id="li-289"><p id="p-904">Display mathematics: an equation with  “local” tag, which should not be used so very far away: <a href="" class="xref" data-knowl="./knowl/equation-local-star.html" title="Equation">(✶✶)</a>.</p></li>
+<li id="li-290"><p id="p-905">You can author a cross-reference to a displayed equation with no number, but it will not be very satisfying.  You should get a warning if you try.</p></li>
+<li id="li-291"><p id="p-906">Exercises (divisional), a range, with plural form provided to override autonaming: <a href="" class="xref" data-knowl="./knowl/exercises-null-problem.html" title="Exercise 11.2.1">Exercises 11.2.1–11.2.3</a>.</p></li>
+<li id="li-292"><p id="p-907">Exercise (inline): with enclosed hint at <a href="" class="xref" data-knowl="./knowl/exercise-essay.html" title="Checkpoint 4.4: Essay Question: Compare and Contrast">4.4</a></p></li>
+<li id="li-293"><p id="p-908">A group of two exercises, with introduction, conclusion: <a href="" class="xref" data-knowl="./knowl/exercisegroup-two-problems.html" title="Exercise Group 11.2.2–3: Two Derivative Problems">Exercise Group 11.2.2–3</a></p></li>
+<li id="li-294"><p id="p-909">Solution: An autonamed portion of an exercise: <a href="" class="xref" data-knowl="./knowl/solution-antiderivative.html" title="Solution 35.42a.1">Solution 35.42a.1</a></p></li>
+<li id="li-295"><p id="p-910">Parts of a complicated exercise: <a href="" class="xref" data-knowl="./knowl/exercise-complicated-second-hint.html" title="Hint 35.12.2: Motivator">Hint 35.12.2</a> <a href="" class="xref" data-knowl="./knowl/exercise-complicated-first-answer.html" title="Answer 35.12.1: Helpful">Answer 35.12.1</a></p></li>
+<li id="li-296"><p id="p-911">A subsidary part of an exercise: <a href="" class="xref" data-knowl="./knowl/exercise-one-two-one.html" title="Item 12.8.1.b.i">12.8.1.b.i</a></p></li>
+<li id="li-297"><p id="p-912"> Three cross-references to individual exercises, but due to their location, they should have different “type names” in the cross-reference: in an <code class="code-inline tex2jax_ignore">&lt;exercises&gt;</code> division, <a href="" class="xref" data-knowl="./knowl/duplicate-divisional.html" title="Exercise 32.2: Drill Two">Exercise 32.2</a>; in the narrative, <a href="" class="xref" data-knowl="./knowl/exercise-essay.html" title="Checkpoint 4.4: Essay Question: Compare and Contrast">Checkpoint 4.4</a>; and in a <code class="code-inline tex2jax_ignore">&lt;worksheet&gt;</code>, <a href="" class="xref" data-knowl="./knowl/exercise-vector-addition.html" title="Worksheet Exercise 31.2.2">Worksheet Exercise 31.2.2</a>.</p></li>
+<li id="li-298"><p id="p-913">An item buried in nested ordered lists: <a href="" class="xref" data-knowl="./knowl/list-two-two-two-three.html" title="Item 2.b.ii.C: Title on xref'ed list item">Item 2.b.ii.C</a></p></li>
+<li id="li-299"><p id="p-914">List item as knowls in HTML, including nested lists: <a href="" class="xref" data-knowl="./knowl/list-two.html" title="Item 2">2</a>, <a href="" class="xref" data-knowl="./knowl/list-two-two-two.html" title="Item 2.b.ii">Item 2.b.ii</a></p></li>
+<li id="li-300"><p id="p-915">A titled list: <a href="" class="xref" data-knowl="./knowl/list-colors-rainbow.html" title="List 12.3: Colors of the Rainbow">12.3</a></p></li>
+<li id="li-301"><p id="p-916">List item inside a named list, second color in rainbow list: <a href="" class="xref" data-knowl="./knowl/rainbow-orange.html" title="Item 12.3:2">Item 12.3:2</a></p></li>
+<li id="li-302"><p id="p-917">Second color in rainbow list, but now as a local reference: <a href="" class="xref" data-knowl="./knowl/rainbow-orange.html" title="Item 12.3:2">Item 2</a></p></li>
+<li id="li-303"><p id="p-918">An item in ordered list, but contained in an unordered list, hence without a number, so a cross-reference by number would be ambiguous.  So we use a cross-reference which relies on custom text: <a href="" class="xref" data-knowl="./knowl/target-no-number.html" title="Item">No Number List Item</a></p></li>
+<li id="li-304"><p id="p-919">Several examples of hybrid cross-references to list items within a named list can be found in, and adjacent to, <a href="" class="xref" data-knowl="./knowl/list-to-reference.html" title="List 12.4: A named list of targets">List 12.4</a>.</p></li>
+<li id="li-305"><p id="p-920">An assemblage, which never has a number.  A cross-reference now requires content in the <code class="code-inline tex2jax_ignore">xref</code> element, with <code class="code-inline tex2jax_ignore">text='custom'</code>: <a href="" class="xref" data-knowl="./knowl/assemblage-basics.html" title="Assemblage: Assemblages: Collections and Summaries">text to xref an assemblage</a></p></li>
+<li id="li-306"><p id="p-921">A cross-reference to a list item in a description list, which has a title, but never a number: <a href="" class="xref" data-knowl="./knowl/cpu-definition.html" title="Item: Central Processing Unit (CPU)">Central Processing Unit (CPU)</a>.  Note that you need to include the attribute <code class="code-inline tex2jax_ignore">text="title"</code> even if that is obvious from the situation.  This requirement may be relaxed in a future refactoring of the cross-reference system.</p></li>
+<li id="li-307"><p id="p-922">A very similar cross-reference to the previous one, but testing how final punctuation of titles is handled: <a href="" class="xref" data-knowl="./knowl/bus-definition.html" title="Item: Bus!">Bus!</a>.</p></li>
+<li id="li-308"><p id="p-923">A cross-reference to a “paragraphs” subdivision, which never has a number (so comments above about description list items and titles applies here too): <a href="" class="xref" data-knowl="./knowl/hierarchy-structure.html" title="Paragraphs: Structure">Structure</a></p></li>
+<li id="li-309"><p id="p-924">A case within the proof of <a href="" class="xref" data-knowl="./knowl/claim-with-cases.html" title="Claim 4.3: An Equivalent Claim">Claim 4.3</a>: <a href="" class="xref" data-knowl="./knowl/inductive-step.html" title="Case: Case 3b: The inductive step">Case 3b: The inductive step</a></p></li>
+<li id="li-310"><p id="p-925">A cross-reference to a description list item with a title containing math: <a href="" class="xref" data-knowl="./knowl/description-list-math-title.html" title="Item: Math x^2">Math \(x^2\)</a></p></li>
+<li id="li-311"><p id="p-926">A cross-reference to an aside, by title necessarily: <a href="" class="xref" data-knowl="./knowl/an-aside.html" title="Aside: An Aside">An Aside</a></p></li>
+<li id="li-312"><p id="p-927">A cross-reference to an <code class="code-inline tex2jax_ignore">objectives</code> block, with an autoname.  This demonstrates the number of the Objectives here, which is not shown in the original version since it is implicit: <a href="" class="xref" data-knowl="./knowl/objectives-structures.html" title="Objectives 4: Fundamental Structures">Objectives 4</a></p></li>
+<li id="li-313"><p id="p-928">A cross-reference to an individual objective.  This is authored as a list item, but displayed as an objective (singular) via an autoname: <a href="" class="xref" data-knowl="./knowl/objective-structure.html" title="Objective 4.1">Objective 4.1</a></p></li>
+<li id="li-314"><p id="p-929">A cross-reference to the top-level element (e.g.<code class="code-inline tex2jax_ignore">book</code>) will point to a summary page similar to a Table of Contents in HTML.  For LaTeX output it will behave similarly, unless there is no Table of Contents, then it will go to the main title page:  <a href="derivatives.html" class="internal" title="Article: Derivatives and Integrals">ToC or Title</a></p></li>
+<li id="li-315"><p id="p-930">“Cross-references inside quotations previously lost track of their target, so this tests correcting that, not so much the cross-reference itself: <a href="" class="xref" data-knowl="./knowl/theorem-FTC.html" title="Theorem 2.1: The Fundamental Theorem of Calculus">Theorem 2.1</a>”</p></li>
+<li id="li-316"><p id="p-931">An activity with full details following: <a href="" class="xref" data-knowl="./knowl/activity-with-hint-answer-solution.html" title="Activity 4.3: Hints, Answers, Solutions">4.3</a></p></li>
+<li id="li-317"><p id="p-932">An interactive program inside a program listing, to test if the Javascript will execute properly within a knowl: <a href="" class="xref" data-knowl="./knowl/program-interactive.html" title="Listing 21.8">21.8</a></p></li>
+<li id="li-318"><p id="p-933">A <code class="code-inline tex2jax_ignore">type-global</code> cross-reference to a second-level <code class="code-inline tex2jax_ignore">task</code> within a project: <a href="" class="xref" data-knowl="./knowl/project-task-level-two.html" title="Task 4.4.c.iii">Task 4.4.c.iii</a>, the encompassing <code class="code-inline tex2jax_ignore">project</code>: <a href="" class="xref" data-knowl="./knowl/project-structured.html" title="Project 4.4: A very structured project">4.4</a>, and a <code class="code-inline tex2jax_ignore">local</code> reference <a href="" class="xref" data-knowl="./knowl/project-task-level-two.html" title="Task 4.4.c.iii">c.iii</a>.</p></li>
+<li id="li-319"><p id="p-934">A subcaptioned named list: <a href="" class="xref" data-knowl="./knowl/color-list-as-panel.html" title="List 23.23.(b): Color Shades">23.23.(b)</a></p></li>
+<li id="li-320"><p id="p-935">This opens a knowl for an <code class="code-inline tex2jax_ignore">example</code>.  It has a solution, which is orginally presented as a hidden knowl.  But since this version is a duplicate, the knowl for the solution is a file version, not an embedded version, and hence free from duplicating any unique identifaction like an <abbr class="initialism">HTML</abbr> id.  So we test its styling and function here: <a href="" class="xref" data-knowl="./knowl/example-structured.html" title="Example 4.5: An Example of Structure">Example 4.5</a></p></li>
+<li id="li-321"><p id="p-936">A cross-reference to a poem, where we need to use a title for the link text, since a <code class="code-inline tex2jax_ignore">poem</code> is not numbered: <a href="" class="xref" data-knowl="./knowl/poem-light-brigade.html" title="Poem: The Charge of the Light Brigade">The Charge of the Light Brigade</a></p></li>
+<li id="li-322"><p id="p-937">A cross-reference to a <code class="code-inline tex2jax_ignore">&lt;references&gt;</code> division in a subsection, which should not be numbered where born, but which has the number of its parent division in a cross-reference: <a href="section-11.html#references-section" class="internal" title="References 11.4: References">References 11.4</a>.  And a cross-reference to a <code class="code-inline tex2jax_ignore">&lt;references&gt;</code> division, which is the “main” bibliography in the back matter, and so is not numbered where born, nor in a cross-reference (which we must accomplish via it's title): <a href="references-backmatter.html" class="internal" title="References: References">References</a>.</p></li>
+<li id="li-323"><p id="p-938">A cross-reference to a <code class="code-inline tex2jax_ignore">&lt;solutions&gt;</code> division in a subsection, which should not be numbered where born, but which has the number of its parent division in a cross-reference: <a href="interesting-corollary.html#solutions-subsection" class="internal" title="Solutions 4.2.7: Solutions for This Subsection">Solutions 4.2.7</a>.  And a cross-reference to a <code class="code-inline tex2jax_ignore">&lt;solutions&gt;</code> division, which should appear as an appendix both where born and as a cross-reference: <a href="solutions-backmatter.html" class="internal" title="Appendix B: Solutions to Selected Exercises">Appendix B</a>.</p></li>
+<li id="li-324"><p id="p-939">A cross-reference to an <code class="code-inline tex2jax_ignore">&lt;exercises&gt;</code> division in a subsection, which is the only such division in that subsection and therefore should not be numbered where born, but which has the number of its parent division in a cross-reference: <a href="interesting-corollary.html#exercises-subsection-solo" class="internal" title="Exercises 4.2.4">Exercises 4.2.4</a>.  In contrast we cross-reference an <code class="code-inline tex2jax_ignore">&lt;exercises&gt;</code> division which is one of two inside a section, and therefore is numbered, when born and when cross-referenced, in continuity with the preceding subsections: <a href="section-11.html#exercises-section-multiple" class="internal" title="Exercises 11.3: More Exercises">Exercises 11.3</a>.  Also an <code class="code-inline tex2jax_ignore">&lt;exercise&gt;</code> within an <code class="code-inline tex2jax_ignore">&lt;exercises&gt;</code> which should have a cross-reference employing the number of the containing (unstructured) <code class="code-inline tex2jax_ignore">&lt;section&gt;</code>: <a href="" class="xref" data-knowl="./knowl/duplicate-divisional.html" title="Exercise 32.2: Drill Two">Exercise 32.2</a> which is in <a href="exercises-single.html#exercise-collection" class="internal" title="Exercises 32: Exercise Collection">Exercises 32</a> which is in the (unstructured) <a href="exercises-single.html" class="internal" title="Section 32: Exercises, One Subsection">Section 32</a>.</p></li>
+<li id="li-325"><p id="p-940">A custom cross-reference: <a href="" class="xref" data-knowl="./knowl/corollary-FTC-derivative.html" title="Corollary 4.1">Custom</a></p></li>
+</ul>
+<p id="p-941">Cross-references to structural elements of the document will always take you there directly, since even in the HTML version these parts never get realized as knowls.  You will find such links sprinkled through this document, but here is an autonamed link to a subsubsection:  <a href="interesting-corollary.html#subsubsection-different-integrals" class="internal" title="Subsubsection 4.2.1: Symbolic and Numerical Integrals">Subsubsection 4.2.1</a>.</p>
+<p id="p-942">Cross-references can be built into display mathematics, but they can only point to one item (i.e. a comma-delimited list of targets is not supported).  Examples below should test the distinction in HTML output between a link that opens a knowl and a link that jumps to a larger chunk of content.  Notice that display mathematics is entirely <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> syntax, no matter which output format you create.  So if you do not use the <code class="code-inline tex2jax_ignore">autoname</code> facility, you need to wrap non-math text in <code class="code-inline tex2jax_ignore">\text{}</code> and perhaps use a tilde (<code class="code-inline tex2jax_ignore">~</code>) as a non-breaking space (examine the source of this article).</p>
+<div class="displaymath process-math" id="p-943">
+\begin{align*}
+x^2 + y^2 &amp;= z^2&amp;&amp;\knowl{./knowl/theorem-FTC.html}{\text{Theorem 2.1}}\\
+a^2 + b^2 &amp;= c^2&amp;&amp;\text{Section}~\href{section-fundamental-theorem.html}{\text{2}}
+\end{align*}
+</div>
+<p id="p-944">Variations on the above include multiple <code class="code-inline tex2jax_ignore">xml:id</code> as the value of a single <code class="code-inline tex2jax_ignore">ref</code> attribute on an <code class="code-inline tex2jax_ignore">xref</code>, in the form of a comma-separated list.  In this case, only the numbers are links/knowls and the autonaming attribute is based on the type of the first <code class="code-inline tex2jax_ignore">ref</code>.  Wrapping with brackets (citations) or parentheses (equations) is also controlled by the type of the first <code class="code-inline tex2jax_ignore">ref</code>.  And the <code class="code-inline tex2jax_ignore">detail</code> attribute for a bibliographic reference is silently ignored.  So you can do silly things like have a reference to a theorem within a list of equation numbers and there will be no error message.  Handle with care.  Spaces after commas in the list will migrate to the output as spaces, so if you don't have any, you won't get any.</p>
+<ul class="disc">
+<li id="li-326"><p id="p-945">Four theorems, with spaces, autonamed: <a href="" class="xref" data-knowl="./knowl/theorem-FTC.html" title="Theorem 2.1: The Fundamental Theorem of Calculus">Theorem 2.1</a>, <a href="" class="xref" data-knowl="./knowl/theorem-number-01.html" title="Theorem 27.1: First Theorem">Theorem 27.1</a>, <a href="" class="xref" data-knowl="./knowl/theorem-number-02.html" title="Theorem 27.2: Second Theorem">Theorem 27.2</a>, <a href="" class="xref" data-knowl="./knowl/theorem-number-03.html" title="Theorem 27.3: First Theorem!">Theorem 27.3</a></p></li>
+<li id="li-327"><p id="p-946">Two equations, no spaces, autonamed: <a href="" class="xref" data-knowl="./knowl/equation-alternate-FTC.html" title="Equation 4.1">(4.1)</a>, <a href="" class="xref" data-knowl="./knowl/equation-use-FTC.html" title="Equation 4.2">(4.2)</a></p></li>
+<li id="li-328"><p id="p-947">Two bibliographic items, no autoname: [<a href="" class="xref" data-knowl="./knowl/biblio-judson-AATA.html" title="Bibliographic Entry 1: Abstract Algebra: Theory and Applications">1</a>, <a href="" class="xref" data-knowl="./knowl/biblio-lay-article.html" title="Bibliographic Entry 2: Subspaces and Echelon Forms">2</a>]</p></li>
+</ul>
+<p id="p-948">If you have a long list of items (such as homework exercises, not in an <code class="code-inline tex2jax_ignore">exercisegroup</code>, or perhaps several chapters), you can get a cross-reference that prints as a range by using <code class="code-inline tex2jax_ignore">xref</code> with two attributes <code class="code-inline tex2jax_ignore">first</code> and <code class="code-inline tex2jax_ignore">last</code>, which may contain a single <code class="code-inline tex2jax_ignore">xml:id</code> each.  As with multiple references, <code class="code-inline tex2jax_ignore">first</code> will control autonaming and other features.</p>
+<ul class="disc">
+<li id="li-329"><p id="p-949">A range of exercises, autonamed (this range appears “out-of-order” since the two <code class="code-inline tex2jax_ignore">exercise</code> are numbered under two different schemes): <a href="" class="xref" data-knowl="./knowl/exercise-essay.html" title="Checkpoint 4.4: Essay Question: Compare and Contrast">Checkpoint 4.4–4.2.4.1</a></p></li>
+<li id="li-330"><p id="p-950">A range of equations: <a href="" class="xref" data-knowl="./knowl/equation-use-FTC.html" title="Equation 4.2">(4.2)–(4.3)</a></p></li>
+<li id="li-331"><p id="p-951">A system of equations, given as range from first to last: <a href="" class="xref" data-knowl="./knowl/equation-system-begin.html" title="Equation 7.1">(7.1)–(7.2)</a></p></li>
+<li id="li-332"><p id="p-952">A range of sections, hand-named to be plural: Sections <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">3–18</a></p></li>
+<li id="li-333"><p id="p-953">A range of bibliographic items: <a href="" class="xref" data-knowl="./knowl/biblio-judson-AATA.html" title="Bibliographic Entry 1: Abstract Algebra: Theory and Applications">[1–2]</a></p></li>
+</ul>
+<p id="p-954">The <code class="code-inline tex2jax_ignore">url</code> element may be used to link to a data file, either externally, or internally, if you want to make such an object available to a reader.  A good example use case is a spreadsheet that might be part of an exercise, or contain data relevant to some discussion.  First let us suppose the data resides somewhere on the Internet, then just use the complete address.  Here is one from Microsoft: <a class="external" href="http://go.microsoft.com/fwlink/?LinkID=521962" target="_blank">Sample Excel Spreadsheet</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-68" id="fn-68"><sup> 1 </sup></a>.</p>
+<p id="p-955">For a link like the previous one, you might want to provide advice appropriate for your audience about using a context menu to download a file, or how to configure helper/viewer applications.</p>
+<p id="p-956">You can also provide a file yourself, but now it is your obligation to distribute the file with your document (<abbr class="initialism">HTML</abbr>, <abbr class="initialism">PDF</abbr>, etc.) and provide a relative link.  This creates some complications, such as making sure an electronic PDF has the associated file in the same place relative to the PDF file.  Of course, if you make a print PDF, this becomes impossible.  Here is a test example anyway, which is highly likely to be broken in a PDF (including at the PreTeXt project site) unless you build this example on your own computer, locally.  Here is a template from the Apache OpenOffice project, provided via the Public Documentation License (PDL):  <a class="external" href="external/data/runningstatisticstemplate.ots" target="_blank">Running Statistics Template</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-69" id="fn-69"><sup> 2 </sup></a>.</p></section><div class="hidden-content tex2jax_ignore" id="hk-fn-68"><div class="fn"><code class="code-inline tex2jax_ignore">hgo.microsoft.com/fwlink/?LinkID=521962</code></div></div>
+<div class="hidden-content tex2jax_ignore" id="hk-fn-69"><div class="fn"><code class="code-inline tex2jax_ignore">external/data/runningstatisticstemplate.ots</code></div></div>
+</div></main>
+</div>
+<script>createAllVisualizersFromHtmlAttrs();</script><script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

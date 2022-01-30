@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-01-23T20:55:47-05:00       *-->
+<!--*       on 2022-01-30T15:46:15-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -9,11 +9,14 @@
 <!--*                                          *-->
 <!--********************************************-->
 <html lang="en-US">
-<head>
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>AATA Index</title>
+<title>SA Index</title>
 <meta name="Keywords" content="Authored in PreTeXt">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="article">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
 <script src="https://sagecell.sagemath.org/embedded_sagecell.js"></script><script>window.MathJax = {
   tex: {
     inlineMath: [['\\(','\\)']],
@@ -21,7 +24,7 @@
     useLabelIds: true,
     tagSide: "right",
     tagIndent: ".8em",
-    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl', 'sfrac']}
   },
   options: {
     ignoreHtmlClass: "tex2jax_ignore|ignore-math",
@@ -48,316 +51,706 @@
     load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
     paths: {pretext: "https://pretextbook.org/js/lib"},
   },
+/* support for the sfrac command in MathJax (Beveled fraction) */
+  startup: {
+    ready() {
+      //
+      // Creating a simple "sfrac" package on-the-fly
+      //
+      const Configuration = MathJax._.input.tex.Configuration.Configuration;
+      const CommandMap = MathJax._.input.tex.SymbolMap.CommandMap;
+      
+      new CommandMap('sfrac', {
+        sfrac: 'SFrac'
+        }, {
+        SFrac(parser, name) {
+        const num = parser.ParseArg(name);
+        const den = parser.ParseArg(name);
+        const frac = parser.create('node', 'mfrac', [num, den], {bevelled: true});
+        parser.Push(frac);
+        }
+      });
+      //
+      // Create the package for the overridden macros
+      //
+      Configuration.create('sfrac', {
+        handler: {macro: ['sfrac']}
+      });
+      
+    MathJax.startup.defaultReady();
+    }
+  },
 };
-</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="./static/js/bundle.js"></script><script xmlns:svg="http://www.w3.org/2000/svg" defer src="./static/js/main.js"></script><link xmlns:svg="http://www.w3.org/2000/svg" href="./static/css/main.css" rel="stylesheet">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
-<link xmlns:svg="http://www.w3.org/2000/svg" href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
-<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link xmlns:svg="http://www.w3.org/2000/svg" href="developer.css" rel="stylesheet" type="text/css">
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://unpkg.com/prismjs@v1.22.0/themes/prism.css" rel="stylesheet">
+<script defer src="./static/js/bundle.js"></script><script defer src="./static/js/main.js"></script><link href="./static/css/main.css" rel="stylesheet">
+<script src="https://pretextbook.org/js/lib/knowl.js"></script><!--knowl.js code controls Sage Cells within knowls--><script>sagecellEvalName='Evaluate (Sage)';
+</script><link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400italic,600,600italic" rel="stylesheet" type="text/css">
+<link href="https://fonts.googleapis.com/css?family=Inconsolata:400,700&amp;subset=latin,latin-ext" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/banner_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/toc_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/colors_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.4/setcolors.css" rel="stylesheet" type="text/css">
+<!-- 2019-10-12: Temporary - CSS file for experiments with styling --><link href="developer.css" rel="stylesheet" type="text/css">
+<script src="http://pythontutor.com/build/pytutor-embed.bundle.js?cc25af72af"></script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
 </head>
-<body class="pretext-book ignore-math has-toc has-sidebar-left">
-<a class="assistive" href="#content">Skip to main content</a><div xmlns:svg="http://www.w3.org/2000/svg" id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
-\newcommand{\notdivide}{{\not{\mid}}}
-\newcommand{\notsubset}{\not\subset}
-\newcommand{\lcm}{\operatorname{lcm}}
-\newcommand{\gf}{\operatorname{GF}}
-\newcommand{\inn}{\operatorname{Inn}}
-\newcommand{\aut}{\operatorname{Aut}}
-\newcommand{\Hom}{\operatorname{Hom}}
-\newcommand{\cis}{\operatorname{cis}}
-\newcommand{\chr}{\operatorname{char}}
-\newcommand{\Null}{\operatorname{Null}}
+<body id="pretext-SA" class="pretext-article ignore-math has-toc has-sidebar-left">
+<a class="assistive" href="#content">Skip to main content</a><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{cancel}\newcommand{\definiteintegral}[4]{\int_{#1}^{#2}\,#3\,d#4} 
+\newcommand{\myequation}[2]{#1\amp =#2} 
+\newcommand{\indefiniteintegral}[2]{\int#1\,d#2}
+\newcommand{\testingescapedpercent}{ \% } 
 \newcommand{\lt}{&lt;}
 \newcommand{\gt}{&gt;}
 \newcommand{\amp}{&amp;}
 \)</span></div>
 <header id="masthead" class="smallbuttons"><div class="banner"><div class="container">
-<a id="logo-link" href="http://abstract.pugetsound.edu" target="_blank"><img src="images/cover_aata_2014.png" alt="Logo image"></a><div class="title-container">
-<h1 class="heading"><a href="sample-book.html"><span class="title">Abstract Algebra:</span> <span class="subtitle">PRETEXT XML SAMPLE ONLY</span></a></h1>
-<p class="byline">Thomas W. Judson, Isaac Newton (Editor)</p>
+<a id="logo-link" href="https://pretextbook.org" target="_blank"><img src="misc/book-cover-google-art-project.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="derivatives.html"><span class="title">Derivatives and Integrals:</span> <span class="subtitle">An Annotated Discourse</span></a></h1>
+<p class="byline">Robert Beezer</p>
 </div>
 </div></div>
-<nav xmlns:svg="http://www.w3.org/2000/svg" id="primary-navbar" class="navbar"><div class="container">
+<nav id="primary-navbar" class="navbar"><div class="container">
 <div class="navbar-top-buttons">
 <button class="sidebar-left-toggle-button button active" aria-label="Show or hide table of contents sidebar">Contents</button><div class="tree-nav toolbar toolbar-divisor-3">
-<span class="mininav">Jump to:</span><span class="indexnav"><a href="#indexletter-a">A </a><a href="#indexletter-b">B </a><a href="#indexletter-c">C </a><a href="#indexletter-d">D </a><a href="#indexletter-e">E </a><a href="#indexletter-f">F </a><a href="#indexletter-g">G </a><a href="#indexletter-h">H </a><a href="#indexletter-i">I </a><a href="#indexletter-j">J </a><a href="#indexletter-k">K </a><a href="#indexletter-l">L </a><a href="#indexletter-m">M </a><br><a href="#indexletter-n">N </a><a href="#indexletter-o">O </a><a href="#indexletter-p">P </a><a href="#indexletter-q">Q </a><a href="#indexletter-r">R </a><a href="#indexletter-s">S </a><a href="#indexletter-t">T </a><a href="#indexletter-u">U </a><a href="#indexletter-v">V </a><a href="#indexletter-w">W </a><a href="#indexletter-x">X </a><a href="#indexletter-y">Y </a><a href="#indexletter-z">Z </a></span><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="appendix-gfdl.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="backmatter.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="back-colophon.html" title="Next">Next</a></span>
+<span class="mininav">Jump to:</span><span class="indexnav"><a href="#indexletter-a">A </a><a href="#indexletter-b">B </a><a href="#indexletter-c">C </a><a href="#indexletter-d">D </a><a href="#indexletter-e">E </a><a href="#indexletter-f">F </a><a href="#indexletter-g">G </a><a href="#indexletter-h">H </a><a href="#indexletter-i">I </a><a href="#indexletter-j">J </a><a href="#indexletter-k">K </a><a href="#indexletter-l">L </a><a href="#indexletter-m">M </a><br><a href="#indexletter-n">N </a><a href="#indexletter-o">O </a><a href="#indexletter-p">P </a><a href="#indexletter-q">Q </a><a href="#indexletter-r">R </a><a href="#indexletter-s">S </a><a href="#indexletter-t">T </a><a href="#indexletter-u">U </a><a href="#indexletter-v">V </a><a href="#indexletter-w">W </a><a href="#indexletter-x">X </a><a href="#indexletter-y">Y </a><a href="#indexletter-z">Z </a></span><span class="threebuttons"><a id="previousbutton" class="previous-button toolbar-item button" href="references-backmatter.html" title="Previous">Prev</a><a id="upbutton" class="up-button button toolbar-item" href="backmatter.html" title="Up">Up</a><a id="nextbutton" class="next-button button toolbar-item" href="colophon-1.html" title="Next">Next</a></span>
 </div>
 </div>
 <div class="navbar-bottom-buttons toolbar toolbar-divisor-4">
-<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="appendix-gfdl.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="backmatter.html" title="Up">Up</a><a class="next-button button toolbar-item" href="back-colophon.html" title="Next">Next</a>
+<button class="sidebar-left-toggle-button button toolbar-item active">Contents</button><a class="previous-button toolbar-item button" href="references-backmatter.html" title="Previous">Prev</a><a class="up-button button toolbar-item" href="backmatter.html" title="Up">Up</a><a class="next-button button toolbar-item" href="colophon-1.html" title="Next">Next</a>
 </div>
 </div></nav></header><div class="page">
-<div xmlns:svg="http://www.w3.org/2000/svg" id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
+<div id="sidebar-left" class="sidebar" role="navigation"><div class="sidebar-content">
 <nav id="toc"><ul>
-<li class="link frontmatter">
-<a href="frontmatter.html" data-scroll="frontmatter"><span class="title">Front Matter</span></a><ul>
-<li><a href="front-colophon.html" data-scroll="front-colophon">Colophon</a></li>
-<li><a href="author-bio-TWJ.html" data-scroll="author-bio-TWJ">Author Biography</a></li>
-<li><a href="author-bio-RAB.html" data-scroll="author-bio-RAB">About Robert A. Beezer</a></li>
-<li><a href="dedication.html" data-scroll="dedication">Dedication</a></li>
-<li><a href="acknowledgement.html" data-scroll="acknowledgement">Acknowledgements</a></li>
-<li><a href="preface.html" data-scroll="preface">Preface</a></li>
-<li><a href="contributors.html" data-scroll="contributors">Contributors to the 4<span class="process-math">\(^\mathrm{th}\)</span> Edition</a></li>
+<li class="link frontmatter"><a href="frontmatter.html" data-scroll="frontmatter" class="internal"><span class="title">Front Matter</span></a></li>
+<li class="link"><a href="section-1.html" data-scroll="section-1" class="internal"><span class="codenumber">1</span> <span class="title">Introduction</span></a></li>
+<li class="link"><a href="section-fundamental-theorem.html" data-scroll="section-fundamental-theorem" class="internal"><span class="codenumber">2</span> <span class="title">The Fundamental Theorem</span></a></li>
+<li class="link"><a href="section-sage-cells.html" data-scroll="Abc" class="internal"><span class="codenumber">3</span> <span class="title">Computing Integrals with Sage (<span class="process-math">\(\int\)</span>)</span></a></li>
+<li class="link">
+<a href="interesting-corollary.html" data-scroll="interesting-corollary" class="internal"><span class="codenumber">4</span> <span class="title">An Interesting Corollary</span></a><ul>
+<li><a href="interesting-corollary.html#subsection-second-FTC" data-scroll="subsection-second-FTC" class="internal">Second Version of <abbr class="acronym">FTC</abbr></a></li>
+<li><a href="interesting-corollary.html#subsection-2" data-scroll="subsection-2" class="internal">A Pedagogical Note about Subsection 4.1</a></li>
+<li><a href="interesting-corollary.html#subsection-3" data-scroll="subsection-3" class="internal">Theorem-Like Environments</a></li>
+<li><a href="interesting-corollary.html#subsection-4" data-scroll="subsection-4" class="internal">Linking Sage Cells</a></li>
+<li><a href="interesting-corollary.html#subsection-5" data-scroll="subsection-5" class="internal">Hierarchy</a></li>
+<li><a href="interesting-corollary.html#subsection-intro-conclude" data-scroll="subsection-intro-conclude" class="internal">Introductions and Conclusions</a></li>
+<li><a href="interesting-corollary.html#subsection-paragraph-markup" data-scroll="subsection-paragraph-markup" class="internal">Some Paragraph-Level Markup</a></li>
 </ul>
 </li>
-<li class="link part"><a href="part-basics.html" data-scroll="part-basics"><span class="codenumber">I</span> <span class="title">Basics</span></a></li>
+<li class="link"><a href="section-5.html" data-scroll="Bcd" class="internal"><span class="codenumber">5</span> <span class="title">Some Facts and Figures</span></a></li>
+<li class="link"><a href="section-6.html" data-scroll="section-6" class="internal"><span class="codenumber">6</span> <span class="title">Some Advanced Ideas</span></a></li>
 <li class="link">
-<a href="sets.html" data-scroll="sets"><span class="codenumber">1</span> <span class="title">Preliminaries</span></a><ul>
-<li><a href="section-note-on-proofs.html" data-scroll="section-note-on-proofs">A Short Note on Proofs</a></li>
-<li><a href="section-sets-and-equivalence-relations.html" data-scroll="section-sets-and-equivalence-relations">Sets and Equivalence Relations</a></li>
-<li><a href="sets-sage.html" data-scroll="sets-sage">Sage</a></li>
-<li><a href="exercises-sets.html" data-scroll="exercises-sets">Exercises</a></li>
-<li><a href="sets-sage-exercises.html" data-scroll="sets-sage-exercises">Sage Exercises</a></li>
-<li><a href="references-1.html" data-scroll="references-1">References and Suggested Readings</a></li>
-</ul>
-</li>
-<li class="link">
-<a href="integers.html" data-scroll="integers"><span class="codenumber">2</span> <span class="title">The Integers</span></a><ul>
-<li><a href="section-math-induction.html" data-scroll="section-math-induction">Mathematical Induction</a></li>
-<li><a href="section-division-algorithm.html" data-scroll="section-division-algorithm">The Division Algorithm</a></li>
-<li><a href="integers-sage.html" data-scroll="integers-sage">Sage</a></li>
-<li><a href="exercises-integers.html" data-scroll="exercises-integers">Exercises</a></li>
-<li><a href="exercises-4.html" data-scroll="exercises-4">Programming Exercises</a></li>
-<li><a href="integers-sage-exercises.html" data-scroll="integers-sage-exercises">Sage Exercises</a></li>
-<li><a href="references-2.html" data-scroll="references-2">References and Suggested Readings</a></li>
-</ul>
-</li>
-<li class="link part"><a href="part-algebra.html" data-scroll="part-algebra"><span class="codenumber">II</span> <span class="title">Algebra</span></a></li>
-<li class="link">
-<a href="groups.html" data-scroll="groups"><span class="codenumber">3</span> <span class="title">Groups</span></a><ul>
-<li><a href="section-mod-n-sym.html" data-scroll="section-mod-n-sym">Integer Equivalence Classes and Symmetries</a></li>
-<li><a href="section-groups-define.html" data-scroll="section-groups-define">Definitions and Examples</a></li>
-<li><a href="section-subgroups.html" data-scroll="section-subgroups">Subgroups</a></li>
-<li><a href="groups-sage.html" data-scroll="groups-sage">Sage</a></li>
-<li><a href="exercises-groups.html" data-scroll="exercises-groups">Exercises</a></li>
-<li><a href="exercises-7.html" data-scroll="exercises-7">Additional Exercises: Detecting Errors</a></li>
-<li><a href="groups-sage-exercises.html" data-scroll="groups-sage-exercises">Sage Exercises</a></li>
-<li><a href="references-3.html" data-scroll="references-3">References and Suggested Readings</a></li>
+<a href="section-7.html" data-scroll="section-7" class="internal"><span class="codenumber">7</span> <span class="title">Mathematics</span></a><ul>
+<li><a href="section-7.html#subsection-8" data-scroll="subsection-8" class="internal">Basic Mathematics</a></li>
+<li><a href="section-7.html#subsection-9" data-scroll="subsection-9" class="internal">Displayed Mathematics</a></li>
+<li><a href="section-7.html#subsection-10" data-scroll="subsection-10" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Packages and MathJax Extensions</a></li>
+<li><a href="section-7.html#subsection-11" data-scroll="subsection-11" class="internal">Advanced Mathematics</a></li>
+<li><a href="section-7.html#subsection-12" data-scroll="subsection-12" class="internal">Local Tags on Equations</a></li>
+<li><a href="section-7.html#commutative-diagrams" data-scroll="commutative-diagrams" class="internal">Commutative Diagrams</a></li>
+<li><a href="section-7.html#line-breaking-math" data-scroll="line-breaking-math" class="internal">Line-Breaking after Mathematics</a></li>
+<li><a href="section-7.html#font-math" data-scroll="font-math" class="internal">Fonts and Mathematics</a></li>
+<li><a href="section-7.html#miscellaneous-math" data-scroll="miscellaneous-math" class="internal">Miscellaneous</a></li>
 </ul>
 </li>
 <li class="link">
-<a href="cyclic.html" data-scroll="cyclic"><span class="codenumber">4</span> <span class="title">Cyclicity</span></a><ul>
-<li><a href="section-11.html" data-scroll="section-11">Cyclic groups</a></li>
-<li><a href="section-12.html" data-scroll="section-12">Subgroups of a Cyclic Group</a></li>
-<li><a href="section-13.html" data-scroll="section-13">Cyclic Groups of Complex Numbers</a></li>
-<li><a href="section-14.html" data-scroll="section-14">Large Powers of Integers</a></li>
-<li><a href="exercises-cyclic.html" data-scroll="exercises-cyclic">Exercises</a></li>
-<li><a href="exercises-10.html" data-scroll="exercises-10">Programming Exercises</a></li>
-<li><a href="cyclic-sage-exercises.html" data-scroll="cyclic-sage-exercises">Sage Exercises</a></li>
-<li><a href="references-4.html" data-scroll="references-4">References and Suggested Readings</a></li>
+<a href="text-in-paragraphs.html" data-scroll="text-in-paragraphs" class="internal"><span class="codenumber">8</span> <span class="title">Text in Paragraphs</span></a><ul>
+<li><a href="text-in-paragraphs.html#subsection-xml-escape" data-scroll="subsection-xml-escape" class="internal">Special <abbr class="initialism">XML</abbr> characters</a></li>
+<li><a href="text-in-paragraphs.html#subsection-18" data-scroll="subsection-18" class="internal">Quotations</a></li>
+<li><a href="text-in-paragraphs.html#subsection-19" data-scroll="subsection-19" class="internal">Groupings</a></li>
+<li><a href="text-in-paragraphs.html#subsection-20" data-scroll="subsection-20" class="internal">Characters, Symbols, and Constructions</a></li>
+<li><a href="text-in-paragraphs.html#subsection-21" data-scroll="subsection-21" class="internal">Currency</a></li>
+<li><a href="text-in-paragraphs.html#subsection-icons-in-text" data-scroll="subsection-icons-in-text" class="internal">Icons in Text</a></li>
+<li><a href="text-in-paragraphs.html#subsection-keyboard" data-scroll="subsection-keyboard" class="internal">Keyboard Keys</a></li>
+<li><a href="text-in-paragraphs.html#section-urls" data-scroll="section-urls" class="internal">URLs, such as <code class="code-inline tex2jax_ignore">http://example.com</code></a></li>
+<li><a href="text-in-paragraphs.html#subsection-25" data-scroll="subsection-25" class="internal">Biological Names</a></li>
+<li><a href="text-in-paragraphs.html#subsection-26" data-scroll="subsection-26" class="internal">Verbatim in titles, <code class="code-inline tex2jax_ignore">\a&amp;b#c%d~e{f}g$h_i^j</code>, OK</a></li>
+<li><a href="text-in-paragraphs.html#subsection-special-situations" data-scroll="subsection-special-situations" class="internal">Special Situations</a></li>
+<li><a href="text-in-paragraphs.html#subsection-jupyter-dollars" data-scroll="subsection-jupyter-dollars" class="internal">Jupyter Notebook, Markdown, MathJax, Delimiters</a></li>
+<li><a href="text-in-paragraphs.html#subsection-29" data-scroll="subsection-29" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Characters, Ligatures, and More</a></li>
+<li><a href="text-in-paragraphs.html#subsection-30" data-scroll="subsection-30" class="internal"><abbr class="initialism">HTML</abbr> and accidental mathematics</a></li>
 </ul>
 </li>
-<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter"><span class="title">Back Matter</span></a></li>
-<li class="link"><a href="appendix-1.html" data-scroll="appendix-1"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
-<li class="link"><a href="solutions-1.html" data-scroll="solutions-1"><span class="codenumber">B</span> <span class="title">Hints and Answers to Selected Odd Exercises</span></a></li>
-<li class="link"><a href="solutions-2.html" data-scroll="solutions-2"><span class="codenumber">C</span> <span class="title">Hints and Answers to Selected Even Exercises</span></a></li>
-<li class="link"><a href="solutions-3.html" data-scroll="solutions-3"><span class="codenumber">D</span> <span class="title">Hints and Answers to Selected Exercises</span></a></li>
 <li class="link">
-<a href="appendix-2.html" data-scroll="appendix-2"><span class="codenumber">E</span> <span class="title">A Structured Appendix</span></a><ul>
-<li><a href="section-15.html" data-scroll="section-15">A Section in an Appendix</a></li>
-<li><a href="section-16.html" data-scroll="section-16">Numbering in the Back Matter</a></li>
+<a href="graphics.html" data-scroll="graphics" class="internal"><span class="codenumber">9</span> <span class="title">Graphics</span></a><ul>
+<li><a href="graphics.html#subsection-31" data-scroll="subsection-31" class="internal">Images from External Sources</a></li>
+<li><a href="graphics.html#subsection-32" data-scroll="subsection-32" class="internal"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> images</a></li>
+<li><a href="graphics.html#subsection-33" data-scroll="subsection-33" class="internal">Asymptote, 2D</a></li>
+<li><a href="graphics.html#graphics-asymptote-webgl" data-scroll="graphics-asymptote-webgl" class="internal">Asymptote, 3D via WebGL</a></li>
+<li><a href="graphics.html#subsection-35" data-scroll="subsection-35" class="internal">Sage Plots</a></li>
+<li><a href="graphics.html#subsection-36" data-scroll="subsection-36" class="internal">Inkscape Images</a></li>
+<li><a href="graphics.html#subsection-37" data-scroll="subsection-37" class="internal">Copies of Images</a></li>
+<li><a href="graphics.html#subsection-38" data-scroll="subsection-38" class="internal">Caption Testing</a></li>
+<li><a href="graphics.html#captionless-images" data-scroll="captionless-images" class="internal">Captionless Images</a></li>
+<li><a href="graphics.html#subsection-40" data-scroll="subsection-40" class="internal">Technical Details</a></li>
+<li><a href="graphics.html#subsection-tactile-graphics" data-scroll="subsection-tactile-graphics" class="internal">Experimental Tactile Graphics</a></li>
+<li><a href="graphics.html#subsection-42" data-scroll="subsection-42" class="internal">Accessibility</a></li>
 </ul>
 </li>
-<li class="link"><a href="appendix-gfdl.html" data-scroll="appendix-gfdl"><span class="codenumber">F</span> <span class="title">GNU Free Documentation License</span></a></li>
-<li class="link active"><a href="index-1.html" data-scroll="index-1"><span class="title">Index</span></a></li>
-<li class="link"><a href="back-colophon.html" data-scroll="back-colophon"><span class="title">Colophon</span></a></li>
-</ul></nav><div class="extras"><nav><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
+<li class="link"><a href="section-10.html" data-scroll="section-10" class="internal"><span class="codenumber">10</span> <span class="title">Demonstrations</span></a></li>
+<li class="link">
+<a href="section-11.html" data-scroll="section-11" class="internal"><span class="codenumber">11</span> <span class="title">Further Reading</span></a><ul>
+<li><a href="section-11.html#subsection-43" data-scroll="subsection-43" class="internal">Specialized Subdivisions</a></li>
+<li><a href="section-11.html#exercises-3" data-scroll="exercises-3" class="internal">Exercises</a></li>
+<li><a href="section-11.html#exercises-section-multiple" data-scroll="exercises-section-multiple" class="internal">More Exercises</a></li>
+<li><a href="section-11.html#references-section" data-scroll="references-section" class="internal">References</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="lists.html" data-scroll="lists" class="internal"><span class="codenumber">12</span> <span class="title">List Calisthenics</span></a><ul>
+<li><a href="lists.html#subsection-44" data-scroll="subsection-44" class="internal">Lists, Generally</a></li>
+<li><a href="lists.html#subsection-45" data-scroll="subsection-45" class="internal">List Spacing, I</a></li>
+<li><a href="lists.html#subsection-46" data-scroll="subsection-46" class="internal">List Spacing, II</a></li>
+<li><a href="lists.html#test-second" data-scroll="test-second" class="internal">List items containing only inline math</a></li>
+<li><a href="lists.html#subsection-48" data-scroll="subsection-48" class="internal">Description Lists</a></li>
+<li><a href="lists.html#subsection-49" data-scroll="subsection-49" class="internal">Named Lists</a></li>
+<li><a href="lists.html#subsection-50" data-scroll="subsection-50" class="internal">Testing List Decompositions</a></li>
+<li><a href="lists.html#exercises-5" data-scroll="exercises-5" class="internal">Exercises (with lists)</a></li>
+<li><a href="lists.html#references-2" data-scroll="references-2" class="internal">References (with lists in Annotations)</a></li>
+</ul>
+</li>
+<li class="link"><a href="table-calisthenics.html" data-scroll="table-calisthenics" class="internal"><span class="codenumber">13</span> <span class="title">Table Calisthenics</span></a></li>
+<li class="link">
+<a href="section-interactive-authored.html" data-scroll="section-interactive-authored" class="internal"><span class="codenumber">14</span> <span class="title">Interactive Elements, Authored</span></a><ul>
+<li><a href="section-interactive-authored.html#interactive-html5-canvas" data-scroll="interactive-html5-canvas" class="internal">HTML5 Canvas</a></li>
+<li><a href="section-interactive-authored.html#subsection-52" data-scroll="subsection-52" class="internal">D3.js</a></li>
+<li><a href="section-interactive-authored.html#subsection-53" data-scroll="subsection-53" class="internal">SVG</a></li>
+<li><a href="section-interactive-authored.html#subsection-54" data-scroll="subsection-54" class="internal">JSXGraph</a></li>
+<li><a href="section-interactive-authored.html#subsection-55" data-scroll="subsection-55" class="internal">JessieCode</a></li>
+<li><a href="section-interactive-authored.html#subsection-56" data-scroll="subsection-56" class="internal">Sage Interacts</a></li>
+<li><a href="section-interactive-authored.html#subsection-57" data-scroll="subsection-57" class="internal">Geogebra</a></li>
+<li><a href="section-interactive-authored.html#interactive-iframes" data-scroll="interactive-iframes" class="internal">IFrames</a></li>
+<li><a href="section-interactive-authored.html#interactive-threejs" data-scroll="interactive-threejs" class="internal">threejs</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-interactive-server.html" data-scroll="section-interactive-server" class="internal"><span class="codenumber">15</span> <span class="title">Interactive Elements, Server</span></a><ul>
+<li><a href="section-interactive-server.html#subsection-geogebra-server" data-scroll="subsection-geogebra-server" class="internal">GeoGebra</a></li>
+<li><a href="section-interactive-server.html#subsection-61" data-scroll="subsection-61" class="internal">Desmos Graphs</a></li>
+<li><a href="section-interactive-server.html#subsection-62" data-scroll="subsection-62" class="internal">CalcPlot3D</a></li>
+<li><a href="section-interactive-server.html#subsection-63" data-scroll="subsection-63" class="internal">Wolfram CDF</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-audio.html" data-scroll="section-audio" class="internal"><span class="codenumber">16</span> <span class="title">Audio</span></a></li>
+<li class="link">
+<a href="section-video.html" data-scroll="section-video" class="internal"><span class="codenumber">17</span> <span class="title">Video</span></a><ul>
+<li><a href="section-video.html#subsection-64" data-scroll="subsection-64" class="internal">Video Files</a></li>
+<li><a href="section-video.html#subsection-65" data-scroll="subsection-65" class="internal">YouTube</a></li>
+<li><a href="section-video.html#subsection-66" data-scroll="subsection-66" class="internal">Vimeo</a></li>
+<li><a href="section-video.html#subsection-67" data-scroll="subsection-67" class="internal">Captions and Subtitles</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-cross-referencing.html" data-scroll="section-cross-referencing" class="internal"><span class="codenumber">18</span> <span class="title">Cross-Referencing</span></a></li>
+<li class="link"><a href="section-internationalization.html" data-scroll="section-internationalization" class="internal"><span class="codenumber">19</span> <span class="title">Internationalization</span></a></li>
+<li class="link"><a href="section-20.html" data-scroll="section-20" class="internal"><span class="codenumber">20</span> <span class="title">Pre-Formatted Text</span></a></li>
+<li class="link"><a href="section-programs.html" data-scroll="section-programs" class="internal"><span class="codenumber">21</span> <span class="title">Program Listings</span></a></li>
+<li class="link"><a href="section-22.html" data-scroll="section-22" class="internal"><span class="codenumber">22</span> <span class="title">Units of Measure</span></a></li>
+<li class="link">
+<a href="section-side-by-side.html" data-scroll="section-side-by-side" class="internal"><span class="codenumber">23</span> <span class="title">Side-By-Side Panels</span></a><ul>
+<li><a href="section-side-by-side.html#subsection-68" data-scroll="subsection-68" class="internal">Figures with Numbers Side-By-Side</a></li>
+<li><a href="section-side-by-side.html#subsection-69" data-scroll="subsection-69" class="internal">Images</a></li>
+<li><a href="section-side-by-side.html#subsection-70" data-scroll="subsection-70" class="internal">Common Side-By-Side Constructions</a></li>
+<li><a href="section-side-by-side.html#subsection-71" data-scroll="subsection-71" class="internal">Vertical Alignment</a></li>
+<li><a href="section-side-by-side.html#subsection-72" data-scroll="subsection-72" class="internal">Text Next to Text and Images</a></li>
+<li><a href="section-side-by-side.html#subsection-73" data-scroll="subsection-73" class="internal">Image Formats, Side-by-Sides</a></li>
+<li><a href="section-side-by-side.html#subsection-74" data-scroll="subsection-74" class="internal">Tables Side-By-Side</a></li>
+<li><a href="section-side-by-side.html#subsection-75" data-scroll="subsection-75" class="internal">Tables Next to Figures</a></li>
+<li><a href="section-side-by-side.html#subsection-76" data-scroll="subsection-76" class="internal">Tables Next to Text</a></li>
+<li><a href="section-side-by-side.html#subsection-77" data-scroll="subsection-77" class="internal">Tabular Next to Each Other</a></li>
+<li><a href="section-side-by-side.html#subsection-78" data-scroll="subsection-78" class="internal">Lists in Side-by-Sides</a></li>
+<li><a href="section-side-by-side.html#stacking-side-by-side" data-scroll="stacking-side-by-side" class="internal">Stacking: Back to Vertical Flow</a></li>
+<li><a href="section-side-by-side.html#subsection-sbs-other-panels" data-scroll="subsection-sbs-other-panels" class="internal">Other Panels</a></li>
+<li><a href="section-side-by-side.html#subsection-81" data-scroll="subsection-81" class="internal">Poems as Side-By-Side Panels</a></li>
+<li><a href="section-side-by-side.html#subsection-sbsgroup" data-scroll="subsection-sbsgroup" class="internal">Side-By-Side Groups</a></li>
+<li><a href="section-side-by-side.html#subsection-83" data-scroll="subsection-83" class="internal">Testing a Side-By-Side First</a></li>
+<li><a href="section-side-by-side.html#subsection-84" data-scroll="subsection-84" class="internal">Testing Styling of Related Elements</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-24.html" data-scroll="section-24" class="internal"><span class="codenumber">24</span> <span class="title">Side-by-Side Gallery</span></a></li>
+<li class="link"><a href="poetry.html" data-scroll="poetry" class="internal"><span class="codenumber">25</span> <span class="title">Poetry</span></a></li>
+<li class="link">
+<a href="atomic-items.html" data-scroll="atomic-items" class="internal"><span class="codenumber">26</span> <span class="title">Atomic Objects</span></a><ul>
+<li><a href="atomic-items.html#atomic-image" data-scroll="atomic-image" class="internal"><code class="code-inline tex2jax_ignore">&lt;image&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-video" data-scroll="atomic-video" class="internal"><code class="code-inline tex2jax_ignore">&lt;video&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-program" data-scroll="atomic-program" class="internal"><code class="code-inline tex2jax_ignore">&lt;program&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;console&gt;</code></a></li>
+<li><a href="atomic-items.html#atomic-tabular" data-scroll="atomic-tabular" class="internal"><code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code></a></li>
+</ul>
+</li>
+<li class="link">
+<a href="advanced-numbering.html" data-scroll="advanced-numbering" class="internal"><span class="codenumber">27</span> <span class="title">Advanced Numbering</span></a><ul>
+<li><a href="advanced-numbering.html#subsection-89" data-scroll="subsection-89" class="internal">One</a></li>
+<li><a href="advanced-numbering.html#subsection-90" data-scroll="subsection-90" class="internal">Two</a></li>
+<li><a href="advanced-numbering.html#subsection-91" data-scroll="subsection-91" class="internal">Three</a></li>
+<li><a href="advanced-numbering.html#subsection-92" data-scroll="subsection-92" class="internal">Four</a></li>
+<li><a href="advanced-numbering.html#subsection-93" data-scroll="subsection-93" class="internal">Five</a></li>
+<li><a href="advanced-numbering.html#subsection-local-theorems" data-scroll="subsection-local-theorems" class="internal">Theorems in This Section</a></li>
+<li><a href="advanced-numbering.html#subsection-with-an-exercise" data-scroll="subsection-with-an-exercise" class="internal">A Title with ] a Right Bracket</a></li>
+<li><a href="advanced-numbering.html#subsection-96" data-scroll="subsection-96" class="internal">A Title with } a Right Brace</a></li>
+<li><a href="advanced-numbering.html#subsection-97" data-scroll="subsection-97" class="internal">A Title with <span class="process-math">\(a]b\)</span> a Math Right Bracket</a></li>
+<li><a href="advanced-numbering.html#subsection-98" data-scroll="subsection-98" class="internal">Just an Exercise</a></li>
+<li><a href="advanced-numbering.html#solutions-2" data-scroll="solutions-2" class="internal">Solutions</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="section-28.html" data-scroll="section-28" class="internal"><span class="codenumber">28</span> <span class="title">Customizations</span></a><ul>
+<li><a href="section-28.html#rename-facility" data-scroll="rename-facility" class="internal">Renaming Document Parts, Plus This Is A Really Long Title So That We Can Test How Well It Reacts To The Right Margin And Wraps Around To Form A Couple Of Lines, Plus How It Sits Relative To The Number Of The Subsection</a></li>
+<li><a href="section-28.html#subsection-100" data-scroll="subsection-100" class="internal">Customizing Phrases</a></li>
+</ul>
+</li>
+<li class="link"><a href="section-myopenmath.html" data-scroll="section-myopenmath" class="internal"><span class="codenumber">29</span> <span class="title">MyOpenMath Interactive Problems</span></a></li>
+<li class="link"><a href="ancillaries.html" data-scroll="ancillaries" class="internal"><span class="codenumber">30</span> <span class="title">Ancillaries</span></a></li>
+<li class="link">
+<a href="worksheets.html" data-scroll="worksheets" class="internal"><span class="codenumber">31</span> <span class="title">Worksheets</span></a><ul>
+<li><a href="worksheets.html#subsection-101" data-scroll="subsection-101" class="internal">About Worksheets</a></li>
+<li><a href="worksheets.html#worksheet-1" data-scroll="worksheet-1" class="internal">A Geometric Prelude</a></li>
+<li><a href="worksheets.html#worksheet-2" data-scroll="worksheet-2" class="internal">Networks Worksheet</a></li>
+<li><a href="worksheets.html#worksheet-3" data-scroll="worksheet-3" class="internal">Worksheet</a></li>
+<li><a href="worksheets.html#worksheet-4" data-scroll="worksheet-4" class="internal">Dot products and projection</a></li>
+</ul>
+</li>
+<li class="link">
+<a href="exercises-single.html" data-scroll="exercises-single" class="internal"><span class="codenumber">32</span> <span class="title">Exercises, One Subsection</span></a><ul>
+<li><a href="exercises-single.html#exercise-collection" data-scroll="exercise-collection" class="internal">Exercise Collection</a></li>
+<li><a href="exercises-single.html#references-3" data-scroll="references-3" class="internal">More Reading</a></li>
+</ul>
+</li>
+<li class="link"><a href="exercises-7.html" data-scroll="exercises-7" class="internal"><span class="codenumber">33</span> <span class="title">Exercise Section, Structured</span></a></li>
+<li class="link">
+<a href="exercises-multiple.html" data-scroll="exercises-multiple" class="internal"><span class="codenumber">34</span> <span class="title">Exercises, Multiple Subsections</span></a><ul>
+<li><a href="exercises-multiple.html#subsection-102" data-scroll="subsection-102" class="internal">Faux Subsection</a></li>
+<li><a href="exercises-multiple.html#exercises-drill" data-scroll="exercises-drill" class="internal">Drill Exercises</a></li>
+<li><a href="exercises-multiple.html#exercises-9" data-scroll="exercises-9" class="internal">Challenging Exercises</a></li>
+<li><a href="exercises-multiple.html#exercises-10" data-scroll="exercises-10" class="internal">Impossible Exercises</a></li>
+<li><a href="exercises-multiple.html#references-4" data-scroll="references-4" class="internal">More Reading</a></li>
+</ul>
+</li>
+<li class="link"><a href="exercises.html" data-scroll="exercises" class="internal"><span class="codenumber">35</span> <span class="title">Exercises, Top-Level</span></a></li>
+<li class="link backmatter"><a href="backmatter.html" data-scroll="backmatter" class="internal"><span class="title">Reference</span></a></li>
+<li class="link"><a href="appendix-1.html" data-scroll="appendix-1" class="internal"><span class="codenumber">A</span> <span class="title">Notation</span></a></li>
+<li class="link"><a href="solutions-backmatter.html" data-scroll="solutions-backmatter" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></li>
+<li class="link"><a href="solutions-4.html" data-scroll="solutions-4" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to a Single Exercises Division</span></a></li>
+<li class="link"><a href="solutions-5.html" data-scroll="solutions-5" class="internal"><span class="codenumber">D</span> <span class="title">All Solutions that are Answers</span></a></li>
+<li class="link"><a href="solutions-6.html" data-scroll="solutions-6" class="internal"><span class="codenumber">E</span> <span class="title">All Solutions that are Answers to Odd Exercises</span></a></li>
+<li class="link"><a href="appendix-results.html" data-scroll="appendix-results" class="internal"><span class="codenumber">F</span> <span class="title">List of Results</span></a></li>
+<li class="link"><a href="appendix-exercise-lists.html" data-scroll="appendix-exercise-lists" class="internal"><span class="codenumber">G</span> <span class="title">Lists of Exercises</span></a></li>
+<li class="link">
+<a href="appendix-4.html" data-scroll="appendix-4" class="internal"><span class="codenumber">H</span> <span class="title">A Structured Appendix</span></a><ul><li><a href="appendix-4.html#subsection-103" data-scroll="subsection-103" class="internal">A Subsection in an Appendix</a></li></ul>
+</li>
+<li class="link"><a href="appendix-5.html" data-scroll="appendix-5" class="internal"><span class="codenumber">I</span> <span class="title">Index</span></a></li>
+<li class="link">
+<a href="references.html" data-scroll="references" class="internal"><span class="codenumber">J</span> <span class="title">Multiple References</span></a><ul>
+<li><a href="references.html#subsection-104" data-scroll="subsection-104" class="internal">Multiple Specialized References</a></li>
+<li><a href="references.html#references-5" data-scroll="references-5" class="internal">General References</a></li>
+<li><a href="references.html#references-6" data-scroll="references-6" class="internal">Specialized References</a></li>
+</ul>
+</li>
+<li class="link"><a href="references-backmatter.html" data-scroll="references-backmatter" class="internal"><span class="title">References</span></a></li>
+<li class="link active"><a href="index-1.html" data-scroll="index-1" class="internal"><span class="title">Index</span></a></li>
+<li class="link"><a href="colophon-1.html" data-scroll="colophon-1" class="internal"><span class="title">Colophon</span></a></li>
+</ul></nav><div class="extras"><nav><a class="feedback-link" href="not-implemented.html" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org">Authored in PreTeXt</a><a href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a></nav></div>
 </div></div>
-<main class="main"><div id="content" class="pretext-content"><section xmlns:svg="http://www.w3.org/2000/svg" class="index" id="index-1"><h2 class="heading hide-type">
+<main class="main"><div id="content" class="pretext-content"><section class="index" id="index-1"><h2 class="heading hide-type">
 <span class="type">Index</span> <span class="codenumber"></span> <span class="title">Index</span>
 </h2>
 <div class="indexletter" id="indexletter-\"><div class="indexitem">
-<span class="process-math">\(n\)</span>th root of unity<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-660.html" title="Paragraph">Paragraph</a></span>
+<span class="process-math">\(\int f(x)\,dx\)</span><span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/math-list-test.html" title="Assemblage: Testing list items containing only math">Assemblage</a></span>
 </div></div>
 <div class="indexletter" id="indexletter-a">
-<div class="indexitem">Abelian group<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-410.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">A<span class="indexknowl">. <span class="see"><em>See</em> F</span><span class="see">; G</span><span class="see">; H</span></span>
 </div>
-<div class="indexitem">Ackermann's function<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exercise-63.html" title="Exercise 2.5.2">Exercise</a></span>
+<div class="subindexitem">B<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
 </div>
-<div class="indexitem">Algorithm</div>
-<div class="subindexitem">Euclidean<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-283.html" title="Paragraph">Paragraph</a></span>
+<div class="subsubindexitem">C<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a><span class="seealso"> (<em>see also</em> A</span><span class="seealso">; D)</span></span>
+</div>
+<div class="indexitem">activity<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exploration-1.html" title="Exploration 4.2: Exploring Explorations">Exploration</a></span>
+</div>
+<div class="indexitem">alert<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-235.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Archimedian Spiral<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/figure-37.html" title="Figure 14.13">Figure</a></span>
+</div>
+<div class="indexitem">aside<span class="indexknowl">, <a href="interesting-corollary.html#subsubsection-3" class="internal" title="Subsubsection 4.2.3: Advice">Subsubsection</a></span>
+</div>
+<div class="indexitem">assemblage<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/assemblage-basics.html" title="Assemblage: Assemblages: Collections and Summaries">Assemblage</a></span>
+</div>
+<div class="indexitem">asymptote graphics language<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-414.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">attributes</div>
+<div class="subindexitem">doctest<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-16.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">ncbi attribute<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-371.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">autoname<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-873.html" title="Paragraph">Paragraph</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-b">
-<div class="indexitem">Binary operation<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-406.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">biological names<span class="indexknowl">, <a href="text-in-paragraphs.html#subsection-25" class="internal" title="Subsection 8.9: Biological Names">Subsection</a></span>
 </div>
-<div class="indexitem">Burnside, William<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-450.html" title="Paragraph">Paragraph</a></span>
+<div class="subindexitem">genus<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-370.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">ncbi attribute<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-371.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">species<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-370.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">taxon<span class="indexknowl">, <a href="text-in-paragraphs.html#subsection-25" class="internal" title="Subsection 8.9: Biological Names">Subsection</a> <a href="" class="xref" data-knowl="./knowl/p-370.html" title="Paragraph">Paragraph</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-c">
-<div class="indexitem">Cancellation law</div>
-<div class="subindexitem">for groups<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-437.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">A bug test, sorted as “c”</div>
+<div class="subindexitem">b</div>
+<div class="subsubindexitem">c one<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-17.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="indexitem">Cayley table<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-413.html" title="Paragraph">Paragraph</a></span>
+<div class="subsubindexitem">c three<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-17.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="indexitem">Composite integer<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-284.html" title="Paragraph">Paragraph</a></span>
+<div class="subindexitem">x</div>
+<div class="subsubindexitem">c two<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-17.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="indexitem">Congruence modulo <span class="process-math">\(n\)</span><span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/example-sets-congruent-integers.html" title="Example 1.2.30: A Partition of Integers">Example</a></span>
+<div class="indexitem">c<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-17.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="indexitem">Conjugate, complex<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-646.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">CalcPlot3D<span class="indexknowl">, <a href="section-interactive-server.html#subsection-62" class="internal" title="Subsection 15.3: CalcPlot3D">Subsection</a></span>
+</div>
+<div class="indexitem">canceling a term<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-294.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">
+<code class="code-inline tex2jax_ignore">cancelto</code> macro<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-294.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">sorted as if “Cat”<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
+</div>
+<div class="indexitem">CAYLEY GRAPH<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a> <a href="" class="xref" data-knowl="./knowl/p-15.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Cayley graph<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a> <a href="" class="xref" data-knowl="./knowl/p-13.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">cayley graph<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a> <a href="" class="xref" data-knowl="./knowl/p-14.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Charge of the Light Brigade, The, Tennyson<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/poem-light-brigade.html" title="Poem: The Charge of the Light Brigade">Poem</a></span>
+</div>
+<div class="indexitem">colors</div>
+<div class="subindexitem">shades<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/color-list-as-panel.html" title="List 23.23.(b): Color Shades">List</a> <a href="" class="xref" data-knowl="./knowl/color-list-as-panel-in-sbs.html" title="List 23.25: Color Shades">List</a></span>
+</div>
+<div class="indexitem">conundrum</div>
+<div class="subindexitem">repurposed from proposition<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1249.html" title="Paragraph">Paragraph</a> <a href="" class="xref" data-knowl="./knowl/p-1249.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">cross-reference<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-873.html" title="Paragraph">Paragraph</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-d">
-<div class="indexitem">De Morgan's laws</div>
-<div class="subindexitem">for sets<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/theorem-1.html" title="Theorem 1.2.3: De Morgan's Laws">Theorem</a></span>
+<div class="indexitem">D3.js<span class="indexknowl">, <a href="section-interactive-authored.html#subsection-52" class="internal" title="Subsection 14.2: D3.js">Subsection</a></span>
 </div>
-<div class="indexitem">DeMoivre's Theorem<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/theorem-demoivre.html" title="Theorem 4.3.7: DeMoivre">Theorem</a></span>
+<div class="indexitem">derivative</div>
+<div class="subindexitem">cosine<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exercises-cosine-derivative.html" title="Exercise 11.2.3">Exercise</a></span>
 </div>
-<div class="indexitem">Division algorithm</div>
-<div class="subindexitem">for integers<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/theorem-integers-division_algorithm.html" title="Theorem 2.2.1: Division Algorithm">Theorem</a></span>
+<div class="indexitem">description list<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-650.html" title="Paragraph">Paragraph</a> <a href="" class="xref" data-knowl="./knowl/p-651.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Desmos graphs<span class="indexknowl">, <a href="section-interactive-server.html#subsection-61" class="internal" title="Subsection 15.2: Desmos Graphs">Subsection</a></span>
+</div>
+<div class="indexitem">doctest<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-16.html" title="Paragraph">Paragraph</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-e">
-<div class="indexitem">Element</div>
-<div class="subindexitem">identity<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/li-90.html" title="Item">Item</a></span>
+<div class="indexitem">em</div>
+<div class="subindexitem">emphasis<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-235.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="subindexitem">inverse<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/li-91.html" title="Item">Item</a></span>
+<div class="indexitem">embedded interactive elements</div>
+<div class="subindexitem">authored<span class="indexknowl">, <a href="section-interactive-authored.html" class="internal" title="Section 14: Interactive Elements, Authored">Section</a></span>
 </div>
-<div class="subindexitem">order of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-625.html" title="Paragraph">Paragraph</a></span>
+<div class="subindexitem">server<span class="indexknowl">, <a href="section-interactive-server.html" class="internal" title="Section 15: Interactive Elements, Server">Section</a></span>
 </div>
-<div class="indexitem">Equivalence class<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-119.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">exercise group</div>
+<div class="subindexitem">two derivatives<span class="indexknowl">, <a href="section-11.html#exercises-3" class="internal" title="Exercises 11.2: Exercises">Exercises</a></span>
 </div>
-<div class="indexitem">Equivalence relation<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-110.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="indexitem">Euclidean algorithm<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-283.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">exploration<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exploration-1.html" title="Exploration 4.2: Exploring Explorations">Exploration</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-f">
-<div class="indexitem">Function</div>
-<div class="subindexitem">bijective<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-86.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">fill-in blank<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exercise-21.html" title="Exercise 11.2.8">Exercise</a></span>
 </div>
-<div class="subindexitem">composition of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-88.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">Fire and Ice, Frost<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/poem-1.html" title="Poem: Fire and Ice">Poem</a></span>
 </div>
-<div class="subindexitem">definition of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-82.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">footnotes<span class="indexknowl">, <a href="section-5.html" class="internal" title="Section 5: Some Facts and Figures">Section</a></span>
 </div>
-<div class="subindexitem">domain of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-82.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">Fundamental Theorem of Calculus<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/theorem-FTC.html" title="Theorem 2.1: The Fundamental Theorem of Calculus">Theorem</a></span>
 </div>
-<div class="subindexitem">identity<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-102.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="subindexitem">injective<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-86.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="subindexitem">invertible<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-102.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="subindexitem">one-to-one<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-86.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="subindexitem">onto<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-86.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="subindexitem">range of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-82.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="subindexitem">surjective<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-86.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="indexitem">Fundamental Theorem</div>
-<div class="subindexitem">of Arithmetic<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/theorem-fund-theorem-arithmetic.html" title="Theorem 2.2.7: Fundamental Theorem of Arithmetic">Theorem</a></span>
+<div class="subindexitem">Corollary<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/corollary-FTC-derivative.html" title="Corollary 4.1">Corollary</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-g">
-<div class="indexitem">Galois, Évariste<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-449.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">gas<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-29.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="indexitem">Generator of a cyclic subgroup<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-625.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">gas masks<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-29.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="indexitem">Greatest common divisor</div>
-<div class="subindexitem">of two integers<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-271.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">gas production<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-29.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="indexitem">Group</div>
-<div class="subindexitem">abelian<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-410.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">gas works<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-29.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="subindexitem">circle<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-658.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">gasoline<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-29.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="subindexitem">commutative<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-410.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">gastritis<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-29.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="subindexitem">cyclic<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-625.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">genus<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-370.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="subindexitem">definition of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-406.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">Geogebra</div>
+<div class="subindexitem">material<span class="indexknowl">, <a href="section-interactive-server.html#subsection-geogebra-server" class="internal" title="Subsection 15.1: GeoGebra">Subsection</a></span>
 </div>
-<div class="subindexitem">finite<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-423.html" title="Paragraph">Paragraph</a></span>
+<div class="subindexitem">server<span class="indexknowl">, <a href="section-interactive-server.html#subsection-geogebra-server" class="internal" title="Subsection 15.1: GeoGebra">Subsection</a></span>
 </div>
-<div class="subindexitem">general linear<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/example-groups-gl2.html" title="Example 3.2.7: Matrix Multiplication of 2\times 2 Matrices is a Group">Example</a></span>
+<div class="indexitem">glossary<span class="indexknowl">, <a href="interesting-corollary.html#glossary-1" class="internal" title="Glossary 4.2.6">Glossary</a></span>
 </div>
-<div class="subindexitem">infinite<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-423.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">Group<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/definition-2.html" title="Definition 12.1: Group">Definition</a></span>
 </div>
-<div class="subindexitem">nonabelian<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-410.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="subindexitem">noncommutative<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-410.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="subindexitem">of units<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/example-groups-z6-mult.html" title="Example 3.2.4: Multiplication of Integers Modulo 6">Example</a></span>
-</div>
-<div class="subindexitem">order of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-423.html" title="Paragraph">Paragraph</a></span>
-</div>
-<div class="subindexitem">quaternion<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/example-groups-quaterions.html" title="Example 3.2.8: Group of Quaternions">Example</a></span>
-</div>
-<div class="subindexitem">special linear<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/example-groups-sl2.html" title="Example 3.3.3: A Subgroup of Matrices With Determinant One">Example</a></span>
+<div class="indexitem">group</div>
+<div class="subindexitem">definition<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/definition-2.html" title="Definition 12.1: Group">Definition</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-i">
-<div class="indexitem">Induction</div>
-<div class="subindexitem">first principle of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/principle-1.html" title="Principle 2.1.1: First Principle of Mathematical Induction">Principle</a></span>
+<div class="indexitem">image<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1024.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="subindexitem">second principle of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/principle-2.html" title="Principle 2.1.5: Second Principle of Mathematical Induction">Principle</a></span>
+<div class="subindexitem">
+<span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> image<span class="indexknowl">, <a href="graphics.html#subsection-32" class="internal" title="Subsection 9.2: LaTeX images">Subsection</a></span>
 </div>
-<div class="indexitem">International standard book number<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exercise-134.html" title="Exercise 3.6.4: ISBN Codes">Exercise</a></span>
+<div class="indexitem">indefinite integral<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/definition-indefinite-integral.html" title="Definition 2.2">Definition</a></span>
+</div>
+<div class="indexitem">integral</div>
+<div class="subindexitem">indefinite integral<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/definition-indefinite-integral.html" title="Definition 2.2">Definition</a></span>
+</div>
+<div class="indexitem">interactive elements</div>
+<div class="subindexitem">authored<span class="indexknowl">, <a href="section-interactive-authored.html" class="internal" title="Section 14: Interactive Elements, Authored">Section</a></span>
+</div>
+<div class="subindexitem">server<span class="indexknowl">, <a href="section-interactive-server.html" class="internal" title="Section 15: Interactive Elements, Server">Section</a></span>
+</div>
+<div class="indexitem">internationalization<span class="indexknowl">, <a href="section-internationalization.html" class="internal" title="Section 19: Internationalization">Section</a></span>
+</div>
+<div class="indexitem">investigation<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exploration-1.html" title="Exploration 4.2: Exploring Explorations">Exploration</a></span>
 </div>
 </div>
-<div class="indexletter" id="indexletter-k"><div class="indexitem">Klein, Felix<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-450.html" title="Paragraph">Paragraph</a></span>
-</div></div>
+<div class="indexletter" id="indexletter-j">
+<div class="indexitem">JessieCode<span class="indexknowl">, <a href="section-interactive-authored.html#subsection-55" class="internal" title="Subsection 14.5: JessieCode">Subsection</a></span>
+</div>
+<div class="indexitem">JSXGraph<span class="indexknowl">, <a href="section-interactive-authored.html#subsection-54" class="internal" title="Subsection 14.4: JSXGraph">Subsection</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-k">
+<div class="indexitem">keyboard keys<span class="indexknowl">, <a href="text-in-paragraphs.html#subsection-keyboard" class="internal" title="Subsection 8.7: Keyboard Keys">Subsection</a></span>
+</div>
+<div class="indexitem">knowl</div>
+<div class="subindexitem">nested<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/li-297.html" title="Item">Item</a></span>
+</div>
+</div>
 <div class="indexletter" id="indexletter-l">
-<div class="indexitem">Lagrange, Joseph-Louis<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-449.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">
+<span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> image<span class="indexknowl">, <a href="graphics.html#subsection-32" class="internal" title="Subsection 9.2: LaTeX images">Subsection</a></span>
 </div>
-<div class="indexitem">Lie, Sophus<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-450.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">Led Zeppelin video<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/figure-72.html" title="Figure 17.12: Kashmir (Live), Led Zeppelin">Figure</a> <a href="" class="xref" data-knowl="./knowl/figure-73.html" title="Figure 17.13: Kashmir (Live), Led Zeppelin">Figure</a></span>
 </div>
-<div class="indexitem">Linear transformation</div>
-<div class="subindexitem">definition of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/example-sets-linear-map.html" title="Example 1.2.13: A Linear Map">Example</a></span>
+<div class="indexitem">link</div>
+<div class="subindexitem">external, url<span class="indexknowl">, <a href="text-in-paragraphs.html#section-urls" class="internal" title="Subsection 8.8: URLs, such as http://example.com">Subsection</a> <a href="" class="xref" data-knowl="./knowl/p-851.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">list<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-692.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">description<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-650.html" title="Paragraph">Paragraph</a> <a href="" class="xref" data-knowl="./knowl/p-651.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">multicolumn<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-248.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">named<span class="indexknowl">, <a href="lists.html#subsection-49" class="internal" title="Subsection 12.6: Named Lists">Subsection</a></span>
+</div>
+<div class="subindexitem">ordered<span class="indexknowl">, <a href="lists.html#subsection-44" class="internal" title="Subsection 12.1: Lists, Generally">Subsection</a> <a href="" class="xref" data-knowl="./knowl/p-536.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">unordered<span class="indexknowl">, <a href="lists.html#subsection-44" class="internal" title="Subsection 12.1: Lists, Generally">Subsection</a> <a href="" class="xref" data-knowl="./knowl/p-536.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">listing<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-986.html" title="Paragraph">Paragraph</a></span>
 </div>
 </div>
 <div class="indexletter" id="indexletter-m">
-<div class="indexitem">Mapping<span class="indexknowl">. <span class="see"><em>See</em> Function</span></span>
+<div class="indexitem">math in lists <span class="process-math">\(\frac{d}{dx}(\sin(x))=\cos(x)\)</span><span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/math-list-test.html" title="Assemblage: Testing list items containing only math">Assemblage</a></span>
 </div>
-<div class="indexitem">Matrix</div>
-<div class="subindexitem">similar<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/example-sets-equivalent-matrices.html" title="Example 1.2.24: Equivalent Matrices">Example</a></span>
+<div class="indexitem">matrix<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-977.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Maxwell's equations<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-277.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">mixed-content <em class="emphasis">emphasized</em><span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
 </div>
 </div>
+<div class="indexletter" id="indexletter-n">
+<div class="indexitem">name<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1248.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">named list<span class="indexknowl">, <a href="lists.html#subsection-49" class="internal" title="Subsection 12.6: Named Lists">Subsection</a></span>
+</div>
+<div class="indexitem">ncbi attribute<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-371.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">numbering<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1207.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">numerical<span class="indexknowl">. <span class="see"><em>See</em> Sage</span><span class="see">; Sage integration</span></span>
+</div>
+<div class="indexitem">numerical integration</div>
+<div class="subindexitem">Sage</div>
+<div class="subsubindexitem">cell<span class="indexknowl"> <span class="see">(<em>see</em> Sage)</span></span>
+</div>
+<div class="indexitem">numerics<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a>. <span class="seealso"><em>See also</em> Sage</span></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-o"><div class="indexitem">ordered list<span class="indexknowl">, <a href="lists.html#subsection-44" class="internal" title="Subsection 12.1: Lists, Generally">Subsection</a> <a href="" class="xref" data-knowl="./knowl/p-536.html" title="Paragraph">Paragraph</a></span>
+</div></div>
 <div class="indexletter" id="indexletter-p">
-<div class="indexitem">Partitions<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-119.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">package</div>
+<div class="subindexitem">siunitx<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1012.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="indexitem">Permutation</div>
-<div class="subindexitem">definition of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/example-sets-permutation.html" title="Example 1.2.14: A Permutation">Example</a></span>
+<div class="indexitem">panels<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1015.html" title="Paragraph">Paragraph</a></span>
 </div>
-<div class="indexitem">Prime integer<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-284.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">paragraph</div>
+<div class="subindexitem">initial list<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/definition-2.html" title="Definition 12.1: Group">Definition</a></span>
 </div>
-<div class="indexitem">Primitive <span class="process-math">\(n\)</span>th root of unity<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-663.html" title="Paragraph">Paragraph</a></span>
+<div class="subindexitem">normal<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-696.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">opens with list<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-697.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">poem<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1098.html" title="Paragraph">Paragraph</a> <a href="" class="xref" data-knowl="./knowl/p-1147.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">problem<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-74.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">program listing<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-986.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">project<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-74.html" title="Paragraph">Paragraph</a> <a href="" class="xref" data-knowl="./knowl/exploration-1.html" title="Exploration 4.2: Exploring Explorations">Exploration</a></span>
+</div>
+<div class="indexitem">PSTricks<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-412.html" title="Paragraph">Paragraph</a></span>
 </div>
 </div>
-<div class="indexletter" id="indexletter-q"><div class="indexitem">Quaternions<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/example-groups-quaterions.html" title="Example 3.2.8: Group of Quaternions">Example</a></span>
-</div></div>
-<div class="indexletter" id="indexletter-r"><div class="indexitem">Rigid motion<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-400.html" title="Paragraph">Paragraph</a></span>
-</div></div>
+<div class="indexletter" id="indexletter-q">
+<div class="indexitem">question<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-74.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">sorted as if “Quorum”<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
+</div>
+<div class="indexitem">quotations<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-320.html" title="Paragraph">Paragraph</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-r">
+<div class="indexitem">R<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-20.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">
+<span class="process-math">\(\rho\)</span>–fibers<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
+</div>
+<div class="indexitem">reading questions<span class="indexknowl">, <a href="interesting-corollary.html#reading-questions-1" class="internal" title="Reading Questions 4.2.5">Reading Questions</a></span>
+</div>
+<div class="indexitem">reference</div>
+<div class="subindexitem">external<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-954.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">external, url<span class="indexknowl">, <a href="text-in-paragraphs.html#section-urls" class="internal" title="Subsection 8.8: URLs, such as http://example.com">Subsection</a> <a href="" class="xref" data-knowl="./knowl/p-851.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">references</div>
+<div class="subindexitem">within a section<span class="indexknowl">, <a href="section-11.html#references-section" class="internal" title="References 11.4: References">References</a></span>
+</div>
+<div class="indexitem">rename an environment<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exploration-1.html" title="Exploration 4.2: Exploring Explorations">Exploration</a></span>
+</div>
+<div class="subindexitem">conundrum<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1249.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">rho, a test<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-269.html" title="Paragraph">Paragraph</a></span>
+</div>
+</div>
 <div class="indexletter" id="indexletter-s">
-<div class="indexitem">Sieve of Eratosthenes<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exercise-62.html" title="Exercise 2.5.1: The Sieve of Eratosthenes">Exercise</a></span>
+<div class="indexitem">Sage</div>
+<div class="subindexitem">integration<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
 </div>
-<div class="indexitem">Subgroup</div>
-<div class="subindexitem">cyclic<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-625.html" title="Paragraph">Paragraph</a></span>
+<div class="subsubindexitem">cell<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
 </div>
-<div class="subindexitem">definition of<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-451.html" title="Paragraph">Paragraph</a></span>
+<div class="subsubindexitem">numerical<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
 </div>
-<div class="subindexitem">proper<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-451.html" title="Paragraph">Paragraph</a></span>
+<div class="subindexitem">interacts<span class="indexknowl">, <a href="section-interactive-authored.html#subsection-56" class="internal" title="Subsection 14.6: Sage Interacts">Subsection</a></span>
 </div>
-<div class="subindexitem">trivial<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-451.html" title="Paragraph">Paragraph</a></span>
+<div class="indexitem">Sage cell</div>
+<div class="subindexitem">with a title<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/paragraphs-1.html" title="Paragraphs: Titled Sage Cells">Paragraphs</a></span>
+</div>
+<div class="indexitem">Sage cells</div>
+<div class="subindexitem">linking<span class="indexknowl">, <a href="interesting-corollary.html#subsection-4" class="internal" title="Subsection 4.4: Linking Sage Cells">Subsection</a></span>
+</div>
+<div class="indexitem">Sage plots<span class="indexknowl">, <a href="graphics.html#subsection-35" class="internal" title="Subsection 9.5: Sage Plots">Subsection</a></span>
+</div>
+<div class="indexitem">scientific names<span class="indexknowl">. <span class="see"><em>See</em> biological names</span></span>
+</div>
+<div class="indexitem">siunitx package<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1012.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">solutions</div>
+<div class="subindexitem">all answers<span class="indexknowl">, <a href="solutions-5.html" class="internal" title="Appendix D: All Solutions that are Answers">Appendix</a></span>
+</div>
+<div class="subindexitem">all even answers<span class="indexknowl">, <a href="solutions-6.html" class="internal" title="Appendix E: All Solutions that are Answers to Odd Exercises">Appendix</a></span>
+</div>
+<div class="subindexitem">as an appendix<span class="indexknowl">, <a href="solutions-backmatter.html" class="internal" title="Appendix B: Solutions to Selected Exercises">Appendix</a></span>
+</div>
+<div class="subindexitem">for a division<span class="indexknowl">, <a href="interesting-corollary.html#solutions-subsection" class="internal" title="Solutions 4.2.7: Solutions for This Subsection">Solutions</a></span>
+</div>
+<div class="subindexitem">for one group of exercises<span class="indexknowl">, <a href="solutions-4.html" class="internal" title="Appendix C: Solutions to a Single Exercises Division">Appendix</a></span>
+</div>
+<div class="indexitem">Sonnet to Liberty, Wilde<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/poem-2.html" title="Poem: Sonnet to Liberty">Poem</a></span>
+</div>
+<div class="indexitem">species<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-370.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Stolen Child, The, Yeats<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/poem-4.html" title="Poem: The Stolen Child">Poem</a></span>
+</div>
+<div class="indexitem">strange colors<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/li-32.html" title="Item 9">Item</a> <a href="" class="xref" data-knowl="./knowl/li-35.html" title="Item 12">Item</a></span>
+</div>
+<div class="indexitem">structured-content <em class="emphasis">emphasized</em><span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
+</div>
+<div class="indexitem">styling words</div>
+<div class="subindexitem">alert<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-235.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">delete<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-236.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">em<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-235.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">emphasis<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-235.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">insert<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-236.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">stale<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-236.html" title="Paragraph">Paragraph</a></span>
 </div>
 </div>
-<div class="indexletter" id="indexletter-u"><div class="indexitem">Universal Product Code<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exercise-131.html" title="Exercise 3.6.1: UPC Symbols">Exercise</a></span>
+<div class="indexletter" id="indexletter-t">
+<div class="indexitem">table<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1044.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">task<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/exploration-1.html" title="Exploration 4.2: Exploring Explorations">Exploration</a></span>
+</div>
+<div class="indexitem">taxon<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-370.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">test: buried in theorem/statement/p<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/theorem-FTC.html" title="Theorem 2.1: The Fundamental Theorem of Calculus">Theorem</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-u">
+<div class="indexitem">Underdown, Jason<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-294.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">Unicode<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/paragraphs-8.html" title="Paragraphs: Unicode Characters for HTML Output">Paragraphs</a></span>
+</div>
+<div class="indexitem">units<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-1012.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="subindexitem">Z (<em class="alert">sort as</em> A)<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
+</div>
+<div class="subindexitem">A (<em class="alert">sort as</em> Z)<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
+</div>
+<div class="indexitem">unordered list<span class="indexknowl">, <a href="lists.html#subsection-44" class="internal" title="Subsection 12.1: Lists, Generally">Subsection</a> <a href="" class="xref" data-knowl="./knowl/p-536.html" title="Paragraph">Paragraph</a></span>
+</div>
+<div class="indexitem">url<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-954.html" title="Paragraph">Paragraph</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-v">
+<div class="indexitem">
+<code class="code-inline tex2jax_ignore">verbatim text</code>, use sortby<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
+</div>
+<div class="indexitem">videos</div>
+<div class="subindexitem">YouTube<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-855.html" title="Paragraph">Paragraph</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-w"><div class="indexitem">Wolfram CDF<span class="indexknowl">, <a href="section-interactive-server.html#subsection-63" class="internal" title="Subsection 15.4: Wolfram CDF">Subsection</a></span>
 </div></div>
-<div class="indexletter" id="indexletter-w">
-<div class="indexitem">Well-defined map<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-85.html" title="Paragraph">Paragraph</a></span>
+<div class="indexletter" id="indexletter-x">
+<div class="indexitem">X<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a>. <span class="seealso"><em>See also</em> F</span><span class="seealso">; G</span><span class="seealso">; H</span></span>
 </div>
-<div class="indexitem">Well-ordered set<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-255.html" title="Paragraph">Paragraph</a></span>
+<div class="subindexitem">Y<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a></span>
 </div>
-</div></section></div></main>
+<div class="subsubindexitem">Z<span class="indexknowl"> <span class="see">(<em>see</em> A</span><span class="see">; D)</span></span>
 </div>
+<div class="indexitem">
+<span class="process-math">\(x\)</span> as a variable<span class="indexknowl">, <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section</a> <a href="" class="xref" data-knowl="./knowl/p-13.html" title="Paragraph">Paragraph</a></span>
+</div>
+</div>
+<div class="indexletter" id="indexletter-y"><div class="indexitem">YouTube videos<span class="indexknowl">, <a href="" class="xref" data-knowl="./knowl/p-855.html" title="Paragraph">Paragraph</a></span>
+</div></div></section></div></main>
+</div>
+<script>createAllVisualizersFromHtmlAttrs();</script><script src="https://unpkg.com/prismjs@v1.22.0/components/prism-core.min.js"></script><script src="https://unpkg.com/prismjs@v1.22.0/plugins/autoloader/prism-autoloader.min.js"></script>
 </body>
 </html>
