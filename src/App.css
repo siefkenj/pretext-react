@@ -28,20 +28,20 @@ body {
     flex-direction: column;
 }
 
-#masthead {
+head#masthead {
     position: sticky;
     z-index: 100;
     top: 0;
     margin-top: var(--masthead-height);
 }
-#masthead .banner {
+head#masthead .banner {
     box-sizing: border-box;
     height: var(--masthead-height);
     position: absolute;
     top: calc(-1 * var(--masthead-height));
 }
 
-#primary-navbar {
+nav#primary-navbar {
     height: var(--primary-navbar-height);
 }
 
