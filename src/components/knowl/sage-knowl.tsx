@@ -9,14 +9,14 @@ export function replaceSageKnowlIfNeeded(
     if (!(node instanceof HtmlReactParserElement) || !(node.name === "div")) {
         return;
     }
-    if (node.attribs["class"].includes("sagecell-sage")) {
+    if (node.attribs["class"]?.includes("sagecell-sage")) {
         return (
             <SageKnowl id={node.attribs.id} className={node.attribs["class"]}>
                 {parsers.domToReact(node.children)}
             </SageKnowl>
         );
     }
-    if (node.attribs["class"].includes("sagecell-practice")) {
+    if (node.attribs["class"]?.includes("sagecell-practice")) {
         return (
             <SageKnowl id={node.attribs.id} className={node.attribs["class"]}>
                 {parsers.domToReact(node.children)}

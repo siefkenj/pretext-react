@@ -5,50 +5,53 @@ export interface TocEntryType {
     id?: string | null;
     children?: TocEntryType[];
     level?: TocEntryLevel;
+    type?: string;
 }
 
-type TocEntryLevel = "part" | "section" | "subsection";
+type TocEntryLevel = number;
 
-function getLevel(node: Element, defaultLevel: TocEntryLevel): TocEntryLevel {
-    return node.classList.contains("part") ? "part" : defaultLevel;
+const parser = new DOMParser();
+
+/**
+ * Extract the table of contents from `doc-manifest.xml`
+ */
+export function extractTocFromXml(raw: string): TocEntryType[] {
+    const xml = parser.parseFromString(raw, "text/xml");
+    const tocRoot = xml.querySelector("toc");
+    if (!tocRoot) {
+        console.warn(
+            "Found no table of contents root. There was likely an error somewhere."
+        );
+        return [];
+    }
+
+    return Array.from(tocRoot.querySelectorAll(":scope > division")).map(
+        (node) => processTocXml(node, 1)
+    );
 }
 
 /**
- * Extract the table of contents directly from the HTML of the page.
- *
- * @export
- * @returns {TocEntryType[]}
+ * Process a single `<division>` node from `doc-manifest.xml`.
  */
-export function extractToc(): TocEntryType[] {
-    const root = document.querySelector("#toc");
-    const nodes = root?.querySelectorAll(":scope > ul > li");
-    return Array.from(nodes || []).map((node) => {
-        const subList = node.querySelector(":scope > ul");
-        let subsections: TocEntryType[] | null = null;
-        if (subList) {
-            subsections = Array.from(
-                subList.querySelectorAll(":scope > li") || []
-            ).map((node) => {
-                return {
-                    title:
-                        node.querySelector(".title")?.textContent ||
-                        node.querySelector("a")?.textContent,
-                    codeNumber: node.querySelector(".codenumber")?.textContent,
-                    href: node.querySelector("a")?.getAttribute("href"),
-                    id: node.querySelector("a")?.getAttribute("data-scroll"),
-                    level: getLevel(node, "subsection"),
-                };
-            });
-        }
-        const base = {
-            title: node.querySelector(".title")?.textContent,
-            codeNumber: node.querySelector(".codenumber")?.textContent,
-            href: node.querySelector("a")?.getAttribute("href"),
-            id: node.querySelector("a")?.getAttribute("data-scroll"),
-            level: getLevel(node, "section"),
-        };
-        return subsections ? { ...base, children: subsections } : base;
-    });
+function processTocXml(root: Element, level: number): TocEntryType {
+    const title = root.querySelector("title")?.textContent || "";
+    const id = root.getAttribute("id");
+    const number = root.getAttribute("number");
+    const url = root.getAttribute("url");
+    const type = root.getAttribute("type") || "";
+    const children = Array.from(root.querySelectorAll(":scope > division")).map(
+        (elm) => processTocXml(elm, level + 1)
+    );
+
+    return {
+        title,
+        codeNumber: number,
+        href: url,
+        id,
+        children,
+        type,
+        level,
+    };
 }
 
 /**

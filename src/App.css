@@ -1,41 +1,5 @@
-.App {
-}
-
-.App-logo {
-    height: 40vmin;
-    pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-    .App-logo {
-        animation: App-logo-spin infinite 20s linear;
-    }
-}
-
-.App-header {
-    background-color: #282c34;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    font-size: calc(10px + 2vmin);
-    color: white;
-}
-
-.App-link {
-    color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-    from {
-        transform: rotate(0deg);
-    }
-    to {
-        transform: rotate(360deg);
-    }
-}
-
+/* Temporary styling just so one can tell that they're
+viewing the react version of the source code. */
 li.active::before {
     content: "*";
     display: block;
@@ -50,4 +14,51 @@ li.active::before {
     padding-top: 7px;
     padding-right: 5px;
     margin-right: 5px;
+}
+
+/* Some basic of the sidebar for my sanity. This should be replaced
+as part of a larger project... */
+:root {
+    --primary-navbar-height: 35px;
+    --masthead-height: 100px;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+}
+
+#masthead {
+    position: sticky;
+    z-index: 100;
+    top: 0;
+    margin-top: var(--masthead-height);
+}
+#masthead .banner {
+    box-sizing: border-box;
+    height: var(--masthead-height);
+    position: absolute;
+    top: calc(-1 * var(--masthead-height));
+}
+
+#primary-navbar {
+    height: var(--primary-navbar-height);
+}
+
+.page {
+    display: flex;
+    position: unset;
+}
+#sidebar-left {
+    align-self: flex-start;
+    height: calc(99vh - var(--primary-navbar-height));
+    overflow-y: auto;
+    position: sticky !important;
+    top: var(--primary-navbar-height);
+}
+main.main {
+    margin: 0px !important;
+    flex-grow: 1;
+    max-width: 663px;
+    min-height: 100vh;
 }

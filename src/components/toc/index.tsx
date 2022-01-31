@@ -5,13 +5,30 @@ import { TocEntryType } from "../../utils/extract-toc";
 import { InternalAnchor } from "../links";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 
+const DIVISIONS_THAT_RENDER_CODE_NUMBERS = new Set([
+    "part",
+    "chapter",
+    "section",
+    "exercises",
+    "appendix",
+    "solutions",
+]);
+
 function TocEntry({ entry }: { entry: TocEntryType }) {
     const currentPage = useAppSelector(currentPageSelector);
+
+    const shouldRenderCodeNumber = !!entry.codeNumber && (entry.level || 0) < 3;
+
+    // We never render divisions with empty headers.
+    const children = entry.children
+        ? entry.children.filter((child) => child.title)
+        : [];
+    const shouldRenderChildren = children.length > 0;
 
     return (
         <li
             className={`link ${currentPage === entry.id ? "active" : ""} ${
-                entry.level === "part" ? entry.level : ""
+                entry.type
             }`}
         >
             <MathJaxOneTimeRenderer>
@@ -20,15 +37,21 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                     pageId={entry.id || undefined}
                     className={currentPage === entry.id ? "active" : ""}
                 >
-                    {entry.codeNumber && (
+                    {shouldRenderCodeNumber && (
                         <span className="codenumber">{entry.codeNumber}</span>
                     )}
                     <span className="title">{entry.title}</span>
                 </InternalAnchor>
             </MathJaxOneTimeRenderer>
-            {entry.children && (
-                <ul>
-                    {entry.children.map((entry, i) => (
+            {shouldRenderChildren && (
+                <ul
+                    className={
+                        entry.level
+                            ? `division-level-${entry.level}`
+                            : undefined
+                    }
+                >
+                    {children.map((entry, i) => (
                         <TocEntry entry={entry} key={entry.id || i} />
                     ))}
                 </ul>

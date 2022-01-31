@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { extractActiveTocItem, extractToc } from "./utils/extract-toc";
+import { extractActiveTocItem, extractTocFromXml } from "./utils/extract-toc";
 import { Toc } from "./components/toc";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
@@ -23,6 +23,7 @@ function App() {
     const [tocExtracted, setTocExtracted] = React.useState(false);
     const tocContainer = document.querySelector("#toc");
     const scrollIntoView = useSelector(scrollIntoViewOnTransitionSelector);
+    const [lastScrolledHash, setLastScrolledHash] = React.useState("");
 
     React.useEffect(() => {
         (async () => {
@@ -45,17 +46,33 @@ function App() {
                     (hash ? document.getElementById(hash) : null) ||
                     document.getElementById("content") ||
                     document.body;
-                if (elm.getBoundingClientRect().y < 0) {
-                    elm.scrollIntoView(true);
+                if (hash !== lastScrolledHash) {
+                    const y =
+                        elm.getBoundingClientRect().top +
+                        window.pageYOffset -
+                        50;
+
+                    // Not sure which one of these is better. `window` might not always be the scrollable element,
+                    // in which case, this might break...
+                    // elm.scrollIntoView({ behavior: "smooth" });
+                    window.scrollTo({ behavior: "smooth", top: y });
+                    setLastScrolledHash(hash);
                 }
             }
         })();
-    }, [dispatch, currentUrl, lastUrl, scrollIntoView]);
+    }, [dispatch, currentUrl, lastUrl, scrollIntoView, lastScrolledHash]);
 
     React.useEffect(() => {
-        dispatch(navActions.setToc(extractToc()));
-        dispatch(navActions.setCurrentPage(extractActiveTocItem()));
-        setTocExtracted(true);
+        (async () => {
+            const resp = await fetch("doc-manifest.xml");
+            const content = await resp.text();
+            const toc = extractTocFromXml(content);
+            //await dispatch(navActions.setToc(extractTocFromHtml()));
+            //await dispatch(navActions.setCurrentPage(extractActiveTocItem()));
+            await dispatch(navActions.setToc(toc));
+            await dispatch(navActions.setCurrentPage(extractActiveTocItem()));
+            setTocExtracted(true);
+        })();
     }, [dispatch]);
 
     if (!tocExtracted || !tocContainer) {

@@ -127,7 +127,11 @@ function KnowlContent({ show, url }: { show: boolean; url: string }) {
         <div className="knowl-output" style={{ display: "block" }}>
             <div className="knowl">
                 <div className="knowl-content">
-                    <MathJaxRenderer>{body}</MathJaxRenderer>
+                    {renderedContent ? (
+                        <MathJaxRenderer>{body}</MathJaxRenderer>
+                    ) : (
+                        body
+                    )}
                 </div>
             </div>
         </div>
@@ -155,6 +159,8 @@ function PreloadedKnowl({
         }
     }, [contentVisible, refId]);
 
+    const activeClass = contentVisible ? "active" : "";
+
     return (
         <a
             {...rest}
@@ -167,6 +173,7 @@ function PreloadedKnowl({
             data-knowl
             role="button"
             tabIndex={0}
+            className={className ? `${className} ${activeClass}` : activeClass}
         >
             {children}
         </a>

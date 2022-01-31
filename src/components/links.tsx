@@ -10,6 +10,7 @@ export function InternalAnchor({
     href,
     pageId,
     children,
+    className,
     ...rest
 }: {
     href: string;
@@ -31,6 +32,7 @@ export function InternalAnchor({
                     dispatch(navActions.setCurrentPageByUrl(href));
                 }
             }}
+            className={className ? `${className} internal` : "internal"}
             {...rest}
         >
             {children}

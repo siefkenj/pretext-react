@@ -13,6 +13,12 @@ import { replaceSageKnowlIfNeeded } from "../knowl/sage-knowl";
 import { InternalAnchor } from "../links";
 import { PreparedParsers } from "./types";
 import { MathJaxOneTimeRenderer } from "../mathjax";
+import {
+    fullMathJaxReset,
+    mathJaxDefaultReady,
+    reTypesetMathJax,
+    typesetClear,
+} from "../../utils/mathjax";
 
 export const ParserContext = React.createContext<PreparedParsers>({
     parser: (html) => (
@@ -42,7 +48,8 @@ const options: HTMLReactParserOptions = {
         if (
             domNode instanceof Element &&
             domNode.name === "a" &&
-            (domNode.attribs["class"]?.includes("internal") ||
+            domNode.attribs.class &&
+            (domNode.attribs.class?.includes("internal") ||
                 hasParentWithClass(domNode, "summary-links"))
         ) {
             return (
@@ -93,6 +100,12 @@ export function ContentPage({ content }: { content: string }) {
         if (!haveClearedInnerHtml && contentNode) {
             contentNode.innerHTML = "";
             setHaveClearedInnerHtml(true);
+
+            // We don't start MathJax until after the original page contents has been cleared.
+            // This is because MathJax may be quick and typeset the page before we've cleared it.
+            // In that case, MathJax may have typeset an equation with a label twice, in which case
+            // it will complain.
+            window.setTimeout(mathJaxDefaultReady, 10);
         }
     }, [haveClearedInnerHtml, contentNode]);
 
