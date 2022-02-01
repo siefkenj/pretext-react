@@ -5,15 +5,6 @@ import { TocEntryType } from "../../utils/extract-toc";
 import { InternalAnchor } from "../links";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 
-const DIVISIONS_THAT_RENDER_CODE_NUMBERS = new Set([
-    "part",
-    "chapter",
-    "section",
-    "exercises",
-    "appendix",
-    "solutions",
-]);
-
 function TocEntry({ entry }: { entry: TocEntryType }) {
     const currentPage = useAppSelector(currentPageSelector);
 

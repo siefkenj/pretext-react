@@ -34,7 +34,7 @@ export function extractTocFromXml(raw: string): TocEntryType[] {
  * Process a single `<division>` node from `doc-manifest.xml`.
  */
 function processTocXml(root: Element, level: number): TocEntryType {
-    const title = root.querySelector("title")?.textContent || "";
+    const title = root.querySelector("title")?.innerHTML || "";
     const id = root.getAttribute("id");
     const number = root.getAttribute("number");
     const url = root.getAttribute("url");

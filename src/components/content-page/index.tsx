@@ -13,12 +13,7 @@ import { replaceSageKnowlIfNeeded } from "../knowl/sage-knowl";
 import { InternalAnchor } from "../links";
 import { PreparedParsers } from "./types";
 import { MathJaxOneTimeRenderer } from "../mathjax";
-import {
-    fullMathJaxReset,
-    mathJaxDefaultReady,
-    reTypesetMathJax,
-    typesetClear,
-} from "../../utils/mathjax";
+import { mathJaxDefaultReady } from "../../utils/mathjax";
 
 export const ParserContext = React.createContext<PreparedParsers>({
     parser: (html) => (
