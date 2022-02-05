@@ -1,73 +1,16 @@
-import HTMLReactParser, {
-    Element,
-    domToReact,
-    DOMNode,
-    HTMLReactParserOptions,
-} from "html-react-parser";
 import React from "react";
 import ReactDOM from "react-dom";
 import md5 from "crypto-js/md5";
 import { CachedComponent } from "../cached-component";
-import { replaceKnowlIfNeeded } from "../knowl/knowls";
-import { replaceSageKnowlIfNeeded } from "../knowl/sage-knowl";
-import { InternalAnchor } from "../links";
 import { PreparedParsers } from "./types";
-import { MathJaxOneTimeRenderer } from "../mathjax";
 import { mathJaxDefaultReady } from "../../utils/mathjax";
+import { htmlToComponent } from "./process-content";
 
 export const ParserContext = React.createContext<PreparedParsers>({
-    parser: (html) => (
-        <div>Default Parser Used. This should have been overridden</div>
-    ),
-    domToReact: (nodes) => (
+    parseString: (html) => (
         <div>Default Parser Used. This should have been overridden</div>
     ),
 });
-
-function hasParentWithClass(
-    node: DOMNode & Element,
-    className: string
-): boolean {
-    const parent = node.parentNode;
-    if (!parent || !(parent instanceof Element)) {
-        return false;
-    }
-    return (
-        parent.attribs["class"]?.includes(className) ||
-        hasParentWithClass(parent, className)
-    );
-}
-
-const options: HTMLReactParserOptions = {
-    replace: (domNode) => {
-        if (
-            domNode instanceof Element &&
-            domNode.name === "a" &&
-            domNode.attribs.class &&
-            (domNode.attribs.class?.includes("internal") ||
-                hasParentWithClass(domNode, "summary-links"))
-        ) {
-            return (
-                <InternalAnchor
-                    href={domNode.attribs.href}
-                    className={domNode.attribs["class"]}
-                    title={domNode.attribs.title}
-                >
-                    {domToReact(domNode.children)}
-                </InternalAnchor>
-            );
-        }
-
-        return (
-            replaceKnowlIfNeeded(domNode, parsers) ||
-            replaceSageKnowlIfNeeded(domNode, parsers)
-        );
-    },
-};
-const parsers: PreparedParsers = {
-    parser: (html) => HTMLReactParser(html, options),
-    domToReact: (nodes) => domToReact(nodes, options),
-};
 
 /**
  * Render a page's content in the content area. This element returns a portal
@@ -79,14 +22,9 @@ export function ContentPage({ content }: { content: string }) {
 
     // Render the content on demand. Since the content is cached, it will not
     // need to be re-rendered when it is asked to be displayed again.
-    const childRenderer = React.useCallback(
-        () => (
-            <MathJaxOneTimeRenderer>
-                {HTMLReactParser(content, options)}
-            </MathJaxOneTimeRenderer>
-        ),
-        [content]
-    );
+    const childRenderer = React.useCallback(() => {
+        return htmlToComponent(content);
+    }, [content]);
 
     const contentNode = document.querySelector("#content");
     React.useEffect(() => {
@@ -114,9 +52,9 @@ export function ContentPage({ content }: { content: string }) {
         return null;
     }
 
-    // Since child components may need to render HTML, we pass down the necessary parsers.
+    // Since child components may need to render HTML, we pass down a `parseString` function.
     return (
-        <ParserContext.Provider value={parsers}>
+        <ParserContext.Provider value={{ parseString: htmlToComponent }}>
             {ReactDOM.createPortal(
                 <CachedComponent
                     cacheId={"" + md5(content)}

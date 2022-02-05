@@ -2,11 +2,21 @@ import * as React from "react";
 import { useAppSelector } from "../../app/hooks";
 import { currentPageSelector, tocSelector } from "../../features/nav/navSlice";
 import { TocEntryType } from "../../utils/extract-toc";
+import { staticallyRenderMathJax } from "../../utils/html-manipulation/static-render";
 import { InternalAnchor } from "../links";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 
 function TocEntry({ entry }: { entry: TocEntryType }) {
     const currentPage = useAppSelector(currentPageSelector);
+    const [innerHtml, setInnerHtml] = React.useState(entry.title || "");
+
+    React.useEffect(() => {
+        if ((entry.title || "").includes("process-math")) {
+            staticallyRenderMathJax(entry.title || "").then((rendered) =>
+                setInnerHtml(rendered)
+            );
+        }
+    }, [entry.title]);
 
     const shouldRenderCodeNumber = !!entry.codeNumber && (entry.level || 0) < 3;
 
@@ -31,7 +41,10 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                     {shouldRenderCodeNumber && (
                         <span className="codenumber">{entry.codeNumber}</span>
                     )}
-                    <span className="title">{entry.title}</span>
+                    <span
+                        className="title"
+                        dangerouslySetInnerHTML={{ __html: innerHtml }}
+                    ></span>
                 </InternalAnchor>
             </MathJaxOneTimeRenderer>
             {shouldRenderChildren && (

@@ -53,6 +53,7 @@ nav#primary-navbar {
     align-self: flex-start;
     height: calc(99vh - var(--primary-navbar-height));
     overflow-y: auto;
+    overflow-x: hidden;
     position: sticky !important;
     top: var(--primary-navbar-height);
 }
@@ -61,4 +62,8 @@ main.main {
     flex-grow: 1;
     max-width: 663px;
     min-height: 100vh;
+}
+
+nav#toc {
+    overflow: hidden !important;
 }

@@ -1,59 +1,73 @@
-import { DOMNode, Element as HtmlReactParserElement } from "html-react-parser";
 import React from "react";
 import ReactDOM from "react-dom";
 import { extractKnowlContent } from "../../utils/extract-content";
 import { ParserContext } from "../content-page";
-import { PreparedParsers } from "../content-page/types";
 import { MathJaxRenderer } from "../mathjax";
 
-export function replaceKnowlIfNeeded(node: DOMNode, parsers: PreparedParsers) {
-    if (!(node instanceof HtmlReactParserElement) || !(node.name === "a")) {
-        return;
+/**
+ * Returns the closest ancestor that has the class `className`.
+ */
+function getParentWithClass(
+    elm: Element | null | undefined,
+    className: string
+) {
+    if (!elm) {
+        return null;
     }
-    const knowlLoc = node.attribs["data-knowl"];
-    const refId = node.attribs["data-refid"];
-    if (!knowlLoc && !refId) {
-        return;
+    let base = elm.parentElement;
+    while (base) {
+        if (base.classList.contains(className)) {
+            return base;
+        }
+        base = base.parentElement;
     }
-    if (refId) {
-        return (
-            <PreloadedKnowl
-                refId={refId}
-                className={node.attribs["class"]}
-                title={node.attribs.title}
-            >
-                {parsers.domToReact(node.children)}
-            </PreloadedKnowl>
-        );
-    }
-    return (
-        <Knowl
-            url={knowlLoc}
-            className={node.attribs["class"]}
-            title={node.attribs.title}
-        >
-            {parsers.domToReact(node.children)}
-        </Knowl>
-    );
+    return null;
 }
 
 export function Knowl({
     children,
     url,
+    containerId,
     ...rest
-}: React.PropsWithChildren<{ url: string } & React.ComponentProps<"a">>) {
+}: React.PropsWithChildren<
+    { url: string; containerId: string } & React.ComponentProps<"a">
+>) {
     const knowlContentContainerRef = React.useRef<HTMLElement | null>(null);
     const [contentVisible, setContentVisible] = React.useState(false);
+    const [knowlContainer, setKnowlContainer] = React.useState(() =>
+        document.getElementById(containerId)
+    );
 
-    const refCallback = React.useCallback((node: Element | null) => {
-        if (node != null) {
-            const parent = node.parentElement || document.body;
-            const container = document.createElement("div");
-            container.classList.add("knowl-portal");
-            parent.insertAdjacentElement("afterend", container);
-            knowlContentContainerRef.current = container;
+    React.useEffect(() => {
+        if (!knowlContainer) {
+            const container = document.getElementById(containerId);
+            setKnowlContainer(container);
+            if (container) {
+                container.classList.remove("hidden-content");
+            }
         }
-    }, []);
+        if (knowlContainer) {
+            const containerTop = getParentWithClass(
+                knowlContainer,
+                "knowl-container-top"
+            );
+            if (containerTop && contentVisible) {
+                containerTop.classList.remove("hidden-content");
+            } else if (containerTop && !contentVisible) {
+                containerTop.classList.add("hidden-content");
+            }
+        }
+    }, [knowlContainer, contentVisible, containerId]);
+
+    // const refCallback = React.useCallback((node: Element | null) => {
+    //     if (node != null) {
+    //         const parent = node.parentElement || document.body;
+    //         const container = document.createElement("div");
+    //         container.classList.add("knowl-portal");
+    //         parent.insertAdjacentElement("afterend", container);
+    //         knowlContentContainerRef.current = container;
+    //     }
+    // }, []);
 
     // Knowl elements are rendered on anchors inside of paragraphs (often with punctuation following). Since
     // they expand, we don't want to insert them immediately after the anchor, so we use a portal.
@@ -61,7 +75,7 @@ export function Knowl({
     return (
         <React.Fragment>
             <a
-                ref={refCallback}
+                //    ref={refCallback}
                 {...rest}
                 href={url}
                 onClick={(e) => {
@@ -70,13 +84,14 @@ export function Knowl({
                     setContentVisible(!contentVisible);
                 }}
                 data-knowl
+                data-knowl-container-id={containerId}
             >
                 {children}
             </a>
-            {knowlContentContainerRef.current &&
+            {knowlContainer &&
                 ReactDOM.createPortal(
                     <KnowlContent show={contentVisible} url={url} />,
-                    knowlContentContainerRef.current
+                    knowlContainer
                 )}
         </React.Fragment>
     );
@@ -114,7 +129,7 @@ function KnowlContent({ show, url }: { show: boolean; url: string }) {
         if (!fetchedData) {
             return;
         }
-        setRenderedContent(parser.parser(fetchedData));
+        setRenderedContent(parser.parseString(fetchedData));
     }, [fetchedData, parser]);
 
     if (!show) {
@@ -138,7 +153,7 @@ function KnowlContent({ show, url }: { show: boolean; url: string }) {
     );
 }
 
-function PreloadedKnowl({
+export function PreloadedKnowl({
     children,
     className,
     refId,
