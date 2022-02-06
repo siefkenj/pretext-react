@@ -18,8 +18,14 @@ export const replaceInternalLinks: ReplacerFunc = (
         const href = hastDom.getAttribute(node, "href");
         const title = hastDom.getAttribute(node, "title");
 
-        <InternalAnchor href={href || ""} className={className} title={title}>
-            {processContent(node.children)}
-        </InternalAnchor>;
+        return (
+            <InternalAnchor
+                href={href || ""}
+                className={className}
+                title={title}
+            >
+                {processContent(node.children)}
+            </InternalAnchor>
+        );
     }
 };

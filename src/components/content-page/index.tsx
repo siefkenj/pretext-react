@@ -19,12 +19,27 @@ export const ParserContext = React.createContext<PreparedParsers>({
 export function ContentPage({ content }: { content: string }) {
     const [haveClearedInnerHtml, setHaveClearedInnerHtml] =
         React.useState(false);
+    const existingIdsRef = React.useRef<string[]>([]);
 
+    const parseString = React.useCallback((html: string) => {
+        const { component, data } = htmlToComponent(
+            html,
+            existingIdsRef.current
+        );
+        if (data.hastDom) {
+            for (const id of Object.keys(
+                (data.hastDom.slugger as any)?.occurrences
+            ) || []) {
+                existingIdsRef.current.push(id);
+            }
+        }
+        return component;
+    }, []);
     // Render the content on demand. Since the content is cached, it will not
     // need to be re-rendered when it is asked to be displayed again.
     const childRenderer = React.useCallback(() => {
-        return htmlToComponent(content);
-    }, [content]);
+        return parseString(content);
+    }, [content, parseString]);
 
     const contentNode = document.querySelector("#content");
     React.useEffect(() => {
@@ -54,7 +69,7 @@ export function ContentPage({ content }: { content: string }) {
 
     // Since child components may need to render HTML, we pass down a `parseString` function.
     return (
-        <ParserContext.Provider value={{ parseString: htmlToComponent }}>
+        <ParserContext.Provider value={{ parseString }}>
             {ReactDOM.createPortal(
                 <CachedComponent
                     cacheId={"" + md5(content)}

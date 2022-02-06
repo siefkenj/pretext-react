@@ -1,21 +1,3 @@
-/* Temporary styling just so one can tell that they're
-viewing the react version of the source code. */
-li.active::before {
-    content: "*";
-    display: block;
-    position: relative;
-    float: right;
-    height: 0px;
-    width: 0px;
-    left: 0;
-    z-index: 10;
-    font-weight: bold;
-    color: gold;
-    padding-top: 7px;
-    padding-right: 5px;
-    margin-right: 5px;
-}
-
 /* Some basic of the sidebar for my sanity. This should be replaced
 as part of a larger project... */
 :root {
@@ -64,6 +46,40 @@ main.main {
     min-height: 100vh;
 }
 
-nav#toc {
-    overflow: hidden !important;
+/* Make the nav chevron position correctly */
+#toc ul li a.internal {
+    display: flex;
+}
+#toc .title {
+    flex-grow: 1;
+}
+#toc ul ul ul {
+    margin-left: 20px;
+    list-style-type: none;
+    border-left: 1px solid #d1d1d1;
+    border-bottom: 1px solid #d1d1d1;
+}
+#toc a:visited {
+    background-color: unset !important;
+}
+
+.toc-chevron-surround {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    flex-shrink: 0;
+    margin-right: 5px;
+    margin-left: 5px;
+    align-self: center;
+    width: 17px;
+    overflow: hidden;
+}
+.toc-chevron-surround .chevron-wrapper {
+    transform-origin: 0px 13px;
+    margin: unset;
+    transition: transform 0.3s;
+}
+.toc-chevron-surround.open .chevron-wrapper {
+    transform: rotate(90deg);
 }

@@ -124,7 +124,7 @@ export function insertKnowlExpandStubs(domStr: string) {
 export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
     function () {
         return (ast, file) => {
-            const hastDom = new HastDom(ast);
+            const hastDom = new HastDom(ast, file.data.existingIds);
             file.data.hastDom = hastDom;
             // If the knowl has a refid, find it's hidden content and move it to the correct place.
             for (const elm of hastDom.querySelectorAll(

@@ -21,8 +21,16 @@ const processHtmlContentViaUnified = unified()
  *
  * @param {string} content - html string
  */
-export function htmlToComponent(content: string) {
-    const file = processHtmlContentViaUnified.processSync(content);
+export function htmlToComponent(content: string, existingIds: string[] = []) {
+    const file = processHtmlContentViaUnified.processSync({
+        value: content,
+        data: { existingIds },
+    });
 
-    return <MathJaxOneTimeRenderer>{file.result}</MathJaxOneTimeRenderer>;
+    return {
+        component: (
+            <MathJaxOneTimeRenderer>{file.result}</MathJaxOneTimeRenderer>
+        ),
+        data: file.data,
+    };
 }

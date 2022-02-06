@@ -8,6 +8,7 @@ import { RootState } from "../../app/store";
 import { extractPageContent } from "../../utils/extract-content";
 import { TocEntryType } from "../../utils/extract-toc";
 import { normalizeUrl, normalizeUrlWithHash } from "../../utils/normalize";
+import { mapToc } from "./map-toc";
 
 export interface NavState {
     currentPage: string | null;
@@ -164,6 +165,7 @@ const navThunks = {
         }
     ),
 };
+
 export const navSlice = createSlice({
     name: "nav",
     initialState,
@@ -187,26 +189,9 @@ export const navSlice = createSlice({
 
             // We keep an updated map from ids to urls so we
             // don't have to do a deep search on every mouse click.
-            const newPageToUrlMap: typeof state.pageToUrlMap = {};
-            const newUrlToPageMap: typeof state.urlToPageMap = {};
-            function traverse(toc: TocEntryType[]) {
-                for (const item of toc) {
-                    if (item.id && item.href) {
-                        newPageToUrlMap[item.id] = item.href;
-                        // Keep both the normalized and non-normalized variants in the map
-                        // for easy lookup.
-                        newUrlToPageMap[item.href] = item.id;
-                        newUrlToPageMap[normalizeUrlWithHash(item.href)] =
-                            item.id;
-                    }
-                    if (item.children) {
-                        traverse(item.children);
-                    }
-                }
-            }
-            traverse(toc);
-            state.pageToUrlMap = newPageToUrlMap;
-            state.urlToPageMap = newUrlToPageMap;
+            const { pageToUrlMap, urlToPageMap } = mapToc(toc);
+            state.pageToUrlMap = pageToUrlMap;
+            state.urlToPageMap = urlToPageMap;
             // Some thunks might be waiting on the TOC to be set
             // before executing. This allows them to execute.
             tocIsSetResolve();
