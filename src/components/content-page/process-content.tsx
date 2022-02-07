@@ -4,6 +4,7 @@ import { hastFromStringNative } from "../../utils/html-manipulation/hast-from-st
 import { hastReactTransformer } from "../../utils/html-manipulation/hast-react";
 import { rehypeInsertKnowlExpandStubs } from "../../utils/html-manipulation/place-knowls";
 import { MathJaxOneTimeRenderer } from "../mathjax";
+import { replaceImages } from "../replacers/images";
 import { replaceKnowl, replaceSageKnowl } from "../replacers/knowls";
 import { replaceInternalLinks } from "../replacers/links";
 
@@ -11,7 +12,12 @@ const processHtmlContentViaUnified = unified()
     .use(hastFromStringNative)
     .use(rehypeInsertKnowlExpandStubs)
     .use(hastReactTransformer, {
-        replacers: [replaceInternalLinks, replaceKnowl, replaceSageKnowl],
+        replacers: [
+            replaceInternalLinks,
+            replaceKnowl,
+            replaceSageKnowl,
+            replaceImages,
+        ],
     })
     .freeze();
 

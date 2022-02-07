@@ -1,7 +1,5 @@
-import { Plugin, unified } from "unified";
+import { Plugin } from "unified";
 import { Element as HastElement, Root as HastRoot } from "hast";
-import rehypeParse from "rehype-parse";
-import rehypeStringify from "rehype-stringify";
 import { select } from "hast-util-select";
 import { toHtml } from "hast-util-to-html";
 import { HastDom } from "./hast-dom";
@@ -61,60 +59,6 @@ function positionKnowlContent(
     }
 }
 
-export function insertKnowlExpandStubs(domStr: string) {
-    const file = unified()
-        .use(rehypeParse, { fragment: true })
-        .use(() => (ast, file) => {
-            const hastDom = new HastDom(ast);
-            file.data.hastDom = hastDom;
-            // If the knowl has a refid, find it's hidden content and move it to the correct place.
-            for (const elm of hastDom.querySelectorAll(
-                "[data-knowl][data-refid]"
-            )) {
-                const parent = hastDom.parentOf(elm);
-                if (parent?.type === "element") {
-                    const knowlContent = select(
-                        `#${elm.properties?.dataRefid}`,
-                        ast
-                    );
-                    if (!knowlContent) {
-                        throw new Error(
-                            `Couldn't find knowl content for element ${toHtml(
-                                elm
-                            )}`
-                        );
-                    }
-                    positionKnowlContent(elm, knowlContent, hastDom);
-                }
-            }
-            // If the knowl does not have a refid, then its content is fetched from a URL.
-            // We pre-insert a container element for this knowl so that the react code
-            // Doesn't have to do wild things to the DOM.
-            for (const elm of hastDom.querySelectorAll(
-                "[data-knowl]:not([data-refid])"
-            )) {
-                const url = "" + (elm.properties?.dataKnowl || "");
-                if (!url) {
-                    console.warn(`Could not find data url for ${toHtml(elm)}`);
-                }
-                const id = hastDom.uniqueSlug(`knowl-ref-${url}`);
-                elm.properties = Object.assign(elm.properties || {}, {
-                    dataKnowlContainerId: id,
-                });
-                const container = fromSelector(`div.hidden-content`);
-                container.properties = Object.assign(
-                    container.properties || {},
-                    { dataForKnowlUrl: url, id }
-                );
-                positionKnowlContent(elm, container, hastDom);
-            }
-        })
-        .use(rehypeStringify)
-        .processSync(domStr);
-
-    return String(file);
-}
-
 /**
  * `unifiedjs` plugin that inputs a `hast` AST and inserts/moves the knowl
  * content areas where needed. This plugin must be called in conjunction with `rehypeParse`
@@ -143,6 +87,14 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
                             )}`
                         );
                     }
+                    const knowlContentClassName =
+                        knowlContent.properties?.className;
+                    if (!Array.isArray(knowlContentClassName)) {
+                        throw new Error("Expected className to be a list");
+                    }
+                    knowlContentClassName.push("knowl-output");
+                    knowlContentClassName.push("knowl-content");
+                    knowlContentClassName.push("original");
                     positionKnowlContent(elm, knowlContent, hastDom);
                 }
             }

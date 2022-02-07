@@ -24,6 +24,27 @@ function getParentWithClass(
     return null;
 }
 
+/**
+ * Looks for a parent with the `knowl-container-top` class and toggles the class `hidden-content`
+ * on that element. If no such parent exists, the function exists.
+ */
+function toggleKnowlContainerTopHiddenValue(
+    knowlContainer: Element | null,
+    contentVisible: boolean
+) {
+    if (knowlContainer) {
+        const containerTop = getParentWithClass(
+            knowlContainer,
+            "knowl-container-top"
+        );
+        if (containerTop && contentVisible) {
+            containerTop.classList.remove("hidden-content");
+        } else if (containerTop && !contentVisible) {
+            containerTop.classList.add("hidden-content");
+        }
+    }
+}
+
 export function Knowl({
     children,
     url,
@@ -32,7 +53,6 @@ export function Knowl({
 }: React.PropsWithChildren<
     { url: string; containerId: string } & React.ComponentProps<"a">
 >) {
-    const knowlContentContainerRef = React.useRef<HTMLElement | null>(null);
     const [contentVisible, setContentVisible] = React.useState(false);
     const [knowlContainer, setKnowlContainer] = React.useState(() =>
         document.getElementById(containerId)
@@ -46,28 +66,8 @@ export function Knowl({
                 container.classList.remove("hidden-content");
             }
         }
-        if (knowlContainer) {
-            const containerTop = getParentWithClass(
-                knowlContainer,
-                "knowl-container-top"
-            );
-            if (containerTop && contentVisible) {
-                containerTop.classList.remove("hidden-content");
-            } else if (containerTop && !contentVisible) {
-                containerTop.classList.add("hidden-content");
-            }
-        }
+        toggleKnowlContainerTopHiddenValue(knowlContainer, contentVisible);
     }, [knowlContainer, contentVisible, containerId]);
-
-    // const refCallback = React.useCallback((node: Element | null) => {
-    //     if (node != null) {
-    //         const parent = node.parentElement || document.body;
-    //         const container = document.createElement("div");
-    //         container.classList.add("knowl-portal");
-    //         parent.insertAdjacentElement("afterend", container);
-    //         knowlContentContainerRef.current = container;
-    //     }
-    // }, []);
 
     // Knowl elements are rendered on anchors inside of paragraphs (often with punctuation following). Since
     // they expand, we don't want to insert them immediately after the anchor, so we use a portal.
@@ -162,16 +162,17 @@ export function PreloadedKnowl({
     const [contentVisible, setContentVisible] = React.useState(false);
 
     React.useEffect(() => {
-        const knowlContent = document.getElementById(refId);
-        if (!knowlContent) {
+        const knowlContainer = document.getElementById(refId);
+        if (!knowlContainer) {
             console.log("Could not find knowl with id", refId);
             return;
         }
         if (contentVisible) {
-            knowlContent.style.setProperty("display", "block");
+            knowlContainer.style.setProperty("display", "block");
         } else {
-            knowlContent.style.removeProperty("display");
+            knowlContainer.style.removeProperty("display");
         }
+        toggleKnowlContainerTopHiddenValue(knowlContainer, contentVisible);
     }, [contentVisible, refId]);
 
     const activeClass = contentVisible ? "active" : "";
