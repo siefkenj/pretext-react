@@ -6,6 +6,7 @@ import { staticallyRenderMathJax } from "../../utils/html-manipulation/static-re
 import { InternalAnchor } from "../links";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 import Chevron from "react-chevron";
+import { tocIsVisibleSelector } from "../../features/toc/tocSlice";
 
 /**
  * Returns whether or not there is a TOC item with id `childId` that is a child of the
@@ -120,8 +121,9 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
 
 export function Toc() {
     const toc = useAppSelector(tocSelector);
+    const visible = useAppSelector(tocIsVisibleSelector);
     return (
-        <ul>
+        <ul className={visible ? "" : "hidden-content"}>
             {toc.map((entry, i) => (
                 <TocEntry entry={entry} key={entry.id || i} />
             ))}

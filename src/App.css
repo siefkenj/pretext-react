@@ -31,12 +31,12 @@ nav#primary-navbar {
     display: flex;
     position: unset;
 }
-#sidebar-left {
+body #root .page > #sidebar-left {
     align-self: flex-start;
     height: calc(99vh - var(--primary-navbar-height));
     overflow-y: auto;
     overflow-x: hidden;
-    position: sticky !important;
+    position: sticky;
     top: var(--primary-navbar-height);
 }
 main.main {
@@ -46,6 +46,12 @@ main.main {
     min-height: 100vh;
 }
 
+#toc {
+    width: unset !important;
+}
+#sidebar-left {
+    width: 240px;
+}
 /* Make the nav chevron position correctly */
 #toc ul li a.internal {
     display: flex;
@@ -82,4 +88,48 @@ main.main {
 }
 .toc-chevron-surround.open .chevron-wrapper {
     transform: rotate(90deg);
+}
+.toolbar-item.button {
+    width: 70px;
+}
+#sidebar-left.hidden-content {
+    display: none !important;
+}
+button:disabled {
+    color: #aaa !important;
+}
+#root div.navbar-top-buttons {
+    display: flex;
+    justify-content: space-between;
+    
+}
+#root div.navbar-top-buttons .tree-nav.toolbar.toolbar-divisor-3 {
+    margin-left: 0px;
+}
+
+
+@media (max-width: 800px) {
+    main.main {
+        max-width: 100%;
+    }
+    header#masthead .banner {
+        height: unset;
+        position: relative;
+        top: unset;
+        
+    }
+    header#masthead {
+        position: relative;
+    }
+    body #root .page > div#sidebar-left {
+        margin-left: unset;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: unset;
+        z-index: 1002;
+        background-color: white;
+        width: 100%;
+    }
+    
 }

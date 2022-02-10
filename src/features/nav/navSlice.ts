@@ -6,7 +6,12 @@ import {
 import { createLoggingAsyncThunk, history } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { extractPageContent } from "../../utils/extract-content";
-import { TocEntryType } from "../../utils/extract-toc";
+import {
+    findTocItemById,
+    flattenToc,
+    getParentsInToc,
+    TocEntryType,
+} from "../../utils/extract-toc";
 import { normalizeUrl, normalizeUrlWithHash } from "../../utils/normalize";
 import { mapToc } from "./map-toc";
 
@@ -269,5 +274,46 @@ export const currentPageTopLevelTocInfoSelector = createDraftSafeSelector(
             return null;
         }
         return recursiveFind(toc);
+    }
+);
+
+/**
+ * Return the TOC entries for the next/prev/up navigation directions
+ * relative to the current page.
+ */
+export const nextPrevParentSelector = createDraftSafeSelector(
+    [currentPageSelector, tocSelector],
+    (currentPage, toc) => {
+        let prev: TocEntryType | null = null,
+            next: TocEntryType | null = null,
+            up: TocEntryType | null = null;
+        if (!currentPage) {
+            return { prev, next, up };
+        }
+        const currentTocEntry = findTocItemById(toc, currentPage);
+        if (!currentTocEntry) {
+            return { prev, next, up };
+        }
+        const currentBaseUrl = normalizeUrl(currentTocEntry.href || "");
+        // We only care about the items with a different URL.
+        const flatToc = flattenToc(toc).filter(
+            (entry) =>
+                normalizeUrl(entry.href || "") !== currentBaseUrl ||
+                entry === currentTocEntry
+        );
+        const currentPageIndex = flatToc.findIndex(
+            (entry) => entry === currentTocEntry
+        );
+
+        prev = flatToc[currentPageIndex - 1] || null;
+        next = flatToc[currentPageIndex + 1] || null;
+
+        // Now for the parent
+        const parents = getParentsInToc(toc, currentTocEntry).filter(
+            (item) => normalizeUrl(item.href || "") !== currentBaseUrl
+        );
+        up = parents[parents.length - 1] || null;
+
+        return { prev, next, up };
     }
 );

@@ -11,8 +11,12 @@ import {
 import { useLocation } from "react-router";
 import { normalizeUrlWithHash } from "./utils/normalize";
 import { ContentPage } from "./components/content-page";
-import { ReplacingPortal } from "./components/replacing-portal";
 import { useSelector } from "react-redux";
+import { Banner } from "./components/banner";
+import { NavButtons } from "./components/nav-buttons";
+import { TocVisibilityToggle } from "./components/toc/toggle";
+import { tocIsVisibleSelector } from "./features/toc/tocSlice";
+import { CachingSettingsSelect } from "./components/caching-setting-select";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -21,9 +25,9 @@ function App() {
     const currentUrl = normalizeUrlWithHash(location.pathname + location.hash);
     const currentPageContents = useAppSelector(currentPageContentSelector);
     const [tocExtracted, setTocExtracted] = React.useState(false);
-    const tocContainer = document.querySelector("#toc");
     const scrollIntoView = useSelector(scrollIntoViewOnTransitionSelector);
     const [lastScrolledHash, setLastScrolledHash] = React.useState("");
+    const tocVisible = useAppSelector(tocIsVisibleSelector);
 
     React.useEffect(() => {
         (async () => {
@@ -67,25 +71,54 @@ function App() {
             const resp = await fetch("doc-manifest.xml");
             const content = await resp.text();
             const toc = extractTocFromXml(content);
-            //await dispatch(navActions.setToc(extractTocFromHtml()));
-            //await dispatch(navActions.setCurrentPage(extractActiveTocItem()));
             await dispatch(navActions.setToc(toc));
             await dispatch(navActions.setCurrentPage(extractActiveTocItem()));
             setTocExtracted(true);
         })();
     }, [dispatch]);
 
-    if (!tocExtracted || !tocContainer) {
+    if (!tocExtracted) {
         return null;
     }
 
     return (
-        <div className="App">
-            <ReplacingPortal target={tocContainer}>
-                <Toc />
-            </ReplacingPortal>
-            <ContentPage content={currentPageContents} />
-        </div>
+        <React.Fragment>
+            <header id="masthead" className="smallbuttons">
+                <div className="banner">
+                    <Banner />
+                </div>
+                <div id="primary-navbar-sticky-wrapper" className="navbar">
+                    <nav id="primary-navbar" className="navbar">
+                        <div className="container">
+                            <div className="navbar-top-buttons">
+                                <TocVisibilityToggle />
+                                <CachingSettingsSelect />
+                                <div className="tree-nav toolbar toolbar-divisor-3">
+                                    <span className="threebuttons">
+                                        <NavButtons />
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+            </header>
+            <div className="page">
+                <div
+                    id="sidebar-left"
+                    className={tocVisible ? "" : "hidden-content"}
+                >
+                    <nav id="toc">
+                        <Toc />
+                    </nav>
+                </div>
+                <main className="main">
+                    <div id="content" className="pretext-content">
+                        <ContentPage content={currentPageContents} />
+                    </div>
+                </main>
+            </div>
+        </React.Fragment>
     );
 }
 

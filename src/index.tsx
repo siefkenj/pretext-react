@@ -7,9 +7,28 @@ import { Provider } from "react-redux";
 import { store } from "./app/store";
 import { history } from "./app/hooks";
 import { CustomBrowserRouter } from "./app/router";
+import { extractInitInfo } from "./page-init";
 
+// Must be called before the app renders.
+extractInitInfo();
+
+// Various scripts and other tags that shouldn't be changed may
+// be in the body, so we need to manually clean up and prepare a spot for the main app.
 document.body.innerHTML += `<div id="root"></div>`;
+const header = document.body.querySelector("header");
+const page = document.body.querySelector(".page");
+if (header) {
+    document.body.removeChild(header);
+} else {
+    console.warn("Tried to remove <header /> but could not find it");
+}
+if (page) {
+    document.body.removeChild(page);
+} else {
+    console.warn('Tried to remove <div class="page" /> but could not find it');
+}
 
+const renderTarget = document.getElementById("root");
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
@@ -18,7 +37,7 @@ ReactDOM.render(
             </CustomBrowserRouter>
         </Provider>
     </React.StrictMode>,
-    document.getElementById("root")
+    renderTarget
 );
 
 // If you want to start measuring performance in your app, pass a function

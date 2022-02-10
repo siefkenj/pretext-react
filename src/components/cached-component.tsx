@@ -1,4 +1,6 @@
 import React from "react";
+import { useAppSelector } from "../app/hooks";
+import { domCachingSelector } from "../features/global/globalSlice";
 
 type ChildCache = Record<string, React.ReactNode>;
 
@@ -22,12 +24,22 @@ export function CachedComponent({
 }) {
     const cacheRef = React.useRef<ChildCache>({});
     const cache = cacheRef.current;
+    const domCaching = useAppSelector(domCachingSelector);
+
+    if (!domCaching) {
+        return <React.Fragment>{childRenderer()}</React.Fragment>;
+    }
 
     // Strict check for undefined, since `null` is a valid react element.
     if (typeof cache[cacheId] === "undefined") {
         cache[cacheId] = childRenderer();
     }
 
+    // DOM caching is the most aggressive form of caching where we render the tree and then hide it if
+    // the page shouldn't be shown. It comes with side-effects. For example, videos on a hidden page
+    // still exist and might keep playing even when the page is hidden. Further, plugins that scan for
+    // content across the whole DOM may try to process too much, or process content they've already
+    // processed.
     const children = Object.entries(cache).map(([id, content]) => (
         <HidableElement
             hidden={id !== cacheId}

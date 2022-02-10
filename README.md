@@ -39,3 +39,57 @@ scripts assume that all of your _Pretext_ `html` files have
 
 in their `<header>`. (The reference to `bundle.js` is strictly for development/hot-reloading. It
 isn't needed in a production build.)
+
+### Code Overview
+
+`pretext-react` is written in [TypeScript](https://www.typescriptlang.org/), specifically the _TSX_ variant of typescript.
+_TSX_ allows a mixture of TypeScript code and what appears to be HTML. It is a TypeScript variant of the popular JSX. See [here](https://www.reactenlightenment.com/react-jsx/5.1.html)
+for a short introduction to JSX.
+
+`pretext-react` replaces the "shell" around the pretext content. Additionally, it is responsible
+for the interactive _knowl_ elements and navigation components.
+
+When the page is loaded, `pretext-react` does the following.
+
+1. Extracts necessary information from the current page (mainly the body content) and fetches `doc-manifest.xml` which contains table of contents information.
+
+2. Renders the "shell" (the TOC and nav buttons).
+
+3. Processes and display the page contents. React likes to "own" the page that it renders. For this reason, we process the source with the [unifiedjs](http://unifiedjs.com/) framework and call the code in `hast-react.ts` to convert the HAST (HTML Abstract Syntax Tree) into a tree of React components. Along the way, certain components are replaced with their full-featured equivalents. For example, links are replaced with `<InternalLink />` elements (provided they are internal links!). These replaces are located in `src/components/replaces`.
+
+Of note, when the user clicks on a _knowl_, it is handled by React components (the ones coming from `replacers/knowls.tsx`).
+
+#### State Management
+
+Redux via [Redux Toolkit](https://redux-toolkit.js.org/) is used to manage global state. It allows several components to access the same
+data while staying in sync. It also minimizes re-renders by asking components to re-render only when their data changes.
+
+If you install [Redux Devtools](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd?hl=en) for
+Firefox or Chrome you can inspect the contents of the page's global store.
+
+In the Redux global store, table of contents information/navigation information is stored. In addition, the HTML source of each
+cached page is stored. This means the page doesn't need to be re-downloaded when the user returns to it!
+
+#### Code Philosophy/Files
+
+The code is written using React Function-based components (not class-based components). Files aim to be less than 200 lines of code
+with each file containing one component (or a couple closely-related components). The TypeScript compiler will combine code
+that is imported via `import` statements into a single file in the end, so there is no concern that the end-user will have to load
+hundreds of files.
+
+Here's a brief overview of the important files and folders:
+
+-   `index.tsx` - This is the entry point for the App. It sets up only what is required to get the app started (e.g., stuff that needs to
+    be done before the app starts).
+
+-   `App.tsx` - This is what renders the app. Every component that you see is a child of a component from here.
+
+-   `app/` - Setup for Redux/global state management.
+
+-   `components/` - This is where the React components go (e.g., buttons, knowl-openers, etc.)
+
+-   `features/` - Global state management. Each "piece" of state is broken off into its own features. For instance, state related to caching
+    vs. state related to the TOC, etc.
+
+-   `utils/` - Utilities used by other scripts. This code should be only TypeScript (i.e., no TSX files). Code in this folder can be
+    tested independently without a fully-loaded page.

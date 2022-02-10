@@ -1,5 +1,4 @@
 import React from "react";
-import ReactDOM from "react-dom";
 import md5 from "crypto-js/md5";
 import { CachedComponent } from "../cached-component";
 import { PreparedParsers } from "./types";
@@ -70,13 +69,10 @@ export function ContentPage({ content }: { content: string }) {
     // Since child components may need to render HTML, we pass down a `parseString` function.
     return (
         <ParserContext.Provider value={{ parseString }}>
-            {ReactDOM.createPortal(
-                <CachedComponent
-                    cacheId={"" + md5(content)}
-                    childRenderer={childRenderer}
-                />,
-                contentNode
-            )}
+            <CachedComponent
+                cacheId={"" + md5(content)}
+                childRenderer={childRenderer}
+            />
         </ParserContext.Provider>
     );
 }
