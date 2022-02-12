@@ -7,6 +7,6 @@ import { HastDom } from "./hast-dom";
 declare module "vfile" {
     interface VFileDataMap {
         hastDom: HastDom;
-        existingIds: string[];
+        existingIds: Set<string>;
     }
 }

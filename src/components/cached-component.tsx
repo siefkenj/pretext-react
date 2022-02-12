@@ -27,7 +27,11 @@ export function CachedComponent({
     const domCaching = useAppSelector(domCachingSelector);
 
     if (!domCaching) {
-        return <React.Fragment>{childRenderer()}</React.Fragment>;
+        return (
+            <HidableElement hidden={false} cacheId={cacheId} key={cacheId}>
+                {childRenderer()}
+            </HidableElement>
+        );
     }
 
     // Strict check for undefined, since `null` is a valid react element.

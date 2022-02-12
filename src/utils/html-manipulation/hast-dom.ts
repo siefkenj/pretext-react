@@ -32,7 +32,7 @@ export class HastDom {
     slugger: Slugger;
     sluggerInitialized: boolean;
 
-    constructor(ast: HastElement | HastRoot, existingIds?: string[]) {
+    constructor(ast: HastElement | HastRoot, existingIds?: Set<string>) {
         this.ast = ast;
         this.parentMap = makeParentMap(ast);
         this.slugger = new Slugger();
@@ -41,9 +41,7 @@ export class HastDom {
         if (existingIds) {
             // Inserting existing IDs doesn't count as initializing, so we
             // don't set `sluggerInitialized=true`.
-            for (const id of existingIds) {
-                this.slugger.slug(id);
-            }
+            existingIds.forEach((id) => this.slugger.slug(id));
         }
     }
 

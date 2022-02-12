@@ -1,10 +1,21 @@
 const globalTypesettingMap = new WeakMap<object, boolean>();
 
+function ensureMathJax() {
+    if (typeof MathJax === "undefined") {
+        throw new Error("MathJax not defined");
+    }
+}
+
 /**
  * Queue a re-typesetting of the math on a page.
  */
 export async function reTypesetMathJax() {
-    if ((MathJax as any).typesetPromise) {
+    try {
+        ensureMathJax();
+    } catch {
+        return;
+    }
+    if ((MathJax as any)?.typesetPromise) {
         return (MathJax as any).typesetPromise();
     }
 }
@@ -15,7 +26,12 @@ export async function reTypesetMathJax() {
  * is never concurrently re-typeset.
  */
 export function typesetElement(e: Element) {
-    if ((MathJax as any).typesetPromise) {
+    try {
+        ensureMathJax();
+    } catch {
+        return;
+    }
+    if ((MathJax as any)?.typesetPromise) {
         // Check if typesetting is already in progress.
         if (globalTypesettingMap.has(e)) {
             return;
@@ -35,14 +51,23 @@ export function typesetElement(e: Element) {
  * MathJax doesn't crash on a non-unique label.)
  */
 export function typesetClear(nodes: Element[]) {
+    try {
+        ensureMathJax();
+    } catch {
+        return;
+    }
     const clear = (MathJax as any).typesetClear;
     if (clear) {
-        console.log("clearing", nodes);
         clear(nodes);
     }
 }
 
 export function fullMathJaxReset() {
+    try {
+        ensureMathJax();
+    } catch {
+        return;
+    }
     const mj = MathJax as any;
     if (mj?.startup?.document?.state) {
         mj.startup.document.state(0);
@@ -51,5 +76,10 @@ export function fullMathJaxReset() {
 }
 
 export function mathJaxDefaultReady() {
+    try {
+        ensureMathJax();
+    } catch {
+        return;
+    }
     (MathJax as any)?.startup?.defaultReady();
 }

@@ -4,6 +4,8 @@ import { CachedComponent } from "../cached-component";
 import { PreparedParsers } from "./types";
 import { mathJaxDefaultReady } from "../../utils/mathjax";
 import { htmlToComponent } from "./process-content";
+import { useAppSelector } from "../../app/hooks";
+import { domCachingSelector } from "../../features/global/globalSlice";
 
 export const ParserContext = React.createContext<PreparedParsers>({
     parseString: (html) => (
@@ -18,22 +20,27 @@ export const ParserContext = React.createContext<PreparedParsers>({
 export function ContentPage({ content }: { content: string }) {
     const [haveClearedInnerHtml, setHaveClearedInnerHtml] =
         React.useState(false);
-    const existingIdsRef = React.useRef<string[]>([]);
+    const existingIdsRef = React.useRef<Set<string>>(new Set());
+    const domCaching = useAppSelector(domCachingSelector)
 
     const parseString = React.useCallback((html: string) => {
         const { component, data } = htmlToComponent(
             html,
             existingIdsRef.current
         );
-        if (data.hastDom) {
+        // If DOM caching is enabled, we need to keep a globally-unique list of ids.
+        // If we don't we might create an id that is duplicated on a hidden page.
+        // With DOM caching disabled, hidden pages are fully removed from the DOM,
+        // so they shouldn't cause an issue.
+        if (data.hastDom && domCaching) {
             for (const id of Object.keys(
                 (data.hastDom.slugger as any)?.occurrences
             ) || []) {
-                existingIdsRef.current.push(id);
+                existingIdsRef.current.add(id);
             }
         }
         return component;
-    }, []);
+    }, [domCaching]);
     // Render the content on demand. Since the content is cached, it will not
     // need to be re-rendered when it is asked to be displayed again.
     const childRenderer = React.useCallback(() => {

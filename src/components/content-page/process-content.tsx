@@ -27,7 +27,10 @@ const processHtmlContentViaUnified = unified()
  *
  * @param {string} content - html string
  */
-export function htmlToComponent(content: string, existingIds: string[] = []) {
+export function htmlToComponent(
+    content: string,
+    existingIds: Set<string> = new Set()
+) {
     const file = processHtmlContentViaUnified.processSync({
         value: content,
         data: { existingIds },
