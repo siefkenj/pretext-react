@@ -55,14 +55,25 @@ export const replaceSageKnowl: ReplacerFunc = (
     const id = hastDom.getAttribute(node, "id");
     if (className?.includes("sagecell-sage")) {
         return (
-            <SageKnowl id={id} className={className}>
+            <SageKnowl
+                id={id}
+                className={className}
+                buttonText="Evaluate (Sage)"
+            >
                 {processContent(node.children)}
             </SageKnowl>
         );
     }
     if (className?.includes("sagecell-practice")) {
         return (
-            <SageKnowl id={id} className={className}>
+            <SageKnowl id={id} className={className} buttonText="Evaluate">
+                {processContent(node.children)}
+            </SageKnowl>
+        );
+    }
+    if (className?.includes("sagecell-r")) {
+        return (
+            <SageKnowl id={id} className={className} buttonText="Evaluate (R)">
                 {processContent(node.children)}
             </SageKnowl>
         );
