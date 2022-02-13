@@ -1,4 +1,5 @@
 import { ReplacerFunc } from "../../utils/html-manipulation/hast-react";
+import { KnowlContainer } from "../knowl/knowl-container";
 import { Knowl, PreloadedKnowl } from "../knowl/knowls";
 import { SageKnowl } from "../knowl/sage-knowl";
 
@@ -42,6 +43,45 @@ export const replaceKnowl: ReplacerFunc = (node, processContent, hastDom) => {
 
 /**
  * Replace HAST nodes that should trigger knowls with appropriate React elements.
+ *
+ * A knowl group container controls the visibility of several knowls associated with the
+ * same block (e.g., the same paragraph). The display order of these knowls can depend on the
+ * order of button presses, etc., so they are handled specially
+ */
+export const replaceKnowlGroupContainers: ReplacerFunc = (
+    node,
+    processContent,
+    hastDom
+) => {
+    if (!(node.tagName === "div")) {
+        return;
+    }
+    if (
+        !hastDom
+            .getAttribute(node, "className")
+            ?.includes("knowl-group-container")
+    ) {
+        return;
+    }
+
+    const data: { id: string; forKnowlUrl: string }[] = [];
+
+    // Direct children of a knowl-group-container have unique ids that we want to collect.
+    for (const elm of node.children) {
+        if (!(elm.type === "element")) {
+            continue;
+        }
+        const id = hastDom.getAttribute(elm, "id") || "";
+        const forKnowlUrl =
+            hastDom.getAttribute(elm, "data-for-knowl-url") || "";
+        data.push({ id, forKnowlUrl });
+    }
+
+    return <KnowlContainer knowlData={data} />;
+};
+
+/**
+ * Replace HAST nodes that should trigger knowls with appropriate React elements.
  */
 export const replaceSageKnowl: ReplacerFunc = (
     node,
@@ -73,7 +113,7 @@ export const replaceSageKnowl: ReplacerFunc = (
     }
     if (className?.includes("sagecell-r")) {
         return (
-            <SageKnowl id={id} className={className} buttonText="Evaluate (R)">
+            <SageKnowl id={id} className={className} buttonText="Evaluate (R)" languages={["r"]}>
                 {processContent(node.children)}
             </SageKnowl>
         );

@@ -5,7 +5,7 @@ import { hastReactTransformer } from "../../utils/html-manipulation/hast-react";
 import { rehypeInsertKnowlExpandStubs } from "../../utils/html-manipulation/place-knowls";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 import { replaceImages } from "../replacers/images";
-import { replaceKnowl, replaceSageKnowl } from "../replacers/knowls";
+import { replaceKnowl, replaceKnowlGroupContainers, replaceSageKnowl } from "../replacers/knowls";
 import { replaceInternalLinks } from "../replacers/links";
 
 const processHtmlContentViaUnified = unified()
@@ -16,6 +16,8 @@ const processHtmlContentViaUnified = unified()
             replaceInternalLinks,
             replaceKnowl,
             replaceSageKnowl,
+            // Must come after `replaceKnowl`
+            replaceKnowlGroupContainers,
             replaceImages,
         ],
     })

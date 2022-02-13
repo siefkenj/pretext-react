@@ -37,7 +37,7 @@ function positionKnowlContent(
             ).length;
             // We need to create a table row that spans the width of the table so the content isn't squished.
             const surround = fromSelector(
-                `tr.hidden-content.knowl-container-top td.knowl-td[colspan=${numCols}]`
+                `tr.knowl-container-top td.knowl-td[colspan=${numCols}]`
             );
             const leaf = hastDom.getElementLeaves(surround)[0];
             if (!leaf) {
@@ -101,6 +101,11 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
             // If the knowl does not have a refid, then its content is fetched from a URL.
             // We pre-insert a container element for this knowl so that the react code
             // Doesn't have to do wild things to the DOM.
+
+            const parentContainersMap: Map<
+                HastElement | HastRoot | undefined,
+                HastElement
+            > = new Map();
             for (const elm of hastDom.querySelectorAll(
                 "[data-knowl]:not([data-refid])"
             )) {
@@ -112,7 +117,19 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
                 elm.properties = Object.assign(elm.properties || {}, {
                     dataKnowlContainerId: id,
                 });
-                const container = fromSelector(`div.hidden-content`);
+
+                // For dynamically-loaded knowls, the interaction behavior is complicated
+                // (e.g., the order the knowls are displayed may change based on user interaction).
+                // So we create a master parent container that contains several peer children.
+                // This container is reused.
+                const parent = hastDom.parentOf(elm);
+                let masterContainer = parentContainersMap.get(parent);
+                if (!masterContainer) {
+                    masterContainer = fromSelector(`div.knowl-group-container`);
+                    parentContainersMap.set(parent, masterContainer);
+                    positionKnowlContent(elm, masterContainer, hastDom);
+                }
+                const container = fromSelector(`div`);
                 container.properties = Object.assign(
                     container.properties || {},
                     {
@@ -120,7 +137,7 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
                         id,
                     }
                 );
-                positionKnowlContent(elm, container, hastDom);
+                masterContainer.children.push(container);
             }
         };
     };

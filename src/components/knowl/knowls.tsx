@@ -1,5 +1,9 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+    knowlActions,
+    visibleKnowlsSelector,
+} from "../../features/knowl/knowlSlice";
 import { extractKnowlContent } from "../../utils/extract-content";
 import { ParserContext } from "../content-page";
 import { MathJaxRenderer } from "../mathjax";
@@ -28,7 +32,7 @@ function getParentWithClass(
  * Looks for a parent with the `knowl-container-top` class and toggles the class `hidden-content`
  * on that element. If no such parent exists, the function exists.
  */
-function toggleKnowlContainerTopHiddenValue(
+export function toggleKnowlContainerTopHiddenValue(
     knowlContainer: Element | null,
     contentVisible: boolean
 ) {
@@ -45,6 +49,10 @@ function toggleKnowlContainerTopHiddenValue(
     }
 }
 
+/**
+ * A link that, when pressed, triggers a knowl's content to be displayed. This component
+ * isn't responsible for actually displaying the content. That is handled by `KnowlContainer`.
+ */
 export function Knowl({
     children,
     url,
@@ -53,51 +61,32 @@ export function Knowl({
 }: React.PropsWithChildren<
     { url: string; containerId: string } & React.ComponentProps<"a">
 >) {
-    const [contentVisible, setContentVisible] = React.useState(false);
-    const [knowlContainer, setKnowlContainer] = React.useState(() =>
-        document.getElementById(containerId)
-    );
-
-    React.useEffect(() => {
-        if (!knowlContainer) {
-            const container = document.getElementById(containerId);
-            setKnowlContainer(container);
-            if (container) {
-                container.classList.remove("hidden-content");
-            }
-        }
-        toggleKnowlContainerTopHiddenValue(knowlContainer, contentVisible);
-    }, [knowlContainer, contentVisible, containerId]);
-
-    // Knowl elements are rendered on anchors inside of paragraphs (often with punctuation following). Since
-    // they expand, we don't want to insert them immediately after the anchor, so we use a portal.
+    const visibleKnowls = useAppSelector(visibleKnowlsSelector);
+    const contentVisible = visibleKnowls[containerId];
+    const dispatch = useAppDispatch();
 
     return (
-        <React.Fragment>
-            <a
-                //    ref={refCallback}
-                {...rest}
-                href={url}
-                onClick={(e) => {
-                    e.preventDefault();
-                    console.log("Knowl clicked", url);
-                    setContentVisible(!contentVisible);
-                }}
-                data-knowl
-                data-knowl-container-id={containerId}
-            >
-                {children}
-            </a>
-            {knowlContainer &&
-                ReactDOM.createPortal(
-                    <KnowlContent show={contentVisible} url={url} />,
-                    knowlContainer
-                )}
-        </React.Fragment>
+        <a
+            //    ref={refCallback}
+            {...rest}
+            href={url}
+            onClick={(e) => {
+                e.preventDefault();
+                console.log("Knowl clicked", url);
+                dispatch(
+                    knowlActions.setVisible({ [containerId]: !contentVisible })
+                );
+                // setContentVisible(!contentVisible);
+            }}
+            data-knowl
+            data-knowl-container-id={containerId}
+        >
+            {children}
+        </a>
     );
 }
 
-function KnowlContent({ show, url }: { show: boolean; url: string }) {
+export function KnowlContent({ show, url }: { show: boolean; url: string }) {
     const parser = React.useContext(ParserContext);
     const fetchingRef = React.useRef(false);
     const [fetchedData, setFetchedData] = React.useState<string | null>(null);
