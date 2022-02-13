@@ -1,7 +1,6 @@
 import { ReplacerFunc } from "../../utils/html-manipulation/hast-react";
 import { KnowlContainer } from "../knowl/knowl-container";
 import { Knowl, PreloadedKnowl } from "../knowl/knowls";
-import { SageKnowl } from "../knowl/sage-knowl";
 
 /**
  * Replace HAST nodes that should trigger knowls with appropriate React elements.
@@ -78,44 +77,4 @@ export const replaceKnowlGroupContainers: ReplacerFunc = (
     }
 
     return <KnowlContainer knowlData={data} />;
-};
-
-/**
- * Replace HAST nodes that should trigger knowls with appropriate React elements.
- */
-export const replaceSageKnowl: ReplacerFunc = (
-    node,
-    processContent,
-    hastDom
-) => {
-    if (!(node.tagName === "div")) {
-        return;
-    }
-    const className = hastDom.getAttribute(node, "className");
-    const id = hastDom.getAttribute(node, "id");
-    if (className?.includes("sagecell-sage")) {
-        return (
-            <SageKnowl
-                id={id}
-                className={className}
-                buttonText="Evaluate (Sage)"
-            >
-                {processContent(node.children)}
-            </SageKnowl>
-        );
-    }
-    if (className?.includes("sagecell-practice")) {
-        return (
-            <SageKnowl id={id} className={className} buttonText="Evaluate">
-                {processContent(node.children)}
-            </SageKnowl>
-        );
-    }
-    if (className?.includes("sagecell-r")) {
-        return (
-            <SageKnowl id={id} className={className} buttonText="Evaluate (R)" languages={["r"]}>
-                {processContent(node.children)}
-            </SageKnowl>
-        );
-    }
 };

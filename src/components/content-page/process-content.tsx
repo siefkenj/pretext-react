@@ -5,8 +5,9 @@ import { hastReactTransformer } from "../../utils/html-manipulation/hast-react";
 import { rehypeInsertKnowlExpandStubs } from "../../utils/html-manipulation/place-knowls";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 import { replaceImages } from "../replacers/images";
-import { replaceKnowl, replaceKnowlGroupContainers, replaceSageKnowl } from "../replacers/knowls";
+import { replaceKnowl, replaceKnowlGroupContainers } from "../replacers/knowls";
 import { replaceInternalLinks } from "../replacers/links";
+import { replaceSageKnowl } from "../replacers/sage-knowls";
 
 const processHtmlContentViaUnified = unified()
     .use(hastFromStringNative)
