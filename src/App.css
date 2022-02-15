@@ -138,6 +138,6 @@ button:disabled {
     position: sticky !important;
 }
 
-.knowl-output.original {
+div.knowl-output.original {
     display: block;
 }
