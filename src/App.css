@@ -137,3 +137,7 @@ button:disabled {
 #sidebar-left {
     position: sticky !important;
 }
+
+.knowl-output.original {
+    display: block;
+}

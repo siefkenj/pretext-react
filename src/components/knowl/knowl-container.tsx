@@ -1,6 +1,7 @@
 import React from "react";
 import { useAppSelector } from "../../app/hooks";
 import { visibleKnowlsSelector } from "../../features/knowl/knowlSlice";
+import { Accordion } from "../accordion";
 import { KnowlContent } from "./knowls";
 
 /**
@@ -54,10 +55,12 @@ export function KnowlContainer({
                     data-for-knowl-url={dat.forKnowlUrl}
                     key={dat.id}
                 >
-                    <KnowlContent
-                        show={visibleKnowls[dat.id]}
-                        url={dat.forKnowlUrl}
-                    />
+                    <Accordion open={visibleKnowls[dat.id]}>
+                        <KnowlContent
+                            show={visibleKnowls[dat.id]}
+                            url={dat.forKnowlUrl}
+                        />
+                    </Accordion>
                 </div>
             ))}
         </div>

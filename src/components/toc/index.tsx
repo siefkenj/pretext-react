@@ -1,4 +1,5 @@
 import * as React from "react";
+import classNames from "classnames";
 import { useAppSelector } from "../../app/hooks";
 import { currentPageSelector, tocSelector } from "../../features/nav/navSlice";
 import { TocEntryType } from "../../utils/extract-toc";
@@ -7,6 +8,7 @@ import { InternalAnchor } from "../links";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 import Chevron from "react-chevron";
 import { tocIsVisibleSelector } from "../../features/toc/tocSlice";
+import { Accordion } from "../accordion";
 
 /**
  * Returns whether or not there is a TOC item with id `childId` that is a child of the
@@ -105,15 +107,17 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                 </InternalAnchor>
             </MathJaxOneTimeRenderer>
             {shouldRenderChildren && (
-                <ul
-                    className={`${
-                        entry.level ? `division-level-${entry.level}` : ""
-                    } ${openState ? "" : "hidden-content"}`}
-                >
-                    {children.map((entry, i) => (
-                        <TocEntry entry={entry} key={entry.id || i} />
-                    ))}
-                </ul>
+                <Accordion open={openState}>
+                    <ul
+                        className={classNames({
+                            [`division-level-${entry.level}`]: entry.level,
+                        })}
+                    >
+                        {children.map((entry, i) => (
+                            <TocEntry entry={entry} key={entry.id || i} />
+                        ))}
+                    </ul>
+                </Accordion>
             )}
         </li>
     );
@@ -122,6 +126,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
 export function Toc() {
     const toc = useAppSelector(tocSelector);
     const visible = useAppSelector(tocIsVisibleSelector);
+
     return (
         <ul className={visible ? "" : "hidden-content"}>
             {toc.map((entry, i) => (

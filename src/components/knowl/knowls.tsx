@@ -5,6 +5,7 @@ import {
     visibleKnowlsSelector,
 } from "../../features/knowl/knowlSlice";
 import { extractKnowlContent } from "../../utils/extract-content";
+import { Accordion } from "../accordion";
 import { ParserContext } from "../content-page";
 import { MathJaxRenderer } from "../mathjax";
 
@@ -148,21 +149,11 @@ export function PreloadedKnowl({
     refId,
     ...rest
 }: { refId: string } & React.ComponentProps<"a">) {
-    const [contentVisible, setContentVisible] = React.useState(false);
+    const visibleKnowls = useAppSelector(visibleKnowlsSelector);
+    const contentVisible = visibleKnowls[refId];
+    const dispatch = useAppDispatch();
 
-    React.useEffect(() => {
-        const knowlContainer = document.getElementById(refId);
-        if (!knowlContainer) {
-            console.log("Could not find knowl with id", refId);
-            return;
-        }
-        if (contentVisible) {
-            knowlContainer.style.setProperty("display", "block");
-        } else {
-            knowlContainer.style.removeProperty("display");
-        }
-        toggleKnowlContainerTopHiddenValue(knowlContainer, contentVisible);
-    }, [contentVisible, refId]);
+    React.useEffect(() => {}, [contentVisible, refId]);
 
     const activeClass = contentVisible ? "active" : "";
 
@@ -172,7 +163,7 @@ export function PreloadedKnowl({
             onClick={(e) => {
                 e.preventDefault();
                 console.log("Preloaded Knowl clicked", refId);
-                setContentVisible(!contentVisible);
+                dispatch(knowlActions.setVisible({ [refId]: !contentVisible }));
             }}
             onKeyDown={() => {}}
             data-knowl
@@ -182,5 +173,24 @@ export function PreloadedKnowl({
         >
             {children}
         </a>
+    );
+}
+
+export function PreloadedKnowlContent({
+    children,
+    id,
+    className,
+}: React.PropsWithChildren<{
+    id: string | undefined;
+    className: string;
+}>) {
+    const visibleKnowls = useAppSelector(visibleKnowlsSelector);
+    const contentVisible = visibleKnowls[id || ""];
+    return (
+        <Accordion open={contentVisible}>
+            <div id={id} className={className}>
+                {children}
+            </div>
+        </Accordion>
     );
 }

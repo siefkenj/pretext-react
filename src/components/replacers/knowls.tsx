@@ -1,12 +1,12 @@
 import { ReplacerFunc } from "../../utils/html-manipulation/hast-react";
 import { KnowlContainer } from "../knowl/knowl-container";
-import { Knowl, PreloadedKnowl } from "../knowl/knowls";
+import { Knowl, PreloadedKnowl, PreloadedKnowlContent } from "../knowl/knowls";
 
 /**
  * Replace HAST nodes that should trigger knowls with appropriate React elements.
  */
 export const replaceKnowl: ReplacerFunc = (node, processContent, hastDom) => {
-    if (!(node.tagName === "a")) {
+    if (!(node.tagName === "a" || node.tagName === "div")) {
         return;
     }
 
@@ -19,6 +19,21 @@ export const replaceKnowl: ReplacerFunc = (node, processContent, hastDom) => {
 
     const className = hastDom.getAttribute(node, "className");
     const title = hastDom.getAttribute(node, "title");
+
+    // Wrap the preloaded knowl content, if needed
+    if (className?.includes("preloaded-knowl-content")) {
+        const id = hastDom.getAttribute(node, "id");
+        return (
+            <PreloadedKnowlContent id={id || ""} className={className}>
+                {processContent(node.children)}
+            </PreloadedKnowlContent>
+        );
+    }
+
+    // Everything past this point should be a `div`.
+    if (!(node.tagName === "a")) {
+        return;
+    }
 
     if (refId) {
         return (

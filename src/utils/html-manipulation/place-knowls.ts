@@ -92,9 +92,21 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
                     if (!Array.isArray(knowlContentClassName)) {
                         throw new Error("Expected className to be a list");
                     }
+                    // We handle hiding/showing in react so we remove the hidden-content class
+                    const hiddenContentIndex =
+                        knowlContentClassName.indexOf("hidden-content");
+                    if (hiddenContentIndex >= 0) {
+                        knowlContentClassName.splice(hiddenContentIndex, 1);
+                    }
                     knowlContentClassName.push("knowl-output");
                     knowlContentClassName.push("knowl-content");
                     knowlContentClassName.push("original");
+                    // This class is what the rest of the react code looks for to wrap
+                    // the content in an appropriate react element.
+                    knowlContentClassName.push("preloaded-knowl-content");
+                    Object.assign(knowlContent.properties, {
+                        dataRefid: knowlContent.properties?.id,
+                    });
                     positionKnowlContent(elm, knowlContent, hastDom);
                 }
             }

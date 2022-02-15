@@ -1,0 +1,15 @@
+.accordion-surround {
+    max-height: 0px;
+    overflow: hidden;
+}
+.accordion-surround.animate {
+    transition: max-height .4s, height .4s;
+}
+.accordion-surround.open {
+    max-height: 10000px;
+}
+.accordion-inner-container {
+    /* This is needed to prevent margin collapse;
+    otherwise the height of its children will not be read correctly. */
+    overflow: hidden;
+}
