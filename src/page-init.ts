@@ -9,9 +9,15 @@ export const initInfo: InitInfo = {
 };
 
 function extractBannerContent() {
-    const elm = document.querySelector(".banner");
+    let elm = document.querySelector(".banner");
     if (!elm) {
         throw new Error("Cannot find banner content");
+    }
+    // Strip away un-needed container divs.
+    // XXX This code should be removed when the new HTML structure is finalized 2022-02-15
+    const innerElm = elm.querySelector(".container")
+    if (innerElm) {
+        elm = innerElm;
     }
     return elm.innerHTML;
 }

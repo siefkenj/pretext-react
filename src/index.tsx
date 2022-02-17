@@ -28,6 +28,23 @@ if (page) {
     console.warn('Tried to remove <div class="page" /> but could not find it');
 }
 
+// We want to use our own styling for the pretext shell, so we remove existing styles
+for (const elm of Array.from(
+    document.querySelectorAll('link[href*="pretext.css"]')
+)) {
+    elm.parentElement?.removeChild(elm);
+}
+for (const elm of Array.from(
+    document.querySelectorAll('link[href*="toc_default.css"]')
+)) {
+    elm.parentElement?.removeChild(elm);
+}
+for (const elm of Array.from(
+    document.querySelectorAll('link[href*="banner_default.css"]')
+)) {
+    elm.parentElement?.removeChild(elm);
+}
+
 const renderTarget = document.getElementById("root");
 ReactDOM.render(
     <React.StrictMode>

@@ -9,6 +9,7 @@ import { MathJaxOneTimeRenderer } from "../mathjax";
 import Chevron from "react-chevron";
 import { tocIsVisibleSelector } from "../../features/toc/tocSlice";
 import { Accordion } from "../accordion";
+import { Button } from "reakit";
 
 /**
  * Returns whether or not there is a TOC item with id `childId` that is a child of the
@@ -75,9 +76,19 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
     const shouldRenderChildren = children.length > 0;
 
     const chevron = shouldRenderChildren ? (
-        <span className={`toc-chevron-surround ${openState ? "open" : ""}`}>
-            <Chevron direction="right" />
-        </span>
+        <Button
+            as="span"
+            className={`toc-chevron-surround ${openState ? "open" : ""}`}
+            title="Toggle sections"
+            onClick={() => {
+                setOpenState((state) => !state);
+                setHasHadInteraction(true);
+            }}
+        >
+            <div className="chevron-rotator">
+                <Chevron direction="right" />
+            </div>
+        </Button>
     ) : null;
 
     return (
@@ -87,24 +98,35 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
             }`}
         >
             <MathJaxOneTimeRenderer>
-                <InternalAnchor
-                    href={entry.href || "#"}
-                    pageId={entry.id || undefined}
-                    className={currentPage === entry.id ? "active" : ""}
-                    onClick={() => {
-                        setOpenState((state) => !state);
-                        setHasHadInteraction(true);
-                    }}
-                >
-                    {shouldRenderCodeNumber && (
-                        <span className="codenumber">{entry.codeNumber}</span>
-                    )}
-                    <span
-                        className="title"
-                        dangerouslySetInnerHTML={{ __html: innerHtml }}
-                    ></span>
+                <div className="toc-item">
+                    <InternalAnchor
+                        href={entry.href || "#"}
+                        pageId={entry.id || undefined}
+                        className={classNames({
+                            active: currentPage === entry.id,
+                            "has-chevron": chevron,
+                        })}
+                        onClick={() => {
+                            // Auto open sections when we click on them, but don't close
+                            // them unless we click the "close arrow"
+                            if (!openState) {
+                                setOpenState((state) => !state);
+                                setHasHadInteraction(true);
+                            }
+                        }}
+                    >
+                        {shouldRenderCodeNumber && (
+                            <span className="codenumber">
+                                {entry.codeNumber}
+                            </span>
+                        )}
+                        <span
+                            className="title"
+                            dangerouslySetInnerHTML={{ __html: innerHtml }}
+                        ></span>
+                    </InternalAnchor>
                     {chevron}
-                </InternalAnchor>
+                </div>
             </MathJaxOneTimeRenderer>
             {shouldRenderChildren && (
                 <Accordion open={openState}>
@@ -125,10 +147,9 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
 
 export function Toc() {
     const toc = useAppSelector(tocSelector);
-    const visible = useAppSelector(tocIsVisibleSelector);
 
     return (
-        <ul className={visible ? "" : "hidden-content"}>
+        <ul>
             {toc.map((entry, i) => (
                 <TocEntry entry={entry} key={entry.id || i} />
             ))}

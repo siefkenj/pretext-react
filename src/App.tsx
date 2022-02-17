@@ -1,5 +1,5 @@
 import React from "react";
-import "./App.css";
+import classNames from "classnames";
 import { extractActiveTocItem, extractTocFromXml } from "./utils/extract-toc";
 import { Toc } from "./components/toc";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
@@ -17,6 +17,12 @@ import { NavButtons } from "./components/nav-buttons";
 import { TocVisibilityToggle } from "./components/toc/toggle";
 import { tocIsVisibleSelector } from "./features/toc/tocSlice";
 import { CachingSettingsSelect } from "./components/caching-setting-select";
+
+import "./styles/header.css";
+import "./styles/shell.css";
+import "./styles/toc.css";
+import "./styles/toc-chevron.css";
+import { globalActions } from "./features/global/globalSlice";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -75,6 +81,17 @@ function App() {
             await dispatch(navActions.setCurrentPage(extractActiveTocItem()));
             setTocExtracted(true);
         })();
+
+        const mediaQuery = window.matchMedia("(max-width: 600px)");
+        function mobileModeSwitch(e: Event) {
+            const query = e as MediaQueryListEvent;
+            dispatch(globalActions.setMobileMode(query.matches));
+        }
+        dispatch(globalActions.setMobileMode(mediaQuery.matches));
+        mediaQuery.addEventListener("change", mobileModeSwitch);
+        return () => {
+            mediaQuery.removeEventListener("change", mobileModeSwitch);
+        };
     }, [dispatch]);
 
     if (!tocExtracted) {
@@ -83,30 +100,25 @@ function App() {
 
     return (
         <React.Fragment>
-            <header id="masthead" className="smallbuttons">
+            <header id="masthead">
                 <div className="banner">
                     <Banner />
                 </div>
-                <div id="primary-navbar-sticky-wrapper" className="navbar">
-                    <nav id="primary-navbar" className="navbar">
-                        <div className="container">
-                            <div className="navbar-top-buttons">
-                                <TocVisibilityToggle />
-                                <CachingSettingsSelect />
-                                <div className="tree-nav toolbar toolbar-divisor-3">
-                                    <span className="threebuttons">
-                                        <NavButtons />
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
             </header>
+            <nav id="primary-navbar" className="navbar">
+                <TocVisibilityToggle />
+                <CachingSettingsSelect />
+                <NavButtons />
+            </nav>
             <div className="page">
                 <div
-                    id="sidebar-left"
-                    className={tocVisible ? "" : "hidden-content"}
+                    id="sidebar"
+                    className={
+                        // We use a special class `sidebar-hidden` instead of
+                        // `hidden-content` because on a small screen, a "hidden"
+                        // sidebar actually appears at the bottom of the screen.
+                        classNames({ "sidebar-hidden": !tocVisible })
+                    }
                 >
                     <nav id="toc">
                         <Toc />
@@ -116,8 +128,10 @@ function App() {
                     <div id="content" className="pretext-content">
                         <ContentPage content={currentPageContents} />
                     </div>
+                    <div className="page-footer">Page footer dummy content</div>
                 </main>
             </div>
+            <div className="window-footer">Window footer dummy content</div>
         </React.Fragment>
     );
 }
