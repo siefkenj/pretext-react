@@ -7,7 +7,6 @@ import { staticallyRenderMathJax } from "../../utils/html-manipulation/static-re
 import { InternalAnchor } from "../links";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 import Chevron from "react-chevron";
-import { tocIsVisibleSelector } from "../../features/toc/tocSlice";
 import { Accordion } from "../accordion";
 import { Button } from "reakit";
 

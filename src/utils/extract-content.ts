@@ -6,7 +6,7 @@ const parser = new DOMParser();
 export function extractPageContent(page: string) {
     const ret = parser
         .parseFromString(page, "text/html")
-        .querySelector("#content");
+        .querySelector(".ptx-content");
     if (ret == null) {
         throw new Error("Cannot extract the content block from page");
     }

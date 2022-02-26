@@ -47,7 +47,7 @@ export function ContentPage({ content }: { content: string }) {
         return parseString(content);
     }, [content, parseString]);
 
-    const contentNode = document.querySelector("#content");
+    const contentNode = document.querySelector(".ptx-content");
     React.useEffect(() => {
         // On the first mount of this component, we want to clear the contents of `contentNode`
         // so that it is take over by the react portal.

@@ -9,7 +9,7 @@ export const initInfo: InitInfo = {
 };
 
 function extractBannerContent() {
-    let elm = document.querySelector(".banner");
+    let elm = document.querySelector(".ptx-banner");
     if (!elm) {
         throw new Error("Cannot find banner content");
     }
@@ -22,7 +22,7 @@ function extractBannerContent() {
     return elm.innerHTML;
 }
 function extractCurrentPageContent() {
-    const elm = document.querySelector("#content");
+    const elm = document.querySelector(".ptx-content");
     if (!elm) {
         throw new Error("Cannot find current page content");
     }

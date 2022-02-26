@@ -15,34 +15,15 @@ extractInitInfo();
 // Various scripts and other tags that shouldn't be changed may
 // be in the body, so we need to manually clean up and prepare a spot for the main app.
 document.body.innerHTML += `<div id="root"></div>`;
-const header = document.body.querySelector("header");
-const page = document.body.querySelector(".page");
-if (header) {
-    document.body.removeChild(header);
-} else {
-    console.warn("Tried to remove <header /> but could not find it");
-}
-if (page) {
-    document.body.removeChild(page);
-} else {
-    console.warn('Tried to remove <div class="page" /> but could not find it');
-}
-
-// We want to use our own styling for the pretext shell, so we remove existing styles
-for (const elm of Array.from(
-    document.querySelectorAll('link[href*="pretext.css"]')
-)) {
-    elm.parentElement?.removeChild(elm);
-}
-for (const elm of Array.from(
-    document.querySelectorAll('link[href*="toc_default.css"]')
-)) {
-    elm.parentElement?.removeChild(elm);
-}
-for (const elm of Array.from(
-    document.querySelectorAll('link[href*="banner_default.css"]')
-)) {
-    elm.parentElement?.removeChild(elm);
+const elmsToRemove = document.body.querySelectorAll(
+    "body > header, body > nav, body > .ptx-page, body > .ptx-page-footer"
+);
+for (const elm of Array.from(elmsToRemove)) {
+    try {
+        document.body.removeChild(elm);
+    } catch (e) {
+        console.warn("Tried to remove", elm, "but couldn't");
+    }
 }
 
 const renderTarget = document.getElementById("root");

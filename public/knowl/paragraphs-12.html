@@ -2,7 +2,7 @@
 <html lang="en-US">
 <!--********************************************-->
 <!--*       Generated from PreTeXt source      *-->
-<!--*       on 2022-02-05T11:35:48-05:00       *-->
+<!--*       on 2022-02-25T22:47:03-05:00       *-->
 <!--*   A recent stable commit (2020-08-09):   *-->
 <!--* 98f21740783f166a773df4dc83cab5293ab63a4a *-->
 <!--*                                          *-->
@@ -13,9 +13,9 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <meta name="robots" content="noindex, nofollow">
 <script>$(function () {
-    // Make *any* div with class 'sagecell-sage' an executable Sage cell
+    // Make *any* pre with class 'sagecell-sage' an executable Sage cell
     // Their results will be linked, only within language type
-    sagecell.makeSagecell({inputLocation: 'div.sagecell-sage',
+    sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
                            linked: true,
                            languages: ['sage'],
                            evalButtonText: 'Evaluate (Sage)'});
@@ -24,7 +24,7 @@
 </head>
 <body class="ignore-math">
 <section class="paragraphs"><h3 class="heading"><span class="title">Monospace, Basic Latin and Latin-1 Supplement, <code class="code-inline tex2jax_ignore">U+0000</code>–<code class="code-inline tex2jax_ignore">U+00FF</code>.</span></h3>
-<p>A monospace font is critical for samples of keyboard input and to distinguish exact technical input from running commentary.  We list here all of the reasonable characters from the first 256 Unicode code points.  (We skip the same 65 control characters from above, and the soft hyphen.)  These should all render fine in HTML and when processed with <code class="code-inline tex2jax_ignore">xelatex</code>, however our focus with this sample article for PDF output is the capabilities when processed with <code class="code-inline tex2jax_ignore">pdflatex</code>.  First, characters from <code class="code-inline tex2jax_ignore">U+0000</code>–<code class="code-inline tex2jax_ignore">U+007F</code>.</p>
+<p class="para">A monospace font is critical for samples of keyboard input and to distinguish exact technical input from running commentary.  We list here all of the reasonable characters from the first 256 Unicode code points.  (We skip the same 65 control characters from above, and the soft hyphen.)  These should all render fine in HTML and when processed with <code class="code-inline tex2jax_ignore">xelatex</code>, however our focus with this sample article for PDF output is the capabilities when processed with <code class="code-inline tex2jax_ignore">pdflatex</code>.  First, characters from <code class="code-inline tex2jax_ignore">U+0000</code>–<code class="code-inline tex2jax_ignore">U+007F</code>.</p>
 <figure class="table table-like"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">19.3<span class="period">.</span></span><span class="space"> </span>Basic Latin, Monospace</figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="l m b0 r0 l0 t0 lines"></td>
@@ -159,8 +159,8 @@
 <td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">~</code></td>
 <td class="l m b0 r0 l0 t0 lines"></td>
 </tr>
-</table></div></figure><p>Note that the single and double quotes are upright and dumb, not curly and smart: <code class="code-inline tex2jax_ignore">' " ' " ' "</code>.  And a backtick is a backtick: <code class="code-inline tex2jax_ignore">` ` `</code>.  The zero is distinguished from the capital “oh”: <code class="code-inline tex2jax_ignore">0 O 0 O 0 O</code>.  And the numeral one is slightly different from the lower-case “ell”: <code class="code-inline tex2jax_ignore">1 l 1 l 1 l</code>.  The hyphen should be short and not expanded into some other kind of dash: <code class="code-inline tex2jax_ignore">- - -</code>.  These characters should all cut/paste out of a PDF into a text editor with no conversion to other characters.</p>
-<p>Now the remaining characters from <code class="code-inline tex2jax_ignore">U+0080</code>–<code class="code-inline tex2jax_ignore">U+00FF</code>.  The <code class="code-inline tex2jax_ignore">program</code> tag is implemented in <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> via the <code class="code-inline tex2jax_ignore">listing</code> package and these characters require ad-hoc replacements for processing by <code class="code-inline tex2jax_ignore">pdflatex</code>.  (You can see the replacements in the preamble of the <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> source for this document.)  The replacement mechanism provided by the <code class="code-inline tex2jax_ignore">listing</code> package will cause the characters below to produce a <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> compilation error if processed by <code class="code-inline tex2jax_ignore">pdflatex</code> and in a table cell in certain situations (which we have avoided in the table below).  The only workaround in this case is to switch to <code class="code-inline tex2jax_ignore">xelatex</code>.</p>
+</table></div></figure><p class="para">Note that the single and double quotes are upright and dumb, not curly and smart: <code class="code-inline tex2jax_ignore">' " ' " ' "</code>.  And a backtick is a backtick: <code class="code-inline tex2jax_ignore">` ` `</code>.  The zero is distinguished from the capital “oh”: <code class="code-inline tex2jax_ignore">0 O 0 O 0 O</code>.  And the numeral one is slightly different from the lower-case “ell”: <code class="code-inline tex2jax_ignore">1 l 1 l 1 l</code>.  The hyphen should be short and not expanded into some other kind of dash: <code class="code-inline tex2jax_ignore">- - -</code>.  These characters should all cut/paste out of a PDF into a text editor with no conversion to other characters.</p>
+<p class="para">Now the remaining characters from <code class="code-inline tex2jax_ignore">U+0080</code>–<code class="code-inline tex2jax_ignore">U+00FF</code>.  The <code class="code-inline tex2jax_ignore">program</code> tag is implemented in <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> via the <code class="code-inline tex2jax_ignore">listing</code> package and these characters require ad-hoc replacements for processing by <code class="code-inline tex2jax_ignore">pdflatex</code>.  (You can see the replacements in the preamble of the <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> source for this document.)  The replacement mechanism provided by the <code class="code-inline tex2jax_ignore">listing</code> package will cause the characters below to produce a <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> compilation error if processed by <code class="code-inline tex2jax_ignore">pdflatex</code> and in a table cell in certain situations (which we have avoided in the table below).  The only workaround in this case is to switch to <code class="code-inline tex2jax_ignore">xelatex</code>.</p>
 <figure class="table table-like"><figcaption><span class="type">Table</span><span class="space"> </span><span class="codenumber">19.4<span class="period">.</span></span><span class="space"> </span>Latin-1 Supplement, Monospace</figcaption><div class="tabular-box natural-width"><table class="tabular">
 <tr>
 <td class="l m b0 r0 l0 t0 lines"></td>
@@ -295,7 +295,7 @@
 <td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">þ</code></td>
 <td class="l m b0 r0 l0 t0 lines"><code class="code-inline tex2jax_ignore">ÿ</code></td>
 </tr>
-</table></div></figure><p>The <code class="code-inline tex2jax_ignore">pre</code> tag is implemented in <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> with the <code class="code-inline tex2jax_ignore">fancyvrb</code> package.  You can compare results here with the table above, lines here are rows above.</p>
+</table></div></figure><p class="para">The <code class="code-inline tex2jax_ignore">pre</code> tag is implemented in <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> with the <code class="code-inline tex2jax_ignore">fancyvrb</code> package.  You can compare results here with the table above, lines here are rows above.</p>
 <pre class="code-block tex2jax_ignore">  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ¬   ® ¯
 ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿
 À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï
@@ -303,7 +303,7 @@
 à á â ã ä å æ ç è é ê ë ì í î ï
 ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ
 </pre>
-<p>The <code class="code-inline tex2jax_ignore">console</code> tag is also implemented with <code class="code-inline tex2jax_ignore">fancyvrb</code>, with adjustments for the input lines.  It will not look like it, but these are 8 such inputs, with similar results to above, but now bolded.</p>
+<p class="para">The <code class="code-inline tex2jax_ignore">console</code> tag is also implemented with <code class="code-inline tex2jax_ignore">fancyvrb</code>, with adjustments for the input lines.  It will not look like it, but these are 8 such inputs, with similar results to above, but now bolded.</p>
 <div class="code-box" style="width: 100%; margin-left: 0%; margin-right: 0%;"><pre class="console"><b>¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ¬   ® ¯
 </b><b>° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿
 </b><b>À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï
@@ -311,13 +311,13 @@
 </b><b>à á â ã ä å æ ç è é ê ë ì í î ï
 </b><b>ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ
 </b></pre></div>
-<p>We take care to render the <code class="code-inline tex2jax_ignore">U+0080</code>–<code class="code-inline tex2jax_ignore">U+00FF</code> characters in Sage cells.  This would allow some flexibility in comments and strings employed.  The following is just a test of these characters in the <code class="code-inline tex2jax_ignore">input</code> and <code class="code-inline tex2jax_ignore">output</code> of a <code class="code-inline tex2jax_ignore">sage</code> element.  This is not functional code.</p>
-<div class="sagecell-sage" id="sage-25"><script type="text/x-sage">  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ¬   ® ¯
+<p class="para">We take care to render the <code class="code-inline tex2jax_ignore">U+0080</code>–<code class="code-inline tex2jax_ignore">U+00FF</code> characters in Sage cells.  This would allow some flexibility in comments and strings employed.  The following is just a test of these characters in the <code class="code-inline tex2jax_ignore">input</code> and <code class="code-inline tex2jax_ignore">output</code> of a <code class="code-inline tex2jax_ignore">sage</code> element.  This is not functional code.</p>
+<pre class="ptx-sagecell sagecell-sage" id="sage-25"><script type="text/x-sage">  ¡ ¢ £ ¤ ¥ ¦ § ¨ © ª « ¬   ® ¯
 ° ± ² ³ ´ µ ¶ · ¸ ¹ º » ¼ ½ ¾ ¿
 À Á Â Ã Ä Å Æ Ç È É Ê Ë Ì Í Î Ï
 Ð Ñ Ò Ó Ô Õ Ö × Ø Ù Ú Û Ü Ý Þ ß
 à á â ã ä å æ ç è é ê ë ì í î ï
 ð ñ ò ó ô õ ö ÷ ø ù ú û ü ý þ ÿ
-</script></div></section><span class="incontext"><a href="section-internationalization.html#paragraphs-12" class="internal">in-context</a></span>
+</script></pre></section><span class="incontext"><a href="section-internationalization.html#paragraphs-12" class="internal">in-context</a></span>
 </body>
 </html>

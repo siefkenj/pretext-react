@@ -18,9 +18,10 @@ import { TocVisibilityToggle } from "./components/toc/toggle";
 import { tocIsVisibleSelector } from "./features/toc/tocSlice";
 import { CachingSettingsSelect } from "./components/caching-setting-select";
 
-import "./styles/header.css";
+
+//import "./styles/header.css";
 import "./styles/shell.css";
-import "./styles/toc.css";
+//import "./styles/toc.css";
 import "./styles/toc-chevron.css";
 import { globalActions } from "./features/global/globalSlice";
 
@@ -54,7 +55,7 @@ function App() {
                 ).hash.slice(1);
                 const elm =
                     (hash ? document.getElementById(hash) : null) ||
-                    document.getElementById("content") ||
+                    document.querySelector(".ptx-content") ||
                     document.body;
                 if (hash !== lastScrolledHash) {
                     const y =
@@ -100,19 +101,19 @@ function App() {
 
     return (
         <React.Fragment>
-            <header id="masthead">
-                <div className="banner">
+            <header id="ptx-masthead">
+                <div className="ptx-banner">
                     <Banner />
                 </div>
             </header>
-            <nav id="primary-navbar" className="navbar">
+            <nav id="ptx-navbar" className="navbar">
                 <TocVisibilityToggle />
                 <CachingSettingsSelect />
                 <NavButtons />
             </nav>
-            <div className="page">
+            <div className="ptx-page">
                 <div
-                    id="sidebar"
+                    id="ptx-sidebar"
                     className={
                         // We use a special class `sidebar-hidden` instead of
                         // `hidden-content` because on a small screen, a "hidden"
@@ -120,18 +121,18 @@ function App() {
                         classNames({ "sidebar-hidden": !tocVisible })
                     }
                 >
-                    <nav id="toc">
+                    <nav id="ptx-toc">
                         <Toc />
                     </nav>
                 </div>
                 <main className="main">
-                    <div id="content" className="pretext-content">
+                    <div className="ptx-content">
                         <ContentPage content={currentPageContents} />
                     </div>
-                    <div className="page-footer">Page footer dummy content</div>
+                    <div className="ptx-content-footer">Page footer dummy content</div>
                 </main>
             </div>
-            <div className="window-footer">Window footer dummy content</div>
+            <div className="ptx-page-footer">Window footer dummy content</div>
         </React.Fragment>
     );
 }
