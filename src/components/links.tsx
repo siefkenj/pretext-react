@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "reakit";
 import { useAppDispatch } from "../app/hooks";
 import { navActions } from "../features/nav/navSlice";
 
@@ -20,9 +21,10 @@ export function InternalAnchor({
     const dispatch = useAppDispatch();
 
     return (
-        <a
+        <Button
+            as="a"
             href={href}
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 // We take over navigation with cached async loading,
                 // so prevent a normal click from going through.
                 e.preventDefault();
@@ -40,6 +42,6 @@ export function InternalAnchor({
             {...rest}
         >
             {children}
-        </a>
+        </Button>
     );
 }
