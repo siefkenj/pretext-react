@@ -5,7 +5,11 @@ import { ZoomableImage } from "../images/zoomable-image";
 /**
  * Replace all internal links with `InternalAnchor` tags.
  */
-export const replaceImages: ReplacerFunc = (node, processContent, hastDom) => {
+export const replaceImages: ReplacerFunc = (
+    node,
+    processContent,
+    { hastDom }
+) => {
     if (node.tagName !== "img") {
         return;
     }

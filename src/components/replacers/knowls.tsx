@@ -5,7 +5,11 @@ import { Knowl, PreloadedKnowl, PreloadedKnowlContent } from "../knowl/knowls";
 /**
  * Replace HAST nodes that should trigger knowls with appropriate React elements.
  */
-export const replaceKnowl: ReplacerFunc = (node, processContent, hastDom) => {
+export const replaceKnowl: ReplacerFunc = (
+    node,
+    processContent,
+    { hastDom }
+) => {
     if (!(node.tagName === "a" || node.tagName === "div")) {
         return;
     }
@@ -37,7 +41,11 @@ export const replaceKnowl: ReplacerFunc = (node, processContent, hastDom) => {
 
     if (refId) {
         return (
-            <PreloadedKnowl refId={refId} className={className} title={title}>
+            <PreloadedKnowl
+                refId={refId}
+                className={className}
+                title={title || "Expand content"}
+            >
                 {processContent(node.children)}
             </PreloadedKnowl>
         );
@@ -65,7 +73,7 @@ export const replaceKnowl: ReplacerFunc = (node, processContent, hastDom) => {
 export const replaceKnowlGroupContainers: ReplacerFunc = (
     node,
     processContent,
-    hastDom
+    { hastDom }
 ) => {
     if (!(node.tagName === "div")) {
         return;

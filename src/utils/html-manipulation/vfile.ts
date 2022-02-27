@@ -8,5 +8,6 @@ declare module "vfile" {
     interface VFileDataMap {
         hastDom: HastDom;
         existingIds: Set<string>;
+        currentPageId: string;
     }
 }

@@ -33,6 +33,10 @@ const SUPPORTED_LANGUAGES_BY_CLASS = {
         languages: ["octave"],
         buttonText: "Evaluate (Octave)",
     },
+    "sagecell-practice": {
+        languages: ["sage"],
+        buttonText: "Evaluate",
+    },
     "sagecell-python": {
         languages: ["python"],
         buttonText: "Evaluate (Python)",
@@ -40,6 +44,10 @@ const SUPPORTED_LANGUAGES_BY_CLASS = {
     "sagecell-r": {
         languages: ["r"],
         buttonText: "Evaluate (R)",
+    },
+    "sagecell-sage": {
+        languages: ["sage"],
+        buttonText: "Evaluate (Sage)",
     },
     "sagecell-singular": {
         languages: ["singular"],
@@ -53,34 +61,16 @@ const SUPPORTED_LANGUAGES_BY_CLASS = {
 export const replaceSageKnowl: ReplacerFunc = (
     node,
     processContent,
-    hastDom
+    { hastDom, currentPageId }
 ) => {
-    if (!(node.tagName === "div")) {
+    if (!(node.tagName === "pre")) {
         return;
     }
     const className = hastDom.getAttribute(node, "className");
     const id = hastDom.getAttribute(node, "id");
-    if (className?.includes("sagecell-sage")) {
-        return (
-            <SageKnowl
-                id={id}
-                className={className}
-                buttonText="Evaluate (Sage)"
-            >
-                {processContent(node.children)}
-            </SageKnowl>
-        );
-    }
-    if (className?.includes("sagecell-practice")) {
-        return (
-            <SageKnowl id={id} className={className} buttonText="Evaluate">
-                {processContent(node.children)}
-            </SageKnowl>
-        );
-    }
     if (className?.includes("sage-display")) {
         // Display-only sage cells may not have an id
-        const newId = id || hastDom.slugger.slug("sage-display")
+        const newId = id || hastDom.slugger.slug("sage-display");
         return (
             <SageDisplayKnowl id={newId} className={className}>
                 {processContent(node.children)}
@@ -95,6 +85,7 @@ export const replaceSageKnowl: ReplacerFunc = (
                     className={className}
                     buttonText={props.buttonText}
                     languages={props.languages}
+                    linkKey={currentPageId + props.languages}
                 >
                     {processContent(node.children)}
                 </SageKnowl>

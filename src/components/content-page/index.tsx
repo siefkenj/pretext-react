@@ -21,26 +21,30 @@ export function ContentPage({ content }: { content: string }) {
     const [haveClearedInnerHtml, setHaveClearedInnerHtml] =
         React.useState(false);
     const existingIdsRef = React.useRef<Set<string>>(new Set());
-    const domCaching = useAppSelector(domCachingSelector)
+    const domCaching = useAppSelector(domCachingSelector);
 
-    const parseString = React.useCallback((html: string) => {
-        const { component, data } = htmlToComponent(
-            html,
-            existingIdsRef.current
-        );
-        // If DOM caching is enabled, we need to keep a globally-unique list of ids.
-        // If we don't we might create an id that is duplicated on a hidden page.
-        // With DOM caching disabled, hidden pages are fully removed from the DOM,
-        // so they shouldn't cause an issue.
-        if (data.hastDom && domCaching) {
-            for (const id of Object.keys(
-                (data.hastDom.slugger as any)?.occurrences
-            ) || []) {
-                existingIdsRef.current.add(id);
+    const parseString = React.useCallback(
+        (html: string) => {
+            const { component, data } = htmlToComponent(
+                html,
+                existingIdsRef.current,
+                "" + md5(html)
+            );
+            // If DOM caching is enabled, we need to keep a globally-unique list of ids.
+            // If we don't we might create an id that is duplicated on a hidden page.
+            // With DOM caching disabled, hidden pages are fully removed from the DOM,
+            // so they shouldn't cause an issue.
+            if (data.hastDom && domCaching) {
+                for (const id of Object.keys(
+                    (data.hastDom.slugger as any)?.occurrences
+                ) || []) {
+                    existingIdsRef.current.add(id);
+                }
             }
-        }
-        return component;
-    }, [domCaching]);
+            return component;
+        },
+        [domCaching]
+    );
     // Render the content on demand. Since the content is cached, it will not
     // need to be re-rendered when it is asked to be displayed again.
     const childRenderer = React.useCallback(() => {

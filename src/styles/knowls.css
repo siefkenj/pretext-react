@@ -1,0 +1,22 @@
+/* Math equation labels can sometimes be partially clipped. A little bit
+of padding fixes this */
+.displaymath {
+    margin-right: 1px;
+}
+
+.knowl {
+    background-color: var(--knowlbackground);
+    margin: 5px 0px;
+    padding: 5px;
+    border-radius: 5px;
+}
+.knowl .knowl {
+    margin: 5px;
+    background-color: #fff5ff;
+}
+.knowl .knowl .knowl {
+    background-color: var(--knowlbackground);
+}
+.knowl .knowl .knowl .knowl {
+    background-color: #fff5ff;
+}

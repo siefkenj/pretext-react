@@ -26,6 +26,16 @@ for (const elm of Array.from(elmsToRemove)) {
     }
 }
 
+for (const elm of Array.from(
+    document.querySelectorAll(`link[href*="knowls_default.css"]`)
+)) {
+    try {
+        document.body.removeChild(elm);
+    } catch (e) {
+        console.warn("Tried to remove", elm, "but couldn't");
+    }
+}
+
 const renderTarget = document.getElementById("root");
 ReactDOM.render(
     <React.StrictMode>

@@ -8,7 +8,7 @@ import { InternalAnchor } from "../links";
 export const replaceInternalLinks: ReplacerFunc = (
     node,
     processContent,
-    hastDom
+    { hastDom }
 ) => {
     if (node.tagName !== "a") {
         return;

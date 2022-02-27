@@ -32,11 +32,12 @@ const processHtmlContentViaUnified = unified()
  */
 export function htmlToComponent(
     content: string,
-    existingIds: Set<string> = new Set()
+    existingIds: Set<string> = new Set(),
+    currentPageId = ""
 ) {
     const file = processHtmlContentViaUnified.processSync({
         value: content,
-        data: { existingIds },
+        data: { existingIds, currentPageId },
     });
 
     return {

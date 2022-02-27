@@ -5,8 +5,13 @@ export function SageKnowl({
     children,
     buttonText,
     languages,
+    linkKey,
     ...rest
-}: React.ComponentProps<"div"> & { buttonText: string; languages?: string[] }) {
+}: React.ComponentProps<"div"> & {
+    buttonText: string;
+    languages?: string[];
+    linkKey: string;
+}) {
     const [sageCellHasRun, setSageCellHasRun] = React.useState(false);
 
     React.useEffect(() => {
@@ -18,12 +23,13 @@ export function SageKnowl({
             (window as any).sagecell?.makeSagecell({
                 inputLocation: `#${id}`,
                 linked: true,
+                linkKey,
                 languages: languages || ["sage"],
                 evalButtonText: buttonText,
             });
             setSageCellHasRun(true);
         }
-    }, [sageCellHasRun, id, buttonText, languages]);
+    }, [sageCellHasRun, id, buttonText, languages, linkKey]);
 
     return (
         <div id={id} {...rest}>

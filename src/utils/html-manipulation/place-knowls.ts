@@ -98,9 +98,7 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
                     if (hiddenContentIndex >= 0) {
                         knowlContentClassName.splice(hiddenContentIndex, 1);
                     }
-                    knowlContentClassName.push("knowl-output");
-                    knowlContentClassName.push("knowl-content");
-                    knowlContentClassName.push("original");
+                    knowlContentClassName.push("knowl");
                     // This class is what the rest of the react code looks for to wrap
                     // the content in an appropriate react element.
                     knowlContentClassName.push("preloaded-knowl-content");

@@ -1,4 +1,5 @@
 import React from "react";
+import { Button } from "reakit";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
     knowlActions,
@@ -7,7 +8,7 @@ import {
 import { extractKnowlContent } from "../../utils/extract-content";
 import { Accordion } from "../accordion";
 import { ParserContext } from "../content-page";
-import { MathJaxRenderer } from "../mathjax";
+import { MathJaxOneTimeRenderer, MathJaxRenderer } from "../mathjax";
 
 /**
  * Returns the closest ancestor that has the class `className`.
@@ -67,23 +68,22 @@ export function Knowl({
     const dispatch = useAppDispatch();
 
     return (
-        <a
-            //    ref={refCallback}
+        <Button
+            as="a"
             {...rest}
             href={url}
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 e.preventDefault();
                 console.log("Knowl clicked", url);
                 dispatch(
                     knowlActions.setVisible({ [containerId]: !contentVisible })
                 );
-                // setContentVisible(!contentVisible);
             }}
             data-knowl
             data-knowl-container-id={containerId}
         >
             {children}
-        </a>
+        </Button>
     );
 }
 
@@ -129,16 +129,8 @@ export function KnowlContent({ show, url }: { show: boolean; url: string }) {
     const body = renderedContent || "Content not yet loaded...";
 
     return (
-        <div className="knowl-output" style={{ display: "block" }}>
-            <div className="knowl">
-                <div className="knowl-content">
-                    {renderedContent ? (
-                        <MathJaxRenderer>{body}</MathJaxRenderer>
-                    ) : (
-                        body
-                    )}
-                </div>
-            </div>
+        <div className="knowl">
+            {renderedContent ? <MathJaxRenderer>{body}</MathJaxRenderer> : body}
         </div>
     );
 }
@@ -158,21 +150,21 @@ export function PreloadedKnowl({
     const activeClass = contentVisible ? "active" : "";
 
     return (
-        <a
+        <Button
+            as="a"
+            href="#"
             {...rest}
-            onClick={(e) => {
+            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 e.preventDefault();
                 console.log("Preloaded Knowl clicked", refId);
                 dispatch(knowlActions.setVisible({ [refId]: !contentVisible }));
             }}
-            onKeyDown={() => {}}
             data-knowl
-            role="button"
             tabIndex={0}
             className={className ? `${className} ${activeClass}` : activeClass}
         >
             {children}
-        </a>
+        </Button>
     );
 }
 
@@ -188,9 +180,18 @@ export function PreloadedKnowlContent({
     const contentVisible = visibleKnowls[id || ""];
     return (
         <Accordion open={contentVisible}>
-            <div id={id} className={className}>
-                {children}
-            </div>
+            {
+                // We need to completely suppress the rendering of children here,
+                // otherwise they will be invisible but still have a tab-index set
+                // and thus could steal focus.
+                contentVisible && (
+                    <MathJaxOneTimeRenderer>
+                        <div id={id} className={className}>
+                            {children}
+                        </div>
+                    </MathJaxOneTimeRenderer>
+                )
+            }
         </Accordion>
     );
 }

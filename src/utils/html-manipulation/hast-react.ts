@@ -41,7 +41,7 @@ export type ProcessContentFunc = (
 export type ReplacerFunc = (
     node: HastElement,
     processContent: ProcessContentFunc,
-    hastDom: HastDom
+    context: { hastDom: HastDom; currentPageId: string }
 ) => React.ReactElement | undefined | void;
 
 const tableElements = new Set([
@@ -90,7 +90,7 @@ export const hastReactTransformer: Plugin<
                     Array.isArray(n)
                         ? n.flatMap((n, i) => process(n, i, file))
                         : process(n, 0, file),
-                hastDom
+                { hastDom, currentPageId: file.data.currentPageId || "" }
             );
             if (typeof result !== "undefined") {
                 // We need to make sure that we have a key, since we might be in the middle of
