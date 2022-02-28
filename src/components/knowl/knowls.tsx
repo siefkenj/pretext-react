@@ -1,4 +1,5 @@
 import React from "react";
+import classNames from "classnames";
 import { Button } from "reakit";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import {
@@ -59,6 +60,7 @@ export function Knowl({
     children,
     url,
     containerId,
+    className,
     ...rest
 }: React.PropsWithChildren<
     { url: string; containerId: string } & React.ComponentProps<"a">
@@ -70,6 +72,7 @@ export function Knowl({
     return (
         <Button
             as="a"
+            className={classNames(className, { active: contentVisible })}
             {...rest}
             href={url}
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {

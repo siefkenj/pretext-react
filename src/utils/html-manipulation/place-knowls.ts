@@ -70,6 +70,29 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
         return (ast, file) => {
             const hastDom = new HastDom(ast, file.data.existingIds);
             file.data.hastDom = hastDom;
+
+            const knowlContainersMap: Map<
+                HastElement | HastRoot | undefined,
+                HastElement
+            > = new Map();
+            /**
+             * Get the container element corresponding to the knowl trigger element `elm`.
+             */
+            function getKnowlContainer(elm: HastElement) {
+                // For dynamically-loaded knowls, the interaction behavior is complicated
+                // (e.g., the order the knowls are displayed may change based on user interaction).
+                // So we create a master parent container that contains several peer children.
+                // This container is reused.
+                const parent = hastDom.parentOf(elm);
+                let masterContainer = knowlContainersMap.get(parent);
+                if (!masterContainer) {
+                    masterContainer = fromSelector(`div.knowl-group-container`);
+                    knowlContainersMap.set(parent, masterContainer);
+                    positionKnowlContent(elm, masterContainer, hastDom);
+                }
+                return masterContainer;
+            }
+
             // If the knowl has a refid, find it's hidden content and move it to the correct place.
             for (const elm of hastDom.querySelectorAll(
                 "[data-knowl][data-refid]"
@@ -81,41 +104,46 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
                         ast
                     );
                     if (!knowlContent) {
-                        throw new Error(
-                            `Couldn't find knowl content for element ${toHtml(
-                                elm
-                            )}`
-                        );
+                        // We may have failed to find the knowl's content because
+                        // the content is part of a nested knowl. In that case, the content
+                        // may have been turned into a blob URL and removed from the tree.
+                        // Since we don't control the traversal order, we may still run across the
+                        // "knowl trigger". It is safe to do nothing and continue in this case.
+                        continue;
                     }
-                    const knowlContentClassName =
-                        knowlContent.properties?.className;
-                    if (!Array.isArray(knowlContentClassName)) {
-                        throw new Error("Expected className to be a list");
-                    }
-                    // We handle hiding/showing in react so we remove the hidden-content class
-                    const hiddenContentIndex =
-                        knowlContentClassName.indexOf("hidden-content");
-                    if (hiddenContentIndex >= 0) {
-                        knowlContentClassName.splice(hiddenContentIndex, 1);
-                    }
-                    knowlContentClassName.push("knowl");
-                    // This class is what the rest of the react code looks for to wrap
-                    // the content in an appropriate react element.
-                    knowlContentClassName.push("preloaded-knowl-content");
-                    Object.assign(knowlContent.properties, {
-                        dataRefid: knowlContent.properties?.id,
+
+                    // Preloaded knowl content and fetched knowl content are treated identically
+                    // in terms of behavior, so we combine both of them. However, we need
+                    // to create synthetic URLs for the data of the preloaded content.
+                    const html = toHtml(knowlContent.children);
+                    const blobUrl = URL.createObjectURL(
+                        new Blob([html], { type: "text/html" })
+                    );
+                    hastDom.remove(knowlContent);
+
+                    const id = elm.properties?.dataRefid || "";
+                    elm.properties = Object.assign(elm.properties || {}, {
+                        dataKnowlContainerId: id,
                     });
-                    positionKnowlContent(elm, knowlContent, hastDom);
+
+                    const container = fromSelector(`div`);
+                    container.properties = Object.assign(
+                        container.properties || {},
+                        {
+                            dataForKnowlUrl: blobUrl,
+                            dataIsPreloadedKnowl: true,
+                            id,
+                        }
+                    );
+                    const masterContainer = getKnowlContainer(elm);
+                    masterContainer.children.push(container);
                 }
             }
+
             // If the knowl does not have a refid, then its content is fetched from a URL.
             // We pre-insert a container element for this knowl so that the react code
             // Doesn't have to do wild things to the DOM.
 
-            const parentContainersMap: Map<
-                HastElement | HastRoot | undefined,
-                HastElement
-            > = new Map();
             for (const elm of hastDom.querySelectorAll(
                 "[data-knowl]:not([data-refid])"
             )) {
@@ -128,17 +156,6 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
                     dataKnowlContainerId: id,
                 });
 
-                // For dynamically-loaded knowls, the interaction behavior is complicated
-                // (e.g., the order the knowls are displayed may change based on user interaction).
-                // So we create a master parent container that contains several peer children.
-                // This container is reused.
-                const parent = hastDom.parentOf(elm);
-                let masterContainer = parentContainersMap.get(parent);
-                if (!masterContainer) {
-                    masterContainer = fromSelector(`div.knowl-group-container`);
-                    parentContainersMap.set(parent, masterContainer);
-                    positionKnowlContent(elm, masterContainer, hastDom);
-                }
                 const container = fromSelector(`div`);
                 container.properties = Object.assign(
                     container.properties || {},
@@ -147,6 +164,7 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
                         id,
                     }
                 );
+                const masterContainer = getKnowlContainer(elm);
                 masterContainer.children.push(container);
             }
         };

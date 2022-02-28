@@ -126,6 +126,24 @@ export class HastDom {
         this.parentMap.set(elmToInsert, parent);
     }
     /**
+     * Remove `elmToRemove` from the tree.
+     *
+     * Returns `true`/`false` depending on whether something was removed.
+     */
+    remove(elmToRemove: HastElement) {
+        const parent = this.parentOf(elmToRemove);
+        if (!parent) {
+            return false;
+        }
+        const i = parent.children.indexOf(elmToRemove);
+        if (i < 0) {
+            throw new Error("Cannot find element in `parent.children`");
+        }
+        parent.children.splice(i, 1);
+        this.parentMap.delete(elmToRemove);
+        return true;
+    }
+    /**
      * Returns whether the element is currently inside a table.
      */
     insideTable(elm: HastElement) {
