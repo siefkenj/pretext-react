@@ -1,0 +1,28 @@
+.permalink {
+    padding: 0px 5px;
+    margin-left: -20px;
+    position: absolute;
+    top: 1px;
+    left: -10px;
+    font-size: 1rem;
+    font-style: normal;
+    opacity: 0;
+    transition: opacity .2s;
+}
+
+p > .permalink {
+    top: 5px;
+}
+
+.permalink:hover,
+.permalink:focus-visible {
+    opacity: 1;
+}
+
+*:hover > .permalink {
+    opacity: 1;
+}
+
+main.main {
+    overflow-x: visible !important;
+}

@@ -1,5 +1,6 @@
 import React from "react";
 import classNames from "classnames";
+import ReduxToastr from "react-redux-toastr";
 import { extractActiveTocItem, extractTocFromXml } from "./utils/extract-toc";
 import { Toc } from "./components/toc";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
@@ -18,12 +19,14 @@ import { TocVisibilityToggle } from "./components/toc/toggle";
 import { tocIsVisibleSelector } from "./features/toc/tocSlice";
 import { CachingSettingsSelect } from "./components/caching-setting-select";
 
+import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
 
 //import "./styles/header.css";
 import "./styles/shell.css";
 //import "./styles/toc.css";
 import "./styles/toc-chevron.css";
 import "./styles/knowls.css";
+import "./styles/permalink.css";
 import { globalActions } from "./features/global/globalSlice";
 
 function App() {
@@ -130,10 +133,21 @@ function App() {
                     <div className="ptx-content">
                         <ContentPage content={currentPageContents} />
                     </div>
-                    <div className="ptx-content-footer">Page footer dummy content</div>
+                    <div className="ptx-content-footer">
+                        Page footer dummy content
+                    </div>
                 </main>
             </div>
             <div className="ptx-page-footer">Window footer dummy content</div>
+            <ReduxToastr
+                timeOut={2000}
+                newestOnTop={true}
+                preventDuplicates
+                position="top-center"
+                transitionIn="fadeIn"
+                transitionOut="fadeOut"
+                closeOnToastrClick
+            />
         </React.Fragment>
     );
 }

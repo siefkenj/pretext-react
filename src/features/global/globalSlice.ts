@@ -3,6 +3,8 @@ import {
     createSlice,
     PayloadAction,
 } from "@reduxjs/toolkit";
+import copy from "copy-to-clipboard";
+import { toastr } from "react-redux-toastr";
 import { createLoggingAsyncThunk } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { tocActions, tocIsVisibleSelector } from "../toc/tocSlice";
@@ -35,6 +37,13 @@ const globalThunks = {
                 dispatch(tocActions.setVisible(true));
             }
             dispatch(globalActions._setInMobileMode(inMobileMode));
+        }
+    ),
+    copyToClipboard: createLoggingAsyncThunk(
+        "global/copyToClipboard",
+        async (text: string, { dispatch, getState }) => {
+            copy(text);
+            toastr.success("Copied to clipboard", text);
         }
     ),
 };

@@ -3,6 +3,7 @@ import { unified } from "unified";
 import { hastFromStringNative } from "../../utils/html-manipulation/hast-from-string-native";
 import { hastReactTransformer } from "../../utils/html-manipulation/hast-react";
 import { rehypeInsertKnowlExpandStubs } from "../../utils/html-manipulation/place-knowls";
+import { rehypeInsertPermalinks } from "../../utils/html-manipulation/place-permalinks";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 import { replaceImages } from "../replacers/images";
 import { replaceKnowl, replaceKnowlGroupContainers } from "../replacers/knowls";
@@ -12,6 +13,7 @@ import { replaceSageKnowl } from "../replacers/sage-knowls";
 const processHtmlContentViaUnified = unified()
     .use(hastFromStringNative)
     .use(rehypeInsertKnowlExpandStubs)
+    .use(rehypeInsertPermalinks)
     .use(hastReactTransformer, {
         replacers: [
             replaceInternalLinks,

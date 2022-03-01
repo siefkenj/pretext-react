@@ -1,6 +1,6 @@
 import React from "react";
 import { ReplacerFunc } from "../../utils/html-manipulation/hast-react";
-import { InternalAnchor } from "../links";
+import { InternalAnchor, PermalinkAnchor } from "../links";
 
 /**
  * Replace all internal links with `InternalAnchor` tags.
@@ -26,6 +26,21 @@ export const replaceInternalLinks: ReplacerFunc = (
             >
                 {processContent(node.children)}
             </InternalAnchor>
+        );
+    }
+
+    if (className?.includes("permalink")) {
+        const href = hastDom.getAttribute(node, "href");
+        const title = hastDom.getAttribute(node, "title");
+
+        return (
+            <PermalinkAnchor
+                href={href || ""}
+                className={className}
+                title={title}
+            >
+                {processContent(node.children)}
+            </PermalinkAnchor>
         );
     }
 };
