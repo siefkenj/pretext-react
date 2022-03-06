@@ -108,7 +108,7 @@ const navThunks = {
             // We used a non-normalized URL because we want to include hashes, etc.
             if (
                 window.location.href !==
-                new URL(pageToUrlMap[currentPage], window.location.href).href
+                new URL(currentPageUrl, window.location.href).href
             ) {
                 // The URL we get from `pageToUrlMap` may or may not contain a hash.
                 // We take care to preserve the hash if there is one.
