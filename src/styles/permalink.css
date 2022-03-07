@@ -7,7 +7,7 @@
     font-size: 1rem;
     font-style: normal;
     opacity: 0;
-    transition: opacity .2s;
+    transition: opacity 0.2s;
 }
 
 p > .permalink {
@@ -21,8 +21,4 @@ p > .permalink {
 
 *:hover > .permalink {
     opacity: 1;
-}
-
-main.main {
-    overflow-x: visible !important;
 }

@@ -27,6 +27,7 @@ import "./styles/shell.css";
 import "./styles/toc-chevron.css";
 import "./styles/knowls.css";
 import "./styles/permalink.css";
+import "./styles/ptx-fixes.css";
 import { globalActions } from "./features/global/globalSlice";
 
 function App() {

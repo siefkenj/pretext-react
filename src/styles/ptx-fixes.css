@@ -1,0 +1,11 @@
+/* This file contains TEMPORARY fixes to the default Pretext CSS.
+   All of these fixes should be migrated to the upstream CSS,
+   and, ideally, this file should contain no rules. */
+
+main.main {
+    overflow-x: visible !important;
+}
+
+.aside {
+    z-index: 100 !important;
+}
