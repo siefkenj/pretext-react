@@ -11,6 +11,7 @@ To get started, make sure you have `nodejs` and `npm` (Node Package Manager; sho
 be installed by default with Node) installed. Then, in the `pretext-react` director, run
 
 ```
+git submodule init
 npm install
 npm run start
 ```
