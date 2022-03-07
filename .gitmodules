@@ -1,3 +1,3 @@
 [submodule "pretext-react-compiled-article"]
 	path = pretext-react-compiled-article
-	url = git@github.com:siefkenj/pretext-react-compiled-article.git
+	url = https://github.com/siefkenj/pretext-react-compiled-article.git
