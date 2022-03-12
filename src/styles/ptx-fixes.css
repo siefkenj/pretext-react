@@ -9,3 +9,11 @@ main.main {
 .aside {
     z-index: 100 !important;
 }
+
+.treebuttons {
+    display: flex;
+    gap: 5px;
+}
+.treebuttons a {
+    display: flex;
+}

@@ -1,4 +1,5 @@
 import React from "react";
+import Chevron from "react-chevron";
 import { Button, Toolbar, ToolbarItem, useToolbarState } from "reakit";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { navActions, nextPrevParentSelector } from "../features/nav/navSlice";
@@ -9,10 +10,15 @@ export function NavButtons() {
     const dispatch = useAppDispatch();
 
     return (
-        <Toolbar {...toolbar} aria-label="Previous/Next Section">
+        <Toolbar
+            {...toolbar}
+            aria-label="Previous/Next Section"
+            className="treebuttons"
+        >
             <ToolbarItem
                 {...toolbar}
-                as={Button}
+                as="a"
+                href={navTargets.prev?.id || "#"}
                 className="previous-button toolbar-item button"
                 title={
                     navTargets.prev
@@ -30,11 +36,15 @@ export function NavButtons() {
                     }
                 }}
             >
-                Prev
+                <span className="icon">
+                    <Chevron direction="left" />
+                </span>
+                <span className="name">Prev</span>
             </ToolbarItem>
             <ToolbarItem
                 {...toolbar}
-                as={Button}
+                as="a"
+                href={navTargets.up?.id || "#"}
                 title={navTargets.up ? `Up (${navTargets.up.title})` : "Up"}
                 className="up-button toolbar-item button"
                 disabled={!navTargets.up}
@@ -46,11 +56,15 @@ export function NavButtons() {
                     }
                 }}
             >
-                Up
+                <span className="icon">
+                    <Chevron direction="up" />
+                </span>
+                <span className="name">Up</span>
             </ToolbarItem>
             <ToolbarItem
                 {...toolbar}
-                as={Button}
+                as="a"
+                href={navTargets.next?.id || "#"}
                 title={
                     navTargets.next ? `Next (${navTargets.next.title})` : "Next"
                 }
@@ -66,7 +80,10 @@ export function NavButtons() {
                     }
                 }}
             >
-                Next
+                <span className="name">Next</span>
+                <span className="icon">
+                    <Chevron direction="right" />
+                </span>
             </ToolbarItem>
         </Toolbar>
     );
