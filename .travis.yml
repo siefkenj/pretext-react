@@ -4,19 +4,36 @@ node_js:
 cache:
     directories:
         - node_modules
-script:
-    - git submodule init
-    - npm install && npm run build
-before_install:
-    - dpkg --compare-versions `npm -v` ge 7.10 || npm i -g npm@^7.10
-    - npm --version
-after_failure: cat /home/travis/.npm/_logs/*-debug.log
-warnings_are_errors: false
-env: CI=false
-deploy:
-    provider: pages
-    skip_cleanup: true
-    github_token: $github_token
-    local_dir: build
-    on:
-        branch: main
+
+jobs:
+    include:
+        - name: "End to End Tests"
+          script:
+              - git submodule init
+              - npm install && npm run build
+              - npm run test:e2e-with-setup-and-teardown
+          before_install:
+              - dpkg --compare-versions `npm -v` ge 7.10 || npm i -g npm@^7.10
+              - npm --version
+          after_failure: cat /home/travis/.npm/_logs/*-debug.log
+          warnings_are_errors: false
+          env: CI=false
+
+        # Production build which also deploys to github pages
+        - name: "Production Build"
+          script:
+              - git submodule init
+              - npm install && npm run build
+          before_install:
+              - dpkg --compare-versions `npm -v` ge 7.10 || npm i -g npm@^7.10
+              - npm --version
+          after_failure: cat /home/travis/.npm/_logs/*-debug.log
+          warnings_are_errors: false
+          env: CI=false
+          deploy:
+              provider: pages
+              cleanup: false
+              github_token: $github_token
+              local_dir: build
+              on:
+                  branch: main

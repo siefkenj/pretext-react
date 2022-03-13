@@ -94,3 +94,49 @@ Here's a brief overview of the important files and folders:
 
 -   `utils/` - Utilities used by other scripts. This code should be only TypeScript (i.e., no TSX files). Code in this folder can be
     tested independently without a fully-loaded page.
+
+### Testing
+
+Automated testing is done with [Jest](https://jestjs.io/) and the [Puppeteer](https://devdocs.io/puppeteer/) library, which runs a headless
+version of Chrome that can be interacted with via Javascript. This allows for full UI tests that measure actual
+browser behavior. These tests are called _End to End_ (`e2e`) tests and are located in `tests/*e2e.test.js`.
+
+To run the tests, you first must build the react interface with
+
+```
+npm run build
+```
+
+To run the tests one time (like is done on the CI server), run
+
+```
+npm run test:e2e-with-setup-and-teardown
+```
+
+In development it is useful to have tests re-run every time you modify a test file. This can be done via
+
+```
+npm run test:serve
+npm run test:e2e-watch
+```
+
+This will rerun the tests every time a file is changed (though if you change a React file, you will need to rerun `npm run build`).
+
+It is often helpful to run the test server (`npm run test:serve`) and the tests (`npm run test:e2e-watch`) in separate terminals
+so their output is not intermixed.
+
+#### The Test Server
+
+The test server run with `npm run test:serve` will serve files by default from `pretext-react-compiled-article/html-testing`
+and will fall back to `build/` if the files cannot be found.
+
+#### Testing Tips
+
+Headless testing is hard because you don't really know what the page "looks like" at a particular time.
+However, adding
+
+```javascript
+await page.screenshot({ path: `test-screenshot.png` });
+```
+
+will save a snapshot (image) of the current page state for extra debugging ease!

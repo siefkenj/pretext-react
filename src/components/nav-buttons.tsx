@@ -1,6 +1,6 @@
 import React from "react";
 import Chevron from "react-chevron";
-import { Button, Toolbar, ToolbarItem, useToolbarState } from "reakit";
+import { Toolbar, ToolbarItem, useToolbarState } from "reakit";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { navActions, nextPrevParentSelector } from "../features/nav/navSlice";
 
