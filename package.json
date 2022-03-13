@@ -63,7 +63,7 @@
         "test:serve": "node test-server.js",
         "test:e2e-watch": "react-scripts test --testPathPattern=.*e2e.test.js$ --watch",
         "test:e2e": "react-scripts test --testPathPattern=.*e2e.test.js$",
-        "test:e2e-with-setup-and-teardown": "npm run test:serve & echo $! > .test-server-pid && CI=true npm run test:e2e; kill $(cat .test-server-pid)",
+        "test:e2e-with-setup-and-teardown": "npm run test:serve & echo $! > .test-server-pid && CI=true npm run test:e2e; EX=$?; kill $(cat .test-server-pid); exit $EX",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {
