@@ -1,6 +1,6 @@
 matrix:
     include:
-        -name: "Production Build"
+        - name: "End to End Tests"
         language: node_js
         node_js:
             - 16
@@ -26,7 +26,7 @@ matrix:
                 branch: main
 
         # Production build which also deploys to github pages
-        -name: "Production Build"
+        - name: "Production Build"
         language: node_js
         node_js:
             - 16
