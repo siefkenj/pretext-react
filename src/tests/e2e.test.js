@@ -158,6 +158,7 @@ describe("UI Tests", () => {
             "/test-1.html#test-1-def"
         );
 
+        expect(true).toEqual(false)
 
         /*
         await page.evaluate(async ()=> {
