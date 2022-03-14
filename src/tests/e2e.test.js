@@ -157,6 +157,45 @@ describe("UI Tests", () => {
         expect(normalizeUrl(await page.url())).toEqual(
             "/test-1.html#test-1-def"
         );
+    });
+
+    it("test-1: only one copy of knowl content is shown even if the user navigates to a different page and back", async () => {
+        await page.goto(`${DEBUG_URL}/test-1.html`);
+        await page.waitForSelector("#test-1");
+
+        // Open the knowl. It's the knowl's "Solution" element we're after
+        await page.waitForSelector(`a[href="./knowl/test-1-eg.html"]`);
+        await page.$eval(`a[href="./knowl/test-1-eg.html"]`, (e) => e.click());
+
+        await page.waitForSelector(`a.solution-knowl`);
+        await page.$eval(`a.solution-knowl`, (e) => e.click());
+        await page.waitForSelector(
+            `div[data-for-knowl-url="./knowl/solution-1-hidden.html"]`
+        );
+        let solutionElms = await page.$$(
+            `div[data-for-knowl-url="./knowl/solution-1-hidden.html"]`
+        );
+
+        expect(solutionElms.length).toBe(1);
+
+        await page.$eval(`a.solution-knowl`, (e) => e.click());
+
+        // Navigate to another test and back
+        await page.$eval(`a[href^="test-2.html"]`, (e) => e.click());
+        await page.waitForSelector("#test-2");
+        await page.$eval(`a[href^="test-1.html"]`, (e) => e.click());
+        await page.waitForSelector("#test-1");
+
+        // Expand the solution again!
+        await page.$eval(`a.solution-knowl`, (e) => e.click());
+        await page.waitForSelector(
+            `div[data-for-knowl-url="./knowl/solution-1-hidden.html"]`
+        );
+        solutionElms = await page.$$(
+            `div[data-for-knowl-url="./knowl/solution-1-hidden.html"]`
+        );
+
+        expect(solutionElms.length).toBe(1);
 
         /*
         await page.evaluate(async ()=> {
@@ -164,7 +203,6 @@ describe("UI Tests", () => {
             await MathJax.typesetPromise()
         })
         await page.waitForSelector(".MathJax")
-        await page.screenshot({ path: `test-screenshot.png` });
         */
     });
 

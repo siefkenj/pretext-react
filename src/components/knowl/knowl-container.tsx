@@ -18,13 +18,13 @@ export function KnowlContainer({
     const displayOrderRef = React.useRef<string[]>([]);
     const [displayOrder, setDisplayOrder] = React.useState<string[]>([]);
 
-    const displayed = React.useMemo(
-        () =>
-            displayOrder.map(
-                (id) => knowlData.find((item) => item.id === id) || knowlData[0]
-            ),
-        [knowlData, displayOrder]
-    );
+    const displayed = React.useMemo(() => {
+        // It is possible there are stale ids in `displayOrder`. We make sure to filter them out before displaying anything.
+        return displayOrder.flatMap((id) => {
+            const item = knowlData.find((item) => item.id === id);
+            return item ? [item] : [];
+        });
+    }, [knowlData, displayOrder]);
 
     // Display order
     React.useEffect(() => {
