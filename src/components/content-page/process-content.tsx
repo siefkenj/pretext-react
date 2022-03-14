@@ -9,6 +9,7 @@ import { replaceAsides } from "../replacers/asides";
 import { replaceImages } from "../replacers/images";
 import { replaceKnowl, replaceKnowlGroupContainers } from "../replacers/knowls";
 import { replaceInternalLinks } from "../replacers/links";
+import { replaceMathKnowl } from "../replacers/math-knowls";
 import { replaceSageKnowl } from "../replacers/sage-knowls";
 
 const processHtmlContentViaUnified = unified()
@@ -20,6 +21,7 @@ const processHtmlContentViaUnified = unified()
             replaceInternalLinks,
             replaceKnowl,
             replaceSageKnowl,
+            replaceMathKnowl,
             // Must come after `replaceKnowl`
             replaceKnowlGroupContainers,
             replaceImages,
