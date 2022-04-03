@@ -9,5 +9,6 @@ declare module "vfile" {
         hastDom: HastDom;
         existingIds: Set<string>;
         currentPageId: string;
+        latexPreamble?: string | null;
     }
 }

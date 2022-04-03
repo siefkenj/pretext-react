@@ -1,5 +1,6 @@
 import React from "react";
 import { unified } from "unified";
+import { initInfo } from "../../page-init";
 import { hastFromStringNative } from "../../utils/html-manipulation/hast-from-string-native";
 import { hastReactTransformer } from "../../utils/html-manipulation/hast-react";
 import { rehypeInsertKnowlExpandStubs } from "../../utils/html-manipulation/place-knowls";
@@ -9,13 +10,14 @@ import { replaceAsides } from "../replacers/asides";
 import { replaceImages } from "../replacers/images";
 import { replaceKnowl, replaceKnowlGroupContainers } from "../replacers/knowls";
 import { replaceInternalLinks } from "../replacers/links";
-import { replaceMathKnowl } from "../replacers/math-knowls";
+import { rehypeInsertMathPreambles, replaceMathKnowl } from "../replacers/math";
 import { replaceSageKnowl } from "../replacers/sage-knowls";
 
 const processHtmlContentViaUnified = unified()
     .use(hastFromStringNative)
     .use(rehypeInsertKnowlExpandStubs)
     .use(rehypeInsertPermalinks)
+    .use(rehypeInsertMathPreambles)
     .use(hastReactTransformer, {
         replacers: [
             replaceInternalLinks,
@@ -43,7 +45,11 @@ export function htmlToComponent(
 ) {
     const file = processHtmlContentViaUnified.processSync({
         value: content,
-        data: { existingIds, currentPageId },
+        data: {
+            existingIds,
+            currentPageId,
+            latexPreamble: initInfo.latexPreamble,
+        },
     });
 
     return {
