@@ -27,6 +27,7 @@ export interface NavState {
         current: { page: string; hash: string };
         previous: { page: string; hash: string };
     };
+    pageLoadingStatus: "loading" | "loaded" | "rendered" | null;
 }
 
 const initialState: NavState = {
@@ -40,6 +41,7 @@ const initialState: NavState = {
         current: { page: "", hash: "" },
         previous: { page: "", hash: "" },
     },
+    pageLoadingStatus: null,
 };
 
 // We want to be able to delay until the first time the toc is set.
@@ -49,6 +51,23 @@ let tocIsSetResolve: (_: void) => void;
 let tocIsSet = new Promise((resolve) => {
     tocIsSetResolve = resolve;
 });
+
+const callbacksDelayedUntilPageRendered: (() => void)[] = [];
+/**
+ * Add a function to a queue of functions that will be called when the current page has the "rendered" status.
+ */
+export function queueUntilPageRendered(func: () => void) {
+    callbacksDelayedUntilPageRendered.push(func);
+}
+/**
+ * Remove a function to a queue of functions that will be called when the current page has the "rendered" status.
+ */
+export function queueUntilPageRenderedCancel(func: () => void) {
+    const index = callbacksDelayedUntilPageRendered.indexOf(func);
+    if (index >= 0) {
+        callbacksDelayedUntilPageRendered.splice(index, 1);
+    }
+}
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(navThunks.setCurrentPage("..."))`. This
@@ -104,6 +123,7 @@ const navThunks = {
             }
 
             // Retrieve the page
+            dispatch(navActions.setPageLoadingStatus("loading"));
             await dispatch(navThunks.ensurePageCached(currentPageId));
 
             const targetUrl = new URL(targetPageUrl, window.location.href);
@@ -119,6 +139,17 @@ const navThunks = {
                 })
             );
             await dispatch(navThunks.updateWindowTitleToMatchPage());
+            // The page may have rendered very quickly. If it did, don't set the status (backwards) to "loaded"
+            if (
+                pageLoadingStatusSelector(getState() as RootState) !==
+                "rendered"
+            ) {
+                dispatch(navActions.setPageLoadingStatus("loaded"));
+            }
+            const pageHistory = historySelector(getState() as RootState);
+            if (pageHistory.current.page === pageHistory.previous.page) {
+                dispatch(navActions.setPageLoadingStatus("rendered"));
+            }
         }
     ),
 
@@ -153,7 +184,7 @@ const navThunks = {
 
     updateWindowTitleToMatchPage: createLoggingAsyncThunk(
         "nav/updateWindowTitleToMatchPage",
-        async (_: void, { dispatch, getState }) => {
+        async (_: void, { getState }) => {
             const tocEntry = currentPageTopLevelTocInfoSelector(
                 getState() as RootState
             );
@@ -161,6 +192,19 @@ const navThunks = {
                 return;
             }
             document.title = tocEntry.title || "";
+        }
+    ),
+
+    setPageLoadingStatus: createLoggingAsyncThunk(
+        "nav/setPageLoadingStatusThunk",
+        (status: "loading" | "loaded" | "rendered" | null, { dispatch }) => {
+            dispatch(navSlice.actions._setPageLoadingStatus(status));
+            if (status === "rendered") {
+                for (const func of callbacksDelayedUntilPageRendered) {
+                    func();
+                }
+                callbacksDelayedUntilPageRendered.length = 0;
+            }
         }
     ),
 };
@@ -222,6 +266,12 @@ export const navSlice = createSlice({
         },
         _setCurrentPageHash(state, action: PayloadAction<string | null>) {
             state.currentPageHash = action.payload;
+        },
+        _setPageLoadingStatus(
+            state,
+            action: PayloadAction<"loading" | "loaded" | "rendered" | null>
+        ) {
+            state.pageLoadingStatus = action.payload;
         },
         _cacheUrl(state, action: PayloadAction<{ url: string; body: string }>) {
             state.urlCache[action.payload.url] = action.payload.body;
@@ -295,6 +345,10 @@ export const tocSelector = createDraftSafeSelector(
 export const historySelector = createDraftSafeSelector(
     selfSelector,
     (state) => state.history
+);
+export const pageLoadingStatusSelector = createDraftSafeSelector(
+    selfSelector,
+    (state) => state.pageLoadingStatus
 );
 /**
  * Return the top-level TocEntry corresponding to the currently active page.
