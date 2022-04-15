@@ -14,25 +14,34 @@ import {
 } from "../../utils/extract-toc";
 import { normalizeUrl, normalizeUrlWithHash } from "../../utils/normalize";
 import { mapToc } from "./map-toc";
+import { scrollThunks } from "./scrollThunks";
 
 export interface NavState {
-    currentPage: string | null;
+    currentPageId: string | null;
     currentPageHash: string | null;
     toc: TocEntryType[];
-    pageToUrlMap: Record<string, string>;
-    urlToPageMap: Record<string, string>;
+    pageIdToUrlMap: Record<string, string>;
+    urlToPageIdMap: Record<string, string>;
     urlCache: Record<string, string>;
-    scrollIntoViewOnTransition: boolean;
+    history: {
+        current: { page: string; hash: string };
+        previous: { page: string; hash: string };
+    };
+    pageLoadingStatus: "loading" | "loaded" | "rendered" | null;
 }
 
 const initialState: NavState = {
-    currentPage: null,
+    currentPageId: null,
     currentPageHash: null,
     toc: [],
-    pageToUrlMap: {},
-    urlToPageMap: {},
+    pageIdToUrlMap: {},
+    urlToPageIdMap: {},
     urlCache: {},
-    scrollIntoViewOnTransition: true,
+    history: {
+        current: { page: "", hash: "" },
+        previous: { page: "", hash: "" },
+    },
+    pageLoadingStatus: null,
 };
 
 // We want to be able to delay until the first time the toc is set.
@@ -42,6 +51,23 @@ let tocIsSetResolve: (_: void) => void;
 let tocIsSet = new Promise((resolve) => {
     tocIsSetResolve = resolve;
 });
+
+const callbacksDelayedUntilPageRendered: (() => void)[] = [];
+/**
+ * Add a function to a queue of functions that will be called when the current page has the "rendered" status.
+ */
+export function queueUntilPageRendered(func: () => void) {
+    callbacksDelayedUntilPageRendered.push(func);
+}
+/**
+ * Remove a function to a queue of functions that will be called when the current page has the "rendered" status.
+ */
+export function queueUntilPageRenderedCancel(func: () => void) {
+    const index = callbacksDelayedUntilPageRendered.indexOf(func);
+    if (index >= 0) {
+        callbacksDelayedUntilPageRendered.splice(index, 1);
+    }
+}
 
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(navThunks.setCurrentPage("..."))`. This
@@ -53,14 +79,14 @@ const navThunks = {
         "nav/setCurrentPageThunk",
         async (currentPage: string | null, { dispatch, getState }) => {
             if (!currentPage) {
-                dispatch(navSlice.actions._setCurrentPage(currentPage));
+                dispatch(navSlice.actions._setCurrentPageId(currentPage));
                 await dispatch(navThunks.updateWindowTitleToMatchPage());
                 return;
             }
 
             // Retrieve the page
             const state = selfSelector(getState() as RootState);
-            const { pageToUrlMap } = state;
+            const { pageIdToUrlMap: pageToUrlMap } = state;
 
             // If we've navigated to a new location, push the change to the history.
             // We used a non-normalized URL because we want to include hashes, etc.
@@ -76,55 +102,54 @@ const navThunks = {
     ),
     setCurrentPageByUrl: createLoggingAsyncThunk(
         "nav/setCurrentPageByUrlThunk",
-        async (currentPageUrl: string | null, { dispatch, getState }) => {
-            if (!currentPageUrl) {
-                dispatch(navSlice.actions._setCurrentPage(currentPageUrl));
+        async (targetPageUrl: string | null, { dispatch, getState }) => {
+            if (!targetPageUrl) {
+                dispatch(navSlice.actions._setCurrentPageId(targetPageUrl));
                 return;
             }
 
             await tocIsSet;
             let state = selfSelector(getState() as RootState);
-            const { urlToPageMap } = state;
-            let currentPage =
-                urlToPageMap[normalizeUrlWithHash(currentPageUrl)];
-            if (!currentPage) {
-                currentPage = urlToPageMap[normalizeUrl(currentPageUrl)];
+            const { urlToPageIdMap } = state;
+            let currentPageId =
+                urlToPageIdMap[normalizeUrlWithHash(targetPageUrl)];
+            if (!currentPageId) {
+                currentPageId = urlToPageIdMap[normalizeUrl(targetPageUrl)];
             }
-            if (!currentPage) {
+            if (!currentPageId) {
                 throw new Error(
-                    `Failed to find page "${currentPageUrl}" in urlToPageMap`
+                    `Failed to find page "${targetPageUrl}" in urlToPageMap`
                 );
             }
-            const currentPageHash =
-                new URL(currentPageUrl, window.location.href).hash || null;
 
             // Retrieve the page
-            await dispatch(navThunks.ensurePageCached(currentPage));
+            dispatch(navActions.setPageLoadingStatus("loading"));
+            await dispatch(navThunks.ensurePageCached(currentPageId));
 
-            state = selfSelector(getState() as RootState);
-            const { pageToUrlMap } = state;
-
+            const targetUrl = new URL(targetPageUrl, window.location.href);
             // If we've navigated to a new location, push the change to the history.
-            // We used a non-normalized URL because we want to include hashes, etc.
-            if (
-                window.location.href !==
-                new URL(currentPageUrl, window.location.href).href
-            ) {
-                // The URL we get from `pageToUrlMap` may or may not contain a hash.
-                // We take care to preserve the hash if there is one.
-                const url = new URL(
-                    pageToUrlMap[currentPage],
-                    window.location.href
-                );
-                if (currentPageHash) {
-                    url.hash = currentPageHash;
-                }
-                history.push(url.href);
+            if (window.location.href !== targetUrl.href) {
+                history.push(targetUrl.href);
             }
 
-            dispatch(navSlice.actions._setCurrentPage(currentPage));
-            dispatch(navSlice.actions._setCurrentPageHash(currentPageHash));
+            dispatch(
+                navSlice.actions._setPage({
+                    page: targetUrl.pathname,
+                    hash: targetUrl.hash,
+                })
+            );
             await dispatch(navThunks.updateWindowTitleToMatchPage());
+            // The page may have rendered very quickly. If it did, don't set the status (backwards) to "loaded"
+            if (
+                pageLoadingStatusSelector(getState() as RootState) !==
+                "rendered"
+            ) {
+                dispatch(navActions.setPageLoadingStatus("loaded"));
+            }
+            const pageHistory = historySelector(getState() as RootState);
+            if (pageHistory.current.page === pageHistory.previous.page) {
+                dispatch(navActions.setPageLoadingStatus("rendered"));
+            }
         }
     ),
 
@@ -132,7 +157,7 @@ const navThunks = {
         "nav/ensurePageCached",
         async (pageId: string, { dispatch, getState }) => {
             const state = selfSelector(getState() as RootState);
-            const { pageToUrlMap, urlCache } = state;
+            const { pageIdToUrlMap: pageToUrlMap, urlCache } = state;
             if (!pageToUrlMap[pageId]) {
                 throw new Error(
                     `Could not fetch page with id "${pageId}"; could not find corresponding URL.`
@@ -159,7 +184,7 @@ const navThunks = {
 
     updateWindowTitleToMatchPage: createLoggingAsyncThunk(
         "nav/updateWindowTitleToMatchPage",
-        async (_: void, { dispatch, getState }) => {
+        async (_: void, { getState }) => {
             const tocEntry = currentPageTopLevelTocInfoSelector(
                 getState() as RootState
             );
@@ -169,24 +194,87 @@ const navThunks = {
             document.title = tocEntry.title || "";
         }
     ),
+
+    setPageLoadingStatus: createLoggingAsyncThunk(
+        "nav/setPageLoadingStatusThunk",
+        (status: "loading" | "loaded" | "rendered" | null, { dispatch }) => {
+            dispatch(navSlice.actions._setPageLoadingStatus(status));
+            if (status === "rendered") {
+                for (const func of callbacksDelayedUntilPageRendered) {
+                    func();
+                }
+                callbacksDelayedUntilPageRendered.length = 0;
+            }
+        }
+    ),
 };
+
+/**
+ * Turn a `{page, hash}` object into a string, normalized relative to the current
+ * `window.location`.
+ */
+function normalizePageAndHash({
+    page = "",
+    hash = "",
+}: {
+    page: string | null;
+    hash: string | null;
+}): string {
+    if (!page && !hash) {
+        return "";
+    }
+    const url = new URL(page || "", window.location.href);
+    url.hash = hash || "";
+    return url.pathname + url.hash;
+}
 
 export const navSlice = createSlice({
     name: "nav",
     initialState,
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
-        _setCurrentPage(state, action: PayloadAction<string | null>) {
-            state.currentPage = action.payload;
+        /**
+         * Sets the current page and pushes to the locally-stored transition history.
+         * This allows for careful control of scrolling/non-scrolling etc, when moving
+         * between pages.
+         *
+         * This method should be preferred over `_setCurrentPage` and `_setCurrentPageHash`.
+         */
+        _setPage(
+            state,
+            action: PayloadAction<{ page: string | null; hash: string | null }>
+        ) {
+            const { page, hash } = action.payload;
+            const normalized = normalizePageAndHash({ page, hash });
+
+            // Have we changed history states?
+            if (normalizePageAndHash(state.history.current) !== normalized) {
+                state.history.previous = state.history.current;
+                state.history.current = { page: page || "", hash: hash || "" };
+            }
+
+            const targetUrl = new URL(normalized, window.location.href);
+            const targetPageId =
+                state.urlToPageIdMap[normalized] ||
+                state.urlToPageIdMap[normalizeUrl(normalized)];
+            state.currentPageId = targetPageId;
+            // The URL object inserts a `#` in front of all hashes (if it's empty, the slice doesn't matter)
+            state.currentPageHash = targetUrl.hash.slice(1);
+        },
+        _setCurrentPageId(state, action: PayloadAction<string | null>) {
+            state.currentPageId = action.payload;
         },
         _setCurrentPageHash(state, action: PayloadAction<string | null>) {
             state.currentPageHash = action.payload;
         },
+        _setPageLoadingStatus(
+            state,
+            action: PayloadAction<"loading" | "loaded" | "rendered" | null>
+        ) {
+            state.pageLoadingStatus = action.payload;
+        },
         _cacheUrl(state, action: PayloadAction<{ url: string; body: string }>) {
             state.urlCache[action.payload.url] = action.payload.body;
-        },
-        setScrollIntoViewOnTransition(state, action: PayloadAction<boolean>) {
-            state.scrollIntoViewOnTransition = action.payload;
         },
         setToc(state, action: PayloadAction<TocEntryType[]>) {
             const toc = action.payload;
@@ -195,8 +283,8 @@ export const navSlice = createSlice({
             // We keep an updated map from ids to urls so we
             // don't have to do a deep search on every mouse click.
             const { pageToUrlMap, urlToPageMap } = mapToc(toc);
-            state.pageToUrlMap = pageToUrlMap;
-            state.urlToPageMap = urlToPageMap;
+            state.pageIdToUrlMap = pageToUrlMap;
+            state.urlToPageIdMap = urlToPageMap;
             // Some thunks might be waiting on the TOC to be set
             // before executing. This allows them to execute.
             tocIsSetResolve();
@@ -221,13 +309,17 @@ export const navSlice = createSlice({
     */
 });
 
-export const navActions = { ...navSlice.actions, ...navThunks };
+export const navActions = {
+    ...navSlice.actions,
+    ...navThunks,
+    ...scrollThunks,
+};
 
 const selfSelector = (state: RootState) => state.nav;
 
-export const currentPageSelector = createDraftSafeSelector(
+export const currentPageIdSelector = createDraftSafeSelector(
     selfSelector,
-    (state) => state.currentPage
+    (state) => state.currentPageId
 );
 /**
  * Return a cached version of the current page, if available. Otherwise an empty
@@ -235,13 +327,14 @@ export const currentPageSelector = createDraftSafeSelector(
  * `<div id="content">...</div>` node.
  */
 export const currentPageContentSelector = createDraftSafeSelector(
-    [selfSelector, currentPageSelector],
+    [selfSelector, currentPageIdSelector],
     (state, currentPage) => {
         if (!currentPage) {
             return "";
         }
         return (
-            state.urlCache[normalizeUrl(state.pageToUrlMap[currentPage])] || ""
+            state.urlCache[normalizeUrl(state.pageIdToUrlMap[currentPage])] ||
+            ""
         );
     }
 );
@@ -249,16 +342,20 @@ export const tocSelector = createDraftSafeSelector(
     selfSelector,
     (state) => state.toc
 );
-export const scrollIntoViewOnTransitionSelector = createDraftSafeSelector(
+export const historySelector = createDraftSafeSelector(
     selfSelector,
-    (state) => state.scrollIntoViewOnTransition
+    (state) => state.history
+);
+export const pageLoadingStatusSelector = createDraftSafeSelector(
+    selfSelector,
+    (state) => state.pageLoadingStatus
 );
 /**
  * Return the top-level TocEntry corresponding to the currently active page.
  * If the currently active page is a subsection, the parent section's title is returned.
  */
 export const currentPageTopLevelTocInfoSelector = createDraftSafeSelector(
-    [currentPageSelector, tocSelector],
+    [currentPageIdSelector, tocSelector],
     (currentPage, toc) => {
         // Recursively search the table of contents for an entry
         // with id matching the currently active page.
@@ -282,7 +379,7 @@ export const currentPageTopLevelTocInfoSelector = createDraftSafeSelector(
  * relative to the current page.
  */
 export const nextPrevParentSelector = createDraftSafeSelector(
-    [currentPageSelector, tocSelector],
+    [currentPageIdSelector, tocSelector],
     (currentPage, toc) => {
         let prev: TocEntryType | null = null,
             next: TocEntryType | null = null,

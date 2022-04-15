@@ -1,7 +1,7 @@
 import * as React from "react";
 import classNames from "classnames";
 import { useAppSelector } from "../../app/hooks";
-import { currentPageSelector, tocSelector } from "../../features/nav/navSlice";
+import { currentPageIdSelector, tocSelector } from "../../features/nav/navSlice";
 import { TocEntryType } from "../../utils/extract-toc";
 import { staticallyRenderMathJax } from "../../utils/html-manipulation/static-render";
 import { InternalAnchor } from "../links";
@@ -39,7 +39,7 @@ function isTocChild(toc: TocEntryType[], selfId: string, childId: string) {
 }
 
 function TocEntry({ entry }: { entry: TocEntryType }) {
-    const currentPage = useAppSelector(currentPageSelector);
+    const currentPage = useAppSelector(currentPageIdSelector);
     const toc = useAppSelector(tocSelector);
     const childTocItemIsActive = isTocChild(
         toc,

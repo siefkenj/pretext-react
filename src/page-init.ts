@@ -1,11 +1,13 @@
 export interface InitInfo {
     bannerContent: string | null;
     currentPageContent: string | null;
+    latexPreamble: string | null;
 }
 
 export const initInfo: InitInfo = {
     bannerContent: null,
     currentPageContent: null,
+    latexPreamble: null,
 };
 
 function extractBannerContent() {
@@ -15,7 +17,7 @@ function extractBannerContent() {
     }
     // Strip away un-needed container divs.
     // XXX This code should be removed when the new HTML structure is finalized 2022-02-15
-    const innerElm = elm.querySelector(".container")
+    const innerElm = elm.querySelector(".container");
     if (innerElm) {
         elm = innerElm;
     }
@@ -29,6 +31,14 @@ function extractCurrentPageContent() {
     return elm.innerHTML;
 }
 
+function extractLatexPreamble() {
+    const elm = document.querySelector("#latex-macros");
+    if (!elm) {
+        throw new Error("Cannot find latex macros");
+    }
+    return elm.textContent;
+}
+
 /**
  * Extract needed information from the current page that may be lost
  * after the page is rendered (because elements may be replaced). This function is safe
@@ -40,5 +50,8 @@ export function extractInitInfo() {
     }
     if (initInfo.currentPageContent === null) {
         initInfo.currentPageContent = extractCurrentPageContent();
+    }
+    if (initInfo.latexPreamble === null) {
+        initInfo.latexPreamble = extractLatexPreamble();
     }
 }

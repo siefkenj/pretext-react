@@ -7,19 +7,17 @@ import { useAppDispatch, useAppSelector } from "./app/hooks";
 import {
     currentPageContentSelector,
     navActions,
-    scrollIntoViewOnTransitionSelector,
 } from "./features/nav/navSlice";
 import { useLocation } from "react-router";
 import { normalizeUrlWithHash } from "./utils/normalize";
 import { ContentPage } from "./components/content-page";
-import { useSelector } from "react-redux";
 import { Banner } from "./components/banner";
 import { NavButtons } from "./components/nav-buttons";
 import { TocVisibilityToggle } from "./components/toc/toggle";
 import { tocIsVisibleSelector } from "./features/toc/tocSlice";
 import { CachingSettingsSelect } from "./components/caching-setting-select";
 
-import 'react-redux-toastr/lib/css/react-redux-toastr.min.css'
+import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
 //import "./styles/header.css";
 import "./styles/shell.css";
@@ -37,11 +35,9 @@ function App() {
     const currentUrl = normalizeUrlWithHash(location.pathname + location.hash);
     const currentPageContents = useAppSelector(currentPageContentSelector);
     const [tocExtracted, setTocExtracted] = React.useState(false);
-    const scrollIntoView = useSelector(scrollIntoViewOnTransitionSelector);
-    const [lastScrolledHash, setLastScrolledHash] = React.useState("");
     const tocVisible = useAppSelector(tocIsVisibleSelector);
 
-    React.useEffect(() => {
+    React.useLayoutEffect(() => {
         (async () => {
             // This effect is called when the URL changes, but also when `scrollIntoView` changes.
             // Sometimes, `scrollIntoView` will change even if the url hasn't. In these cases, we don't
@@ -52,31 +48,9 @@ function App() {
                 // the browser's forward/back button without needing a page reload
                 await dispatch(navActions.setCurrentPageByUrl(currentUrl));
             }
-            if (scrollIntoView) {
-                // The `.hash` on a URL always starts with `#`. We want to trim that off.
-                const hash = new URL(
-                    currentUrl,
-                    window.location.href
-                ).hash.slice(1);
-                const elm =
-                    (hash ? document.getElementById(hash) : null) ||
-                    document.querySelector(".ptx-content") ||
-                    document.body;
-                if (hash !== lastScrolledHash) {
-                    const y =
-                        elm.getBoundingClientRect().top +
-                        window.pageYOffset -
-                        50;
-
-                    // Not sure which one of these is better. `window` might not always be the scrollable element,
-                    // in which case, this might break...
-                    // elm.scrollIntoView({ behavior: "smooth" });
-                    window.scrollTo({ behavior: "smooth", top: y });
-                    setLastScrolledHash(hash);
-                }
-            }
+            await dispatch(navActions.scrollViewportIfNeeded());
         })();
-    }, [dispatch, currentUrl, lastUrl, scrollIntoView, lastScrolledHash]);
+    }, [dispatch, currentUrl, lastUrl]);
 
     React.useEffect(() => {
         (async () => {

@@ -29,7 +29,6 @@ export function InternalAnchor({
                 // We take over navigation with cached async loading,
                 // so prevent a normal click from going through.
                 e.preventDefault();
-                dispatch(navActions.setScrollIntoViewOnTransition(true));
                 if (pageId) {
                     dispatch(navActions.setCurrentPage(pageId));
                 } else {

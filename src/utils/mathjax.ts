@@ -81,5 +81,14 @@ export function mathJaxDefaultReady() {
     } catch {
         return;
     }
-    (MathJax as any)?.startup?.defaultReady();
+    const startup = (MathJax as any)?.startup;
+    if (!startup) {
+        return;
+    }
+    // We don't want to run `defaultReady` twice, so we check to see
+    // if `.adaptor` is set, which should be set after a call to `defaultReady`
+    // has been made.
+    if (!startup.adaptor) {
+        startup.defaultReady();
+    }
 }

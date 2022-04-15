@@ -1,6 +1,7 @@
 import React from "react";
-import { useAppSelector } from "../app/hooks";
+import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { domCachingSelector } from "../features/global/globalSlice";
+import { navActions } from "../features/nav/navSlice";
 
 type ChildCache = Record<string, React.ReactNode>;
 
@@ -68,6 +69,13 @@ const HidableElement = React.memo(function HidableElement({
     cacheId: string;
     children: React.ReactNode;
 }) {
+    const dispatch = useAppDispatch();
+    React.useLayoutEffect(() => {
+        if (!hidden) {
+            dispatch(navActions.setPageLoadingStatus("rendered"));
+        }
+    }, [hidden, dispatch]);
+
     return (
         <div
             className={`component-cache ${hidden ? "hidden" : ""}`}
