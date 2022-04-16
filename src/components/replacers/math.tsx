@@ -44,8 +44,16 @@ export const replaceMathKnowl: ReplacerFunc = (
     if (!className?.includes("displaymath")) {
         return;
     }
+    const containedKnowlIds = (hastDom.getAttribute(
+        node,
+        "data-contains-math-knowl-ids"
+    ) || []) as { id: string; url: string }[];
     return (
-        <MathKnowl className={className} id={hastDom.getAttribute(node, "id")}>
+        <MathKnowl
+            className={className}
+            id={hastDom.getAttribute(node, "id")}
+            knowlIds={containedKnowlIds}
+        >
             {processContent(node.children)}
         </MathKnowl>
     );

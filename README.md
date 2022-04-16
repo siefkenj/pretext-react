@@ -41,6 +41,23 @@ scripts assume that all of your _Pretext_ `html` files have
 in their `<header>`. (The reference to `bundle.js` is strictly for development/hot-reloading. It
 isn't needed in a production build.)
 
+#### Building Pretext Source for Debugging
+
+If you want to use the React frontend with a specific Pretext source, you need to compile it with the following
+`stringparams`
+
+    * `debug.react.local yes`
+    * `html-css-shellfile shell_min.css`
+    * `html-css-bannerfile banner_min.css`
+    * `html-css-tocfile toc_min.css`
+    * `html-css-navbarfile navbar_min.css`
+
+Using `xsltproc` this might look something like
+
+```
+xsltproc --stringparam debug.react.local yes --stringparam html-css-shellfile shell_min.css --stringparam html-css-bannerfile banner_min.css --stringparam html-css-tocfile toc_min.css --stringparam html-css-navbarfile navbar_min.css -stringparam debug.datedfiles no -xinclude ../tmp/pretext/xsl/pretext-html.xsl ../src/html-testing/source/main.ptx
+```
+
 ### Code Overview
 
 `pretext-react` is written in [TypeScript](https://www.typescriptlang.org/), specifically the _TSX_ variant of typescript.

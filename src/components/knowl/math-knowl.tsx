@@ -1,4 +1,9 @@
 import React from "react";
+import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import {
+    knowlActions,
+    visibleKnowlsSelector,
+} from "../../features/knowl/knowlSlice";
 
 function clickedMathKnowl(
     e: React.MouseEvent<HTMLDivElement> | React.KeyboardEvent<HTMLDivElement>
@@ -23,9 +28,31 @@ function clickedMathKnowl(
 export function MathKnowl({
     children,
     id,
+    knowlIds,
     className,
     ...rest
-}: React.PropsWithChildren<React.ComponentProps<"div">>) {
+}: React.PropsWithChildren<
+    React.ComponentProps<"div"> & { knowlIds: { url: string; id: string }[] }
+>) {
+    const dispatch = useAppDispatch();
+    const visibleKnowls = useAppSelector(visibleKnowlsSelector);
+    const urlToIdMap = React.useMemo(
+        () => Object.fromEntries(knowlIds.map(({ id, url }) => [url, id])),
+        [knowlIds]
+    );
+
+    const doClick = React.useCallback(
+        function doClick(knowlTrigger: Element) {
+            const knowlUrl = knowlTrigger.getAttribute("data-knowl");
+            console.log("Math knowl clicked", knowlUrl);
+            const knowlId = urlToIdMap[knowlUrl || ""];
+            dispatch(
+                knowlActions.setVisible({ [knowlId]: !visibleKnowls[knowlId] })
+            );
+        },
+        [visibleKnowls, dispatch, urlToIdMap]
+    );
+
     // We cannot attach to the knowl links directly because we have no idea when MathJax will
     // render them. Instead we listen to all events and detect on-the-fly whether we've clicked one.
 
@@ -45,12 +72,7 @@ export function MathKnowl({
                 }
                 e.preventDefault();
                 e.stopPropagation();
-                const knowlUrl = knowlTrigger.getAttribute("data-knowl");
-                console.log(
-                    "Triggered math knowl with URL",
-                    knowlUrl,
-                    "Math knowls are not implemented yet."
-                );
+                doClick(knowlTrigger);
             }}
             onKeyDown={(e) => {
                 if (e.key !== "Enter") {
@@ -62,12 +84,7 @@ export function MathKnowl({
                 }
                 e.preventDefault();
                 e.stopPropagation();
-                const knowlUrl = knowlTrigger.getAttribute("data-knowl");
-                console.log(
-                    "Triggered math knowl with URL",
-                    knowlUrl,
-                    "Math knowls are not implemented yet."
-                );
+                doClick(knowlTrigger);
             }}
         >
             {children}

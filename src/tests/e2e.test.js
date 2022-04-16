@@ -206,5 +206,27 @@ describe("UI Tests", () => {
         */
     });
 
+    it("test-3: knowls in math work", async () => {
+        await page.goto(`${DEBUG_URL}/test-3.html`);
+        await page.waitForSelector("#test-3");
+
+        // MathJax must be loaded before this test can happen
+        await page.evaluate(async () => {
+            await window.MathJax.startup.promise;
+            await window.MathJax.typesetPromise();
+        });
+        await page.waitForSelector(".MathJax");
+
+        let knowlsForP = await page.$$("mjx-utext");
+
+        // The clickable knowl should be the second mjx-utext
+        const knowlTrigger = knowlsForP[1];
+        knowlTrigger.click((e) => e.click());
+
+        const openKnowls = await page.waitForSelector("[data-for-knowl-url]");
+
+        expect(openKnowls).not.toBeNull();
+    });
+
     afterAll(() => browser.close());
 });

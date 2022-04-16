@@ -167,5 +167,38 @@ export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
                 const masterContainer = getKnowlContainer(elm);
                 masterContainer.children.push(container);
             }
+
+            // Handle Math Knowls as a special case
+
+            for (const elm of hastDom.querySelectorAll(
+                "[data-contains-math-knowls]"
+            )) {
+                if (!elm.properties) {
+                    throw new Error("Missing `properties` attribute");
+                }
+                const rawUrls =
+                    "" + (elm.properties?.dataContainsMathKnowls || "");
+                if (!rawUrls) {
+                    console.warn(`Could not find data url for ${toHtml(elm)}`);
+                }
+                const urls = rawUrls.split(/\s/).filter((s) => s);
+                const dataContainsMathKnowlIds: { id: string; url: string }[] =
+                    (elm.properties.dataContainsMathKnowlIds = []);
+                const masterContainer = getKnowlContainer(elm);
+                for (const url of urls) {
+                    const id = hastDom.uniqueSlug(`knowl-ref-${url}`);
+                    dataContainsMathKnowlIds.push({ id, url });
+
+                    const container = fromSelector(`div`);
+                    container.properties = Object.assign(
+                        container.properties || {},
+                        {
+                            dataForKnowlUrl: url,
+                            id,
+                        }
+                    );
+                    masterContainer.children.push(container);
+                }
+            }
         };
     };
