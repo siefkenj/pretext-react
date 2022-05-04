@@ -19,7 +19,7 @@ export function NavButtons() {
                 {...toolbar}
                 as="a"
                 href={navTargets.prev?.id || "#"}
-                className="previous-button toolbar-item button"
+                className="previous-button button"
                 title={
                     navTargets.prev
                         ? `Previous (${navTargets.prev.title})`
@@ -37,7 +37,7 @@ export function NavButtons() {
                 }}
             >
                 <span className="icon">
-                    <Chevron direction="left" />
+                    &lt;
                 </span>
                 <span className="name">Prev</span>
             </ToolbarItem>
@@ -46,7 +46,7 @@ export function NavButtons() {
                 as="a"
                 href={navTargets.up?.id || "#"}
                 title={navTargets.up ? `Up (${navTargets.up.title})` : "Up"}
-                className="up-button toolbar-item button"
+                className="up-button button"
                 disabled={!navTargets.up}
                 onClick={() => {
                     if (navTargets.up) {
@@ -57,7 +57,7 @@ export function NavButtons() {
                 }}
             >
                 <span className="icon">
-                    <Chevron direction="up" />
+                    ^
                 </span>
                 <span className="name">Up</span>
             </ToolbarItem>
@@ -68,7 +68,7 @@ export function NavButtons() {
                 title={
                     navTargets.next ? `Next (${navTargets.next.title})` : "Next"
                 }
-                className="next-button toolbar-item button"
+                className="next-button button"
                 disabled={!navTargets.next}
                 onClick={() => {
                     if (navTargets.next) {
@@ -82,7 +82,7 @@ export function NavButtons() {
             >
                 <span className="name">Next</span>
                 <span className="icon">
-                    <Chevron direction="right" />
+                    &gt;
                 </span>
             </ToolbarItem>
         </Toolbar>

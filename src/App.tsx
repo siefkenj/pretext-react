@@ -104,7 +104,7 @@ function App() {
                         <Toc />
                     </nav>
                 </div>
-                <main className="main">
+                <main className="ptx-main">
                     <div className="ptx-content">
                         <ContentPage content={currentPageContents} />
                     </div>
