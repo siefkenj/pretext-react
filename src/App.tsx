@@ -13,6 +13,7 @@ import { normalizeUrlWithHash } from "./utils/normalize";
 import { ContentPage } from "./components/content-page";
 import { Banner } from "./components/banner";
 import { NavButtons } from "./components/nav-buttons";
+import { IndexButton } from "./components/index-button";
 import { TocVisibilityToggle } from "./components/toc/toggle";
 import { tocIsVisibleSelector } from "./features/toc/tocSlice";
 import { CachingSettingsSelect } from "./components/caching-setting-select";
@@ -87,6 +88,7 @@ function App() {
             </header>
             <nav id="ptx-navbar" className="navbar">
                 <TocVisibilityToggle />
+                <IndexButton/>
                 <CachingSettingsSelect />
                 <NavButtons />
             </nav>
