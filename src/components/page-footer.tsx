@@ -1,20 +1,15 @@
 import React from "react";
-import Chevron from "react-chevron";
-import { Toolbar, ToolbarItem, useToolbarState } from "reakit";
+import { ToolbarItem, useToolbarState } from "reakit";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { navActions, nextPrevParentSelector } from "../features/nav/navSlice";
 
-export function NavButtons() {
+export function PageFooter() {
     const toolbar = useToolbarState();
     const navTargets = useAppSelector(nextPrevParentSelector);
     const dispatch = useAppDispatch();
 
     return (
-        <Toolbar
-            {...toolbar}
-            aria-label="Previous/Next Section"
-            className="treebuttons"
-        >
+        <div className="ptx-content-footer">
             <ToolbarItem
                 {...toolbar}
                 as="a"
@@ -42,20 +37,17 @@ export function NavButtons() {
             <ToolbarItem
                 {...toolbar}
                 as="a"
-                href={navTargets.up?.id || "#"}
-                title={navTargets.up ? `Up (${navTargets.up.title})` : "Up"}
-                className="up-button button"
-                disabled={!navTargets.up}
+                href={"#"}
+                title={"Top"}
+                className="top-button button"
                 onClick={() => {
-                    if (navTargets.up) {
                         dispatch(
-                            navActions.setCurrentPage(navTargets.up.id || null)
+                            navActions.setCurrentPage("#")
                         );
-                    }
                 }}
             >
                 <span className="icon">^</span>
-                <span className="name">Up</span>
+                <span className="name">Top</span>
             </ToolbarItem>
             <ToolbarItem
                 {...toolbar}
@@ -79,6 +71,6 @@ export function NavButtons() {
                 <span className="name">Next</span>
                 <span className="icon">&gt;</span>
             </ToolbarItem>
-        </Toolbar>
+        </div>
     );
 }

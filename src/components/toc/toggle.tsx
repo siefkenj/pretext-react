@@ -19,11 +19,12 @@ export function TocVisibilityToggle() {
                     dispatch(tocActions.setVisible(!visible));
                 }
             }}
-            className={`sidebar-left-toggle-button button ${
+            className={`toc-toggle button ${
                 visible ? "active" : ""
             }`}
         >
-            Contents
+                <span className="icon">☰</span>
+                <span className="name">Contents</span>
         </Button>
     );
 }
