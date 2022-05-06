@@ -131,8 +131,8 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                 <Accordion open={openState}>
                     <ul
                         className={classNames({
-                            [`division-level-${entry.level}`]: entry.level
-                        }) + " structural"}
+                            [`division-level-${entry.level}`]: entry.level }, "structural"
+                        )}
                     >
                         {children.map((entry, i) => (
                             <TocEntry entry={entry} key={entry.id || i} />
