@@ -47,7 +47,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
         currentPage || ""
     );
     const openStatePreference =
-        childTocItemIsActive || entry.id === currentPage;
+        childTocItemIsActive || entry.id === currentPage || entry.level === 2;
     const [innerHtml, setInnerHtml] = React.useState(entry.title || "");
     let [openState, setOpenState] = React.useState(openStatePreference);
     const [hasHadInteraction, setHasHadInteraction] = React.useState(false);
