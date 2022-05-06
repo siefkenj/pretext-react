@@ -14,6 +14,7 @@ import { ContentPage } from "./components/content-page";
 import { Banner } from "./components/banner";
 import { NavButtons } from "./components/nav-buttons";
 import { IndexButton } from "./components/index-button";
+import { PageFooter } from "./components/page-footer";
 import { TocVisibilityToggle } from "./components/toc/toggle";
 import { tocIsVisibleSelector } from "./features/toc/tocSlice";
 import { CachingSettingsSelect } from "./components/caching-setting-select";
@@ -110,9 +111,7 @@ function App() {
                     <div className="ptx-content">
                         <ContentPage content={currentPageContents} />
                     </div>
-                    <div className="ptx-content-footer">
-                        Page footer dummy content
-                    </div>
+                    <PageFooter/>
                 </main>
             </div>
             <div className="ptx-page-footer">Window footer dummy content</div>
