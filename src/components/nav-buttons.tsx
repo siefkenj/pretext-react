@@ -36,9 +36,7 @@ export function NavButtons() {
                     }
                 }}
             >
-                <span className="icon">
-                    &lt;
-                </span>
+                <span className="icon">&lt;</span>
                 <span className="name">Prev</span>
             </ToolbarItem>
             <ToolbarItem
@@ -56,9 +54,7 @@ export function NavButtons() {
                     }
                 }}
             >
-                <span className="icon">
-                    ^
-                </span>
+                <span className="icon">^</span>
                 <span className="name">Up</span>
             </ToolbarItem>
             <ToolbarItem
@@ -81,9 +77,7 @@ export function NavButtons() {
                 }}
             >
                 <span className="name">Next</span>
-                <span className="icon">
-                    &gt;
-                </span>
+                <span className="icon">&gt;</span>
             </ToolbarItem>
         </Toolbar>
     );
