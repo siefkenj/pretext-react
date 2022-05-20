@@ -23,7 +23,6 @@ export function PageFooter() {
                 }
                 disabled={!navTargets.prev}
                 onClick={(e: React.MouseEvent) => {
-                    e.preventDefault()
                     if (navTargets.prev) {
                         dispatch(
                             navActions.setCurrentPage(
@@ -61,7 +60,6 @@ export function PageFooter() {
                 className="next-button button"
                 disabled={!navTargets.next}
                 onClick={(e: React.MouseEvent) => {
-                    e.preventDefault()
                     if (navTargets.next) {
                         dispatch(
                             navActions.setCurrentPage(

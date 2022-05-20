@@ -28,7 +28,6 @@ export function NavButtons() {
                 }
                 disabled={!navTargets.prev}
                 onClick={(e: React.MouseEvent) => {
-                    e.preventDefault()
                     if (navTargets.prev) {
                         dispatch(
                             navActions.setCurrentPage(
@@ -49,7 +48,6 @@ export function NavButtons() {
                 className="up-button button"
                 disabled={!navTargets.up}
                 onClick={(e: React.MouseEvent) => {
-                    e.preventDefault()
                     if (navTargets.up) {
                         dispatch(
                             navActions.setCurrentPage(navTargets.up.id || null)
@@ -70,7 +68,6 @@ export function NavButtons() {
                 className="next-button button"
                 disabled={!navTargets.next}
                 onClick={(e: React.MouseEvent) => {
-                    e.preventDefault()
                     if (navTargets.next) {
                         dispatch(
                             navActions.setCurrentPage(
