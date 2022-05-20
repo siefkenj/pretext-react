@@ -3,6 +3,7 @@ import Chevron from "react-chevron";
 import { Toolbar, ToolbarItem, useToolbarState } from "reakit";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { navActions, nextPrevParentSelector } from "../features/nav/navSlice";
+import { InternalAnchor } from "./links";
 
 export function NavButtons() {
     const toolbar = useToolbarState();
@@ -17,7 +18,7 @@ export function NavButtons() {
         >
             <ToolbarItem
                 {...toolbar}
-                as="a"
+                as={InternalAnchor}
                 href={navTargets.prev?.id || "#"}
                 className="previous-button button"
                 title={
@@ -42,7 +43,7 @@ export function NavButtons() {
             </ToolbarItem>
             <ToolbarItem
                 {...toolbar}
-                as="a"
+                as={InternalAnchor}
                 href={navTargets.up?.id || "#"}
                 title={navTargets.up ? `Up (${navTargets.up.title})` : "Up"}
                 className="up-button button"
@@ -61,7 +62,7 @@ export function NavButtons() {
             </ToolbarItem>
             <ToolbarItem
                 {...toolbar}
-                as="a"
+                as={InternalAnchor}
                 href={navTargets.next?.id || "#"}
                 title={
                     navTargets.next ? `Next (${navTargets.next.title})` : "Next"

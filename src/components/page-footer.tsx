@@ -2,6 +2,7 @@ import React from "react";
 import { ToolbarItem, useToolbarState } from "reakit";
 import { useAppDispatch, useAppSelector } from "../app/hooks";
 import { navActions, nextPrevParentSelector } from "../features/nav/navSlice";
+import { InternalAnchor } from "./links";
 
 export function PageFooter() {
     const toolbar = useToolbarState();
@@ -12,7 +13,7 @@ export function PageFooter() {
         <div className="ptx-content-footer">
             <ToolbarItem
                 {...toolbar}
-                as="a"
+                as={InternalAnchor}
                 href={navTargets.prev?.id || "#"}
                 className="previous-button button"
                 title={
@@ -37,7 +38,7 @@ export function PageFooter() {
             </ToolbarItem>
             <ToolbarItem
                 {...toolbar}
-                as="a"
+                as={InternalAnchor}
                 href={"#"}
                 title={"Top"}
                 className="top-button button"
@@ -52,7 +53,7 @@ export function PageFooter() {
             </ToolbarItem>
             <ToolbarItem
                 {...toolbar}
-                as="a"
+                as={InternalAnchor}
                 href={navTargets.next?.id || "#"}
                 title={
                     navTargets.next ? `Next (${navTargets.next.title})` : "Next"
