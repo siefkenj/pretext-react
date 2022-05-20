@@ -23,6 +23,8 @@ import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
 //import "./styles/header.css";
 import "./styles/shell.css";
+import "./styles/banner_default.css";
+import "./styles/navbar_default.css";
 //import "./styles/toc.css";
 import "./styles/toc-chevron.css";
 import "./styles/knowls.css";
