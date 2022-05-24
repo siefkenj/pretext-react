@@ -1,5 +1,4 @@
 import React from "react";
-import Chevron from "react-chevron";
 import { Toolbar, ToolbarItem, useToolbarState } from "reakit";
 import { useAppSelector } from "../app/hooks";
 import { nextPrevParentSelector } from "../features/nav/navSlice";
@@ -27,9 +26,7 @@ export function NavButtons() {
                 }
                 disabled={!navTargets.prev}
             >
-                <span className="icon">
-                    <Chevron direction="left" />
-                </span>
+                <span className="icon">&lt;</span>
                 <span className="name">Prev</span>
             </ToolbarItem>
             <ToolbarItem
@@ -37,12 +34,10 @@ export function NavButtons() {
                 as={InternalAnchor}
                 href={navTargets.up?.href || "#"}
                 title={navTargets.up ? `Up (${navTargets.up.title})` : "Up"}
-                className="up-button toolbar-item button"
+                className="up-button button"
                 disabled={!navTargets.up}
             >
-                <span className="icon">
-                    <Chevron direction="up" />
-                </span>
+                <span className="icon">^</span>
                 <span className="name">Up</span>
             </ToolbarItem>
             <ToolbarItem
@@ -52,13 +47,11 @@ export function NavButtons() {
                 title={
                     navTargets.next ? `Next (${navTargets.next.title})` : "Next"
                 }
-                className="next-button toolbar-item button"
+                className="next-button button"
                 disabled={!navTargets.next}
             >
                 <span className="name">Next</span>
-                <span className="icon">
-                    <Chevron direction="right" />
-                </span>
+                <span className="icon">&gt;</span>
             </ToolbarItem>
         </Toolbar>
     );

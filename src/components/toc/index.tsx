@@ -47,7 +47,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
         currentPage || ""
     );
     const openStatePreference =
-        childTocItemIsActive || entry.id === currentPage;
+        childTocItemIsActive || entry.id === currentPage || entry.level === 2;
     const [innerHtml, setInnerHtml] = React.useState(entry.title || "");
     let [openState, setOpenState] = React.useState(openStatePreference);
     const [hasHadInteraction, setHasHadInteraction] = React.useState(false);
@@ -66,7 +66,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
         }
     }, [entry.title]);
 
-    const shouldRenderCodeNumber = !!entry.codeNumber && (entry.level || 0) < 2;
+    const shouldRenderCodeNumber = !!entry.codeNumber && (entry.level || 0) < 3;
 
     // We never render divisions with empty headers.
     const children = entry.children
@@ -131,8 +131,8 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                 <Accordion open={openState}>
                     <ul
                         className={classNames({
-                            [`division-level-${entry.level}`]: entry.level,
-                        })}
+                            [`division-level-${entry.level}`]: entry.level }, "structural"
+                        )}
                     >
                         {children.map((entry, i) => (
                             <TocEntry entry={entry} key={entry.id || i} />
