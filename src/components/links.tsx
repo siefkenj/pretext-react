@@ -27,7 +27,19 @@ export function InternalAnchor({
             href={href}
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 // We take over navigation with cached async loading,
-                // so prevent a normal click from going through.
+                // so prevent a normal click from going through
+                // UNLESS the user is trying to open the link in a new tab
+                // by using a different mouse button or ctrl+click/etc.
+                if (
+                    e.button !== 0 ||
+                    e.metaKey ||
+                    e.altKey ||
+                    e.ctrlKey ||
+                    e.shiftKey
+                ) {
+                    return;
+                }
+
                 e.preventDefault();
                 if (pageId) {
                     dispatch(navActions.setCurrentPage(pageId));

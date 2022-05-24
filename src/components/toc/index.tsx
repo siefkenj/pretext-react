@@ -66,7 +66,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
         }
     }, [entry.title]);
 
-    const shouldRenderCodeNumber = !!entry.codeNumber && (entry.level || 0) < 2;
+    const shouldRenderCodeNumber = !!entry.codeNumber && (entry.level || 0) < 3;
 
     // We never render divisions with empty headers.
     const children = entry.children
