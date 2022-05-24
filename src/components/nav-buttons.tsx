@@ -1,14 +1,13 @@
 import React from "react";
 import Chevron from "react-chevron";
 import { Toolbar, ToolbarItem, useToolbarState } from "reakit";
-import { useAppDispatch, useAppSelector } from "../app/hooks";
-import { navActions, nextPrevParentSelector } from "../features/nav/navSlice";
+import { useAppSelector } from "../app/hooks";
+import { nextPrevParentSelector } from "../features/nav/navSlice";
 import { InternalAnchor } from "./links";
 
 export function NavButtons() {
     const toolbar = useToolbarState();
     const navTargets = useAppSelector(nextPrevParentSelector);
-    const dispatch = useAppDispatch();
 
     return (
         <Toolbar
@@ -19,7 +18,7 @@ export function NavButtons() {
             <ToolbarItem
                 {...toolbar}
                 as={InternalAnchor}
-                href={"#" + navTargets.prev?.id || "#"}
+                href={navTargets.prev?.href || "#"}
                 className="previous-button toolbar-item button"
                 title={
                     navTargets.prev
@@ -36,7 +35,7 @@ export function NavButtons() {
             <ToolbarItem
                 {...toolbar}
                 as={InternalAnchor}
-                href={"#" + navTargets.up?.id || "#"}
+                href={navTargets.up?.href || "#"}
                 title={navTargets.up ? `Up (${navTargets.up.title})` : "Up"}
                 className="up-button toolbar-item button"
                 disabled={!navTargets.up}
@@ -49,7 +48,7 @@ export function NavButtons() {
             <ToolbarItem
                 {...toolbar}
                 as={InternalAnchor}
-                href={"#" + navTargets.next?.id || "#"}
+                href={navTargets.next?.href || "#"}
                 title={
                     navTargets.next ? `Next (${navTargets.next.title})` : "Next"
                 }
