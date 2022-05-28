@@ -27,10 +27,19 @@ for (const elm of Array.from(elmsToRemove)) {
 }
 
 for (const elm of Array.from(
-    document.querySelectorAll(`link[href*="knowls_default.css"]`)
+    document.querySelectorAll(`link[href*="knowls_default.css"],
+    link[href*="pretext.css"],
+    link[href*="pretext_add_on.css"],
+    link[href*="shell_min.css"],
+    link[href*="banner_min.css"],
+    link[href*="navbar_min.css"],
+    link[href*="toc_min.css"],
+    link[href*="colors_blue_red.css"],
+    link[href*="setcolors.css"],
+    link[href*="style_default.css"]`)
 )) {
     try {
-        document.body.removeChild(elm);
+        document.head.removeChild(elm);
     } catch (e) {
         console.warn("Tried to remove", elm, "but couldn't");
     }
