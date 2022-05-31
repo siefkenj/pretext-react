@@ -4,26 +4,35 @@ import { useAppDispatch } from "../app/hooks";
 import { globalActions } from "../features/global/globalSlice";
 import { navActions } from "../features/nav/navSlice";
 
+type InternalAnchorParams = {
+    href: string;
+    pageId?: string;
+} & React.ComponentProps<"a">;
+
 /**
  * An anchor element for internal links. Instead of redirecting to a new page,
  * the click directs a page to be loaded from the cache.
  */
-export function InternalAnchor({
-    href,
-    pageId,
-    children,
-    className,
-    onClick,
-    ...rest
-}: {
-    href: string;
-    pageId?: string;
-} & React.ComponentProps<"a">) {
+export const InternalAnchor = React.forwardRef<
+    HTMLAnchorElement,
+    InternalAnchorParams
+>(function InternalAnchor(
+    {
+        href,
+        pageId,
+        children,
+        className,
+        onClick,
+        ...rest
+    }: InternalAnchorParams,
+    ref
+) {
     const dispatch = useAppDispatch();
 
     return (
         <Button
             as="a"
+            ref={ref}
             href={href}
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 // We take over navigation with cached async loading,
@@ -56,7 +65,7 @@ export function InternalAnchor({
             {children}
         </Button>
     );
-}
+});
 
 /**
  * An anchor element that when clicked copies a permalink URL to the clipboard.
