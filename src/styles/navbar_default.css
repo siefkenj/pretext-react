@@ -27,7 +27,6 @@
     border: 1px solid #bababa;
     border-bottom: unset;
     cursor: pointer;
-    flex-grow: 1;
     /* Disable accidental text-selection */
     user-select: none;
     white-space: nowrap;

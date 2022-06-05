@@ -277,6 +277,9 @@
         flex-basis: 0;
         flex-grow: 3;
     }
+    #ptx-navbar .button {
+        flex-grow: 1;
+    }
 }
 
 @media screen and (max-width: 600px) {
