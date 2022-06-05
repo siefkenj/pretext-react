@@ -25,7 +25,6 @@ import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 import "./styles/pretext.css";
 import "./styles/pretext_add_on.css";
 import "./styles/shell_default.css";
-import "./styles/shell.css";
 import "./styles/banner_default.css";
 import "./styles/navbar_default.css";
 import "./styles/toc_default.css";
@@ -35,7 +34,6 @@ import "./styles/colors_blue_red.css";
 import "./styles/setcolors.css";
 import "./styles/knowls.css";
 import "./styles/permalink.css";
-import "./styles/ptx-fixes.css";
 import { globalActions } from "./features/global/globalSlice";
 
 function App() {
@@ -72,7 +70,7 @@ function App() {
             setTocExtracted(true);
         })();
 
-        const mediaQuery = window.matchMedia("(max-width: 600px)");
+        const mediaQuery = window.matchMedia("(max-width: 904px)");
         function mobileModeSwitch(e: Event) {
             const query = e as MediaQueryListEvent;
             dispatch(globalActions.setMobileMode(query.matches));
@@ -111,7 +109,7 @@ function App() {
                         classNames({ "sidebar-hidden": !tocVisible })
                     }
                 >
-                    <nav id="ptx-toc">
+                    <nav id="ptx-toc" className="ptx-toc">
                         <Toc />
                     </nav>
                 </div>

@@ -13,6 +13,8 @@ import {
     TocEntryType,
 } from "../../utils/extract-toc";
 import { normalizeUrl, normalizeUrlWithHash } from "../../utils/normalize";
+import { inMobileModeSelector } from "../global/globalSlice";
+import { tocActions } from "../toc/tocSlice";
 import { mapToc } from "./map-toc";
 import { scrollThunks } from "./scrollThunks";
 
@@ -149,6 +151,11 @@ const navThunks = {
             const pageHistory = historySelector(getState() as RootState);
             if (pageHistory.current.page === pageHistory.previous.page) {
                 dispatch(navActions.setPageLoadingStatus("rendered"));
+            }
+
+            if (inMobileModeSelector(getState() as RootState)) {
+                // In mobile mode, we always hide the TOC after navigating to a new link.
+                dispatch(tocActions.setVisible(false));
             }
         }
     ),

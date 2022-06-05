@@ -1,143 +1,172 @@
+:root {
+    --toc-codenumber-width: 26px;
+    --toc-chevron-width: 20px;
+}
 
-#ptx-toc {
-  /* IMPORTANT height must be calculated by javascript. */
-    width: 240px;
-    margin: 0;
+.ptx-toc * {
+    box-sizing: border-box;
+}
+
+/* After 10, the code number takes two digits, so we 
+need more room for it! */
+.ptx-toc > ul > li.section:nth-child(n + 11) li {
+    --toc-codenumber-width: 40px;
+}
+
+.ptx-toc a:focus-visible {
+    outline-offset: -3px;
+    outline: 2px dotted;
+}
+
+.ptx-toc ul {
+    list-style: none;
+    margin: unset;
+    padding: unset;
     font-size: 14.72px;
-    overflow-y: auto;
-    overflow-x: hidden;
 }
 
-/* Aligns toc to the top and side of the allotted space, respectively */
-#ptx-toc ul {
-    margin: 0px;
-    padding: 0px;
-    list-style-type: none;
-}
-
-
-/* Places codenumbers */
-#ptx-toc .codenumber {
-    position: absolute;
-    margin-right: 0;
-    margin-left: 0em;
-/*
-    margin-top: 0.4px;
-*/
-    left: 0.3em;
-    display: inline-block;
-}
-/* no codenumbers on subsections */
-#ptx-toc ul.structural ul.structural a > .codenumber {
-    display: none;
-}
-#ptx-toc ul.structural .title {
-    margin-left: 1.4em;
-    display: inline-block;
-}
-#ptx-toc ul.structural ul.structural .title {
-    margin-left: 1.5em;
-}
-#ptx-toc ul.structural ul.structural .title:empty::after {
-    content: "empty heading!";
+.ptx-toc {
     font-weight: bold;
-}
-#ptx-toc ul.structural ul.structural ul.structural .title {
-    margin-left: 2.5em;
-    font-size: 90%;
-}
-#ptx-toc ul.structural ul.structural ul.structural ul.structural .title {
-    margin-left: 3.2em;
-    font-size: 90%;
-    font-style: italic;
-}
-
-/* more specific than something in toc_default (obsolete comment?) */
-#ptx-toc ul.structural li ul.structural li ul.structural li:last-child {
-    margin-bottom: 0;
-    border-bottom: 1px solid #ddd;
-}
-
-#ptx-toc .part > a .codenumber {
-    position: relative;
-    display: block;
-    float: left;
-    margin-right: 0.7em;
-}
-#ptx-toc .part > a .title {
-    display: block;
-    margin-left: 1em;
-}
-
-#ptx-toc ul.structural li a {
-    position: relative;
-    display: block;
-    padding: 2.86957px;
-    padding: 0.2em;
-    border-top: 1px solid #d1d1d1;
-    border-bottom: 1px solid #d1d1d1;
     font-family: "PT Serif", "Times New Roman", Times, serif;
-    font-weight: bold;
 }
-#ptx-toc ul.structural ul.structural li a {
+
+.ptx-toc li {
+    margin-top: 3px;
+    overflow: hidden;
+    position: relative;
+}
+.ptx-toc li:first-child {
+    margin-top: unset;
+}
+
+.ptx-toc a {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    padding: 2.8px 3px 2.8px 0px;
+    color: inherit;
+    background-color: inherit;
+}
+
+.toc-item {
+    display: flex;
+    border: 1px solid var(--tocborder);
+    border-left: unset;
+    border-right: unset;
+}
+
+.ptx-toc .codenumber {
+    display: block;
+    text-align: left;
+    padding-left: 4px;
+    min-width: var(--toc-codenumber-width);
+    flex-shrink: 0;
+}
+.ptx-toc .title {
+    flex-grow: 1;
+}
+.division-level-2 .codenumber {
+    font-size: smaller;
+    font-weight: lighter;
+}
+.backmatter .division-level-2 .codenumber {
+    font-size: inherit;
+    font-weight: inherit;
+}
+.backmatter .division-level-3 .codenumber {
+    font-size: smaller;
+    font-weight: lighter;
+}
+
+/* Adjust the display of nested items */
+.ptx-toc li li {
+    margin-top: 0px;
+}
+.ptx-toc li li .toc-item {
+    border-bottom: unset;
+    border-color: rgb(209, 209, 209);
+}
+
+/* Deeply nested items get extra indentation.
+   This indentation is done *inside* of the <a> tag
+   so that the entire link is clickable */
+.ptx-toc .division-level-3 .title {
+    margin-left: 10px;
+}
+.ptx-toc .division-level-4 .title {
+    margin-left: 20px;
+}
+.ptx-toc .title:first-of-type {
+    margin-left: var(--toc-codenumber-width);
+}
+.ptx-toc .division-level-3 .title:first-of-type {
+    margin-left: calc(var(--toc-codenumber-width) + 10px);
+}
+.ptx-toc .division-level-4 .title:first-of-type {
+    margin-left: calc(var(--toc-codenumber-width) + 20px);
+}
+
+.division-level-2 {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-weight: normal;
-    padding-left: 2.0em;
 }
 
-/* Sets spacing between section headings*/
-#ptx-toc > ul.structural > li:not(:first-child) {
-    margin-top: 0.3em;
+.frontmatter .toc-item,
+.backmatter .toc-item {
+    background-color: var(--bodytitlehighlight);
+    color: #222222;
 }
-/* But not at the start of a part */
-/* I cannot see that this actually does anything --DF */
-#ptx-toc > ul.structural > li.part + li,
-#ptx-toc > ul.structural > li.frontmatter + li,
-#ptx-toc > ul.structural > li.backmatter + li {
-    margin-top: 0;
+.frontmatter a,
+.backmatter a {
+    padding: 7px 0px;
 }
-/* Removes underlines from links in toc */
-#ptx-toc ul.structural li a, #ptx-toc ul.structural li a:link, #ptx-toc ul.structural li a:visited, #ptx-toc ul.structural li a:hover, #ptx-toc ul.structural li a:focus, #ptx-toc ul.structural li a:active {
-    text-decoration: none;
+.frontmatter .division-level-2 a {
+    padding: 2.8px 0px;
+}
+.toc-item {
+    background-color: var(--chaptertoc);
+    color: var(--chaptertoctext);
+}
+.division-level-2 .toc-item {
+    background-color: var(--secitiontoc);
+    color: var(--sectiontoctext);
+}
+.backmatter .division-level-2 .toc-item {
+    background-color: var(--chaptertoc);
+    color: var(--chaptertoctext);
+    border: 1px solid var(--tocborder);
+    border-left: unset;
+    border-right: unset;
+}
+.backmatter .division-level-3 .toc-item {
+    background-color: var(--secitiontoc);
+    color: var(--sectiontoctext);
+    border-bottom: unset;
+    border-color: rgb(209, 209, 209);
 }
 
-/*
-#ptx-toc > ul > li a, #ptx-toc > ul > li a:link, #ptx-toc > ul > li a:visited {
-    font-weight: bold;
+.toc-item a:hover,
+.toc-item a.active:hover {
+    color: var(--highlighttoctext);
+    background-color: var(--highlighttoc);
+}
+
+.toc-item a.active {
+    color: var(--highlighttoctext);
+    background-color: var(--sectiontocactive);
+}
+.backmatter .division-level-2 {
     font-family: "PT Serif", "Times New Roman", Times, serif;
-    padding-left: 0.2em;
-}
-*/
-
-/* Ensures that there is no double border between subsections */
-#ptx-toc ul.structural li ul.structural a {
-    border-top: none;
+    font-weight: bold;
 }
 
-/* Allows both "top" and bottom border of a subsection to be highlighted on hover */
-#ptx-toc ul.structural li ul.structural a:hover {
-    border-top: 1px solid #3c110a;
-    margin-top: -1px;
+.backmatter .division-level-3 {
+    font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-weight: normal;
 }
-
-/* Removes the excess space between the last subsection and the next section (caused by
-the margin on top of sections being used to space out adjacent sections) */
-#ptx-toc ul.structural li ul.structural li:last-child {
-    margin-bottom: -0.3em;
+.backmatter .division-level-2 > li {
+    margin-top: 3px;
 }
-
-/* Removes double border between last subsection and next section */
-#ptx-toc ul.structural li ul.structural li:last-child a {
-    border-bottom: none;
-}
-
-#ptx-toc ul.structural li a:active {
-  box-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px inset;
-}
-
-#ptx-toc ul.structural li a.has-chevron {
-  padding-right: 2em;
-}
-#ptx-toc .toc-item {
-  position: relative;
+.backmatter li a {
+    padding: 2.8px 0px;
 }

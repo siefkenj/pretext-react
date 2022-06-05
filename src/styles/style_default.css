@@ -4,8 +4,11 @@
 .ptx-content .proof {
   border-right: 1px solid #666;
   padding-right: 0.625em;
-  margin-right: -0.725em;
 }
+:not(.proof .displaymath).displaymath {
+  margin-right: .85em;
+}
+
 .ptx-content .proof:after {
   content: '';
   border-bottom: 1px solid #666;
@@ -142,6 +145,7 @@
     border: none;
     padding: 4px 10px 0 10px;
     color: #888;
+    z-index: 100;
 }
 .ptx-content .example-like .aside-like {
     margin-top: 0;

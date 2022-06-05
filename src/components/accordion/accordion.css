@@ -2,6 +2,9 @@
     max-height: 0px;
     overflow: hidden;
 }
+.accordion-surround:not(.open):not(.animate) {
+    display: none;
+}
 .accordion-surround.animate {
     transition: max-height .4s, height .4s;
 }

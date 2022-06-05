@@ -1,7 +1,10 @@
 import * as React from "react";
 import classNames from "classnames";
 import { useAppSelector } from "../../app/hooks";
-import { currentPageIdSelector, tocSelector } from "../../features/nav/navSlice";
+import {
+    currentPageIdSelector,
+    tocSelector,
+} from "../../features/nav/navSlice";
 import { TocEntryType } from "../../utils/extract-toc";
 import { staticallyRenderMathJax } from "../../utils/html-manipulation/static-render";
 import { InternalAnchor } from "../links";
@@ -66,7 +69,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
         }
     }, [entry.title]);
 
-    const shouldRenderCodeNumber = !!entry.codeNumber && (entry.level || 0) < 3;
+    const shouldRenderCodeNumber = !!entry.codeNumber && (entry.level || 0) < 3 || true;
 
     // We never render divisions with empty headers.
     const children = entry.children
@@ -130,8 +133,11 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
             {shouldRenderChildren && (
                 <Accordion open={openState}>
                     <ul
-                        className={classNames({
-                            [`division-level-${entry.level}`]: entry.level }, "structural"
+                        className={classNames(
+                            {
+                                [`division-level-${entry.level}`]: entry.level,
+                            },
+                            "structural"
                         )}
                     >
                         {children.map((entry, i) => (
@@ -145,7 +151,12 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
 }
 
 export function Toc() {
-    const toc = useAppSelector(tocSelector);
+    let toc = useAppSelector(tocSelector);
+    if (toc.length === 1) {
+        // If the root TOC consists of exactly one item, assume that its children are what
+        // we really want to render.
+        toc = toc[0].children || [];
+    }
 
     return (
         <ul>

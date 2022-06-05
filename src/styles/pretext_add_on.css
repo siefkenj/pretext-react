@@ -2639,7 +2639,7 @@ body.standalone.worksheet .ptx-content section.worksheet > .heading + .para {
 */
     height: 460px;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 904px) {
     #calculator-container {
          bottom: 50px !important;
     }
