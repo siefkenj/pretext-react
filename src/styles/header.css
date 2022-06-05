@@ -38,7 +38,7 @@ as part of a larger project... */
 }
 
 /* RESPONSIVE styles */
-@media (max-width: 800px) {
+@media (max-width: 904px) {
     .banner .subtitle {
         display: block;
         line-height: 1em;

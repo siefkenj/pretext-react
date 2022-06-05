@@ -52,7 +52,7 @@
 #ptx-masthead .title-container > .heading .subtitle {
   font-weight: normal;
 }
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 904px) {
   #ptx-masthead .title-container > .heading .subtitle {
     /* Force the subtitle onto a separate line */
     display: block;
