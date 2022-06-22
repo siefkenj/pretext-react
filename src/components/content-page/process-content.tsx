@@ -11,6 +11,7 @@ import { replaceImages } from "../replacers/images";
 import { replaceKnowl, replaceKnowlGroupContainers } from "../replacers/knowls";
 import { replaceInternalLinks } from "../replacers/links";
 import { rehypeInsertMathPreambles, replaceMathKnowl } from "../replacers/math";
+import { replaceRunestone } from "../replacers/runestone";
 import { replaceSageKnowl } from "../replacers/sage-knowls";
 
 const processHtmlContentViaUnified = unified()
@@ -28,6 +29,7 @@ const processHtmlContentViaUnified = unified()
             replaceKnowlGroupContainers,
             replaceImages,
             replaceAsides,
+            replaceRunestone,
         ],
     })
     .freeze();

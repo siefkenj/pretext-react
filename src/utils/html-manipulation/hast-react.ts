@@ -1,5 +1,5 @@
 import { whitespace } from "hast-util-whitespace";
-import React from "react";
+import React, { ReactElement } from "react";
 import {
     Root as HastRoot,
     Element as HastElement,
@@ -124,6 +124,15 @@ export const hastReactTransformer: Plugin<
         if (children && tableElements.has(tagName)) {
             children = children.filter((child) => !whitespace(child));
         }
+        // Text areas are special because React expects their children to actually be `defaultValue`.
+        // We manually pick off `defaultValue`
+        if (tagName === "textarea") {
+            const child = node.children[0];
+            if (child?.type === "text") {
+                (props as any).defaultValue = child.value;
+            }
+            return [React.createElement(tagName, props)];
+        }
         // React complains if elements that aren't supposed to have children get passed children (e.g., <br />).
         // React counts even empty lists as children, so we need to special case this behavior.
         if (children.length === 0) {
@@ -156,6 +165,21 @@ export const hastReactTransformer: Plugin<
                     { key },
                     node.children.flatMap((n, i) => process(n, i, file))
                 ),
+            ];
+        }
+        if (node.type === "element" && node.tagName === "script") {
+            return [
+                React.createElement(
+                    ScriptTag,
+                    {
+                        src: String(node.properties?.src) || "",
+                        key: `script-tag-${key}`,
+                    },
+                    null
+                ),
+                // This tag gets created and put in the correct place but **not** executed, due to browser
+                // security policies. THat is why a `ScriptTag` is created (the ScriptTag actually executes).
+                h(node, key, file),
             ];
         }
         if (node.type === "element") {
@@ -249,3 +273,34 @@ function parseStyle(value: string, tagName: string): Record<string, string> {
 
     return result;
 }
+
+/**
+ * If a `<script>` tag is created via `React.createElement`, it will not be executed. This is a wrapper
+ * around script tags so that it gets appended to the dom in a way that makes sure it gets executed.
+ *
+ * Note: this function appends elements to the end of `document.head`. It does **not** put the script
+ * tag in the location it was defined.
+ *
+ * @param {{ src: string }} { src }
+ * @returns
+ */
+const ScriptTag: React.FunctionComponent<{ src: string }> = function ScriptTag({
+    src,
+}: {
+    src: string;
+}) {
+    React.useEffect(() => {
+        const script = document.createElement("script");
+
+        script.src = src;
+        script.async = true;
+
+        document.head.appendChild(script);
+
+        return () => {
+            document.head.removeChild(script);
+        };
+    }, [src]);
+
+    return null as unknown as ReactElement;
+};
