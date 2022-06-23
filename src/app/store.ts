@@ -1,5 +1,4 @@
 import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
-import { reducer as toastrReducer } from "react-redux-toastr";
 import { globalSlice } from "../features/global/globalSlice";
 import { knowlSlice } from "../features/knowl/knowlSlice";
 import { navSlice } from "../features/nav/navSlice";
@@ -11,8 +10,6 @@ export const store = configureStore({
         nav: navSlice.reducer,
         toc: tocSlice.reducer,
         global: globalSlice.reducer,
-        // For popup notifications
-        toastr: toastrReducer,
     },
 });
 

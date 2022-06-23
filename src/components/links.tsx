@@ -95,7 +95,7 @@ export function PermalinkAnchor({
                 // We take over navigation with cached async loading,
                 // so prevent a normal click from going through.
                 e.preventDefault();
-                dispatch(globalActions.copyToClipboard(url));
+                dispatch(globalActions.copyToClipboard({title: title, url: url}));
             }}
             className={className}
             {...rest}
