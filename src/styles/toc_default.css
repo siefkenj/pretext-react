@@ -3,11 +3,15 @@
     --toc-chevron-width: 20px;
 }
 
+.ptx-toc {
+    direction: ltr; /* Undo the rtl direction of the ptx-sidebar parent */
+}
+
 .ptx-toc * {
     box-sizing: border-box;
 }
 
-/* After 10, the code number takes two digits, so we 
+/* After 10, the code number takes two digits, so we
 need more room for it! */
 .ptx-toc > ul > li.section:nth-child(n + 11) li {
     --toc-codenumber-width: 40px;
