@@ -16,14 +16,31 @@ export function RunestoneRenderer({
     React.useLayoutEffect(() => {
         (async () => {
             if (parentRef.current) {
-                await runestoneComponents.renderOneComponent(parentRef.current);
+                try {
+                    await runestoneComponents.renderOneComponent(
+                        parentRef.current
+                    );
+                } catch (e) {
+                    console.log(
+                        "calling runestone on",
+                        parentRef.current,
+                        (parentRef.current as any).innerHTML, "xx"
+                    );
+                    console.error(
+                        "Enountered error when rendering Runestone component",
+                        parentRef.current
+                    );
+                    throw e;
+                }
             }
         })();
     }, []);
 
     return (
-        <div className="runestone" ref={parentRef}>
-            {children}
+        <div className="ptx-runestone-container">
+            <div className="runestone" ref={parentRef}>
+                {children}
+            </div>
         </div>
     );
 }

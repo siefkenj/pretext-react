@@ -18,6 +18,7 @@ import { stringify as commas } from "comma-separated-tokens";
 import style from "style-to-object";
 import { Properties } from "property-information/lib/util/schema";
 import { VFile } from "vfile";
+import { toHtml } from "hast-util-to-html";
 
 const toReact = hastToReact as Record<string, string>;
 type Context = { schema: Schema; prefix: string | null; key: number };
@@ -172,7 +173,9 @@ export const hastReactTransformer: Plugin<
                 React.createElement(
                     ScriptTag,
                     {
-                        src: String(node.properties?.src) || "",
+                        src: node.properties?.src as string | undefined,
+                        type: node.properties?.type as string | undefined,
+                        content: toHtml(node.children),
                         key: `script-tag-${key}`,
                     },
                     null
@@ -284,23 +287,29 @@ function parseStyle(value: string, tagName: string): Record<string, string> {
  * @param {{ src: string }} { src }
  * @returns
  */
-const ScriptTag: React.FunctionComponent<{ src: string }> = function ScriptTag({
-    src,
-}: {
-    src: string;
-}) {
+const ScriptTag: React.FunctionComponent<{
+    src: string | undefined | null;
+    type: string | undefined;
+    content: string;
+}> = function ScriptTag({ src, content: innerHTML, type }) {
     React.useEffect(() => {
         const script = document.createElement("script");
 
-        script.src = src;
-        script.async = true;
+        if (src) {
+            script.src = src;
+        }
+        if (type) {
+            script.type = type;
+        }
+        script.async = false;
+        script.innerHTML = innerHTML;
 
         document.head.appendChild(script);
 
         return () => {
             document.head.removeChild(script);
         };
-    }, [src]);
+    }, [src, innerHTML, type]);
 
     return null as unknown as ReactElement;
 };
