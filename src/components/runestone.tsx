@@ -10,8 +10,17 @@ declare const runestoneComponents: {
  */
 export function RunestoneRenderer({
     children,
-}: React.PropsWithChildren<unknown>) {
+    className
+}: React.PropsWithChildren<unknown>  & {className?: string|undefined}) {
     const parentRef = React.useRef(null);
+
+    // Ensure `className` has exactly one copy of "runestone" but also includes
+    // all its other classes.
+    if (!className) {
+        className = "";
+    }
+    className = className.replace(/runestone/g, "");
+    className = "runestone " + className;
 
     React.useLayoutEffect(() => {
         (async () => {
@@ -38,7 +47,7 @@ export function RunestoneRenderer({
 
     return (
         <div className="ptx-runestone-container">
-            <div className="runestone" ref={parentRef}>
+            <div className={className} ref={parentRef}>
                 {children}
             </div>
         </div>

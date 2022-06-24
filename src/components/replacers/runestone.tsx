@@ -20,10 +20,13 @@ export const replaceRunestone: ReplacerFunc = (
     const runestoneElm = node.children.find((n) => n.type === "element");
     if (!runestoneElm || !(runestoneElm.type === "element")) {
         // FIXME: I am not sure how to type `ReplacerFunc` correct so that these functions can return strings
-        return "!!!Runestone Element Not Found!!!" as unknown as React.ReactElement
+        return "!!!Runestone Element Not Found!!!" as unknown as React.ReactElement;
     }
-    console.log("RUNESTONE", toHtml(runestoneElm),"XXX", toHtml(runestoneElm.children[0]))
+
+    const runestoneClassName = hastDom.getAttribute(runestoneElm, "class");
     return (
-        <RunestoneRenderer>{processContent(runestoneElm)}</RunestoneRenderer>
+        <RunestoneRenderer className={runestoneClassName}>
+            {processContent(runestoneElm.children)}
+        </RunestoneRenderer>
     );
 };
