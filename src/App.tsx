@@ -1,6 +1,5 @@
 import React from "react";
 import classNames from "classnames";
-import ReduxToastr from "react-redux-toastr";
 import { extractActiveTocItem, extractTocFromXml } from "./utils/extract-toc";
 import { Toc } from "./components/toc";
 import { useAppDispatch, useAppSelector } from "./app/hooks";
@@ -18,8 +17,6 @@ import { PageFooter } from "./components/page-footer";
 import { TocVisibilityToggle } from "./components/toc/toggle";
 import { tocIsVisibleSelector } from "./features/toc/tocSlice";
 import { CachingSettingsSelect } from "./components/caching-setting-select";
-
-import "react-redux-toastr/lib/css/react-redux-toastr.min.css";
 
 //import "./styles/header.css";
 import "./styles/pretext.css";
@@ -121,15 +118,6 @@ function App() {
                 </main>
             </div>
             <div className="ptx-page-footer">Window footer dummy content</div>
-            <ReduxToastr
-                timeOut={2000}
-                newestOnTop={true}
-                preventDuplicates
-                position="top-center"
-                transitionIn="fadeIn"
-                transitionOut="fadeOut"
-                closeOnToastrClick
-            />
         </React.Fragment>
     );
 }

@@ -3,8 +3,7 @@ import {
     createSlice,
     PayloadAction,
 } from "@reduxjs/toolkit";
-import copy from "copy-to-clipboard";
-import { toastr } from "react-redux-toastr";
+import { Eggy } from "@s-r0/eggy-js";
 import { createLoggingAsyncThunk } from "../../app/hooks";
 import { RootState } from "../../app/store";
 import { tocActions, tocIsVisibleSelector } from "../toc/tocSlice";
@@ -18,6 +17,11 @@ const initialState: GlobalState = {
     domCaching: true,
     inMobileMode: false,
 };
+
+export interface PermalinkDetails {
+    title: string | undefined;
+    url: string;
+}
 
 const globalThunks = {
     /**
@@ -41,9 +45,43 @@ const globalThunks = {
     ),
     copyToClipboard: createLoggingAsyncThunk(
         "global/copyToClipboard",
-        async (text: string, { dispatch, getState }) => {
-            copy(text);
-            toastr.success("Copied to clipboard", text);
+        async (linkDetails: PermalinkDetails, { dispatch, getState }) => {
+            if (!navigator.clipboard) {
+                return;
+            }
+            let linkText = linkDetails.title ?? linkDetails.url;
+            let link = `<a href="${linkDetails.url}">${linkText}</a>`;
+            let text_fallback;
+            if (linkText !== linkDetails.url) {
+                text_fallback = `${linkDetails.title}\r\n${linkDetails.url}`;
+            } else {
+                text_fallback = linkDetails.url;
+            }
+            // Check for browsers that don't support ClipboardItem.
+            //   https://caniuse.com/?search=ClipboardItem
+            // In particular, Firefox disables ClipboardItem by default
+            // --- the user can enable it by setting
+            // dom.events.asyncClipboard.clipboardItem
+            // to true in about:config
+            if (typeof ClipboardItem !== "undefined") {
+                await navigator.clipboard.write([
+                    new ClipboardItem({
+                        "text/html": new Blob([link], { type: "text/html" }),
+                        "text/plain": new Blob([text_fallback], {
+                            type: "text/plain",
+                        }),
+                    }),
+                ]);
+            } else {
+                await navigator.clipboard.writeText(text_fallback);
+            }
+            Eggy({
+                title: "Link Copied",
+                message: linkText,
+                position: "top-right",
+                type: "info",
+                duration: "3000",
+            });
         }
     ),
 };

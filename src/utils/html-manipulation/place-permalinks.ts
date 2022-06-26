@@ -8,20 +8,95 @@ import { select } from "hast-util-select";
 
 /**
  * Returns a text-only description of the Hast Element.
+ *
+ * TODO
+ * - Special cases like Exercise, Assemblage, Bibliographic Entry, etc. need to respect:
+ *     localization
+ *     renames in docinfo from pretext source
+ * - What about multiple numbered figures/tables/etc in a sidebyside?
  */
 function getNodeDescription(elm: HastElement, hastDom: HastDom): string {
-    if (elm.tagName === "p") {
-        return "Paragraph";
+
+    const classes = hastDom.getAttribute(elm, "className")?.split(' ');
+
+    // Most elements that are assigned permalinks have their type, codenumber,
+    // and title in an h* element with class "heading"
+    const header = select(".heading", elm);
+    if (header) {
+        // Drop the trailing period if present
+        let descr = toText(header).replace(/\.+$/, '');
+        // Avoid doing something like "Exercises 2.1 Exercises"
+        const type = select(".type", header);
+        const title = select(".title", header);
+        if (type && title) {
+            let typeText = toText(type);
+            if (typeText == toText(title)) {
+                const regex = new RegExp(` ${typeText}$`);
+                descr = descr.replace(regex, '');
+            }
+        }
+        // Some permalink targets don't have a type embedded in their heading element
+        if (!type) {
+            let prefix = "";
+            if (classes?.includes("exercise")) {
+                prefix = "Exercise";
+            } else if (classes?.includes("exercisegroup")) {
+                prefix = "Exercise Group:";
+            } else if (classes?.includes("task")) {
+                prefix = "Task";
+            }
+            return `${prefix} ${descr}`;
+        }
+        return descr;
     }
+
+    /**
+     * Special case: figures/tables/lists/etc have their
+     * type, codenumber, and title in a figcaption element
+     */
+    const caption = select("figure > figcaption", elm);
+    if (caption) {
+        /**
+         * NOTE: this uses the entire caption as the permalink description,
+         * which can be quite long --- do we actually want that?
+         */
+        return toText(caption);
+    }
+
+    /**
+     * The rest of these special cases are for permalink targets that don't
+     * embedded heading info.
+     * NOTE: Is it really possible to have an exercisegroup without a title?
+     * Maybe all exercisegroup permalinks are already handled by the code above
+     */
+
+    if (classes?.includes("assemblage")) {
+        return "Assemblage";
+    }
+
+    if (classes?.includes("bib")) {
+        let descr = "Bibliographic Entry";
+        const bibItem = select(".bibitem", elm);
+        if (bibItem) {
+            let bibnum = toText(bibItem);
+            return `${descr} ${bibnum}`;
+        }
+        return descr;
+    }
+
+    if (elm.tagName === "div"){
+        if (classes?.includes("para")) {
+            return "Paragraph";
+        }
+        if (classes?.includes("exercisegroup")) {
+            return "Exercise Group";
+        }
+    }
+
     if (elm.tagName.startsWith("h")) {
         return toText(elm);
     }
-    if (elm.tagName === "section" || elm.tagName === "article") {
-        const header = select(".heading", elm);
-        if (header) {
-            return toText(header);
-        }
-    }
+
     return "";
 }
 
@@ -43,7 +118,7 @@ export const rehypeInsertPermalinks: Plugin<void[], HastRoot, HastRoot> =
                     "section > .para[id]",
                     "section article[id]",
                     "section > figure.table-like[id]",
-                    //"section > figure.figure-like > figcaption[id]",
+                    "section > figure.figure-like[id]",
                     "section .exercisegroup article[id]",
                     "section .exercisegroup[id]",
                     "section article.exercise[id]",
