@@ -30,11 +30,6 @@ export function RunestoneRenderer({
                         parentRef.current
                     );
                 } catch (e) {
-                    console.log(
-                        "calling runestone on",
-                        parentRef.current,
-                        (parentRef.current as any).innerHTML, "xx"
-                    );
                     console.error(
                         "Enountered error when rendering Runestone component",
                         parentRef.current
