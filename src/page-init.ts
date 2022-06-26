@@ -36,7 +36,11 @@ function extractLatexPreamble() {
     if (!elm) {
         throw new Error("Cannot find latex macros");
     }
-    return elm.textContent;
+    // NOTE: Runestone's Parsons problems determine their blocks by splitting
+    // the content at newlines. If math with a preamble is inserted and that preamble has
+    // newlines, this breaks the alghorithm. Since blank lines (e.g. `\n\n`) should not be allowed
+    // in math anyways, it should be safe to replace all newlines with spaces.
+    return (elm.textContent || "").replace(/\n/g, " ");
 }
 
 /**
