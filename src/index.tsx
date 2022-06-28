@@ -1,13 +1,25 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { store } from "./app/store";
-import { history } from "./app/hooks";
-import { CustomBrowserRouter } from "./app/router";
-import { extractInitInfo } from "./page-init";
+import { store } from "./state-management/store";
+import { history } from "./state-management/hooks";
+import { CustomBrowserRouter } from "./components-for-shell/router";
+import { extractInitInfo } from "./components-for-shell/page-init";
+
+import "./styles/pretext.css";
+import "./styles/pretext_add_on.css";
+import "./styles/shell_default.css";
+import "./styles/banner_default.css";
+import "./styles/navbar_default.css";
+import "./styles/toc_default.css";
+import "./styles/toc-chevron.css";
+import "./styles/style_default.css";
+import "./styles/colors_blue_red.css";
+import "./styles/setcolors.css";
+import "./styles/knowls.css";
+import "./styles/permalink.css";
+import { Shell } from "./components-for-shell/shell";
 
 // Must be called before the app renders.
 extractInitInfo();
@@ -26,31 +38,12 @@ for (const elm of Array.from(elmsToRemove)) {
     }
 }
 
-for (const elm of Array.from(
-    document.querySelectorAll(`link[href*="knowls_default.css"],
-    link[href*="pretext.css"],
-    link[href*="pretext_add_on.css"],
-    link[href*="shell_min.css"],
-    link[href*="banner_min.css"],
-    link[href*="navbar_min.css"],
-    link[href*="toc_min.css"],
-    link[href*="colors_blue_red.css"],
-    link[href*="setcolors.css"],
-    link[href*="style_default.css"]`)
-)) {
-    try {
-        document.head.removeChild(elm);
-    } catch (e) {
-        console.warn("Tried to remove", elm, "but couldn't");
-    }
-}
-
 const renderTarget = document.getElementById("root");
 ReactDOM.render(
     <React.StrictMode>
         <Provider store={store}>
             <CustomBrowserRouter history={history}>
-                <App />
+                <Shell />
             </CustomBrowserRouter>
         </Provider>
     </React.StrictMode>,
