@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">Use the <code class="code-inline tex2jax_ignore">@tag</code> attribute on an <code class="code-inline tex2jax_ignore">mrow</code>, only.  (Remember, you can have just one <code class="code-inline tex2jax_ignore">mrow</code>.)  The behavior is identical within an <code class="code-inline tex2jax_ignore">md</code> or <code class="code-inline tex2jax_ignore">mdn</code>.  The value of the <code class="code-inline tex2jax_ignore">@tag</code> attribute is a symbol name.  The prefix <code class="code-inline tex2jax_ignore">d</code> means “double”, and the prefix <code class="code-inline tex2jax_ignore">t</code> means “triple”.  So allowed values are</div>
+<pre class="code-display tex2jax_ignore">star, dstar, tstar
+dagger, ddagger, tdagger
+daggerdbl, ddaggerdbl, tdaggerdbl
+hash, dhash, thash
+maltese, dmaltese, tmaltese
+</pre>
+<div class="para">Cross-references to these tagged equations happens in the usual way and should behave as expected.  We test the double versions to make sure the symbols render properly in various output formats.</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/equation-local-star.html ./knowl/equation-local-dagger.html ./knowl/equation-local-daggerdbl.html ./knowl/equation-local-hash.html ./knowl/equation-local-maltese.html ./knowl/section-cross-referencing.html">
+\begin{align}
+c^2 \amp = a^2+b^2\tag{✶✶}\\
+c^2 \amp = a^2+b^2\tag{††}\\
+c^2 \amp = a^2+b^2\tag{‡‡}\\
+c^2 \amp = a^2+b^2\tag{##}\\
+c^2 \amp = a^2+b^2\tag{✠✠}\\
+z^2 \amp = x^2+y^2\tag{7.52}
+\end{align}
+</div>
+<div class="para">Here are the local cross-references: <a href="" class="xref" data-knowl="./knowl/equation-local-star.html" title="Equation">(✶✶)</a>, <a href="" class="xref" data-knowl="./knowl/equation-local-dagger.html" title="Equation">(††)</a>, <a href="" class="xref" data-knowl="./knowl/equation-local-daggerdbl.html" title="Equation">(‡‡)</a>, <a href="" class="xref" data-knowl="./knowl/equation-local-hash.html" title="Equation">(##)</a>, <a href="" class="xref" data-knowl="./knowl/equation-local-maltese.html" title="Equation">(✠✠)</a>.  We test another farther away in <a href="section-cross-referencing.html" class="internal" title="Section 20: Cross-Referencing">Section 20</a>, contrary to our advice above.</div>
+</div>
+<span class="incontext"><a href="section-7.html#p-306" class="internal">in-context</a></span>
+</body>
+</html>

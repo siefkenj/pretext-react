@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="exercise exercise-like"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1<span class="period">.</span></span><span class="space"> </span><span class="title">UPC Symbols.</span>
+</h3>
+<div class="para logical">
+<div class="para">Universal Product Code (UPC) symbols are found on most products in grocery and retail stores. The UPC symbol is a 12-digit code identifying the manufacturer of a product and the product itself (<a href="" class="xref" data-knowl="./knowl/figure-upc-codes.html" title="Figure 3.6.1">Figure 3.6.1</a>). The first 11 digits contain information about the product; the twelfth digit is used for error detection. If <span class="process-math">\(d_1 d_2 \cdots d_{12}\)</span> is a valid UPC number, then</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/figure-upc-codes.html">
+\begin{equation*}
+3 \cdot d_1 + 1 \cdot d_2 + 3 \cdot d_3 + \cdots + 3 \cdot d_{11} + 1 \cdot d_{12} \equiv 0 \pmod{10}\text{.}
+\end{equation*}
+</div>
+</div>
+<ol class="lower-alpha">
+<li><div class="para">Show that the UPC number  0-50000-30042-6, which appears in <a href="" class="xref" data-knowl="./knowl/figure-upc-codes.html" title="Figure 3.6.1">Figure 3.6.1</a>, is a valid UPC number.</div></li>
+<li><div class="para">Show that the number 0-50000-30043-6 is not a valid UPC number.</div></li>
+<li><div class="para">Write a  formula to calculate the check digit, <span class="process-math">\(d_{12}\text{,}\)</span> in the UPC number.</div></li>
+<li><div class="para">The  UPC error detection scheme can detect most transposition errors; that is, it can determine if two digits have been interchanged.  Show that the transposition error 0-05000-30042-6 is not detected.  Find a transposition error that is detected.  Can you find a general rule for the types of transposition errors that can be detected?</div></li>
+<li><div class="para">Write a program that will determine whether or not a UPC number is valid.</div></li>
+</ol>
+<figure class="figure figure-like"><div class="image-box" style="width: 30%; margin-left: 35%; margin-right: 35%;"><img src="external/UPCcode.png" class="contained"></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.6.1<span class="period">.</span></span><span class="space"> </span>A UPC code</figcaption></figure></article><span class="incontext"><a href="exercises-7.html#exercise-131" class="internal">in-context</a></span>
+</body>
+</html>

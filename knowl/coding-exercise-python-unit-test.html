@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="exercise exercise-like"><h3 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">5.3.4</span><span class="period">.</span><span class="space"> </span><span class="title">Coding Exercise, with Unit Tests.</span>
+</h3>
+<div class="runestone explainer ac_section "><div data-component="activecode" id="coding-exercise-python-unit-test">
+<div class="ac_question col-md-12" id="coding-exercise-python-unit-test_question"><div class="para" id="p-815">Fix the following code so that it always correctly adds two numbers. [Ed. Unit test support is experimental.]</div></div>
+<textarea data-lang="python" data-timelimit="25000" data-audio="" data-coach="true" style="visibility: hidden;" id="coding-exercise-python-unit-test_editor" data-question_label="" data-codelens="true">def add(a,b):
+    return 4
+====
+from unittest.gui import TestCaseGui
+
+class myTests(TestCaseGui):
+
+   def testOne(self):
+       self.assertEqual(add(2,2), 4, "Adding two identical integers")
+       self.assertEqual(add(7,13), 20, "Adding two different integers")
+       self.assertAlmostEqual(add(2.0,3.0), 5.0, 5, "Adding two decimal numbers")
+
+myTests().main()
+</textarea>
+</div></div>
+<div class="solutions"><a href="" class="answer-knowl original" data-knowl="./knowl/answer-15-hidden.html" title="Answer 5.3.4.1"><span class="type">Answer</span><span class="period">.</span></a></div></article><span class="incontext"><a href="coding-exercises.html#coding-exercise-python-unit-test" class="internal">in-context</a></span>
+</body>
+</html>

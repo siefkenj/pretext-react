@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<figure class="figure figure-like"><div class="sidebyside"><div class="sbsrow" style="margin-left:1.666666666666667%;margin-right:1.666666666666667%;">
+<div class="sbspanel top" style="width:31.0344827586207%;"><pre class="program"><code class="language-c">/* Hello World program */
+
+#include&lt;stdio.h&gt;
+
+main()
+{
+    printf("Hello, World!");
+}
+</code></pre></div>
+<div class="sbspanel top" style="width:31.0344827586207%;"><pre class="console"><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>gcc -Wall -o intAndFloat intAndFloat.c
+</b><span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>./intAndFloat
+</b>The integer is 19088743 and the float is 19088.742188
+<span class="prompt unselectable">pi@raspberrypi ~/progs/chap02 $ </span><b>
+</b></pre></div>
+<div class="sbspanel top" style="width:31.0344827586207%;"><pre class="program"><code class="language-r">n_loops &lt;- 10
+x.means &lt;- numeric(n_loops)  # create a vector of zeros for results
+for (i in 1:n_loops){
+    x &lt;- as.integer(runif(100, 1, 7))  # 1 to 6, uniformly
+    x.means[i] &lt;- mean(x)
+}
+x.means
+</code></pre></div>
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">28.17<span class="period">.</span></span><span class="space"> </span>Some Code Samples</figcaption></figure><span class="incontext"><a href="atomic-items.html#figure-187" class="internal">in-context</a></span>
+</body>
+</html>

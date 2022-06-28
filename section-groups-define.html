@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SB Definitions and Examples</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="og:image" content="https://pretextbook.org/examples/noparts/decorative/html/external/cover_aata_2014.png">
+<meta property="book:title" content="Abstract Algebra">
+<meta property="book:author" content="Thomas W. Judson">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+/* Mathjax typesetting operation is under the control of React */
+  startup: {
+    typeset: false,
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script defer src="./static/js/bundle.js"></script><script defer src="./static/js/main.js"></script><link href="./static/css/main.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="http://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_blue_red.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+<!--Start: StatCounter code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***        GET YOUR OWN FROM STATCOUNTER           ***--><script>
+var sc_project=9664088;
+var sc_invisible=1;
+var sc_security="6e60c510";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/9664088/0/6e60c510/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-48811660-1"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-48811660-1');
+</script><!--End: Google Global Site Tag code--><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body id="PTXSB" class="pretext book ignore-math">
+<a class="assistive" href="#content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" href="http://abstract.pugetsound.edu" target="_blank"><img src="external/cover_aata_2014.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="sample-book.html"><span class="title">Abstract Algebra:</span> <span class="subtitle">PRETEXT XML SAMPLE ONLY</span></a></h1>
+<p class="byline">Thomas W. Judson, Isaac Newton (Editor)</p>
+</div>
+</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="section-mod-n-sym.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="groups.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="section-subgroups.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\newcommand{\sfrac}[2]{{#1}/{#2}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="front-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="author-bio-TWJ.html" class="internal"><span class="title">Author Biography</span></a></div></li>
+<li><div class="toc-item"><a href="author-bio-RAB.html" class="internal"><span class="title">About Robert A. Beezer</span></a></div></li>
+<li><div class="toc-item"><a href="dedication.html" class="internal"><span class="title">Dedication</span></a></div></li>
+<li><div class="toc-item"><a href="acknowledgement.html" class="internal"><span class="title">Acknowledgements</span></a></div></li>
+<li><div class="toc-item"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li>
+<li>
+<div class="toc-item"><a href="contributors.html" class="internal"><span class="title">Contributors to the 4<span class="process-math">\(^\mathrm{th}\)</span> Edition</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="contributors.html#contributors-1" class="internal"><span class="codenumber">[STRUCT].[NUM]</span> <span class="title"></span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="part-basics.html" class="internal"><span class="codenumber">I</span> <span class="title">Basics</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sets.html" class="internal"><span class="codenumber">1</span> <span class="title">Preliminaries</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-note-on-proofs.html" class="internal"><span class="codenumber">1.1</span> <span class="title">A Short Note on Proofs</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-note-on-proofs.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Some Cautions and Suggestions</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-sets-and-equivalence-relations.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Sets and Equivalence Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-sets-and-equivalence-relations.html#subsection-2" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Set Theory</span></a></div></li>
+<li><div class="toc-item"><a href="section-sets-and-equivalence-relations.html#subsection-3" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Cartesian Products and Mappings</span></a></div></li>
+<li><div class="toc-item"><a href="section-sets-and-equivalence-relations.html#subsection-4" class="internal"><span class="codenumber">1.2.3</span> <span class="title">Equivalence Relations and Partitions</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sets-sage.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Sage</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sets-sage.html#subsection-5" class="internal"><span class="codenumber">1.3.1</span> <span class="title">Executing Sage Commands</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-6" class="internal"><span class="codenumber">1.3.2</span> <span class="title">Immediate Help</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-7" class="internal"><span class="codenumber">1.3.3</span> <span class="title">Annotating Your Work</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-8" class="internal"><span class="codenumber">1.3.4</span> <span class="title">Lists</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-9" class="internal"><span class="codenumber">1.3.5</span> <span class="title">Lists of Integers</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-10" class="internal"><span class="codenumber">1.3.6</span> <span class="title">Saving and Sharing Your Work</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-sets.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage-exercises.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-1.html" class="internal"><span class="codenumber">1.6</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="integers.html" class="internal"><span class="codenumber">2</span> <span class="title">The Integers</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-math-induction.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Mathematical Induction</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-division-algorithm.html" class="internal"><span class="codenumber">2.2</span> <span class="title">The Division Algorithm</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-division-algorithm.html#subsection-11" class="internal"><span class="codenumber">2.2.1</span> <span class="title">The Euclidean Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="section-division-algorithm.html#subsection-12" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Prime Numbers</span></a></div></li>
+<li><div class="toc-item"><a href="section-division-algorithm.html#subsection-13" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Historical Note</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="integers-sage.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Sage</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="integers-sage.html#subsection-14" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Division Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="integers-sage.html#subsection-15" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Greatest Common Divisor</span></a></div></li>
+<li><div class="toc-item"><a href="integers-sage.html#subsection-16" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Primes and Factoring</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-integers.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-4.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Programming Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="integers-sage-exercises.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-2.html" class="internal"><span class="codenumber">2.7</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="part-algebra.html" class="internal"><span class="codenumber">II</span> <span class="title">Algebra</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="groups.html" class="internal"><span class="codenumber">3</span> <span class="title">Groups</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-mod-n-sym.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Integer Equivalence Classes and Symmetries</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-mod-n-sym.html#subsection-17" class="internal"><span class="codenumber">3.1.1</span> <span class="title">The Integers mod <span class="process-math">\(n\)</span></span></a></div></li>
+<li><div class="toc-item"><a href="section-mod-n-sym.html#subsection-18" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Symmetries</span></a></div></li>
+</ul>
+</li>
+<li class="active">
+<div class="toc-item"><a href="section-groups-define.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Definitions and Examples</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-19" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Definition of a Group</span></a></div></li>
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-20" class="internal"><span class="codenumber">3.2.2</span> <span class="title">Examples of Groups</span></a></div></li>
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-21" class="internal"><span class="codenumber">3.2.3</span> <span class="title">Basic Properties of Groups</span></a></div></li>
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-22" class="internal"><span class="codenumber">3.2.4</span> <span class="title">Historical Note</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-subgroups.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Subgroups</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-subgroups.html#subsection-23" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Definitions and Examples</span></a></div></li>
+<li><div class="toc-item"><a href="section-subgroups.html#subsection-24" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Some Subgroup Theorems</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="groups-sage.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Sage</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="groups-sage.html#subsection-25" class="internal"><span class="codenumber">3.4.1</span> <span class="title">Integers mod n</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage.html#subsection-26" class="internal"><span class="codenumber">3.4.2</span> <span class="title">Groups of symmetries</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage.html#subsection-27" class="internal"><span class="codenumber">3.4.3</span> <span class="title">Quaternions</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage.html#subsection-28" class="internal"><span class="codenumber">3.4.4</span> <span class="title">Subgroups</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-groups.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-7.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Additional Exercises: Detecting Errors</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage-exercises.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-3.html" class="internal"><span class="codenumber">3.8</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="cyclic.html" class="internal"><span class="codenumber">4</span> <span class="title">Cyclicity</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-11.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Cyclic groups</span></a></div></li>
+<li><div class="toc-item"><a href="section-12.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Subgroups of a Cyclic Group</span></a></div></li>
+<li><div class="toc-item"><a href="section-13.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Cyclic Groups of Complex Numbers</span></a></div></li>
+<li><div class="toc-item"><a href="section-14.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Large Powers of Integers</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-cyclic.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-10.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Programming Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="cyclic-sage-exercises.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-4.html" class="internal"><span class="codenumber">4.8</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="rune.html" class="internal"><span class="codenumber">5</span> <span class="title">Runestone Testing</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-15.html" class="internal"><span class="codenumber">5.1</span> <span class="title">ActiveCode</span></a></div></li>
+<li><div class="toc-item"><a href="code-lens.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Code Lens</span></a></div></li>
+<li><div class="toc-item"><a href="coding-exercises.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Coding Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="section-18.html" class="internal"><span class="codenumber">5.4</span> <span class="title">YouTube Videos</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-19.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Deeper</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-19.html#subsection-29" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Subsection One</span></a></div></li>
+<li><div class="toc-item"><a href="section-19.html#subsection-30" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Subsection Two</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-12.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Interactive Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="section-20.html" class="internal"><span class="codenumber">5.7</span> <span class="title">Expedited Samples</span></a></div></li>
+<li><div class="toc-item"><a href="reading-questions-1.html" class="internal"><span class="codenumber">5.8</span> <span class="title">Reading Questions</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="appendix-1.html" class="internal"><span class="codenumber">A</span> <span class="title">Notation</span></a></div></li>
+<li><div class="toc-item"><a href="solutions-1.html" class="internal"><span class="codenumber">B</span> <span class="title">Hints and Answers to Selected Odd Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="solutions-2.html" class="internal"><span class="codenumber">C</span> <span class="title">Hints and Answers to Selected Even Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="solutions-3.html" class="internal"><span class="codenumber">D</span> <span class="title">Hints and Answers to Selected Exercises</span></a></div></li>
+<li>
+<div class="toc-item"><a href="appendix-2.html" class="internal"><span class="codenumber">E</span> <span class="title">A Structured Appendix</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-21.html" class="internal"><span class="codenumber">E.1</span> <span class="title">A Section in an Appendix</span></a></div>
+<ul class="structural"><li>
+<div class="toc-item"><a href="section-21.html#subsection-31" class="internal"><span class="codenumber">E.1.1</span> <span class="title">A Subsection in a Section in an Appendix</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-21.html#subsubsection-1" class="internal"><span class="codenumber">E.1.1.1</span> <span class="title">A Subsubsection in a Subsection in a Section in an Appendix</span></a></div></li></ul>
+</li></ul>
+</li>
+<li><div class="toc-item"><a href="section-22.html" class="internal"><span class="codenumber">E.2</span> <span class="title">Numbering in the Back Matter</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">F</span> <span class="title">GNU Free Documentation License</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+<li><div class="toc-item"><a href="back-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div class="ptx-content"><section class="section" id="section-groups-define"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">3.2</span> <span class="title">Definitions and Examples</span>
+</h2>
+<section class="subsection" id="subsection-19"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.2.1</span> <span class="title">Definition of a Group</span>
+</h3>
+<div class="para logical" id="p-407">
+<div class="para">The integers mod <span class="process-math">\(n\)</span> and the symmetries of a triangle or a rectangle are examples of groups.  A <dfn class="terminology">binary operation</dfn> or <dfn class="terminology">law of composition</dfn> on a set <span class="process-math">\(G\)</span> is a function <span class="process-math">\(G \times G \rightarrow G\)</span> that assigns to each pair <span class="process-math">\((a,b) \in G \times G\)</span> a unique element <span class="process-math">\(a \circ b\text{,}\)</span> or <span class="process-math">\(ab\)</span> in <span class="process-math">\(G\text{,}\)</span> called the composition of <span class="process-math">\(a\)</span> and <span class="process-math">\(b\text{.}\)</span>  A <dfn class="terminology">group</dfn> <span class="process-math">\((G, \circ )\)</span> is a set <span class="process-math">\(G\)</span> together with a law of composition <span class="process-math">\((a,b) \mapsto a \circ b\)</span> that satisfies the following axioms.</div>
+<ul class="disc">
+<li id="li-89"><div class="para logical" id="p-408">
+<div class="para">The law of composition is <dfn class="terminology">associative</dfn>. That is,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(a \circ b) \circ c = a \circ (b \circ c)
+\end{equation*}
+</div>
+<div class="para">for <span class="process-math">\(a, b, c \in G\text{.}\)</span>
+</div>
+</div></li>
+<li id="li-90"><div class="para logical" id="p-409">
+<div class="para">There exists an element <span class="process-math">\(e \in G\text{,}\)</span> called the <dfn class="terminology">identity element</dfn>, such that for any element <span class="process-math">\(a \in G\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{equation*}
+e \circ a = a \circ e = a\text{.}
+\end{equation*}
+</div>
+</div></li>
+<li id="li-91"><div class="para logical" id="p-410">
+<div class="para">For each element <span class="process-math">\(a \in G\text{,}\)</span> there exists an <dfn class="terminology">inverse element</dfn> in G, denoted by <span class="process-math">\(a^{-1}\text{,}\)</span> such that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a \circ a^{-1} = a^{-1} \circ a = e\text{.}
+\end{equation*}
+</div>
+</div></li>
+</ul>
+</div>
+<div class="para" id="p-411">A group <span class="process-math">\(G\)</span> with the property that <span class="process-math">\(a \circ b = b \circ a\)</span> for all <span class="process-math">\(a, b \in G\)</span> is called <dfn class="terminology">abelian</dfn> or <dfn class="terminology">commutative</dfn>.  Groups not satisfying this property are said to be  <dfn class="terminology">nonabelian</dfn> or <dfn class="terminology">noncommutative</dfn>.</div></section><section class="subsection" id="subsection-20"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.2.2</span> <span class="title">Examples of Groups</span>
+</h3>
+<article class="example example-like" id="example-groups-integers"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-integers"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.1</span><span class="period">.</span><span class="space"> </span><span class="title">Group of All Integers.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-integers"><article class="example example-like"><div class="para" id="p-412">The integers <span class="process-math">\({\mathbb Z } = \{ \ldots , -1, 0, 1, 2, \ldots \}\)</span> form a group under the operation of addition.  The binary operation on two integers <span class="process-math">\(m, n \in {\mathbb Z}\)</span> is just their sum.  Since the integers under addition already have a well-established notation, we will use the operator <span class="process-math">\(+\)</span> instead of <span class="process-math">\(\circ\text{;}\)</span> that is, we shall write <span class="process-math">\(m + n\)</span> instead of <span class="process-math">\(m \circ n\text{.}\)</span>  The identity is 0, and the inverse of <span class="process-math">\(n \in {\mathbb Z}\)</span> is written as <span class="process-math">\(-n\)</span> instead of <span class="process-math">\(n^{-1}\text{.}\)</span>  Notice that the set of integers under addition have the additional property that <span class="process-math">\(m + n = n + m\)</span> and therefore form an abelian group.</div></article></div>
+<div class="para" id="p-413">Most of the time we will write <span class="process-math">\(ab\)</span> instead of <span class="process-math">\(a \circ b\text{;}\)</span> however, if the group already has a natural operation such as addition in the integers, we will use that operation.  That is, if we are adding two integers, we still write <span class="process-math">\(m + n\text{,}\)</span> <span class="process-math">\(-n\)</span> for the inverse, and 0 for the identity as usual. We also write <span class="process-math">\(m - n\)</span> instead of <span class="process-math">\(m + (-n)\text{.}\)</span>
+</div>
+<div class="para" id="p-414">It is often convenient to describe a group in terms of an addition or multiplication table.  Such a table is called a <dfn class="terminology">Cayley table</dfn>.</div>
+<article class="example example-like" id="example-groups-z5"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-z5"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.2</span><span class="period">.</span><span class="space"> </span><span class="title">Group of Integers Modulo <span class="process-math">\(5\)</span>.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-z5"><article class="example example-like"><div class="para" id="p-415">The integers mod <span class="process-math">\(n\)</span> form a group under addition modulo <span class="process-math">\(n\text{.}\)</span>  Consider <span class="process-math">\({\mathbb Z}_5\text{,}\)</span> consisting of the equivalence classes of the integers 0, 1, 2, 3, and 4.  We define the group operation on <span class="process-math">\({\mathbb Z}_5\)</span> by modular addition.  We write the binary operation on the group additively; that is, we write <span class="process-math">\(m + n\text{.}\)</span>  The element 0 is the identity of the group and each element in <span class="process-math">\({\mathbb Z}_5\)</span> has an inverse. For instance, <span class="process-math">\(2 + 3 = 3 + 2 = 0\text{.}\)</span>  <a href="" class="xref" data-knowl="./knowl/figure-z5-cayley.html" title="Figure 3.2.3">Figure 3.2.3</a> is a Cayley table for <span class="process-math">\({\mathbb Z}_5\)</span>  (Contributed by <a href="" class="xref" data-knowl="./knowl/rbeezer.html" title="Contributor">Robert Beezer</a>).  By <a href="" class="xref" data-knowl="./knowl/proposition-zn-equiv-classes.html" title="Proposition 3.1.4">Proposition 3.1.4</a>, <span class="process-math">\({\mathbb Z}_n = \{0, 1, \ldots, n-1 \}\)</span> is a group under the binary operation of addition mod <span class="process-math">\(n\text{.}\)</span>
+</div>
+<figure class="figure figure-like" id="figure-z5-cayley"><div class="para logical" id="p-416"><div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{c|ccccc}
++ &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+\hline
+0 &amp; 0 &amp; 1 &amp; 2 &amp; 3 &amp; 4 \\
+1 &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 0 \\
+2 &amp; 2 &amp; 3 &amp; 4 &amp; 0 &amp; 1 \\
+3 &amp; 3 &amp; 4 &amp; 0 &amp; 1 &amp; 2 \\
+4 &amp; 4 &amp; 0 &amp; 1 &amp; 2 &amp; 3
+\end{array}
+\end{equation*}
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.2.3<span class="period">.</span></span><span class="space"> </span>Cayley table for <span class="process-math">\(({\mathbb Z_5}, +)\)</span></figcaption></figure></article></div>
+<article class="example example-like" id="example-groups-z6-mult"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-z6-mult"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.4</span><span class="period">.</span><span class="space"> </span><span class="title">Multiplication of Integers Modulo <span class="process-math">\(6\)</span>.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-z6-mult"><article class="example example-like"><div class="para logical" id="p-417">
+<div class="para">Not every set with a binary operation is a group.  For example, if we let modular multiplication be the binary operation on <span class="process-math">\({\mathbb Z}_n\text{,}\)</span> then <span class="process-math">\({\mathbb Z}_n\)</span> fails to be a group.  The element 1 acts as a group identity since <span class="process-math">\(1 \cdot k = k \cdot 1 = k\)</span> for any <span class="process-math">\(k \in {\mathbb Z}_n\text{;}\)</span> however, a multiplicative inverse for <span class="process-math">\(0\)</span> does not exist since <span class="process-math">\(0 \cdot k = k \cdot 0 = 0\)</span> for every <span class="process-math">\(k\)</span> in <span class="process-math">\({\mathbb Z}_n\text{.}\)</span>  Even if we consider the set <span class="process-math">\({\mathbb Z}_n \setminus \{0 \}\text{,}\)</span> we still may not have a group.  For instance, let <span class="process-math">\(2 \in {\mathbb Z}_6\text{.}\)</span> Then 2 has no multiplicative inverse since</div>
+<div class="displaymath process-math" id="md-32">
+\begin{align*}
+0 \cdot 2 &amp; = 0 \qquad 1 \cdot 2 = 2\\
+2 \cdot 2 &amp; = 4 \qquad 3 \cdot 2 = 0\\
+4 \cdot 2 &amp; = 2 \qquad 5 \cdot 2 = 4\text{.}
+\end{align*}
+</div>
+</div>
+<div class="para" id="p-418">By <a href="" class="xref" data-knowl="./knowl/proposition-zn-equiv-classes.html" title="Proposition 3.1.4">Proposition 3.1.4</a>, every nonzero <span class="process-math">\(k\)</span> does have an inverse in <span class="process-math">\({\mathbb Z}_n\)</span> if <span class="process-math">\(k\)</span> is relatively prime to <span class="process-math">\(n\text{.}\)</span>  Denote the set of all such nonzero elements in <span class="process-math">\({\mathbb Z}_n\)</span> by <span class="process-math">\(U(n)\text{.}\)</span>   Then <span class="process-math">\(U(n)\)</span> is a group called the <dfn class="terminology">group of units</dfn> of <span class="process-math">\({\mathbb Z}_n\text{.}\)</span>  <a href="" class="xref" data-knowl="./knowl/figure-cayley-u8.html" title="Figure 3.2.5">Figure 3.2.5</a> is a Cayley table for the group <span class="process-math">\(U(8)\text{.}\)</span>
+</div>
+<figure class="figure figure-like" id="figure-cayley-u8"><div class="para logical" id="p-419"><div class="displaymath process-math">
+\begin{equation*}
+\begin{array}{c|cccc}
+\cdot &amp; 1 &amp; 3 &amp; 5 &amp; 7 \\
+\hline
+1       &amp; 1 &amp; 3 &amp; 5 &amp; 7 \\
+3       &amp; 3 &amp; 1 &amp; 7 &amp; 5 \\
+5       &amp; 5 &amp; 7 &amp; 1 &amp; 3 \\
+7       &amp; 7 &amp; 5 &amp; 3 &amp; 1
+\end{array}
+\end{equation*}
+</div></div>
+<figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">3.2.5<span class="period">.</span></span><span class="space"> </span>Multiplication table for <span class="process-math">\(U(8)\)</span></figcaption></figure></article></div>
+<article class="example example-like" id="example-groups-nonabelian"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-nonabelian"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.6</span><span class="period">.</span><span class="space"> </span><span class="title">Symmetries of a Triangle is not Abelian.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-nonabelian"><article class="example example-like"><div class="para" id="p-420">The symmetries of an equilateral triangle described in <a href="section-mod-n-sym.html" class="internal" title="Section 3.1: Integer Equivalence Classes and Symmetries">Section 3.1</a> form a nonabelian group. As we observed, it is not necessarily true that <span class="process-math">\(\alpha \beta = \beta \alpha\)</span> for two symmetries <span class="process-math">\(\alpha\)</span> and <span class="process-math">\(\beta\text{.}\)</span>  Using <a href="" class="xref" data-knowl="./knowl/figure-s3.html" title="Figure 3.1.7">Figure 3.1.7</a>, which is a Cayley table for this group, we can easily check that the symmetries of an equilateral triangle are indeed a group. We will denote this group by either <span class="process-math">\(S_3\)</span> or <span class="process-math">\(D_3\text{,}\)</span> for reasons that will be explained later.</div></article></div>
+<article class="example example-like" id="example-groups-gl2"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-gl2"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.7</span><span class="period">.</span><span class="space"> </span><span class="title">Matrix Multiplication of <span class="process-math">\(2\times 2\)</span> Matrices is a Group.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-gl2"><article class="example example-like"><div class="para logical" id="p-421">
+<div class="para">We use  <span class="process-math">\({\mathbb M}_2 ( {\mathbb R})\)</span> to denote the set of all <span class="process-math">\(2 \times 2\)</span> matrices.  Let <span class="process-math">\(GL_2({\mathbb R})\)</span> be the subset of <span class="process-math">\({\mathbb M}_2 ( {\mathbb R})\)</span> consisting of invertible matrices; that is, a matrix </div>
+<div class="displaymath process-math">
+\begin{equation*}
+A =
+\begin{pmatrix}
+a &amp; b \\
+c &amp; d
+\end{pmatrix}
+\end{equation*}
+</div>
+<div class="para">is in  <span class="process-math">\(GL_2( {\mathbb R})\)</span> if there exists a matrix <span class="process-math">\(A^{-1}\)</span> such that <span class="process-math">\(A A^{-1} = A^{-1} A = I\text{,}\)</span> where <span class="process-math">\(I\)</span> is the <span class="process-math">\(2 \times 2\)</span> identity matrix. For <span class="process-math">\(A\)</span> to have an inverse is equivalent to requiring that the determinant of <span class="process-math">\(A\)</span> be nonzero; that is, <span class="process-math">\(\det A = ad - bc \neq 0\text{.}\)</span>  The set of invertible matrices forms a group called the <dfn class="terminology">general linear group</dfn>.   The identity of the group is the identity matrix</div>
+<div class="displaymath process-math">
+\begin{equation*}
+I =
+\begin{pmatrix}
+1 &amp; 0 \\
+0 &amp; 1
+\end{pmatrix}\text{.}
+\end{equation*}
+</div>
+<div class="para">The inverse of <span class="process-math">\(A \in GL_2( {\mathbb R})\)</span> is</div>
+<div class="displaymath process-math">
+\begin{equation*}
+A^{-1} =
+\frac{1}{ad-bc}
+\begin{pmatrix}
+d &amp; -b \\
+-c &amp; a
+\end{pmatrix}\text{.}
+\end{equation*}
+</div>
+<div class="para">The product of two invertible matrices is again invertible. Matrix multiplication is associative, satisfying the other group axiom. For matrices it is not true in general that <span class="process-math">\(AB = BA\text{;}\)</span> hence, <span class="process-math">\(GL_2({\mathbb R})\)</span> is another example of a nonabelian group.</div>
+</div></article></div>
+<article class="example example-like" id="example-groups-quaterions"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-quaterions"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.8</span><span class="period">.</span><span class="space"> </span><span class="title">Group of Quaternions.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-quaterions"><article class="example example-like"><div class="para logical" id="p-422">
+<div class="para">Let</div>
+<div class="displaymath process-math" id="md-33">
+\begin{align*}
+1 &amp; = 
+\begin{pmatrix}
+1 &amp; 0\\
+0 &amp; 1
+\end{pmatrix}
+\qquad
+I
+=
+\begin{pmatrix}
+0 &amp; 1\\
+-1 &amp; 0
+\end{pmatrix}\\
+J &amp; = 
+\begin{pmatrix}
+0 &amp; i\\
+i &amp; 0
+\end{pmatrix}
+\qquad
+K =
+\begin{pmatrix}
+i &amp; 0\\
+0 &amp; -i
+\end{pmatrix}\text{,}
+\end{align*}
+</div>
+<div class="para">where <span class="process-math">\(i^2 = -1\text{.}\)</span> Then the relations <span class="process-math">\(I^2 = J^2 = K^2 = -1\text{,}\)</span> <span class="process-math">\(IJ=K\text{,}\)</span> <span class="process-math">\(JK = I\text{,}\)</span> <span class="process-math">\(KI = J\text{,}\)</span> <span class="process-math">\(JI = -K\text{,}\)</span> <span class="process-math">\(KJ = -I\text{,}\)</span> and <span class="process-math">\(IK = -J\)</span> hold. The set <span class="process-math">\(Q_8 = \{\pm 1, \pm I, \pm J, \pm K  \}\)</span> is a group called the <dfn class="terminology">quaternion group</dfn>. Notice that <span class="process-math">\(Q_8\)</span> is noncommutative.</div>
+</div></article></div>
+<article class="example example-like" id="example-groups-c-star"><a href="" data-knowl="" class="id-ref example-knowl original" data-refid="hk-example-groups-c-star"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">3.2.9</span><span class="period">.</span><span class="space"> </span><span class="title">Group of Nonzero Complex Numbers.</span>
+</h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-example-groups-c-star"><article class="example example-like"><div class="para logical" id="p-423">
+<div class="para">Let <span class="process-math">\({\mathbb C}^\ast\)</span>be the set of nonzero complex numbers.  Under the operation of multiplication <span class="process-math">\({\mathbb C}^\ast\)</span> forms a group.  The identity is 1. If <span class="process-math">\(z = a+bi\)</span> is a nonzero complex number, then</div>
+<div class="displaymath process-math">
+\begin{equation*}
+z^{-1} = \frac{a -bi}{a^2 +b^2}
+\end{equation*}
+</div>
+<div class="para">is the inverse of <span class="process-math">\(z\text{.}\)</span>  It is easy to see that the remaining group axioms hold.</div>
+</div></article></div>
+<div class="para" id="p-424">A group is <dfn class="terminology">finite</dfn>, or has <dfn class="terminology">finite order</dfn>, if it contains a finite number of elements; otherwise, the group is said to be <dfn class="terminology">infinite</dfn> or to have <dfn class="terminology">infinite order</dfn>. The <dfn class="terminology">order</dfn> of a finite group is the number of elements that it contains. If <span class="process-math">\(G\)</span> is a group containing <span class="process-math">\(n\)</span> elements, we write <span class="process-math">\(|G| = n\text{.}\)</span>  The group <span class="process-math">\({\mathbb Z}_5\)</span> is a finite group of order 5; the integers <span class="process-math">\({\mathbb Z}\)</span> form an infinite group under addition, and we sometimes write <span class="process-math">\(|{\mathbb Z}| = \infty\text{.}\)</span>
+</div></section><section class="subsection" id="subsection-21"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.2.3</span> <span class="title">Basic Properties of Groups</span>
+</h3>
+<article class="proposition theorem-like" id="proposition-3"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.10</span><span class="period">.</span>
+</h4>
+<div class="para" id="p-425">The identity element in a group <span class="process-math">\(G\)</span> is unique; that is, there exists only one element <span class="process-math">\(e \in G\)</span> such that <span class="process-math">\(eg = ge = g\)</span> for all <span class="process-math">\(g \in G\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-14"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-14"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-14"><article class="hiddenproof"><div class="para" id="p-426">Suppose that <span class="process-math">\(e\)</span> and <span class="process-math">\(e'\)</span> are both identities in <span class="process-math">\(G\text{.}\)</span> Then <span class="process-math">\(eg = ge = g\)</span> and <span class="process-math">\(e'g = ge' = g\)</span> for all <span class="process-math">\(g \in G\text{.}\)</span> We need to show that <span class="process-math">\(e = e'\text{.}\)</span> If we think of <span class="process-math">\(e\)</span> as the identity, then <span class="process-math">\(ee' = e'\text{;}\)</span> but if <span class="process-math">\(e'\)</span> is the identity, then <span class="process-math">\(ee' = e\text{.}\)</span> Combining these two equations, we have <span class="process-math">\(e = ee' = e'\text{.}\)</span> (<a href="" class="xref" data-knowl="./knowl/dfarmer.html" title="Contributor">David Farmer</a> helped with this proof.)</div></article></div>
+<div class="para" id="p-427">Inverses in a group are also unique. If <span class="process-math">\(g'\)</span> and <span class="process-math">\(g''\)</span> are both inverses of an element <span class="process-math">\(g\)</span> in a group <span class="process-math">\(G\text{,}\)</span> then <span class="process-math">\(gg' = g'g = e\)</span> and <span class="process-math">\(gg'' = g''g = e\text{.}\)</span> We want to show that <span class="process-math">\(g' = g''\text{,}\)</span> but <span class="process-math">\(g' = g'e = g'(gg'') = (g'g)g'' = eg'' = g''\text{.}\)</span> We summarize this fact in the following proposition.</div>
+<article class="proposition theorem-like" id="proposition-4"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.11</span><span class="period">.</span>
+</h4>
+<div class="para" id="p-428">If <span class="process-math">\(g\)</span> is any element in a group <span class="process-math">\(G\text{,}\)</span> then the inverse of <span class="process-math">\(g\text{,}\)</span> denoted by <span class="process-math">\(g^{-1}\text{,}\)</span> is unique.</div></article><article class="proposition theorem-like" id="proposition-inverse-of-products"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.12</span><span class="period">.</span>
+</h4>
+<div class="para" id="p-429">Let <span class="process-math">\(G\)</span> be a group. If <span class="process-math">\(a, b \in G\text{,}\)</span> then <span class="process-math">\((ab)^{-1} = b^{-1}a^{-1}\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-15"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-15"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-15"><article class="hiddenproof"><div class="para" id="p-430">Let <span class="process-math">\(a, b \in G\text{.}\)</span> Then <span class="process-math">\(abb^{-1}a^{-1} = aea^{-1} = aa^{-1} = e\text{.}\)</span> Similarly, <span class="process-math">\(b^{-1}a^{-1}ab = e\text{.}\)</span> But by the previous proposition, inverses are unique; hence, <span class="process-math">\((ab)^{-1} = b^{-1}a^{-1}\text{.}\)</span>
+</div></article></div>
+<article class="proposition theorem-like" id="proposition-6"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.13</span><span class="period">.</span>
+</h4>
+<div class="para" id="p-431">Let <span class="process-math">\(G\)</span> be a group.  For any <span class="process-math">\(a \in G\text{,}\)</span> <span class="process-math">\((a^{-1})^{-1} = a\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-16"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-16"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-16"><article class="hiddenproof"><div class="para logical" id="p-432">
+<div class="para">Observe that <span class="process-math">\(a^{-1} (a^{-1})^{-1} = e\text{.}\)</span> Consequently, multiplying both sides of this equation by <span class="process-math">\(a\text{,}\)</span> we have</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(a^{-1})^{-1} = e (a^{-1})^{-1} = a a^{-1} (a^{-1})^{-1} = ae = a\text{.}
+\end{equation*}
+</div>
+</div></article></div>
+<div class="para" id="p-433">It makes sense to write equations with group elements and group operations. If <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are two elements in a group <span class="process-math">\(G\text{,}\)</span> does there exist an element <span class="process-math">\(x \in G\)</span> such that <span class="process-math">\(ax = b\text{?}\)</span> If such an <span class="process-math">\(x\)</span> does exist, is it unique? The following proposition answers both of these questions positively.</div>
+<article class="proposition theorem-like" id="proposition-group-equations"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.14</span><span class="period">.</span>
+</h4>
+<div class="para" id="p-434">Let <span class="process-math">\(G\)</span> be a group and <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> be any two elements in <span class="process-math">\(G\text{.}\)</span> Then the equations <span class="process-math">\(ax = b\)</span> and <span class="process-math">\(xa = b\)</span> have unique solutions in <span class="process-math">\(G\text{.}\)</span>
+</div></article><article class="hiddenproof" id="proof-17"><a href="" data-knowl="" class="id-ref proof-knowl original" data-refid="hk-proof-17"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4></a></article><div class="hidden-content tex2jax_ignore" id="hk-proof-17"><article class="hiddenproof"><div class="para" id="p-435">Suppose that <span class="process-math">\(ax = b\text{.}\)</span> We must show that such an <span class="process-math">\(x\)</span> exists. Multiplying both sides of <span class="process-math">\(ax = b\)</span> by <span class="process-math">\(a^{-1}\text{,}\)</span> we have <span class="process-math">\(x = ex = a^{-1}ax = a^{-1}b\text{.}\)</span>
+</div>
+<div class="para" id="p-436">To show uniqueness, suppose that <span class="process-math">\(x_1\)</span> and <span class="process-math">\(x_2\)</span> are both solutions of <span class="process-math">\(ax = b\text{;}\)</span> then <span class="process-math">\(ax_1 = b = ax_2\text{.}\)</span> So <span class="process-math">\(x_1 = a^{-1}ax_1 = a^{-1}ax_2 = x_2\text{.}\)</span> The proof for the existence and uniqueness of the solution of <span class="process-math">\(xa = b\)</span> is similar.</div></article></div>
+<article class="proposition theorem-like" id="proposition-8"><h4 class="heading">
+<span class="type">Proposition</span><span class="space"> </span><span class="codenumber">3.2.15</span><span class="period">.</span>
+</h4>
+<div class="para" id="p-437">If <span class="process-math">\(G\)</span> is a group and <span class="process-math">\(a, b, c \in G\text{,}\)</span> then <span class="process-math">\(ba = ca\)</span> implies <span class="process-math">\(b = c\)</span> and <span class="process-math">\(ab = ac\)</span> implies <span class="process-math">\(b = c\text{.}\)</span>
+</div></article><div class="para" id="p-438">This proposition tells us that the <dfn class="terminology">right and  left cancellation laws</dfn> are true in groups.  We leave the proof as an exercise.</div>
+<div class="para logical" id="p-439">
+<div class="para">We can use exponential notation for groups just as we do in ordinary algebra. If <span class="process-math">\(G\)</span> is a group and <span class="process-math">\(g \in G\text{,}\)</span> then we define <span class="process-math">\(g^0 = e\text{.}\)</span> For <span class="process-math">\(n \in {\mathbb N}\text{,}\)</span> we define</div>
+<div class="displaymath process-math">
+\begin{equation*}
+g^n = \underbrace{g \cdot g \cdots g}_{n \; \text{times}}
+\end{equation*}
+</div>
+<div class="para">and</div>
+<div class="displaymath process-math">
+\begin{equation*}
+g^{-n} = \underbrace{g^{-1} \cdot g^{-1} \cdots g^{-1}}_{n \; \text{times}}\text{.}
+\end{equation*}
+</div>
+</div>
+<article class="theorem theorem-like" id="theorem-exponent-laws"><h4 class="heading">
+<span class="type">Theorem</span><span class="space"> </span><span class="codenumber">3.2.16</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="p-440">
+<div class="para">In a group, the usual laws of exponents hold; that is, for all <span class="process-math">\(g, h \in G\text{,}\)</span>
+</div>
+<ol class="decimal">
+<li id="li-92"><div class="para" id="p-441">
+<span class="process-math">\(g^mg^n = g^{m+n}\)</span> for all <span class="process-math">\(m, n \in {\mathbb Z}\text{;}\)</span>
+</div></li>
+<li id="li-93"><div class="para" id="p-442">
+<span class="process-math">\((g^m)^n = g^{mn}\)</span> for all <span class="process-math">\(m, n \in {\mathbb Z}\text{;}\)</span>
+</div></li>
+<li id="li-94"><div class="para" id="p-443">
+<span class="process-math">\((gh)^n = (h^{-1}g^{-1})^{-n}\)</span> for all <span class="process-math">\(n \in {\mathbb Z}\text{.}\)</span> Furthermore, if <span class="process-math">\(G\)</span> is abelian, then <span class="process-math">\((gh)^n = g^nh^n\text{.}\)</span>
+</div></li>
+</ol>
+</div></article><div class="para logical" id="p-444">
+<div class="para">We will leave the proof of this theorem as an exercise. Notice that <span class="process-math">\((gh)^n \neq g^nh^n\)</span> in general, since the group may not be abelian. If the group is <span class="process-math">\({\mathbb Z}\)</span> or <span class="process-math">\({\mathbb Z}_n\text{,}\)</span> we write the group operation additively and the exponential operation multiplicatively; that is, we write <span class="process-math">\(ng\)</span> instead of <span class="process-math">\(g^n\text{.}\)</span> The laws of exponents now become</div>
+<ol class="decimal">
+<li id="li-95"><div class="para" id="p-445">
+<span class="process-math">\(mg + ng = (m+n)g\)</span> for all <span class="process-math">\(m, n \in {\mathbb Z}\text{;}\)</span>
+</div></li>
+<li id="li-96"><div class="para" id="p-446">
+<span class="process-math">\(m(ng) = (mn)g\)</span> for all <span class="process-math">\(m, n \in {\mathbb Z}\text{;}\)</span>
+</div></li>
+<li id="li-97"><div class="para" id="p-447">
+<span class="process-math">\(m(g + h) = mg + mh\)</span> for all <span class="process-math">\(n \in {\mathbb Z}\text{.}\)</span>
+</div></li>
+</ol>
+</div>
+<div class="para" id="p-448">It is important to realize that the last statement can be made only because <span class="process-math">\({\mathbb Z}\)</span> and  <span class="process-math">\({\mathbb Z}_n\)</span> are commutative groups.</div></section><section class="subsection" id="subsection-22"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">3.2.4</span> <span class="title">Historical Note</span>
+</h3>
+<div class="para" id="p-449">Although the first clear axiomatic definition of a group was not given until the late 1800s, group-theoretic methods had been employed before this time in the development of  many areas of mathematics, including geometry and the theory of algebraic equations.</div>
+<div class="para" id="p-450">Joseph-Louis Lagrange used group-theoretic methods in a 1770–1771 memoir to study methods of solving polynomial equations.  Later, Évariste Galois (1811–1832) succeeded in developing the mathematics necessary to determine exactly which polynomial equations could be  solved in terms of the polynomial's coefficients. Galois' primary tool was group theory.</div>
+<div class="para" id="p-451">The study of geometry was revolutionized in 1872 when Felix Klein proposed that geometric spaces should be studied by examining those properties that are invariant under a transformation of the space. Sophus Lie, a contemporary of Klein, used group theory to study solutions of partial differential equations.  One of the first modern treatments of group theory appeared in William Burnside's <span class="booktitle">The Theory of Groups of Finite Order</span> [1], first published in 1897.</div></section></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="section-mod-n-sym.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="section-subgroups.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org"><div class="name">Authored in PreTeXt</div>
+<div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259 "></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0  472  9732 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496 A 4241 4241  0  0  1  4724  3590 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259 A 4507 4507  0  0  1  4724  9448 "></path><polyline points="5385,4299 4062,8125 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8598,3496 8598,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="850,3496 850,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="4960,9685 4488,9685 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="3070,4582 1889,6141 3070,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="6418,4582 7600,6141 6418,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8976,3590 8976,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732 "></path></g></svg></div></a><a class="mathjax-logo" href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a>
+</div>
+<!--Start: StatCounter code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***        GET YOUR OWN FROM STATCOUNTER           ***--><script>
+var sc_project=9664088;
+var sc_invisible=1;
+var sc_security="6e60c510";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/9664088/0/6e60c510/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-48811660-1"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-48811660-1');
+</script><!--End: Google Global Site Tag code--><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SB Sage</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="og:image" content="https://pretextbook.org/examples/noparts/decorative/html/external/cover_aata_2014.png">
+<meta property="book:title" content="Abstract Algebra">
+<meta property="book:author" content="Thomas W. Judson">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+/* Mathjax typesetting operation is under the control of React */
+  startup: {
+    typeset: false,
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({inputLocation: 'pre.sagecell-sage',
+                       linked: true,
+                       languages: ['sage'],
+                       evalButtonText: 'Evaluate (Sage)'});
+</script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script defer src="./static/js/bundle.js"></script><script defer src="./static/js/main.js"></script><link href="./static/css/main.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="http://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_blue_red.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+<!--Start: StatCounter code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***        GET YOUR OWN FROM STATCOUNTER           ***--><script>
+var sc_project=9664088;
+var sc_invisible=1;
+var sc_security="6e60c510";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/9664088/0/6e60c510/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-48811660-1"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-48811660-1');
+</script><!--End: Google Global Site Tag code--><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body id="PTXSB" class="pretext book ignore-math">
+<a class="assistive" href="#content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" href="http://abstract.pugetsound.edu" target="_blank"><img src="external/cover_aata_2014.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="sample-book.html"><span class="title">Abstract Algebra:</span> <span class="subtitle">PRETEXT XML SAMPLE ONLY</span></a></h1>
+<p class="byline">Thomas W. Judson, Isaac Newton (Editor)</p>
+</div>
+</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="section-sets-and-equivalence-relations.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="sets.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="exercises-sets.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\newcommand{\sfrac}[2]{{#1}/{#2}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="front-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="author-bio-TWJ.html" class="internal"><span class="title">Author Biography</span></a></div></li>
+<li><div class="toc-item"><a href="author-bio-RAB.html" class="internal"><span class="title">About Robert A. Beezer</span></a></div></li>
+<li><div class="toc-item"><a href="dedication.html" class="internal"><span class="title">Dedication</span></a></div></li>
+<li><div class="toc-item"><a href="acknowledgement.html" class="internal"><span class="title">Acknowledgements</span></a></div></li>
+<li><div class="toc-item"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li>
+<li>
+<div class="toc-item"><a href="contributors.html" class="internal"><span class="title">Contributors to the 4<span class="process-math">\(^\mathrm{th}\)</span> Edition</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="contributors.html#contributors-1" class="internal"><span class="codenumber">[STRUCT].[NUM]</span> <span class="title"></span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="part-basics.html" class="internal"><span class="codenumber">I</span> <span class="title">Basics</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sets.html" class="internal"><span class="codenumber">1</span> <span class="title">Preliminaries</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-note-on-proofs.html" class="internal"><span class="codenumber">1.1</span> <span class="title">A Short Note on Proofs</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-note-on-proofs.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Some Cautions and Suggestions</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-sets-and-equivalence-relations.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Sets and Equivalence Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-sets-and-equivalence-relations.html#subsection-2" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Set Theory</span></a></div></li>
+<li><div class="toc-item"><a href="section-sets-and-equivalence-relations.html#subsection-3" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Cartesian Products and Mappings</span></a></div></li>
+<li><div class="toc-item"><a href="section-sets-and-equivalence-relations.html#subsection-4" class="internal"><span class="codenumber">1.2.3</span> <span class="title">Equivalence Relations and Partitions</span></a></div></li>
+</ul>
+</li>
+<li class="active">
+<div class="toc-item"><a href="sets-sage.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Sage</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sets-sage.html#subsection-5" class="internal"><span class="codenumber">1.3.1</span> <span class="title">Executing Sage Commands</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-6" class="internal"><span class="codenumber">1.3.2</span> <span class="title">Immediate Help</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-7" class="internal"><span class="codenumber">1.3.3</span> <span class="title">Annotating Your Work</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-8" class="internal"><span class="codenumber">1.3.4</span> <span class="title">Lists</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-9" class="internal"><span class="codenumber">1.3.5</span> <span class="title">Lists of Integers</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-10" class="internal"><span class="codenumber">1.3.6</span> <span class="title">Saving and Sharing Your Work</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-sets.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage-exercises.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-1.html" class="internal"><span class="codenumber">1.6</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="integers.html" class="internal"><span class="codenumber">2</span> <span class="title">The Integers</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-math-induction.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Mathematical Induction</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-division-algorithm.html" class="internal"><span class="codenumber">2.2</span> <span class="title">The Division Algorithm</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-division-algorithm.html#subsection-11" class="internal"><span class="codenumber">2.2.1</span> <span class="title">The Euclidean Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="section-division-algorithm.html#subsection-12" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Prime Numbers</span></a></div></li>
+<li><div class="toc-item"><a href="section-division-algorithm.html#subsection-13" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Historical Note</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="integers-sage.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Sage</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="integers-sage.html#subsection-14" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Division Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="integers-sage.html#subsection-15" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Greatest Common Divisor</span></a></div></li>
+<li><div class="toc-item"><a href="integers-sage.html#subsection-16" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Primes and Factoring</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-integers.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-4.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Programming Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="integers-sage-exercises.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-2.html" class="internal"><span class="codenumber">2.7</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="part-algebra.html" class="internal"><span class="codenumber">II</span> <span class="title">Algebra</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="groups.html" class="internal"><span class="codenumber">3</span> <span class="title">Groups</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-mod-n-sym.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Integer Equivalence Classes and Symmetries</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-mod-n-sym.html#subsection-17" class="internal"><span class="codenumber">3.1.1</span> <span class="title">The Integers mod <span class="process-math">\(n\)</span></span></a></div></li>
+<li><div class="toc-item"><a href="section-mod-n-sym.html#subsection-18" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Symmetries</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-groups-define.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Definitions and Examples</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-19" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Definition of a Group</span></a></div></li>
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-20" class="internal"><span class="codenumber">3.2.2</span> <span class="title">Examples of Groups</span></a></div></li>
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-21" class="internal"><span class="codenumber">3.2.3</span> <span class="title">Basic Properties of Groups</span></a></div></li>
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-22" class="internal"><span class="codenumber">3.2.4</span> <span class="title">Historical Note</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-subgroups.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Subgroups</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-subgroups.html#subsection-23" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Definitions and Examples</span></a></div></li>
+<li><div class="toc-item"><a href="section-subgroups.html#subsection-24" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Some Subgroup Theorems</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="groups-sage.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Sage</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="groups-sage.html#subsection-25" class="internal"><span class="codenumber">3.4.1</span> <span class="title">Integers mod n</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage.html#subsection-26" class="internal"><span class="codenumber">3.4.2</span> <span class="title">Groups of symmetries</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage.html#subsection-27" class="internal"><span class="codenumber">3.4.3</span> <span class="title">Quaternions</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage.html#subsection-28" class="internal"><span class="codenumber">3.4.4</span> <span class="title">Subgroups</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-groups.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-7.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Additional Exercises: Detecting Errors</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage-exercises.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-3.html" class="internal"><span class="codenumber">3.8</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="cyclic.html" class="internal"><span class="codenumber">4</span> <span class="title">Cyclicity</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-11.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Cyclic groups</span></a></div></li>
+<li><div class="toc-item"><a href="section-12.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Subgroups of a Cyclic Group</span></a></div></li>
+<li><div class="toc-item"><a href="section-13.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Cyclic Groups of Complex Numbers</span></a></div></li>
+<li><div class="toc-item"><a href="section-14.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Large Powers of Integers</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-cyclic.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-10.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Programming Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="cyclic-sage-exercises.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-4.html" class="internal"><span class="codenumber">4.8</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="rune.html" class="internal"><span class="codenumber">5</span> <span class="title">Runestone Testing</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-15.html" class="internal"><span class="codenumber">5.1</span> <span class="title">ActiveCode</span></a></div></li>
+<li><div class="toc-item"><a href="code-lens.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Code Lens</span></a></div></li>
+<li><div class="toc-item"><a href="coding-exercises.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Coding Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="section-18.html" class="internal"><span class="codenumber">5.4</span> <span class="title">YouTube Videos</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-19.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Deeper</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-19.html#subsection-29" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Subsection One</span></a></div></li>
+<li><div class="toc-item"><a href="section-19.html#subsection-30" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Subsection Two</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-12.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Interactive Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="section-20.html" class="internal"><span class="codenumber">5.7</span> <span class="title">Expedited Samples</span></a></div></li>
+<li><div class="toc-item"><a href="reading-questions-1.html" class="internal"><span class="codenumber">5.8</span> <span class="title">Reading Questions</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="appendix-1.html" class="internal"><span class="codenumber">A</span> <span class="title">Notation</span></a></div></li>
+<li><div class="toc-item"><a href="solutions-1.html" class="internal"><span class="codenumber">B</span> <span class="title">Hints and Answers to Selected Odd Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="solutions-2.html" class="internal"><span class="codenumber">C</span> <span class="title">Hints and Answers to Selected Even Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="solutions-3.html" class="internal"><span class="codenumber">D</span> <span class="title">Hints and Answers to Selected Exercises</span></a></div></li>
+<li>
+<div class="toc-item"><a href="appendix-2.html" class="internal"><span class="codenumber">E</span> <span class="title">A Structured Appendix</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-21.html" class="internal"><span class="codenumber">E.1</span> <span class="title">A Section in an Appendix</span></a></div>
+<ul class="structural"><li>
+<div class="toc-item"><a href="section-21.html#subsection-31" class="internal"><span class="codenumber">E.1.1</span> <span class="title">A Subsection in a Section in an Appendix</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-21.html#subsubsection-1" class="internal"><span class="codenumber">E.1.1.1</span> <span class="title">A Subsubsection in a Subsection in a Section in an Appendix</span></a></div></li></ul>
+</li></ul>
+</li>
+<li><div class="toc-item"><a href="section-22.html" class="internal"><span class="codenumber">E.2</span> <span class="title">Numbering in the Back Matter</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">F</span> <span class="title">GNU Free Documentation License</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+<li><div class="toc-item"><a href="back-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div class="ptx-content"><section class="section" id="sets-sage"><h2 class="heading hide-type">
+<span class="type">Section</span> <span class="codenumber">1.3</span> <span class="title">Sage</span>
+</h2>
+<section class="introduction" id="introduction-3"><div class="para" id="p-133">Sage is a powerful system for studying and exploring many different areas of mathematics.  In this textbook, you will study a variety of algebraic structures, such as groups, rings and fields.  Sage does an excellent job of implementing many features of these objects as we will see in the chapters ahead.  But here and now, in this initial chapter, we will concentrate on a few general ways of getting the most out of working with Sage.</div>
+<div class="para" id="p-134">You may use Sage several different ways.  It may be used as a command-line program when installed on your own computer.  Or it might be a web application such as the SageMathCloud.  Our writing will assume that you are reading this as a worksheet within the Sage Notebook (a web browser interface), or this is a section of the entire book presented as web pages, and you are employing the Sage Cell Server via those pages.  After the first few chapters the explanations should work equally well for whatever vehicle you use to execute Sage commands.</div></section><section class="subsection" id="subsection-5"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.3.1</span> <span class="title">Executing Sage Commands</span>
+</h3>
+<div class="para" id="p-135">Most of your interaction will be by typing commands into a <em class="emphasis">compute cell</em>.  If you are reading this in the Sage Notebook or as a webpage version of the book, then you will see a compute cell just below this paragraph.  Click once inside the compute cell and if you are in the Sage Notebook, you will get a more distinctive border around it, a blinking cursor inside, plus a cute little “evaluate” link below.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-1"><script type="text/x-sage"></script></pre>
+<div class="para" id="p-136">At the cursor, type <code class="code-inline tex2jax_ignore">2+2</code> and then click on the evaluate link.  Did a <code class="code-inline tex2jax_ignore">4</code> appear below the cell?  If so, you have successfully sent a command off for Sage to evaluate and you have received back the (correct) answer.</div>
+<div class="para" id="p-137">Here is another compute cell.  Try evaluating the command <code class="code-inline tex2jax_ignore">factorial(300)</code> here.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-2"><script type="text/x-sage"></script></pre>
+<div class="para" id="p-138">Hmmmmm.  That is quite a big integer!  If you see slashes at the end of each line, this means the result is continued onto the next line, since there are 615 total digits in the result.</div>
+<div class="para" id="p-139">To make new compute cells in the Sage Notebook (only), hover your mouse just above another compute cell, or just below some output from a compute cell.  When you see a skinny blue bar across the width of your worksheet, click and you will open up a new compute cell, ready for input.  Note that your worksheet will remember any calculations you make, in the order you make them, no matter where you put the cells, so it is best to stay organized and add new cells at the bottom.</div>
+<div class="para" id="p-140">Try placing your cursor just below the monstrous value of <span class="process-math">\(300!\)</span> that you have.  Click on the blue bar and try another factorial computation in the new compute cell.</div>
+<div class="para" id="p-141">Each compute cell will show output due to only the very last command in the cell.  Try to predict the following output before evaluating the cell.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-3"><script type="text/x-sage">a = 10
+b = 6
+b = b - 10
+a = a + 20
+a
+</script></pre>
+<div class="para" id="p-142">The following compute cell will not print anything since the one command does not create output.  But it will have an effect, as you can see when you execute the subsequent cell.  Notice how this uses the value of <code class="code-inline tex2jax_ignore">b</code> from above.  Execute this compute cell <em class="emphasis">once</em>.  Exactly once.  Even if it <em class="emphasis">appears</em> to do nothing.  If you execute the cell twice, your credit card may be charged twice.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-4"><script type="text/x-sage">b = b + 50
+</script></pre>
+<div class="para" id="p-143">Now execute this cell, which will produce some output.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-5"><script type="text/x-sage">b + 20
+</script></pre>
+<div class="para" id="p-144">So <code class="code-inline tex2jax_ignore">b</code> came into existence as <code class="code-inline tex2jax_ignore">6</code>.  We subtracted <span class="process-math">\(10\)</span> immediately afterward.  Then a subsequent cell added <code class="code-inline tex2jax_ignore">50</code>.  This assumes you executed this cell <em class="emphasis">exactly</em> once!  In the last cell we create <code class="code-inline tex2jax_ignore">b+20</code> (but do not save it) and it is this value (<span class="process-math">\(66\)</span>) that is output, while <code class="code-inline tex2jax_ignore">b</code> is still <span class="process-math">\(46\text{.}\)</span>
+</div>
+<div class="para" id="p-145">You can combine several commands on one line with a semi-colon.  This is a great way to get multiple outputs from a compute cell.  The syntax for building a matrix should be somewhat obvious when you see the output, but if not, it is not particularly important to understand now.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-6"><script type="text/x-sage">A = matrix([[3, 1], [5,2]]); A
+</script></pre>
+<pre class="ptx-sagecell sagecell-sage" id="sage-7"><script type="text/x-sage">print A; print ; A.inverse()
+</script></pre></section><section class="subsection" id="subsection-6"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.3.2</span> <span class="title">Immediate Help</span>
+</h3>
+<div class="para" id="p-146">Some commands in Sage are “functions,” an example is <code class="code-inline tex2jax_ignore">factorial()</code> above.  Other commands are “methods” of an object and are like characteristics of objects, an example is <code class="code-inline tex2jax_ignore">.inverse()</code> as a method of a matrix.  Once you know how to create an object (such as a matrix), then it is easy to see all the available methods.  Write the name of the object, place a period (“dot”) and hit the TAB key.  If you have <code class="code-inline tex2jax_ignore">A</code> defined from above, then the compute cell below is ready to go, click into it and then hit TAB (not “evaluate”!).  You should get a long list of possible methods.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-8"><script type="text/x-sage">A.
+</script></pre>
+<div class="para" id="p-147">To get some help on how to use a method with an object, write its name after a dot (with no parentheses) and then use a question-mark and hit TAB.  (Hit the escape key “ESC” to remove the list, or click on the text for a method.)</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-9"><script type="text/x-sage">A.inverse?
+</script></pre>
+<div class="para" id="p-148">With one more question-mark and a TAB you can see the actual computer instructions that were programmed into Sage to make the method work, once you scoll down past the documentation delimited by the triple quotes (<code class="code-inline tex2jax_ignore">"""</code>):</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-10"><script type="text/x-sage">A.inverse??
+</script></pre>
+<div class="para" id="p-149">It is worthwhile to see what Sage does when there is an error.  You will probably see a lot of these at first, and initially they will be a bit intimidating.  But with time, you will learn how to use them effectively and you will also become more proficient with Sage and see them less often.  Execute the compute cell below, it asks for the inverse of a matrix that has no inverse.  Then reread the commentary.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-11"><script type="text/x-sage">B = matrix([[2, 20], [5, 50]])
+B.inverse()
+</script></pre>
+<div class="para" id="p-150">Click just to the left of the error message to expand it fully (another click hides it totally, and a third click brings back the abbreviated form).  Read the bottom of an error message first, it is your best explanation.  Here a <code class="code-inline tex2jax_ignore">ZeroDivisionError</code> is not 100% accurate, but is close.  The matrix is not invertible, not dissimilar to how we cannot divide scalars by zero.  The remainder of the message begins at the top showing were the error first happened in your code and then the various places where intermediate functions were called, until the actual piece of Sage where the problem occurred.  Sometimes this information will give you some clues, sometimes it is totally undecipherable.  So do not let it scare you if it seems mysterious, but do remember to always read the last line first, then go back and read the first few lines for something that looks like your code.</div></section><section class="subsection" id="subsection-7"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.3.3</span> <span class="title">Annotating Your Work</span>
+</h3>
+<div class="para" id="p-151">It is easy to comment on your work when you use the Sage Notebook. (The following only applies if you are reading this within a Sage Notebook.  If you are not, then perhaps you can go open up a worksheet in the Sage Notebook and experiment there.)  You can open up a small word-processor by hovering your mouse until you get a skinny blue bar again, but now when you click, also hold the SHIFT key at the same time.  Experiment with fonts, colors, bullet lists, etc and then click the “Save changes” button to exit.  Double-click on your text if you need to go back and edit it later.</div>
+<div class="para" id="p-152">Open the word-processor again to create a new bit of text (maybe next to the empty compute cell just below).  Type all of the following <em class="emphasis">exactly</em>:</div>
+<blockquote class="blockquote" id="blockquote-1"><div class="para" id="p-153"><code class="code-inline tex2jax_ignore">Pythagorean Theorem: $c^2=a^2+b^2$</code></div></blockquote>
+<div class="para" id="p-154">and save your changes.  The symbols between the dollar signs are written according to the mathematical typesetting language known as <span class="latex-logo">T<span class="E">e</span>X</span> — cruise the internet to learn more about this very popular tool. (Well, it is extremely popular among mathematicians and physical scientists.)</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-12"><script type="text/x-sage"></script></pre></section><section class="subsection" id="subsection-8"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.3.4</span> <span class="title">Lists</span>
+</h3>
+<div class="para" id="p-155">Much of our interaction with sets will be through Sage lists.  These are not really sets — they allow duplicates, and order matters.  But they are so close to sets, and so easy and powerful to use that we will use them regularly.  We will use a fun made-up list for practice, the quote marks mean the items are just text, with no special mathematical meaning.  Execute these compute cells as we work through them.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-13"><script type="text/x-sage">zoo = ['snake', 'parrot', 'elephant', 'baboon', 'beetle']
+zoo
+</script></pre>
+<div class="para" id="p-156">So the square brackets define the boundaries of our list, commas separate items, and we can give the list a name.  To work with just one element of the list, we use the name and a pair of brackets with an index.  Notice that lists have indices that <em class="emphasis">begin counting at zero</em>.  This will seem odd at first and will seem very natural later.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-14"><script type="text/x-sage">zoo[2]
+</script></pre>
+<div class="para" id="p-157">We can add a new creature to the zoo, it is joined up at the far right end.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-15"><script type="text/x-sage">zoo.append('ostrich'); zoo
+</script></pre>
+<div class="para" id="p-158">We can remove a creature.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-16"><script type="text/x-sage">zoo.remove('parrot')
+zoo
+</script></pre>
+<div class="para" id="p-159">We can extract a sublist.  Here we start with element 1 (the elephant) and go all the way up to, <em class="emphasis">but not including</em>, element 3 (the beetle).  Again a bit odd, but it will feel natural later.  For now, notice that we are extracting two elements of the lists, exactly <span class="process-math">\(3-1=2\)</span> elements.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-17"><script type="text/x-sage">mammals = zoo[1:3]
+mammals
+</script></pre>
+<div class="para" id="p-160">Often we will want to see if two lists are equal.  To do that we will need to sort a list first.  A function creates a new, sorted list, leaving the original alone.  So we need to save the new one with a new name.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-18"><script type="text/x-sage">newzoo = sorted(zoo)
+newzoo
+</script></pre>
+<pre class="ptx-sagecell sagecell-sage" id="sage-19"><script type="text/x-sage">zoo.sort()
+zoo
+</script></pre>
+<div class="para" id="p-161">Notice that if you run this last compute cell your zoo has changed and some commands above will not necessarily execute the same way.  If you want to experiment, go all the way back to the first creation of the zoo and start executing cells again from there with a fresh zoo.</div>
+<div class="para" id="p-162">A construction called a <dfn class="terminology">list comprehension</dfn> is especially powerful, especially since it almost exactly mirrors notation we use to describe sets.  Suppose we want to form the plural of the names of the creatures in our zoo.  We build a new list, based on all of the elements of our old list.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-20"><script type="text/x-sage">plurality_zoo = [animal+'s' for animal in zoo]
+plurality_zoo
+</script></pre>
+<div class="para" id="p-163">Almost like it says: we add an “s” to each animal name, for each animal in the zoo, and place them in a new list.  Perfect.  (Except for getting the plural of “ostrich” wrong.)</div></section><section class="subsection" id="subsection-9"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.3.5</span> <span class="title">Lists of Integers</span>
+</h3>
+<div class="para" id="p-164">One final type of list, with numbers this time.  The <code class="code-inline tex2jax_ignore">srange()</code> function will create lists of integers.  (The “s” in the name stands for “Sage” and so will produce integers that Sage understands best.  Many early difficulties with Sage and group theory can be alleviated by using only this command to create lists of integers.)  In its simplest form an invocation like <code class="code-inline tex2jax_ignore">srange(12)</code> will create a list of 12 integers, <em class="emphasis">starting at zero</em> and working up to, <em class="emphasis">but not including</em>, 12.  Does this sound familiar?</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-21"><script type="text/x-sage">dozen = srange(12); dozen
+</script></pre>
+<div class="para" id="p-165">Here are two other forms, that you should be able to understand by studying the examples.</div>
+<pre class="ptx-sagecell sagecell-sage" id="sage-22"><script type="text/x-sage">teens = srange(13, 20); teens
+</script></pre>
+<pre class="ptx-sagecell sagecell-sage" id="sage-23"><script type="text/x-sage">decades = srange(1900, 2000, 10); decades
+</script></pre></section><section class="subsection" id="subsection-10"><h3 class="heading hide-type">
+<span class="type">Subsection</span> <span class="codenumber">1.3.6</span> <span class="title">Saving and Sharing Your Work</span>
+</h3>
+<div class="para" id="p-166">There is a “Save” button in the upper-right corner of the Sage Notebook.  This will save a current copy of your worksheet that you can retrieve your work from within your notebook again later, though you have to re-execute all the cells when you re-open the worksheet.</div>
+<div class="para" id="p-167">There is also a “File” drop-down list, on the left, just above your very top compute cell (not be confused with your browser's File menu item!).  You will see a choice here labeled  “Save worksheet to a file...”  When you do this, you are creating a copy of your worksheet in the <code class="code-inline tex2jax_ignore">sws</code> format (short for “Sage WorkSheet”).  You can email this file, or post it on a website, for other Sage users and they can use the “Upload” link on the homepage of their notebook to incorporate a copy of your worksheet into their notebook.</div>
+<div class="para" id="p-168">There are other ways to share worksheets that you can experiment with, but this gives you one way to share any worksheet with anybody almost anywhere.</div>
+<div class="para" id="p-169">We have covered a lot here in this section, so come back later to pick up tidbits you might have missed.  There are also many more features in the Sage Notebook that we have not covered.</div></section></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="section-sets-and-equivalence-relations.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="exercises-sets.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org"><div class="name">Authored in PreTeXt</div>
+<div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259 "></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0  472  9732 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496 A 4241 4241  0  0  1  4724  3590 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259 A 4507 4507  0  0  1  4724  9448 "></path><polyline points="5385,4299 4062,8125 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8598,3496 8598,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="850,3496 850,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="4960,9685 4488,9685 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="3070,4582 1889,6141 3070,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="6418,4582 7600,6141 6418,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8976,3590 8976,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732 "></path></g></svg></div></a><a class="mathjax-logo" href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a>
+</div>
+<!--Start: StatCounter code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***        GET YOUR OWN FROM STATCOUNTER           ***--><script>
+var sc_project=9664088;
+var sc_invisible=1;
+var sc_security="6e60c510";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/9664088/0/6e60c510/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-48811660-1"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-48811660-1');
+</script><!--End: Google Global Site Tag code--><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

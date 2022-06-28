@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SB Interactive Exercises</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="book">
+<meta property="og:image" content="https://pretextbook.org/examples/noparts/decorative/html/external/cover_aata_2014.png">
+<meta property="book:title" content="Abstract Algebra">
+<meta property="book:author" content="Thomas W. Judson">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>window.MathJax = {
+  tex: {
+    inlineMath: [['\\(','\\)']],
+    tags: "none",
+    tagSide: "right",
+    tagIndent: ".8em",
+    packages: {'[+]': ['base', 'extpfeil', 'ams', 'amscd', 'newcommand', 'knowl']}
+  },
+  options: {
+    ignoreHtmlClass: "tex2jax_ignore|ignore-math",
+    processHtmlClass: "process-math",
+    renderActions: {
+        findScript: [10, function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        }, '']
+    },
+  },
+  chtml: {
+    scale: 0.98,
+    mtextInheritFont: true
+  },
+  loader: {
+    load: ['input/asciimath', '[tex]/extpfeil', '[tex]/amscd', '[tex]/newcommand', '[pretext]/mathjaxknowl3.js'],
+    paths: {pretext: "https://pretextbook.org/js/lib"},
+  },
+/* Mathjax typesetting operation is under the control of React */
+  startup: {
+    typeset: false,
+  },
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/themes/prism.css" rel="stylesheet">
+<script defer src="./static/js/bundle.js"></script><script defer src="./static/js/main.js"></script><link href="./static/css/main.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="http://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link href="https://pretextbook.org/css/0.6/pretext.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/pretext_add_on.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/shell_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/banner_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/navbar_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/toc_min.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/knowls_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/style_default.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/colors_blue_red.css" rel="stylesheet" type="text/css">
+<link href="https://pretextbook.org/css/0.6/setcolors.css" rel="stylesheet" type="text/css">
+<!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX Course: Title Here';
+eBookConfig.basecourse = 'PTX Base Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.acDefaultLanguage = 'python';
+eBookConfig.runestone_version = '5.0.1';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runtime.b0f8547c48f16a9f.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/637.d54be67956c5c660.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/6.2.1/runestone.0e9550fe42760516.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/637.fafafbd97df8a0d1.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/6.2.1/runestone.e4d5592da655219f.css">
+<!--Start: StatCounter code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***        GET YOUR OWN FROM STATCOUNTER           ***--><script>
+var sc_project=9664088;
+var sc_invisible=1;
+var sc_security="6e60c510";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/9664088/0/6e60c510/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-48811660-1"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-48811660-1');
+</script><!--End: Google Global Site Tag code--><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</head>
+<body id="PTXSB" class="pretext book ignore-math">
+<a class="assistive" href="#content">Skip to main content</a><header id="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" href="http://abstract.pugetsound.edu" target="_blank"><img src="external/cover_aata_2014.png" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="sample-book.html"><span class="title">Abstract Algebra:</span> <span class="subtitle">PRETEXT XML SAMPLE ONLY</span></a></h1>
+<p class="byline">Thomas W. Judson, Isaac Newton (Editor)</p>
+</div>
+</div></header><nav id="ptx-navbar" class="navbar"><button class="toc-toggle button" aria-label="Show or hide table of contents"><span class="icon">☰</span><span class="name">Contents</span></button><a class="index-button button" href="index-1.html" title="Index"><span class="name">Index</span></a><button id="user-preferences-button" class="user-preferences-button button" title="Modify user preferences"><span id="theavatarbutton" class="name">You!</span><div id="preferences_menu_holder" class="hidden"><ol id="preferences_menu" style="font-family: 'Roboto Serif', serif;">
+<li data-env="avatar" tabindex="-1">Choose avatar<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden avatar">
+<li data-val="You!" tabindex="-1">
+<span id="theYou!" class="avatarcheck">✔️</span>You!</li>
+<li data-val="😺" tabindex="-1">
+<span id="the😺" class="avatarcheck"></span>😺</li>
+<li data-val="👤" tabindex="-1">
+<span id="the👤" class="avatarcheck"></span>👤</li>
+<li data-val="👽" tabindex="-1">
+<span id="the👽" class="avatarcheck"></span>👽</li>
+<li data-val="🐶" tabindex="-1">
+<span id="the🐶" class="avatarcheck"></span>🐶</li>
+<li data-val="🐼" tabindex="-1">
+<span id="the🐼" class="avatarcheck"></span>🐼</li>
+<li data-val="🌈" tabindex="-1">
+<span id="the🌈" class="avatarcheck"></span>🌈</li>
+</ol>
+</li>
+<li data-env="fontfamily" tabindex="-1">Font family<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fontfamily">
+<li data-val="face" data-change="OS" tabindex="-1" style="font-family: 'Open Sans'">
+<span id="theOS" class="ffcheck">✔️</span><span class="name">Open Sans</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+<li data-val="face" data-change="RS" tabindex="-1" style="font-family: 'Roboto Serif'">
+<span id="theRS" class="ffcheck"></span><span class="name">Roboto Serif</span><span class="sample">AaBbCc 123 PreTeXt</span>
+</li>
+</ol>
+</li>
+<li data-env="font" tabindex="-1">Adjust font<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden fonts">
+<li>Size</li>
+<li><span id="thesize">12</span></li>
+<li data-val="size" data-change="-1" tabindex="-1" style="font-size: 80%">Smaller</li>
+<li data-val="size" data-change="1" tabindex="-1" style="font-size: 110%">Larger</li>
+<li>Width</li>
+<li><span id="thewdth">100</span></li>
+<li data-val="wdth" data-change="-5" tabindex="-1" style="font-variation-settings: 'wdth' 60">narrower</li>
+<li data-val="wdth" data-change="5" tabindex="-1" style="font-variation-settings: 'wdth' 150">wider</li>
+<li>Weight</li>
+<li><span id="thewght">400</span></li>
+<li data-val="wght" data-change="-50" tabindex="-1" style="font-weight: 200">thinner</li>
+<li data-val="wght" data-change="50" tabindex="-1" style="font-weight: 700">heavier</li>
+<li>Letter spacing</li>
+<li>
+<span id="thelspace">0</span><span class="byunits">/200</span>
+</li>
+<li data-val="lspace" data-change="-1" tabindex="-1">closer</li>
+<li data-val="lspace" data-change="1" tabindex="-1">f a r t h e r</li>
+<li>Word spacing</li>
+<li>
+<span id="thewspace">0</span><span class="byunits">/50</span>
+</li>
+<li data-val="wspace" data-change="-1" tabindex="-1">smaller gap </li>
+<li data-val="wspace" data-change="1" tabindex="-1">larger gap</li>
+<li>Line Spacing</li>
+<li>
+<span id="theheight">135</span><span class="byunits">/100</span>
+</li>
+<li data-val="height" data-change="-5" tabindex="-1" style="line-height: 1">closer<br>together</li>
+<li data-val="height" data-change="5" tabindex="-1" style="line-height: 1.75">further<br>apart</li>
+</ol>
+</li>
+<li data-env="atmosphere" tabindex="-1">Light/dark mode<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden atmosphere">
+<li data-val="default" tabindex="-1">
+<span id="thedefault" class="atmospherecheck">✔️</span>default</li>
+<li data-val="pastel" tabindex="-1">
+<span id="thepastel" class="atmospherecheck"></span>pastel</li>
+<li data-val="darktwilight" tabindex="-1">
+<span id="thedarktwilight" class="atmospherecheck"></span>twilight</li>
+<li data-val="dark" tabindex="-1">
+<span id="thedark" class="atmospherecheck"></span>dark</li>
+<li data-val="darkmidnight" tabindex="-1">
+<span id="thedarkmidnight" class="atmospherecheck"></span>midnight</li>
+</ol>
+</li>
+<li data-env="ruler" tabindex="-1">Reading ruler<div class="wrap_to_submenu"><span class="to_submenu">▻</span></div>
+<ol class="hidden ruler">
+<li data-val="none" tabindex="-1">
+<span id="thenone" class="rulercheck">✔️</span>none</li>
+<li data-val="underline" tabindex="-1">
+<span id="theunderline" class="rulercheck"></span>underline</li>
+<li data-val="lunderline" tabindex="-1">
+<span id="thelunderline" class="rulercheck"></span>L-underline</li>
+<li data-val="greybar" tabindex="-1">
+<span id="thegreybar" class="rulercheck"></span>grey bar</li>
+<li data-val="lightbox" tabindex="-1">
+<span id="thelightbox" class="rulercheck"></span>light box</li>
+<li data-val="sunrise" tabindex="-1">
+<span id="thesunrise" class="rulercheck"></span>sunrise</li>
+<li data-val="sunriseunderline" tabindex="-1">
+<span id="thesunriseunderline" class="rulercheck"></span>sunrise underline</li>
+<li class="moveQ">Motion by:</li>
+<li data-val="mouse" tabindex="-1">
+<span id="themouse" class="motioncheck">✔️</span>follow the mouse</li>
+<li data-val="arrow" tabindex="-1">
+<span id="thearrow" class="motioncheck"></span>up/down arrows - not yet</li>
+<li data-val="eye" tabindex="-1">
+<span id="theeye" class="motioncheck"></span>eye tracking - not yet</li>
+</ol>
+</li>
+</ol></div></button><span class="treebuttons"><a class="previous-button button" href="section-19.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="up-button button" href="rune.html" title="Up"><span class="icon">^</span><span class="name">Up</span></a><a class="next-button button" href="section-20.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\newcommand{\identity}{\mathrm{id}}
+\newcommand{\notdivide}{{\not{\mid}}}
+\newcommand{\notsubset}{\not\subset}
+\newcommand{\lcm}{\operatorname{lcm}}
+\newcommand{\gf}{\operatorname{GF}}
+\newcommand{\inn}{\operatorname{Inn}}
+\newcommand{\aut}{\operatorname{Aut}}
+\newcommand{\Hom}{\operatorname{Hom}}
+\newcommand{\cis}{\operatorname{cis}}
+\newcommand{\chr}{\operatorname{char}}
+\newcommand{\Null}{\operatorname{Null}}
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\newcommand{\sfrac}[2]{{#1}/{#2}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar"><nav id="ptx-toc" class="depth2"><ul class="structural">
+<li>
+<div class="toc-item"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="front-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+<li><div class="toc-item"><a href="author-bio-TWJ.html" class="internal"><span class="title">Author Biography</span></a></div></li>
+<li><div class="toc-item"><a href="author-bio-RAB.html" class="internal"><span class="title">About Robert A. Beezer</span></a></div></li>
+<li><div class="toc-item"><a href="dedication.html" class="internal"><span class="title">Dedication</span></a></div></li>
+<li><div class="toc-item"><a href="acknowledgement.html" class="internal"><span class="title">Acknowledgements</span></a></div></li>
+<li><div class="toc-item"><a href="preface.html" class="internal"><span class="title">Preface</span></a></div></li>
+<li>
+<div class="toc-item"><a href="contributors.html" class="internal"><span class="title">Contributors to the 4<span class="process-math">\(^\mathrm{th}\)</span> Edition</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="contributors.html#contributors-1" class="internal"><span class="codenumber">[STRUCT].[NUM]</span> <span class="title"></span></a></div></li></ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="part-basics.html" class="internal"><span class="codenumber">I</span> <span class="title">Basics</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="sets.html" class="internal"><span class="codenumber">1</span> <span class="title">Preliminaries</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-note-on-proofs.html" class="internal"><span class="codenumber">1.1</span> <span class="title">A Short Note on Proofs</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-note-on-proofs.html#subsection-1" class="internal"><span class="codenumber">1.1.1</span> <span class="title">Some Cautions and Suggestions</span></a></div></li></ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-sets-and-equivalence-relations.html" class="internal"><span class="codenumber">1.2</span> <span class="title">Sets and Equivalence Relations</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-sets-and-equivalence-relations.html#subsection-2" class="internal"><span class="codenumber">1.2.1</span> <span class="title">Set Theory</span></a></div></li>
+<li><div class="toc-item"><a href="section-sets-and-equivalence-relations.html#subsection-3" class="internal"><span class="codenumber">1.2.2</span> <span class="title">Cartesian Products and Mappings</span></a></div></li>
+<li><div class="toc-item"><a href="section-sets-and-equivalence-relations.html#subsection-4" class="internal"><span class="codenumber">1.2.3</span> <span class="title">Equivalence Relations and Partitions</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="sets-sage.html" class="internal"><span class="codenumber">1.3</span> <span class="title">Sage</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="sets-sage.html#subsection-5" class="internal"><span class="codenumber">1.3.1</span> <span class="title">Executing Sage Commands</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-6" class="internal"><span class="codenumber">1.3.2</span> <span class="title">Immediate Help</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-7" class="internal"><span class="codenumber">1.3.3</span> <span class="title">Annotating Your Work</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-8" class="internal"><span class="codenumber">1.3.4</span> <span class="title">Lists</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-9" class="internal"><span class="codenumber">1.3.5</span> <span class="title">Lists of Integers</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage.html#subsection-10" class="internal"><span class="codenumber">1.3.6</span> <span class="title">Saving and Sharing Your Work</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-sets.html" class="internal"><span class="codenumber">1.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="sets-sage-exercises.html" class="internal"><span class="codenumber">1.5</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-1.html" class="internal"><span class="codenumber">1.6</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="integers.html" class="internal"><span class="codenumber">2</span> <span class="title">The Integers</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-math-induction.html" class="internal"><span class="codenumber">2.1</span> <span class="title">Mathematical Induction</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-division-algorithm.html" class="internal"><span class="codenumber">2.2</span> <span class="title">The Division Algorithm</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-division-algorithm.html#subsection-11" class="internal"><span class="codenumber">2.2.1</span> <span class="title">The Euclidean Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="section-division-algorithm.html#subsection-12" class="internal"><span class="codenumber">2.2.2</span> <span class="title">Prime Numbers</span></a></div></li>
+<li><div class="toc-item"><a href="section-division-algorithm.html#subsection-13" class="internal"><span class="codenumber">2.2.3</span> <span class="title">Historical Note</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="integers-sage.html" class="internal"><span class="codenumber">2.3</span> <span class="title">Sage</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="integers-sage.html#subsection-14" class="internal"><span class="codenumber">2.3.1</span> <span class="title">Division Algorithm</span></a></div></li>
+<li><div class="toc-item"><a href="integers-sage.html#subsection-15" class="internal"><span class="codenumber">2.3.2</span> <span class="title">Greatest Common Divisor</span></a></div></li>
+<li><div class="toc-item"><a href="integers-sage.html#subsection-16" class="internal"><span class="codenumber">2.3.3</span> <span class="title">Primes and Factoring</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-integers.html" class="internal"><span class="codenumber">2.4</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-4.html" class="internal"><span class="codenumber">2.5</span> <span class="title">Programming Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="integers-sage-exercises.html" class="internal"><span class="codenumber">2.6</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-2.html" class="internal"><span class="codenumber">2.7</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="part-algebra.html" class="internal"><span class="codenumber">II</span> <span class="title">Algebra</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="groups.html" class="internal"><span class="codenumber">3</span> <span class="title">Groups</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-mod-n-sym.html" class="internal"><span class="codenumber">3.1</span> <span class="title">Integer Equivalence Classes and Symmetries</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-mod-n-sym.html#subsection-17" class="internal"><span class="codenumber">3.1.1</span> <span class="title">The Integers mod <span class="process-math">\(n\)</span></span></a></div></li>
+<li><div class="toc-item"><a href="section-mod-n-sym.html#subsection-18" class="internal"><span class="codenumber">3.1.2</span> <span class="title">Symmetries</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-groups-define.html" class="internal"><span class="codenumber">3.2</span> <span class="title">Definitions and Examples</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-19" class="internal"><span class="codenumber">3.2.1</span> <span class="title">Definition of a Group</span></a></div></li>
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-20" class="internal"><span class="codenumber">3.2.2</span> <span class="title">Examples of Groups</span></a></div></li>
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-21" class="internal"><span class="codenumber">3.2.3</span> <span class="title">Basic Properties of Groups</span></a></div></li>
+<li><div class="toc-item"><a href="section-groups-define.html#subsection-22" class="internal"><span class="codenumber">3.2.4</span> <span class="title">Historical Note</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="section-subgroups.html" class="internal"><span class="codenumber">3.3</span> <span class="title">Subgroups</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-subgroups.html#subsection-23" class="internal"><span class="codenumber">3.3.1</span> <span class="title">Definitions and Examples</span></a></div></li>
+<li><div class="toc-item"><a href="section-subgroups.html#subsection-24" class="internal"><span class="codenumber">3.3.2</span> <span class="title">Some Subgroup Theorems</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="groups-sage.html" class="internal"><span class="codenumber">3.4</span> <span class="title">Sage</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="groups-sage.html#subsection-25" class="internal"><span class="codenumber">3.4.1</span> <span class="title">Integers mod n</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage.html#subsection-26" class="internal"><span class="codenumber">3.4.2</span> <span class="title">Groups of symmetries</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage.html#subsection-27" class="internal"><span class="codenumber">3.4.3</span> <span class="title">Quaternions</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage.html#subsection-28" class="internal"><span class="codenumber">3.4.4</span> <span class="title">Subgroups</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="exercises-groups.html" class="internal"><span class="codenumber">3.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-7.html" class="internal"><span class="codenumber">3.6</span> <span class="title">Additional Exercises: Detecting Errors</span></a></div></li>
+<li><div class="toc-item"><a href="groups-sage-exercises.html" class="internal"><span class="codenumber">3.7</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-3.html" class="internal"><span class="codenumber">3.8</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="cyclic.html" class="internal"><span class="codenumber">4</span> <span class="title">Cyclicity</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-11.html" class="internal"><span class="codenumber">4.1</span> <span class="title">Cyclic groups</span></a></div></li>
+<li><div class="toc-item"><a href="section-12.html" class="internal"><span class="codenumber">4.2</span> <span class="title">Subgroups of a Cyclic Group</span></a></div></li>
+<li><div class="toc-item"><a href="section-13.html" class="internal"><span class="codenumber">4.3</span> <span class="title">Cyclic Groups of Complex Numbers</span></a></div></li>
+<li><div class="toc-item"><a href="section-14.html" class="internal"><span class="codenumber">4.4</span> <span class="title">Large Powers of Integers</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-cyclic.html" class="internal"><span class="codenumber">4.5</span> <span class="title">Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="exercises-10.html" class="internal"><span class="codenumber">4.6</span> <span class="title">Programming Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="cyclic-sage-exercises.html" class="internal"><span class="codenumber">4.7</span> <span class="title">Sage Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="references-4.html" class="internal"><span class="codenumber">4.8</span> <span class="title">References and Suggested Readings</span></a></div></li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="rune.html" class="internal"><span class="codenumber">5</span> <span class="title">Runestone Testing</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-15.html" class="internal"><span class="codenumber">5.1</span> <span class="title">ActiveCode</span></a></div></li>
+<li><div class="toc-item"><a href="code-lens.html" class="internal"><span class="codenumber">5.2</span> <span class="title">Code Lens</span></a></div></li>
+<li><div class="toc-item"><a href="coding-exercises.html" class="internal"><span class="codenumber">5.3</span> <span class="title">Coding Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="section-18.html" class="internal"><span class="codenumber">5.4</span> <span class="title">YouTube Videos</span></a></div></li>
+<li>
+<div class="toc-item"><a href="section-19.html" class="internal"><span class="codenumber">5.5</span> <span class="title">Deeper</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="section-19.html#subsection-29" class="internal"><span class="codenumber">5.5.1</span> <span class="title">Subsection One</span></a></div></li>
+<li><div class="toc-item"><a href="section-19.html#subsection-30" class="internal"><span class="codenumber">5.5.2</span> <span class="title">Subsection Two</span></a></div></li>
+</ul>
+</li>
+<li class="active"><div class="toc-item"><a href="exercises-12.html" class="internal"><span class="codenumber">5.6</span> <span class="title">Interactive Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="section-20.html" class="internal"><span class="codenumber">5.7</span> <span class="title">Expedited Samples</span></a></div></li>
+<li><div class="toc-item"><a href="reading-questions-1.html" class="internal"><span class="codenumber">5.8</span> <span class="title">Reading Questions</span></a></div></li>
+</ul>
+</li>
+</ul>
+</li>
+<li>
+<div class="toc-item"><a href="backmatter.html" class="internal"><span class="title">Back Matter</span></a></div>
+<ul class="structural">
+<li><div class="toc-item"><a href="appendix-1.html" class="internal"><span class="codenumber">A</span> <span class="title">Notation</span></a></div></li>
+<li><div class="toc-item"><a href="solutions-1.html" class="internal"><span class="codenumber">B</span> <span class="title">Hints and Answers to Selected Odd Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="solutions-2.html" class="internal"><span class="codenumber">C</span> <span class="title">Hints and Answers to Selected Even Exercises</span></a></div></li>
+<li><div class="toc-item"><a href="solutions-3.html" class="internal"><span class="codenumber">D</span> <span class="title">Hints and Answers to Selected Exercises</span></a></div></li>
+<li>
+<div class="toc-item"><a href="appendix-2.html" class="internal"><span class="codenumber">E</span> <span class="title">A Structured Appendix</span></a></div>
+<ul class="structural">
+<li>
+<div class="toc-item"><a href="section-21.html" class="internal"><span class="codenumber">E.1</span> <span class="title">A Section in an Appendix</span></a></div>
+<ul class="structural"><li>
+<div class="toc-item"><a href="section-21.html#subsection-31" class="internal"><span class="codenumber">E.1.1</span> <span class="title">A Subsection in a Section in an Appendix</span></a></div>
+<ul class="structural"><li><div class="toc-item"><a href="section-21.html#subsubsection-1" class="internal"><span class="codenumber">E.1.1.1</span> <span class="title">A Subsubsection in a Subsection in a Section in an Appendix</span></a></div></li></ul>
+</li></ul>
+</li>
+<li><div class="toc-item"><a href="section-22.html" class="internal"><span class="codenumber">E.2</span> <span class="title">Numbering in the Back Matter</span></a></div></li>
+</ul>
+</li>
+<li><div class="toc-item"><a href="appendix-gfdl.html" class="internal"><span class="codenumber">F</span> <span class="title">GNU Free Documentation License</span></a></div></li>
+<li><div class="toc-item"><a href="index-1.html" class="internal"><span class="title">Index</span></a></div></li>
+<li><div class="toc-item"><a href="back-colophon.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div class="ptx-content">
+<section class="exercises" id="exercises-12"><h2 class="heading hide-type">
+<span class="type">Exercises</span> <span class="codenumber">5.6</span> <span class="title">Interactive Exercises</span>
+</h2>
+<div class="para" id="p-829">A sample of interactive problem types.</div>
+<article class="exercise exercise-like" id="vector-space-dimension"><h3 class="heading">
+<span class="codenumber">1<span class="period">.</span></span><span class="space"> </span><span class="title">True/False.</span>
+</h3>
+<div class="runestone "><ul data-component="multiplechoice" data-multipleanswers="false" id="vector-space-dimension">
+<div class="para" id="p-830">Every vector space has finite dimension.</div>
+<li data-component="answer" id="vector-space-dimension_opt_t"><p>True.</p></li>
+<li data-component="feedback" id="vector-space-dimension_opt_t"><div class="para" id="p-831">The vector space of all polynomials with finite degree has a basis, <span class="process-math">\(B = \{1,x,x^2,x^3,\dots\}\text{,}\)</span> which is infinte.</div></li>
+<li data-component="answer" id="vector-space-dimension_opt_f" data-correct=""><p>False.</p></li>
+<li data-component="feedback" id="vector-space-dimension_opt_f"><div class="para" id="p-831">The vector space of all polynomials with finite degree has a basis, <span class="process-math">\(B = \{1,x,x^2,x^3,\dots\}\text{,}\)</span> which is infinte.</div></li>
+</ul></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-32" id="hint-32"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-32"><div class="hint solution-like"><div class="para" id="p-832">
+<span class="process-math">\(P_n\text{,}\)</span> the vector space of polynomials with degree at most <span class="process-math">\(n\text{,}\)</span> has dimension <span class="process-math">\(n+1\)</span> by <a href="" class="xref" data-knowl="./knowl/theorem-exponent-laws.html" title="Theorem 3.2.16">Theorem 3.2.16</a>.  [Cross-reference is just a demo, content is not relevant.]  What happens if we relax the defintion and remove the parameter <span class="process-math">\(n\text{?}\)</span>
+</div></div></div>
+</div></article><article class="exercise exercise-like" id="multiple-choice-not-randomized"><h3 class="heading">
+<span class="codenumber">2<span class="period">.</span></span><span class="space"> </span><span class="title">Multiple-Choice, Not Randomized, One Answer.</span>
+</h3>
+<div class="runestone "><ul data-component="multiplechoice" id="multiple-choice-not-randomized" data-multipleanswers="false">
+<div class="para" id="p-833">What color is a stop sign?</div>
+<li data-component="answer" id="multiple-choice-not-randomized_opt_a"><div class="para" id="p-834">Green</div></li>
+<li data-component="feedback" id="multiple-choice-not-randomized_opt_a"><div class="para" id="p-835">Green means “go!”.</div></li>
+<li data-component="answer" id="multiple-choice-not-randomized_opt_b" data-correct=""><div class="para" id="p-836">Red</div></li>
+<li data-component="feedback" id="multiple-choice-not-randomized_opt_b"><div class="para" id="p-837">Red is universally used for prohibited activities or serious warnings.</div></li>
+<li data-component="answer" id="multiple-choice-not-randomized_opt_c"><div class="para" id="p-838">White</div></li>
+<li data-component="feedback" id="multiple-choice-not-randomized_opt_c"><div class="para" id="p-839">White might be hard to see.</div></li>
+</ul></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-33" id="hint-33"><span class="type">Hint</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-33"><div class="hint solution-like"><div class="para" id="p-840">What did you see last time you went driving?</div></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-34" id="hint-34"><span class="type">Hint</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-34"><div class="hint solution-like"><div class="para" id="p-841">Maybe go out for a drive?</div></div></div>
+</div></article><article class="exercise exercise-like" id="multiple-choice-multiple-answers"><h3 class="heading">
+<span class="codenumber">3<span class="period">.</span></span><span class="space"> </span><span class="title">Multiple-Choice, Not Randomized, Multiple Answers.</span>
+</h3>
+<div class="runestone "><ul data-component="multiplechoice" id="multiple-choice-multiple-answers" data-multipleanswers="true">
+<div class="para" id="p-842">Which colors might be found in a rainbow?  (Note that the radio buttons now allow multiple buttons to be selected.)</div>
+<li data-component="answer" id="multiple-choice-multiple-answers_opt_a" data-correct=""><div class="para" id="p-843">Red</div></li>
+<li data-component="feedback" id="multiple-choice-multiple-answers_opt_a"><div class="para" id="p-844">Red is a definitely one of the colors.</div></li>
+<li data-component="answer" id="multiple-choice-multiple-answers_opt_b" data-correct=""><div class="para" id="p-845">Yellow</div></li>
+<li data-component="feedback" id="multiple-choice-multiple-answers_opt_b"><div class="para" id="p-846">Yes, yellow is correct.</div></li>
+<li data-component="answer" id="multiple-choice-multiple-answers_opt_c"><div class="para" id="p-847">Black</div></li>
+<li data-component="feedback" id="multiple-choice-multiple-answers_opt_c"><div class="para" id="p-848">Remember the acronym…<abbr class="acronym">ROY G BIV</abbr>.  “B” stands for blue.</div></li>
+<li data-component="answer" id="multiple-choice-multiple-answers_opt_d" data-correct=""><div class="para" id="p-849">Green</div></li>
+<li data-component="feedback" id="multiple-choice-multiple-answers_opt_d"><div class="para" id="p-850">Yes, green is one of the colors.</div></li>
+</ul></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-35" id="hint-35"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-35"><div class="hint solution-like"><div class="para" id="p-851">Do you know the acronym…<abbr class="acronym">ROY G BIV</abbr> for the colors of a rainbow, and their order?</div></div></div>
+</div></article><article class="exercise exercise-like" id="multiple-choice-randomized"><h3 class="heading">
+<span class="codenumber">4<span class="period">.</span></span><span class="space"> </span><span class="title">Multiple-Choice, Randomized, One Answer.</span>
+</h3>
+<div class="runestone "><ul data-component="multiplechoice" id="multiple-choice-randomized" data-multipleanswers="false" data-random="">
+<div class="para" id="p-852">What color is a stop sign? [Static versions retain the order as authored.]</div>
+<li data-component="answer" id="multiple-choice-randomized_opt_a"><div class="para" id="p-853">Green</div></li>
+<li data-component="feedback" id="multiple-choice-randomized_opt_a"><div class="para" id="p-854">Green means “go!”.</div></li>
+<li data-component="answer" id="multiple-choice-randomized_opt_b" data-correct=""><div class="para" id="p-855">Red</div></li>
+<li data-component="feedback" id="multiple-choice-randomized_opt_b"><div class="para" id="p-856">Red is universally used for prohibited activities or serious warnings.</div></li>
+<li data-component="answer" id="multiple-choice-randomized_opt_c"><div class="para" id="p-857">White</div></li>
+<li data-component="feedback" id="multiple-choice-randomized_opt_c"><div class="para" id="p-858">White might be hard to see.</div></li>
+</ul></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-36" id="hint-36"><span class="type">Hint</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-36"><div class="hint solution-like"><div class="para" id="p-859">What did you see last time you went driving?</div></div></div>
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-37" id="hint-37"><span class="type">Hint</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-37"><div class="hint solution-like"><div class="para" id="p-860">Maybe go out for a drive?</div></div></div>
+</div></article><article class="exercise exercise-like" id="multiple-choice-randomized-multiple-answers"><h3 class="heading">
+<span class="codenumber">5<span class="period">.</span></span><span class="space"> </span><span class="title">Multiple-Choice, Randomized, Multiple Answers.</span>
+</h3>
+<div class="runestone "><ul data-component="multiplechoice" id="multiple-choice-randomized-multiple-answers" data-multipleanswers="true" data-random="">
+<div class="para" id="p-861">Which colors might be found in a rainbow?  (Note that the radio buttons now allow multiple buttons to be selected.) [Static versions retain the order as authored.]</div>
+<li data-component="answer" id="multiple-choice-randomized-multiple-answers_opt_a" data-correct=""><div class="para" id="p-862">Red</div></li>
+<li data-component="feedback" id="multiple-choice-randomized-multiple-answers_opt_a"><div class="para" id="p-863">Red is a definitely one of the colors.</div></li>
+<li data-component="answer" id="multiple-choice-randomized-multiple-answers_opt_b" data-correct=""><div class="para" id="p-864">Yellow</div></li>
+<li data-component="feedback" id="multiple-choice-randomized-multiple-answers_opt_b"><div class="para" id="p-865">Yes, yellow is correct.</div></li>
+<li data-component="answer" id="multiple-choice-randomized-multiple-answers_opt_c"><div class="para" id="p-866">Black</div></li>
+<li data-component="feedback" id="multiple-choice-randomized-multiple-answers_opt_c"><div class="para" id="p-867">Remember the acronym…<abbr class="acronym">ROY G BIV</abbr>.  “B” stands for blue.</div></li>
+<li data-component="answer" id="multiple-choice-randomized-multiple-answers_opt_d" data-correct=""><div class="para" id="p-868">Green</div></li>
+<li data-component="feedback" id="multiple-choice-randomized-multiple-answers_opt_d"><div class="para" id="p-869">Yes, green is one of the colors.</div></li>
+</ul></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-38" id="hint-38"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-38"><div class="hint solution-like"><div class="para" id="p-870">Do you know the acronym…<abbr class="acronym">ROY G BIV</abbr> for the colors of a rainbow, and their order?</div></div></div>
+</div></article><article class="exercise exercise-like" id="mathematical-multiple-choice-multiple-answers"><h3 class="heading">
+<span class="codenumber">6<span class="period">.</span></span><span class="space"> </span><span class="title">Mathematical Multiple-Choice, Not Randomized, Multiple Answers.</span>
+</h3>
+<div class="runestone "><ul data-component="multiplechoice" id="mathematical-multiple-choice-multiple-answers" data-multipleanswers="true">
+<div class="para" id="p-871">Which of the following is an antiderivative of <span class="process-math">\(2\sin(x)\cos(x)\text{?}\)</span>
+</div>
+<li data-component="answer" id="mathematical-multiple-choice-multiple-answers_opt_a" data-correct=""><div class="para" id="p-872"><span class="process-math">\(\sin^2(x)+832\)</span></div></li>
+<li data-component="feedback" id="mathematical-multiple-choice-multiple-answers_opt_a"><div class="para" id="p-873">Remember that when we write <span class="process-math">\(+C\)</span> on an antiderivative that this is the way we communicate that there are <em class="emphasis">many</em> possible derivatives, but they all “differ by a constant”.</div></li>
+<li data-component="answer" id="mathematical-multiple-choice-multiple-answers_opt_b" data-correct=""><div class="para" id="p-874"><span class="process-math">\(\sin^2(x)\)</span></div></li>
+<li data-component="feedback" id="mathematical-multiple-choice-multiple-answers_opt_b"><div class="para" id="p-875">The derivative given in the statement of the problem looks exactly like an application of the chain rule to <span class="process-math">\(\sin^2(x)\text{.}\)</span>
+</div></li>
+<li data-component="answer" id="mathematical-multiple-choice-multiple-answers_opt_c" data-correct=""><div class="para" id="p-876"><span class="process-math">\(-\cos^2(x)\)</span></div></li>
+<li data-component="feedback" id="mathematical-multiple-choice-multiple-answers_opt_c"><div class="para" id="p-877">Take a derivative on <span class="process-math">\(-\cos^2(x)\)</span> to see that this answer is correct.  Extra credit: does this answer “differ by a constant” when subtracted from either of the other two correct answers?</div></li>
+<li data-component="answer" id="mathematical-multiple-choice-multiple-answers_opt_d"><div class="para" id="p-878"><span class="process-math">\(-2\cos(x)\sin(x)\)</span></div></li>
+<li data-component="feedback" id="mathematical-multiple-choice-multiple-answers_opt_d"><div class="para" id="p-879">The antiderivative of a product is not the product of the antiderivatives.  Use the product rule to take a derivative and see that this answer is not correct.</div></li>
+</ul></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-39" id="hint-39"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-39"><div class="hint solution-like"><div class="para" id="p-880">You can take a derivative on any one of the choices to see if it is correct or not, rather than using techniques of integration to find <em class="emphasis">a single</em> correct answer.</div></div></div>
+</div></article><article class="exercise exercise-like" id="number-theory-proof"><h3 class="heading">
+<span class="codenumber">7<span class="period">.</span></span><span class="space"> </span><span class="title">Parsons Problem, Mathematical Proof.</span>
+</h3>
+<div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="number-theory-proof">
+<div class="parsons_question parsons-text"><div class="para" id="p-881">Create a proof of the theorem: If <span class="process-math">\(n\)</span> is an even number, then <span class="process-math">\(n\equiv 0\mod 2\text{.}\)</span>
+</div></div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-adaptive="true" data-noindent="true"><div class="para" id="p-882">Suppose <span class="process-math">\(n\)</span> is even.</div>
+---
+<div class="para" id="p-884">Then there exists an <span class="process-math">\(m\)</span> so that <span class="process-math">\(n = 2m\text{.}\)</span>
+</div>
+---
+<div class="para" id="p-883">Then <span class="process-math">\(n\)</span> is a prime number.</div> #paired
+---
+<div class="para" id="p-885">Then there exists an <span class="process-math">\(m\)</span> so that <span class="process-math">\(n = 2m + 1\text{.}\)</span>
+</div> #paired
+---
+<div class="para" id="p-886">Click the heels of your ruby slippers together three times.</div> #distractor
+---
+<div class="para" id="p-887">So <span class="process-math">\(n = 2m + 0\text{.}\)</span>
+</div> <div class="para" id="p-888">This is a superfluous second paragraph in this block.</div>
+---
+<div class="para" id="p-889">Thus <span class="process-math">\(n\equiv 0\mod 2\text{.}\)</span>
+</div></pre>
+</div></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-40" id="hint-40"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-40"><div class="hint solution-like">Dorothy will not be much help with this proof.</div></div>
+</div></article><article class="exercise exercise-like" id="prime-number-program-indent-yes"><h3 class="heading">
+<span class="codenumber">8<span class="period">.</span></span><span class="space"> </span><span class="title">Parsons Problem, Programming.</span>
+</h3>
+<div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="prime-number-program-indent-yes">
+<div class="parsons_question parsons-text">
+<div class="para" id="p-890">The Sieve of Eratosthenes computes prime numbers by starting with a finite list of the integers bigger than 1.  The first member of the list is a prime and is saved/recorded.  Then all multiples of that prime (which not a prime, excepting the prime itself!) are removed from the list.  Now the first number remaining in the list is the next prime number.  And the process repeats.</div>
+<div class="para" id="p-891">The code blocks below can be rearranged to form one of the many possible programs to implement this algorithm to compute a list of all the primes less than <span class="process-math">\(250\text{.}\)</span> [Ed. this version of this problem requires the reader to provide the necessary indentation.]</div>
+<div class="para" id="p-892">This reprises <a href="" class="xref" data-knowl="./knowl/sieve-primes.html" title="Exercise 2.5.1: The Sieve of Eratosthenes">Exercise 2.5.1</a>.</div>
+</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="python" data-adaptive="true" data-noindent="false">n = 250
+---
+primes = []
+candidates = list(range(2,n))
+---
+candidates = []
+primes = list(range(2,n)) #paired
+---
+primes = candidates + [p] #distractor
+---
+while candidates:
+---
+    p = candidates[0]
+    primes.append(p)
+---
+    for nonprime in range(p, n, p):
+---
+        if nonprime in candidates:
+            candidates.remove(nonprime)
+---
+print(primes)</pre>
+</div></div></article><article class="exercise exercise-like" id="prime-number-program-indent-no"><h3 class="heading">
+<span class="codenumber">9<span class="period">.</span></span><span class="space"> </span><span class="title">Parsons Problem, Programming.</span>
+</h3>
+<div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="prime-number-program-indent-no">
+<div class="parsons_question parsons-text">
+<div class="para" id="p-893">The Sieve of Eratosthenes computes prime numbers by starting with a finite list of the integers bigger than 1.  The first member of the list is a prime and is saved/recorded.  Then all multiples of that prime (which not a prime, excepting the prime itself!) are removed from the list.  Now the first number remaining in the list is the next prime number.  And the process repeats.</div>
+<div class="para" id="p-894">The code blocks below can be rearranged to form one of the many possible programs to implement this algorithm to compute a list of all the primes less than <span class="process-math">\(250\text{.}\)</span> [Ed. this version of this problem does not require the reader to provide the necessary indentation, which is the default.]</div>
+<div class="para" id="p-895">This reprises <a href="" class="xref" data-knowl="./knowl/sieve-primes.html" title="Exercise 2.5.1: The Sieve of Eratosthenes">Exercise 2.5.1</a>.</div>
+</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="python" data-adaptive="true" data-noindent="true">n = 250
+---
+primes = []
+candidates = list(range(2,n))
+---
+candidates = []
+primes = list(range(2,n)) #paired
+---
+primes = candidates + [p] #distractor
+---
+while candidates:
+---
+    p = candidates[0]
+    primes.append(p)
+---
+    for nonprime in range(p, n, p):
+---
+        if nonprime in candidates:
+            candidates.remove(nonprime)
+---
+print(primes)</pre>
+</div></div></article><article class="exercise exercise-like" id="number-theory-proof-numbered-left"><h3 class="heading">
+<span class="codenumber">10<span class="period">.</span></span><span class="space"> </span><span class="title">Parsons Problem, Mathematical Proof, Numbered Blocks.</span>
+</h3>
+<div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="number-theory-proof-numbered-left">
+<div class="parsons_question parsons-text"><div class="para" id="p-896">Create a proof of the theorem: If <span class="process-math">\(n\)</span> is an even number, then <span class="process-math">\(n\equiv 0\mod 2\text{.}\)</span> [Ed.  This version has numbered blocks, online they are on the right end of the block.]</div></div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="natural" data-numbered="right" data-adaptive="true" data-noindent="true"><div class="para" id="p-897">Suppose <span class="process-math">\(n\)</span> is even.</div>
+---
+<div class="para" id="p-899">Then there exists an <span class="process-math">\(m\)</span> so that <span class="process-math">\(n = 2m\text{.}\)</span>
+</div>
+---
+<div class="para" id="p-898">Then <span class="process-math">\(n\)</span> is a prime number.</div> #paired
+---
+<div class="para" id="p-900">Then there exists an <span class="process-math">\(m\)</span> so that <span class="process-math">\(n = 2m + 1\text{.}\)</span>
+</div> #paired
+---
+<div class="para" id="p-901">Click the heels of your ruby slippers together three times.</div> #distractor
+---
+<div class="para" id="p-902">So <span class="process-math">\(n = 2m + 0\text{.}\)</span>
+</div> <div class="para" id="p-903">This is a superfluous second paragraph in this block.</div>
+---
+<div class="para" id="p-904">Thus <span class="process-math">\(n\equiv 0\mod 2\text{.}\)</span>
+</div></pre>
+</div></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-41" id="hint-41"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-41"><div class="hint solution-like">Dorothy will not be much help with this proof.</div></div>
+</div></article><article class="exercise exercise-like" id="prime-number-program-numbered-right"><h3 class="heading">
+<span class="codenumber">11<span class="period">.</span></span><span class="space"> </span><span class="title">Parsons Problem, Programming.</span>
+</h3>
+<div class="runestone" style="max-width: none;"><div data-component="parsons" class="parsons" id="prime-number-program-numbered-right">
+<div class="parsons_question parsons-text">
+<div class="para" id="p-905">The Sieve of Eratosthenes computes prime numbers by starting with a finite list of the integers bigger than 1.  The first member of the list is a prime and is saved/recorded.  Then all multiples of that prime (which not a prime, excepting the prime itself!) are removed from the list.  Now the first number remaining in the list is the next prime number.  And the process repeats.</div>
+<div class="para" id="p-906">The code blocks below can be rearranged to form one of the many possible programs to implement this algorithm to compute a list of all the primes less than <span class="process-math">\(250\text{.}\)</span> [Ed.  This version has numbered blocks, online they are on the left end of the block.]</div>
+<div class="para" id="p-907">This reprises <a href="" class="xref" data-knowl="./knowl/sieve-primes.html" title="Exercise 2.5.1: The Sieve of Eratosthenes">Exercise 2.5.1</a>.</div>
+</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="python" data-numbered="left" data-adaptive="true" data-noindent="false">n = 250
+---
+primes = []
+candidates = list(range(2,n))
+---
+candidates = []
+primes = list(range(2,n)) #paired
+---
+primes = candidates + [p] #distractor
+---
+while candidates:
+---
+    p = candidates[0]
+    primes.append(p)
+---
+    for nonprime in range(p, n, p):
+---
+        if nonprime in candidates:
+            candidates.remove(nonprime)
+---
+print(primes)</pre>
+</div></div></article><article class="exercise exercise-like" id="matching-dates"><h3 class="heading">
+<span class="codenumber">12<span class="period">.</span></span><span class="space"> </span><span class="title">Matching Problem, Dates.</span>
+</h3>
+<div class="runestone"><ul data-component="dragndrop" data-question_label="" style="visibility: hidden;" id="matching-dates">
+<span data-subcomponent="question"><div class="para" id="p-908">Match each event in United States history with the year it happened.</div></span><span data-subcomponent="feedback"><div class="para" id="p-909">Review <a class="external" href="https://www.britannica.com/list/25-decade-defining-events-in-us-history" target="_blank">Encyclopedia Brittania, 25 Decade-Defining Events in U.S. History</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-8" id="fn-8"><sup> 1 </sup></a>url.</div></span><li data-subcomponent="draggable" id="matching-dates_drag1">Monroe Doctrine</li>
+<li data-subcomponent="dropzone" for="matching-dates_drag1">1823</li>
+<li data-subcomponent="draggable" id="matching-dates_drag2">Haymarket Riot</li>
+<li data-subcomponent="dropzone" for="matching-dates_drag2">1886</li>
+<li data-subcomponent="draggable" id="matching-dates_drag3">Louisiana Purchase</li>
+<li data-subcomponent="dropzone" for="matching-dates_drag3">1803</li>
+<li data-subcomponent="draggable" id="matching-dates_drag4">Battle of Gettysburg</li>
+<li data-subcomponent="dropzone" for="matching-dates_drag4">1863</li>
+</ul></div></article><article class="exercise exercise-like" id="matching-derivatives"><h3 class="heading">
+<span class="codenumber">13<span class="period">.</span></span><span class="space"> </span><span class="title">Matching Problem, Derivatives.</span>
+</h3>
+<div class="runestone"><ul data-component="dragndrop" data-question_label="" style="visibility: hidden;" id="matching-derivatives">
+<span data-subcomponent="question"><div class="para" id="p-910">Match each function with its derivative.</div></span><span data-subcomponent="feedback"><div class="para" id="p-911">Did you compute the derivative of each function in the premises (left column)?</div></span><li data-subcomponent="draggable" id="matching-derivatives_drag1"><span class="process-math">\(x^3-6x^2+5\)</span></li>
+<li data-subcomponent="dropzone" for="matching-derivatives_drag1"><span class="process-math">\(3x^2-12x\)</span></li>
+<li data-subcomponent="draggable" id="matching-derivatives_drag2"><span class="process-math">\(x^{-3}\)</span></li>
+<li data-subcomponent="dropzone" for="matching-derivatives_drag2"><span class="process-math">\(-3x^{-4}\)</span></li>
+<li data-subcomponent="draggable" id="matching-derivatives_drag3"><span class="process-math">\((x+1)^2\)</span></li>
+<li data-subcomponent="dropzone" for="matching-derivatives_drag3"><span class="process-math">\(2x+2\)</span></li>
+</ul></div></article><article class="exercise exercise-like" id="clickable-text"><h3 class="heading">
+<span class="codenumber">14<span class="period">.</span></span><span class="space"> </span><span class="title">Clickable Areas, “Regular” Text.</span>
+</h3>
+<div class="runestone"><div data-component="clickablearea" class="runestone" data-question_label="" style="visibility: hidden;" id="clickable-text">
+<span data-question=""><div class="para" id="p-912">Identify (by clicking, or by circling) all of the nouns in this quotation by Eleanor Roosevelt.</div></span><span data-feedback=""><div class="para" id="p-914">The incorrect words are pronouns.</div></span><div class="para" id="p-913">“The <span data-correct="">future</span> belongs to <span data-incorrect="">those</span> who believe in the <span data-correct="">beauty</span> of <span data-incorrect="">their</span> <span data-correct="">dreams</span>.”</div>
+</div></div></article><article class="exercise exercise-like" id="clickable-code"><h3 class="heading">
+<span class="codenumber">15<span class="period">.</span></span><span class="space"> </span><span class="title">Clickable Areas, Code.</span>
+</h3>
+<div class="runestone"><div data-component="clickablearea" class="runestone" data-question_label="" style="visibility: hidden;" id="clickable-code">
+<span data-question=""><div class="para" id="p-915">Identify (by clicking, or by circling) all of the assignment statements in this Python function.</div></span><span data-feedback=""><div class="para" id="p-916">Remember, the operator <code class="code-inline tex2jax_ignore">=</code> is used for assignment.</div></span><pre><span data-incorrect="">def main():</span>
+    <span data-correct="">x = 4</span>
+    for i in range(5):
+        <span data-correct="">y = i</span>
+        <span data-incorrect="">if y &gt; 2:</span>
+            print(y)
+</pre>
+</div></div></article><article class="exercise exercise-like" id="clickable-table"><h3 class="heading">
+<span class="codenumber">16<span class="period">.</span></span><span class="space"> </span><span class="title">Clickable Areas, Text in a Table.</span>
+</h3>
+<div class="runestone"><div data-component="clickablearea" class="runestone" data-question_label="" style="visibility: hidden;" id="clickable-table">
+<span data-question=""><div class="para logical" id="p-917">
+<div class="para">A two-dimensional array was created in Python with the list comprehension:</div>
+<pre class="code-display tex2jax_ignore">[[0 for x in range(3)] for y in range(2)]
+</pre>
+<div class="para">Then the values were (mostly) changed from zeros and the final array is shown below.</div>
+</div>
+<div class="para" id="p-918">Identify (by clicking, or by circling) all of the boolean values in the array.</div></span><span data-feedback=""><div class="para" id="p-920">Python boolean variables are <code class="code-inline tex2jax_ignore">True</code> and <code class="code-inline tex2jax_ignore">False</code>.  A value in quotation marks is a string, not a boolean.</div></span><div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b1 r1 l1 t1 lines"><code class="code-inline tex2jax_ignore">42</code></td>
+<td class="l m b1 r1 l0 t1 lines"><span data-correct=""><code class="code-inline tex2jax_ignore">True</code></span></td>
+<td class="l m b1 r1 l0 t1 lines"><span data-incorrect=""><code class="code-inline tex2jax_ignore">'towel'</code></span></td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines"><span data-incorrect="">'true'</span></td>
+<td class="l m b1 r1 l0 t0 lines">0</td>
+<td class="l m b1 r1 l0 t0 lines"><span data-correct="">False</span></td>
+</tr>
+</table></div>
+<div class="para" id="p-919">This second table has no <code class="code-inline tex2jax_ignore">&lt;area&gt;</code>, in order to test CSS for tables.</div>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b1 r1 l1 t1 lines"><code class="code-inline tex2jax_ignore">42</code></td>
+<td class="l m b1 r1 l0 t1 lines"><code class="code-inline tex2jax_ignore">True</code></td>
+<td class="l m b1 r1 l0 t1 lines"><code class="code-inline tex2jax_ignore">'towel'</code></td>
+</tr>
+<tr>
+<td class="l m b1 r1 l1 t0 lines">'true'</td>
+<td class="l m b1 r1 l0 t0 lines">0</td>
+<td class="l m b1 r1 l0 t0 lines">False</td>
+</tr>
+</table></div>
+</div></div>
+<div class="solutions">
+<a href="" data-knowl="" class="id-ref hint-knowl original" data-refid="hk-hint-42" id="hint-42"><span class="type">Hint</span><span class="period">.</span></a><div class="hidden-content tex2jax_ignore" id="hk-hint-42"><div class="hint solution-like"><div class="para" id="p-921">Python boolean variables begin with capital latters.</div></div></div>
+</div></article><article class="exercise exercise-like" id="short-answer-question"><h3 class="heading">
+<span class="codenumber">17<span class="period">.</span></span><span class="space"> </span><span class="title">Short Answer.</span>
+</h3>
+<div class="para" id="p-922">This sample book is configured to make some simple questions interactive on a capable platform, and to make others never interactive, even if it is possible.  In this case a “divisional” exercise (like this one) could be made interactive for capable platforms by adjusting a switch in the publication file.</div></article><article class="exercise exercise-like" id="fillin-integer"><h3 class="heading">
+<span class="codenumber">18<span class="period">.</span></span><span class="space"> </span><span class="title">Fill-In, Integer Answer.</span>
+</h3>
+<div class="runestone"><div data-component="fillintheblank" data-question_label="" id="fillin-integer">
+<div class="para" id="p-923">The game of bowling uses <input type="text" placeholder="Number"> pins that you try to knock down.</div>
+<script type="application/json">[[{"number": [10, 10], "feedback": "<div class=\"para\" id=\"p-924\">Arranged in a triangle, there are <span class=\"process-math\">\\(1+2+3+4 = 10\\)<\/span> pins, a so-called <dfn class=\"terminology\">triangular<\/dfn> number.<\/div>"}, {"number": [16, 16], "feedback": "<div class=\"para\" id=\"p-925\"><em class=\"emphasis\">Close<\/em>! You may have used hexadecimal notation, when you did not really mean to.<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"p-926\">Incorrect.<\/div>"}]]</script>
+</div></div></article><article class="exercise exercise-like" id="fillin-string-integer"><h3 class="heading">
+<span class="codenumber">19<span class="period">.</span></span><span class="space"> </span><span class="title">Fill-In, String and Number Answers.</span>
+</h3>
+<div class="runestone"><div data-component="fillintheblank" data-question_label="" id="fillin-string-integer">
+<div class="para" id="p-927">Complete the following line of a Python program so that it will declare an integer variable <code class="code-inline tex2jax_ignore">age</code> with an initial value of <code class="code-inline tex2jax_ignore">5</code>.</div>
+<div class="para" id="p-928">
+<input type="text" placeholder="Text"> <code class="code-inline tex2jax_ignore">age = </code> <input type="text" placeholder="Number"><code class="code-inline tex2jax_ignore">;</code>
+</div>
+<script type="application/json">[[{"regex": "^\\s*int\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"p-929\">A variable of type <code class=\"code-inline tex2jax_ignore\">int<\/code> is appropriate for whole number ages.<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"p-930\">Remember that Java uses just the first three letters of the word “integer” to define an integral type.<\/div>"}], [{"number": [5, 5], "feedback": "<div class=\"para\" id=\"p-931\">An integer variable may be initialized to a value.<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"p-932\">Use <code class=\"code-inline tex2jax_ignore\">5<\/code> as the initial value of the variable.<\/div>"}]]</script>
+</div></div></article><article class="exercise exercise-like" id="fillin-case-insensitive"><h3 class="heading">
+<span class="codenumber">20<span class="period">.</span></span><span class="space"> </span><span class="title">Fill-In, Case-Insensitive Answer.</span>
+</h3>
+<div class="runestone"><div data-component="fillintheblank" data-question_label="" id="fillin-case-insensitive">
+<div class="para" id="p-933">The word <input type="text" placeholder="Text"> is the opposite of “yes”.  (Try a mixture of upper and lower-case letters.)</div>
+<script type="application/json">[[{"regex": "^\\s*no\\s*$", "regexFlags": "i", "feedback": "The correct answers are  no, No, nO, and NO."}, {"regex": "^\\s*.*\\s*$", "regexFlags": "i", "feedback": "Incorrect."}]]</script>
+</div></div></article><article class="exercise exercise-like" id="fillin-decimal"><h3 class="heading">
+<span class="codenumber">21<span class="period">.</span></span><span class="space"> </span><span class="title">Fill-In, Decimal Answer.</span>
+</h3>
+<div class="runestone"><div data-component="fillintheblank" data-question_label="" id="fillin-decimal">
+<div class="para" id="p-934">The decimal number <input type="text" placeholder="Number"> is an approximation of <span class="process-math">\(\sfrac{1}{3}\)</span> to within three significant figures.  (<a class="external" href="https://en.wikipedia.org/wiki/Significant_figures" target="_blank">Wikipedia</a><a href="" data-knowl="" class="id-ref fn-knowl original" data-refid="hk-fn-9" id="fn-9"><sup> 2 </sup></a>).</div>
+<script type="application/json">[[{"number": [0.3325,0.3335], "feedback": "<div class=\"para\" id=\"p-935\">Any value in the interval <span class=\"process-math\">\\(0.333\\pm 0.0005\\)<\/span> is correct.<\/div>"}, {"regex": "^\\s*.*\\s*$", "regexFlags": "", "feedback": "<div class=\"para\" id=\"p-936\">Incorrect. Did you provide three <em class=\"emphasis\">significant figures<\/em>?<\/div>"}]]</script>
+</div></div></article></section><div class="hidden-content tex2jax_ignore" id="hk-fn-8"><div class="fn"><code class="code-inline tex2jax_ignore">www.britannica.com/list/25-decade-defining-events-in-us-history</code></div></div>
+<div class="hidden-content tex2jax_ignore" id="hk-fn-9"><div class="fn"><code class="code-inline tex2jax_ignore">en.wikipedia.org/wiki/Significant_figures</code></div></div>
+</div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="section-19.html" title="Previous"><span class="icon">&lt;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon">^</span><span class="name">Top</span></a><a class="next-button button" href="section-20.html" title="Next"><span class="name">Next</span><span class="icon">&gt;</span></a>
+</div></main>
+</div>
+<div class="ptx-page-footer">
+<a class="pretext-link" href="https://pretextbook.org"><div class="name">Authored in PreTeXt</div>
+<div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259 "></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0  472  9732 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496 A 4241 4241  0  0  1  4724  3590 "></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259 A 4507 4507  0  0  1  4724  9448 "></path><polyline points="5385,4299 4062,8125 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8598,3496 8598,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="850,3496 850,9259 " style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="4960,9685 4488,9685 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="3070,4582 1889,6141 3070,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="6418,4582 7600,6141 6418,7700 " style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "></polyline><polyline points="8976,3590 8976,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732 "></path></g></svg></div></a><a class="mathjax-logo" href="https://www.mathjax.org"><img title="Powered by MathJax" src="https://www.mathjax.org/badge/badge.gif" alt="Powered by MathJax"></a>
+</div>
+<!--Start: StatCounter code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***        GET YOUR OWN FROM STATCOUNTER           ***--><script>
+var sc_project=9664088;
+var sc_invisible=1;
+var sc_security="6e60c510";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/9664088/0/6e60c510/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-48811660-1"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-48811660-1');
+</script><!--End: Google Global Site Tag code--><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/components/prism-core.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.26.0/plugins/autoloader/prism-autoloader.min.js"></script>
+</body>
+</html>

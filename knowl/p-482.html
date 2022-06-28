@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h5 class="heading"><span class="type">Paragraph</span></h5>
+<div class="para logical">
+<div class="para">One of the few things you can place inside of mathematics is a “fill-in” blank.  We demonstrate a few scenarios here.  See details on syntax in <a href="interesting-corollary.html#subsection-paragraph-markup" class="internal" title="Subsection 4.7: Some Paragraph-Level Markup">Subsection 4.7</a>–the use is identical within mathematics.</div>
+<ul class="disc">
+<li><div class="para">Inside inline math (short, space for <span class="process-math">\(x\)</span>): <span class="process-math">\(\sin(\fillinmath{x})\)</span>
+</div></li>
+<li><div class="para">Inside inline math (default, space for <span class="process-math">\(XXX\)</span>): <span class="process-math">\(\sin(\fillinmath{XXX})\)</span>
+</div></li>
+<li><div class="para">Inside exponents and subscripts (each is space for the string “12”).  In this case, be sure to wrap your exponents and subscripts in braces, as would be good <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> practice anyway: <span class="process-math">\(x^{5+\fillinmath{12}}\,y_{\fillinmath{12}}\)</span>
+</div></li>
+<li><div class="para">Inside inline math (too long for this line probably, 40 characters long): <span class="process-math">\(\tan(\fillinmath{Mxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx})\)</span>
+</div></li>
+<li><div class="para logical">
+<div class="para">So use inside a displayed equation</div>
+<div class="displaymath process-math">
+\begin{equation*}
+16\log\space\fillinmath{1-x^2}
+\end{equation*}
+</div>
+<div class="para">like this one.</div>
+</div></li>
+<li><div class="para logical">
+<div class="para">Inside the second line of a multi-line display:</div>
+<div class="displaymath process-math">
+\begin{align*}
+y &amp;= x^7\,x^8\\
+&amp;= x^{\fillinmath{15}}
+\end{align*}
+</div>
+</div></li>
+<li><div class="para">This fillin has the historical <code class="code-inline tex2jax_ignore">@characters</code> attribute for a fillin inside math: <span class="process-math">\(1+\fillinmath{XXXXX}+4=10\text{,}\)</span> which may be more convenient, but may not side properly in places like subscripts, superscripts, fractions, limits of integrals, and so on.</div></li>
+</ul>
+</div>
+<span class="incontext"><a href="section-11.html#p-482" class="internal">in-context</a></span>
+</body>
+</html>

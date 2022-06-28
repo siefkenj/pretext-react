@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><article class="hiddenproof"><div class="para">This is a perfect example of the existence-and-uniqueness type of proof.  We must first prove that the numbers <span class="process-math">\(q\)</span> and <span class="process-math">\(r\)</span> actually  exist. Then we must show that if  <span class="process-math">\(q'\)</span> and <span class="process-math">\(r'\)</span> are two other such numbers, then <span class="process-math">\(q = q'\)</span> and <span class="process-math">\(r = r'\text{.}\)</span>
+</div>
+<div class="para logical">
+<div class="para">
+<em class="emphasis">Existence of <span class="process-math">\(q\)</span> and <span class="process-math">\(r\text{.}\)</span></em> Let</div>
+<div class="displaymath process-math">
+\begin{equation*}
+S = \{ a - bk : k \in {\mathbb Z} \text{ and } a - bk \geq 0 \}\text{.}
+\end{equation*}
+</div>
+<div class="para">If <span class="process-math">\(0 \in S\text{,}\)</span> then <span class="process-math">\(b\)</span> divides <span class="process-math">\(a\text{,}\)</span> and  we can let <span class="process-math">\(q = a/b\)</span> and <span class="process-math">\(r = 0\text{.}\)</span>  If <span class="process-math">\(0 \notin S\text{,}\)</span> we can use the Well-Ordering Principle.  We must first show that <span class="process-math">\(S\)</span> is nonempty.  If <span class="process-math">\(a \gt 0\text{,}\)</span> then <span class="process-math">\(a - b \cdot 0 \in S\text{.}\)</span> If <span class="process-math">\(a \lt 0\text{,}\)</span> then <span class="process-math">\(a - b(2a) = a(1 - 2b) \in S\text{.}\)</span>  In either case <span class="process-math">\(S \neq \emptyset\text{.}\)</span>  By the Well-Ordering Principle, <span class="process-math">\(S\)</span> must have a smallest member, say <span class="process-math">\(r = a - bq\text{.}\)</span> Therefore, <span class="process-math">\(a = bq + r\text{,}\)</span> <span class="process-math">\(r \geq 0\text{.}\)</span> We now show that <span class="process-math">\(r \lt b\text{.}\)</span> Suppose that <span class="process-math">\(r \gt b\text{.}\)</span> Then</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a - b(q + 1)= a - bq - b = r - b \gt 0\text{.}
+\end{equation*}
+</div>
+<div class="para">In this case we would have <span class="process-math">\(a - b(q + 1)\)</span> in the set <span class="process-math">\(S\text{.}\)</span> But then <span class="process-math">\(a - b(q + 1) \lt a - bq\text{,}\)</span> which would contradict the fact that <span class="process-math">\(r = a - bq\)</span> is the smallest member  of <span class="process-math">\(S\text{.}\)</span> So <span class="process-math">\(r \leq b\text{.}\)</span>  Since <span class="process-math">\(0 \notin S\text{,}\)</span> <span class="process-math">\(r \neq b\)</span> and so <span class="process-math">\(r \lt b\text{.}\)</span>
+</div>
+</div>
+<div class="para logical">
+<div class="para">
+<em class="emphasis">Uniqueness of <span class="process-math">\(q\)</span> and <span class="process-math">\(r\text{.}\)</span></em> Suppose there exist integers <span class="process-math">\(r\text{,}\)</span> <span class="process-math">\(r'\text{,}\)</span> <span class="process-math">\(q\text{,}\)</span> and <span class="process-math">\(q'\)</span> such that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a = bq + r, 0 \leq r \lt b \quad \text{and}\quad a = bq' + r', 0 \leq r' \lt b\text{.}
+\end{equation*}
+</div>
+<div class="para">Then <span class="process-math">\(bq + r =  bq' + r'\text{.}\)</span>  Assume that <span class="process-math">\(r' \geq r\text{.}\)</span>  From the last equation we have <span class="process-math">\(b(q - q') = r' - r\text{;}\)</span> therefore, <span class="process-math">\(b\)</span> must divide <span class="process-math">\(r' - r\)</span> and <span class="process-math">\(0 \leq r'- r \leq r' \lt b\text{.}\)</span>  This is possible only if <span class="process-math">\(r' - r = 0\text{.}\)</span>  Hence, <span class="process-math">\(r = r'\)</span> and  <span class="process-math">\(q = q'\text{.}\)</span>
+</div>
+</div></article></body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="exercise exercise-like"><h3 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">4<span class="period">.</span></span><span class="space"> </span><span class="title">ISBN Codes.</span>
+</h3>
+<div class="para logical">
+<div class="para">Every book has an International Standard Book Number (ISBN) code.  This is a 10-digit code indicating the book's publisher and title.  The tenth digit is a check digit satisfying</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(d_1, d_2, \ldots, d_{10} ) \cdot (10, 9, \ldots, 1 )  \equiv 0 \pmod{11}\text{.}
+\end{equation*}
+</div>
+<div class="para">One problem is that <span class="process-math">\(d_{10}\)</span> might have to be a 10 to make the inner product zero; in this case, 11 digits would be  needed to make this scheme work.  Therefore, the character X is used for the eleventh digit.  So ISBN 3-540-96035-X is a valid ISBN code.</div>
+</div>
+<ol class="lower-alpha">
+<li><div class="para">Is ISBN 0-534-91500-0 a valid ISBN code?  What about ISBN 0-534-91700-0 and ISBN 0-534-19500-0?</div></li>
+<li><div class="para">Does this method detect all single-digit errors?  What about all transposition errors?</div></li>
+<li><div class="para">How many different ISBN codes are there?</div></li>
+<li><div class="para">Write a computer program that will calculate the check digit for the first nine digits of an ISBN code.</div></li>
+<li><div class="para">A publisher has houses in Germany and the United States.  Its German prefix is <code class="code-inline tex2jax_ignore">3-540</code>.  If its United States prefix will be <code class="code-inline tex2jax_ignore">0-abc</code>, find <code class="code-inline tex2jax_ignore">abc</code> such that the rest of the ISBN code will be the same for a book printed in Germany and in the United States. Under the ISBN coding method the first digit identifies the language; German is <code class="code-inline tex2jax_ignore">3</code> and English is <code class="code-inline tex2jax_ignore">0</code>.  The next group of numbers identifies the publisher, and the last group identifies the specific book.</div></li>
+</ol></article><span class="incontext"><a href="exercises-7.html#exercise-134" class="internal">in-context</a></span>
+</body>
+</html>

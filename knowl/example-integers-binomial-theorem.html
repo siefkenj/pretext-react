@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="example example-like"><h3 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">2.1.4</span><span class="period">.</span><span class="space"> </span><span class="title">The Binomial Theorem.</span>
+</h3>
+<div class="para logical">
+<div class="para">We will prove the binomial theorem using mathematical induction; that is,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+(a + b)^n = \sum_{k = 0}^{n} \binom{n}{k} a^k b^{n - k}\text{,}
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(a\)</span> and <span class="process-math">\(b\)</span> are real numbers, <span class="process-math">\(n \in \mathbb{N}\text{,}\)</span> and</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\binom{n}{k} = \frac{n!}{k! (n - k)!}
+\end{equation*}
+</div>
+<div class="para">is the binomial coefficient.  We first show that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\binom{n + 1}{k} = \binom{n}{k} + \binom{n}{k - 1}\text{.}
+\end{equation*}
+</div>
+<div class="para">This result follows from</div>
+<div class="displaymath process-math">
+\begin{align*}
+\binom{n}{k} + \binom{n}{k - 1} &amp; = \frac{n!}{k!(n - k)!} +\frac{n!}{(k-1)!(n - k + 1)!}\\
+&amp; = \frac{(n + 1)!}{k!(n + 1 - k)!}\\
+&amp; =\binom{n + 1}{k}\text{.}
+\end{align*}
+</div>
+</div>
+<div class="para logical">
+<div class="para">If <span class="process-math">\(n = 1\text{,}\)</span> the binomial theorem is easy to verify. Now assume that the result is true for <span class="process-math">\(n\)</span> greater than or equal to 1.  Then</div>
+<div class="displaymath process-math">
+\begin{align*}
+(a + b)^{n + 1} &amp; = (a + b)(a + b)^n\\
+&amp; = (a + b) \left( \sum_{k = 0}^{n} \binom{n}{k} a^k b^{n - k}\right)\\
+&amp; = \sum_{k = 0}^{n} \binom{n}{k} a^{k + 1} b^{n - k} + \sum_{k = 0}^{n} \binom{n}{k} a^k b^{n + 1 - k}\\
+&amp; = a^{n + 1} + \sum_{k = 1}^{n} \binom{n}{k - 1} a^{k} b^{n + 1 - k} + \sum_{k = 1}^{n} \binom{n}{k}  a^k b^{n + 1 - k} + b^{n + 1}\\
+&amp;  = a^{n + 1} + \sum_{k = 1}^{n} \left[ \binom{n}{k - 1} + \binom{n}{k} \right]a^k b^{n + 1 - k} + b^{n + 1}\\
+&amp;  = \sum_{k = 0}^{n + 1}   \binom{n + 1}{k} a^k b^{n + 1- k}\text{.}
+\end{align*}
+</div>
+</div></article><span class="incontext"><a href="section-math-induction.html#example-integers-binomial-theorem" class="internal">in-context</a></span>
+</body>
+</html>

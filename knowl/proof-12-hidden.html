@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><article class="hiddenproof"><div class="para logical">
+<div class="para">
+<em class="emphasis">Uniqueness.</em>  To show uniqueness we will use induction on <span class="process-math">\(n\text{.}\)</span> The theorem is certainly true for <span class="process-math">\(n = 2\)</span> since in this case <span class="process-math">\(n\)</span> is prime.  Now assume that the result holds for all integers <span class="process-math">\(m\)</span> such that <span class="process-math">\(1 \leq m \lt n\text{,}\)</span> and</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/theorem-integers-prime-divisor.html">
+\begin{equation*}
+n = p_1 p_2 \cdots p_k = q_1 q_2 \cdots q_l\text{,}
+\end{equation*}
+</div>
+<div class="para">where <span class="process-math">\(p_1 \leq p_2 \leq \cdots \leq p_k\)</span> and <span class="process-math">\(q_1 \leq q_2 \leq \cdots \leq q_l\text{.}\)</span> By <a href="" class="xref" data-knowl="./knowl/theorem-integers-prime-divisor.html" title="Lemma 2.2.5">Lemma 2.2.5</a>, <span class="process-math">\(p_1  \mid  q_i\)</span> for some <span class="process-math">\(i = 1, \ldots, l\)</span> and <span class="process-math">\(q_1  \mid  p_j\)</span> for some <span class="process-math">\(j = 1, \ldots, k\text{.}\)</span>  Since all of the <span class="process-math">\(p_i\)</span>'s and <span class="process-math">\(q_i\)</span>'s are prime, <span class="process-math">\(p_1 = q_i\)</span> and  <span class="process-math">\(q_1 = p_j\text{.}\)</span> Hence, <span class="process-math">\(p_1 = q_1\)</span> since <span class="process-math">\(p_1 \leq p_j = q_1 \leq q_i = p_1\text{.}\)</span>  By the induction hypothesis,</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/theorem-integers-prime-divisor.html">
+\begin{equation*}
+n' = p_2 \cdots p_k = q_2 \cdots q_l
+\end{equation*}
+</div>
+<div class="para">has a unique factorization.  Hence, <span class="process-math">\(k = l\)</span> and <span class="process-math">\(q_i = p_i\)</span> for <span class="process-math">\(i = 1, \ldots, k\text{.}\)</span>
+</div>
+</div>
+<div class="para logical">
+<div class="para">
+<em class="emphasis">Existence.</em> To show existence, suppose that there is some integer that cannot be written as the product of primes.  Let <span class="process-math">\(S\)</span> be the set of all such numbers.  By the Principle of Well-Ordering, <span class="process-math">\(S\)</span> has a smallest number, say <span class="process-math">\(a\text{.}\)</span>  If the only positive factors of <span class="process-math">\(a\)</span> are <span class="process-math">\(a\)</span> and 1, then <span class="process-math">\(a\)</span> is prime, which is a contradiction.  Hence, <span class="process-math">\(a = a_1 a_2\)</span> where <span class="process-math">\(1 \lt a_1 \lt a\)</span> and <span class="process-math">\(1 \lt a_2 \lt a\text{.}\)</span>  Neither <span class="process-math">\(a_1\in S\)</span> nor <span class="process-math">\(a_2 \in S\text{,}\)</span> since <span class="process-math">\(a\)</span> is the smallest element in <span class="process-math">\(S\text{.}\)</span>  So</div>
+<div class="displaymath process-math">
+\begin{align*}
+a_1 &amp; = p_1 \cdots p_r\\
+a_2 &amp; = q_1 \cdots q_s\text{.}
+\end{align*}
+</div>
+</div>
+<div class="para logical">
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+a = a_1 a_2 = p_1 \cdots p_r q_1 \cdots q_s\text{.}
+\end{equation*}
+</div>
+<div class="para">So <span class="process-math">\(a \notin S\text{,}\)</span> which is a contradiction.</div>
+</div></article></body>
+</html>

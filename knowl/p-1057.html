@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<h4 class="heading"><span class="type">Paragraph</span></h4>
+<div class="para logical">
+<div class="para">On input of a positive integer <code class="code-inline tex2jax_ignore">n</code> this algorithm will compute all the prime numbers up to, and including, <code class="code-inline tex2jax_ignore">n</code>.  It was named for Eratosthenes of Cyrene (ca. 276 BC–ca. 195/194 BC) by Nicomachus (ca. 60–ca. 120 CE) in <span class="booktitle">Introduction to Arithmetic</span>. (<a class="external" href="http://en.wikipedia.org/wiki/Sieve_of_Eratosthenes" target="_blank">Wikipedia</a><a href="" class="fn-knowl original" data-knowl="./knowl/fn-73-hidden.html" title="Footnote 23.2"><sup> 2 </sup></a>, 2015)</div>
+<ol class="decimal">
+<li><div class="para">Input: <code class="code-inline tex2jax_ignore">n</code>
+</div></li>
+<li><div class="para">Form the list of all integers from <code class="code-inline tex2jax_ignore">2</code> to <code class="code-inline tex2jax_ignore">n</code>
+</div></li>
+<li><div class="para">Set <code class="code-inline tex2jax_ignore">p = 2</code>
+</div></li>
+<li><div class="para logical">
+<div class="para">While <code class="code-inline tex2jax_ignore">p &lt; sqrt(n)</code>
+</div>
+<ol class="decimal">
+<li><div class="para">If present, remove from the list multiples <code class="code-inline tex2jax_ignore">2p, 3p, ...</code>
+</div></li>
+<li><div class="para">If <code class="code-inline tex2jax_ignore">p</code> is now the last element of the list, stop</div></li>
+<li><div class="para">Otherwise, set <code class="code-inline tex2jax_ignore">p</code> to the element of the list immediately after current <code class="code-inline tex2jax_ignore">p</code>
+</div></li>
+</ol>
+</div></li>
+<li><div class="para">Output: the remaining elements of the list</div></li>
+</ol>
+</div>
+<span class="incontext"><a href="section-programs.html#p-1057" class="internal">in-context</a></span>
+</body>
+</html>

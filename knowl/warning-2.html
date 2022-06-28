@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="warning remark-like"><h4 class="heading">
+<span class="type">Warning</span><span class="space"> </span><span class="codenumber">14.5</span><span class="period">.</span>
+</h4>
+<div class="para logical">
+<div class="para">If your <code class="code-inline tex2jax_ignore">&lt;interactive&gt;</code> employs a <code class="code-inline tex2jax_ignore">&lt;slate&gt;</code> with a <code class="code-inline tex2jax_ignore">@surface</code> attribute whose value is <code class="code-inline tex2jax_ignore">html</code>, then you are advised to augment each top-level (<abbr class="initialism">HTML</abbr>) element within the <code class="code-inline tex2jax_ignore">&lt;slate&gt;</code> with the attribute:</div>
+<pre class="code-display tex2jax_ignore">xmlns="http://www.w3.org/1999/xhtml"
+</pre>
+<div class="para">This will identify <em class="emphasis">all</em> of the elements within the <code class="code-inline tex2jax_ignore">&lt;slate&gt;</code> as <abbr class="initialism">HTML</abbr> elements and not as PreTeXt elements.  The danger is that elements with the same name in both languages, such as <code class="code-inline tex2jax_ignore">&lt;li&gt;</code> and <code class="code-inline tex2jax_ignore">&lt;table&gt;</code>, will be mis-identified.  This could be harmless, but could also create chaos, such as disrupting numbering of PreTeXt elements.</div>
+</div>
+<div class="para">See the source code of this document for examples:  <a href="" class="xref" data-knowl="./knowl/figure-animation.html" title="Figure 14.4">Figure 14.4</a> <a href="" class="xref" data-knowl="./knowl/figure-interactive-slopes.html" title="Figure 14.11">Figure 14.11</a>, <a href="" class="xref" data-knowl="./knowl/figure-piecewise.html" title="Figure 14.15">Figure 14.15</a>.</div>
+<div class="para">Note that the <abbr class="initialism">HTML</abbr> that is output can vary slightly from your source in small, harmless ways, such as empty (self-closing) elements being output with both an opening and a closing tag.  Please report any significant discrepancies.  Soon this requirement will be enforced in the code.</div></article><span class="incontext"><a href="section-interactive-authored.html#warning-2" class="internal">in-context</a></span>
+</body>
+</html>

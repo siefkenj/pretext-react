@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math"><article class="example example-like"><div class="para logical">
+<div class="para">We will compute <span class="process-math">\(271^{321} \pmod{ 481}\text{.}\)</span> Notice that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+321 = 2^0 +2^6 + 2^8\text{;}
+\end{equation*}
+</div>
+<div class="para">hence, computing <span class="process-math">\(271^{321} \pmod{ 481}\)</span> is the same as computing</div>
+<div class="displaymath process-math">
+\begin{equation*}
+271^{2^0 +2^6 + 2^8 } \equiv 271^{2^0} \cdot 271^{2^6} \cdot 271^{2^8} \pmod{481}\text{.}
+\end{equation*}
+</div>
+<div class="para">So it will suffice to compute <span class="process-math">\(271^{2^i} \pmod{481}\)</span> where <span class="process-math">\(i = 0, 6, 8\text{.}\)</span> It is very easy to see that</div>
+<div class="displaymath process-math">
+\begin{equation*}
+271^{2^1}  = \mbox{73,441} \equiv 329 \pmod{481}\text{.}
+\end{equation*}
+</div>
+<div class="para">We can square this result to obtain a value for <span class="process-math">\(271^{2^2} \pmod{481}\text{:}\)</span>
+</div>
+<div class="displaymath process-math">
+\begin{align*}
+271^{ 2^2}  &amp; \equiv (271^{ 2^1})^2 \pmod{ 481}\\
+&amp; \equiv (329)^2 \pmod{ 481}\\
+&amp; \equiv \mbox{108,241} \pmod{ 481}\\
+&amp; \equiv 16 \pmod{ 481}\text{.}
+\end{align*}
+</div>
+<div class="para">We are using the fact that <span class="process-math">\((a^{2^n})^2  \equiv a^{2 \cdot 2^n} \equiv a^{ 2^{n+1} } \pmod{ n}\text{.}\)</span> Continuing, we can calculate</div>
+<div class="displaymath process-math">
+\begin{equation*}
+271^{ 2^6 } \equiv 419 \pmod{ 481}
+\end{equation*}
+</div>
+<div class="para">and</div>
+<div class="displaymath process-math">
+\begin{equation*}
+271^{ 2^8 }  \equiv 16 \pmod{ 481}\text{.}
+\end{equation*}
+</div>
+<div class="para">Therefore,</div>
+<div class="displaymath process-math">
+\begin{align*}
+271^{ 321} &amp; \equiv 271^{ 2^0 +2^6 + 2^8 } \pmod{ 481}\\
+&amp; \equiv 271^{ 2^0 } \cdot 271^{ 2^6 } \cdot 271^{ 2^8 } \pmod{ 481}\\
+&amp; \equiv 271 \cdot 419 \cdot 16 \pmod{ 481}\\
+&amp; \equiv \mbox{1,816,784} \pmod{ 481}\\
+&amp; \equiv 47 \pmod{ 481}\text{.}
+\end{align*}
+</div>
+</div></article></body>
+</html>
