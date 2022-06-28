@@ -8,10 +8,7 @@ import { rehypeInsertPermalinks } from "./html-manipulation/place-permalinks";
 import { MathJaxOneTimeRenderer } from "../components-for-page/mathjax";
 import { replaceAsides } from "./asides";
 import { replaceImages } from "./images";
-import {
-    replaceKnowl,
-    replaceKnowlGroupContainers,
-} from "./knowls";
+import { replaceKnowl, replaceKnowlGroupContainers } from "./knowls";
 import { replaceInternalLinks } from "./links";
 import { replaceMathKnowl } from "./math";
 import { replaceRunestone } from "./runestone";

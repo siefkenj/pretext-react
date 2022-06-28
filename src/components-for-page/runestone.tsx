@@ -10,8 +10,8 @@ declare const runestoneComponents: {
  */
 export function RunestoneRenderer({
     children,
-    className
-}: React.PropsWithChildren<unknown>  & {className?: string|undefined}) {
+    className,
+}: React.PropsWithChildren<unknown> & { className?: string | undefined }) {
     const parentRef = React.useRef(null);
 
     // Ensure `className` has exactly one copy of "runestone" but also includes

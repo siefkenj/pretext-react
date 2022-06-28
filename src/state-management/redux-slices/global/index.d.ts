@@ -1,1 +1,1 @@
-declare module '@s-r0/eggy-js' 
+declare module "@s-r0/eggy-js";

@@ -18,9 +18,7 @@ export function extractPageContent(page: string) {
  * the innerHTML of which forms the content.
  */
 export function extractKnowlContent(page: string) {
-    const ret = parser
-        .parseFromString(page, "text/html")
-        .querySelector("body");
+    const ret = parser.parseFromString(page, "text/html").querySelector("body");
     if (ret == null) {
         throw new Error("Cannot extract the content block from page");
     }

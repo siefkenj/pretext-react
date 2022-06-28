@@ -1,6 +1,10 @@
 import { ReplacerFunc } from "./html-manipulation/hast-react";
 import { KnowlContainer } from "../components-for-page/knowl/knowl-container";
-import { Knowl, PreloadedKnowl, PreloadedKnowlContent } from "../components-for-page/knowl/knowls";
+import {
+    Knowl,
+    PreloadedKnowl,
+    PreloadedKnowlContent,
+} from "../components-for-page/knowl/knowls";
 
 /**
  * Replace HAST nodes that should trigger knowls with appropriate React elements.

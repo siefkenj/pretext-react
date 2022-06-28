@@ -16,15 +16,14 @@ import { select } from "hast-util-select";
  * - What about multiple numbered figures/tables/etc in a sidebyside?
  */
 function getNodeDescription(elm: HastElement, hastDom: HastDom): string {
-
-    const classes = hastDom.getAttribute(elm, "className")?.split(' ');
+    const classes = hastDom.getAttribute(elm, "className")?.split(" ");
 
     // Most elements that are assigned permalinks have their type, codenumber,
     // and title in an h* element with class "heading"
     const header = select(".heading", elm);
     if (header) {
         // Drop the trailing period if present
-        let descr = toText(header).replace(/\.+$/, '');
+        let descr = toText(header).replace(/\.+$/, "");
         // Avoid doing something like "Exercises 2.1 Exercises"
         const type = select(".type", header);
         const title = select(".title", header);
@@ -32,7 +31,7 @@ function getNodeDescription(elm: HastElement, hastDom: HastDom): string {
             let typeText = toText(type);
             if (typeText === toText(title)) {
                 const regex = new RegExp(` ${typeText}$`);
-                descr = descr.replace(regex, '');
+                descr = descr.replace(regex, "");
             }
         }
         // Some permalink targets don't have a type embedded in their heading element
@@ -84,7 +83,7 @@ function getNodeDescription(elm: HastElement, hastDom: HastDom): string {
         return descr;
     }
 
-    if (elm.tagName === "div"){
+    if (elm.tagName === "div") {
         if (classes?.includes("para")) {
             return "Paragraph";
         }

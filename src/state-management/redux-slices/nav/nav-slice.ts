@@ -12,7 +12,10 @@ import {
     getParentsInToc,
     TocEntryType,
 } from "../../../components-for-shell/utils/extract-toc";
-import { normalizeUrl, normalizeUrlWithHash } from "../../../components-for-shell/utils/normalize";
+import {
+    normalizeUrl,
+    normalizeUrlWithHash,
+} from "../../../components-for-shell/utils/normalize";
 import { inMobileModeSelector } from "../global/global-slice";
 import { tocActions } from "../toc/toc-slice";
 import { mapToc } from "./map-toc";

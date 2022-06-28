@@ -1,5 +1,8 @@
 import { ReplacerFunc } from "./html-manipulation/hast-react";
-import { SageDisplayKnowl, SageKnowl } from "../components-for-page/knowl/sage-knowl";
+import {
+    SageDisplayKnowl,
+    SageKnowl,
+} from "../components-for-page/knowl/sage-knowl";
 
 // A list of class names that indicate sage-cell content. Generated using
 // ```

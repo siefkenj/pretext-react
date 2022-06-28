@@ -19,10 +19,10 @@ export const knowlSlice = createSlice({
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
         setVisible(state, action: PayloadAction<Record<string, boolean>>) {
-            Object.assign(state.visible ,action.payload);
+            Object.assign(state.visible, action.payload);
         },
         closeAll(state) {
-            state.visible={}
+            state.visible = {};
         },
     },
 });

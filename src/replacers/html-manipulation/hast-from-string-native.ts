@@ -7,7 +7,7 @@ function strToFrag(html: string) {
     template.innerHTML = html;
     return template.content;
 }
- /**
+/**
  * Use the native DOM parser to parse the dom into a `hast` AST. This
  * is orders of magnitude faster than using `rehype` (which uses the parser5
  * html parser).

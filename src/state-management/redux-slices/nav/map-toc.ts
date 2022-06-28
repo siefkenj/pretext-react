@@ -1,5 +1,8 @@
 import { TocEntryType } from "../../../components-for-shell/utils/extract-toc";
-import { normalizeUrl, normalizeUrlWithHash } from "../../../components-for-shell/utils/normalize";
+import {
+    normalizeUrl,
+    normalizeUrlWithHash,
+} from "../../../components-for-shell/utils/normalize";
 
 /**
  * Create a map and inverse map between page URLs and page IDs.
