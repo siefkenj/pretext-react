@@ -6,7 +6,6 @@ import {
     tocSelector,
 } from "../../features/nav/navSlice";
 import { TocEntryType } from "../../utils/extract-toc";
-import { staticallyRenderMathJax } from "../../utils/html-manipulation/static-render";
 import { InternalAnchor } from "../links";
 import { MathJaxOneTimeRenderer } from "../mathjax";
 import Chevron from "react-chevron";
@@ -51,7 +50,6 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
     );
     const openStatePreference =
         childTocItemIsActive || entry.id === currentPage || entry.level === 2;
-    const [innerHtml, setInnerHtml] = React.useState(entry.title || "");
     let [openState, setOpenState] = React.useState(openStatePreference);
     const [hasHadInteraction, setHasHadInteraction] = React.useState(false);
 
@@ -61,15 +59,8 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
         openState = openStatePreference;
     }
 
-    React.useEffect(() => {
-        if ((entry.title || "").includes("process-math")) {
-            staticallyRenderMathJax(entry.title || "").then((rendered) =>
-                setInnerHtml(rendered)
-            );
-        }
-    }, [entry.title]);
-
-    const shouldRenderCodeNumber = !!entry.codeNumber && (entry.level || 0) < 3 || true;
+    const shouldRenderCodeNumber =
+        (!!entry.codeNumber && (entry.level || 0) < 3) || true;
 
     // We never render divisions with empty headers.
     const children = entry.children
@@ -124,7 +115,9 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                         )}
                         <span
                             className="title"
-                            dangerouslySetInnerHTML={{ __html: innerHtml }}
+                            dangerouslySetInnerHTML={{
+                                __html: entry.title || "",
+                            }}
                         ></span>
                     </InternalAnchor>
                     {chevron}

@@ -2,7 +2,6 @@ import React from "react";
 import md5 from "crypto-js/md5";
 import { CachedComponent } from "../cached-component";
 import { PreparedParsers } from "./types";
-import { mathJaxDefaultReady } from "../../utils/mathjax";
 import { htmlToComponent } from "./process-content";
 import { useAppSelector } from "../../app/hooks";
 import { domCachingSelector } from "../../features/global/globalSlice";
@@ -58,12 +57,6 @@ export function ContentPage({ content }: { content: string }) {
         if (!haveClearedInnerHtml && contentNode) {
             contentNode.innerHTML = "";
             setHaveClearedInnerHtml(true);
-
-            // We don't start MathJax until after the original page contents has been cleared.
-            // This is because MathJax may be quick and typeset the page before we've cleared it.
-            // In that case, MathJax may have typeset an equation with a label twice, in which case
-            // it will complain.
-            window.setTimeout(mathJaxDefaultReady, 10);
         }
     }, [haveClearedInnerHtml, contentNode]);
 

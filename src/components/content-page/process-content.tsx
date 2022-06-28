@@ -10,7 +10,7 @@ import { replaceAsides } from "../replacers/asides";
 import { replaceImages } from "../replacers/images";
 import { replaceKnowl, replaceKnowlGroupContainers } from "../replacers/knowls";
 import { replaceInternalLinks } from "../replacers/links";
-import { rehypeInsertMathPreambles, replaceMathKnowl } from "../replacers/math";
+import { replaceMathKnowl } from "../replacers/math";
 import { replaceRunestone } from "../replacers/runestone";
 import { replaceSageKnowl } from "../replacers/sage-knowls";
 
@@ -18,7 +18,6 @@ const processHtmlContentViaUnified = unified()
     .use(hastFromStringNative)
     .use(rehypeInsertKnowlExpandStubs)
     .use(rehypeInsertPermalinks)
-    .use(rehypeInsertMathPreambles)
     .use(hastReactTransformer, {
         replacers: [
             replaceInternalLinks,

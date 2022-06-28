@@ -1,4 +1,13 @@
-const globalTypesettingMap = new WeakMap<object, boolean>();
+import type { MathJaxObject } from "mathjax-full/ts/components/startup";
+
+// MathJax is loaded globally and should be available when React starts.
+declare const MathJax: MathJaxObject;
+
+const globalCurrentlyTypesetting = new WeakMap<object, boolean>();
+let resolvePreamblePromise: Function;
+const preambleHasBeenTypeset = new Promise((resolve, _) => {
+    resolvePreamblePromise = resolve;
+});
 
 function ensureMathJax() {
     if (typeof MathJax === "undefined") {
@@ -7,42 +16,60 @@ function ensureMathJax() {
 }
 
 /**
- * Queue a re-typesetting of the math on a page.
+ * Typeset an element containing preamble code. This preamble code
+ * will be typeset by MathJax *before* any other elements are typeset.
  */
-export async function reTypesetMathJax() {
+export async function setMathJaxPreamble(e?: Element) {
     try {
         ensureMathJax();
     } catch {
+        console.warn("Tried to typeset math, but MathJax was not loaded");
         return;
     }
-    if ((MathJax as any)?.typesetPromise) {
-        return (MathJax as any).typesetPromise();
+    if (!e) {
+        // Even if we don't need to typeset any preamble,
+        // we don't want to resolve the preamble promise until MathJax has fully loaded.
+        await MathJax.startup.promise;
+        resolvePreamblePromise();
     }
+    await MathJax.startup.promise;
+    await MathJax.typesetPromise([e]);
+    resolvePreamblePromise();
 }
 
 /**
  * Typeset a single html element with MathJax. This function
  * uses `typesetPromise` but ensures that the same element
  * is never concurrently re-typeset.
+ *
+ * WARNING: This function blocks until `setMathJaxPreamble` has been called on
+ * an element containing a preamble (or called without an argument). This ensures
+ * that code in the preamble is available to all subsequent calls to MathJax.
  */
-export function typesetElement(e: Element) {
+export async function typesetElement(e: Element) {
     try {
         ensureMathJax();
     } catch {
+        console.warn("Tried to typeset math, but MathJax was not loaded");
         return;
     }
-    if ((MathJax as any)?.typesetPromise) {
-        // Check if typesetting is already in progress.
-        if (globalTypesettingMap.has(e)) {
-            return;
-        }
-        // MathJax doesn't like being called while it's already running,
-        // so we keep a record of whether we are currently typesetting.
-        globalTypesettingMap.set(e, true);
-        return (MathJax as any).typesetPromise([e]).then(() => {
-            globalTypesettingMap.delete(e);
-        });
+    const timeoutId = window.setTimeout(() => {
+        console.warn(
+            "Waited for over 10 seconds for the LaTeX preamble to be typeset by MathJax; maybe `setMathJaxPreamble` was never called"
+        );
+    }, 10000);
+    await preambleHasBeenTypeset;
+    window.clearTimeout(timeoutId);
+
+    // Check if typesetting is already in progress.
+    if (globalCurrentlyTypesetting.has(e)) {
+        return;
     }
+    // MathJax doesn't like being called while it's already running,
+    // so we keep a record of whether we are currently typesetting.
+    globalCurrentlyTypesetting.set(e, true);
+    await MathJax.typesetPromise([e]);
+    globalCurrentlyTypesetting.delete(e);
 }
 
 /**
@@ -54,41 +81,28 @@ export function typesetClear(nodes: Element[]) {
     try {
         ensureMathJax();
     } catch {
+        console.warn("Tried to typeset math, but MathJax was not loaded");
         return;
     }
-    const clear = (MathJax as any).typesetClear;
+    const clear = MathJax.typesetClear;
     if (clear) {
         clear(nodes);
     }
 }
 
+/**
+ * Clear all typesetting and typesetting context for the entire document.
+ */
 export function fullMathJaxReset() {
     try {
         ensureMathJax();
     } catch {
+        console.warn("Tried to typeset math, but MathJax was not loaded");
         return;
     }
-    const mj = MathJax as any;
+    const mj = MathJax;
     if (mj?.startup?.document?.state) {
         mj.startup.document.state(0);
         mj.texReset();
-    }
-}
-
-export function mathJaxDefaultReady() {
-    try {
-        ensureMathJax();
-    } catch {
-        return;
-    }
-    const startup = (MathJax as any)?.startup;
-    if (!startup) {
-        return;
-    }
-    // We don't want to run `defaultReady` twice, so we check to see
-    // if `.adaptor` is set, which should be set after a call to `defaultReady`
-    // has been made.
-    if (!startup.adaptor) {
-        startup.defaultReady();
     }
 }
