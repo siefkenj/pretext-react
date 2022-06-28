@@ -1,4 +1,3 @@
-import { toHtml } from "hast-util-to-html";
 import React from "react";
 import { ReplacerFunc } from "./html-manipulation/hast-react";
 import { RunestoneRenderer } from "../components-for-page/runestone";
@@ -15,7 +14,7 @@ export const replaceRunestone: ReplacerFunc = (
     if (!className?.includes("ptx-runestone-container")) {
         return;
     }
-    // .ptx-runestone-container is expected to contian exactly *one*
+    // .ptx-runestone-container is expected to contain exactly *one*
     // child which is what we should pass to RunestoneRenderer
     const runestoneElm = node.children.find((n) => n.type === "element");
     if (!runestoneElm || !(runestoneElm.type === "element")) {
