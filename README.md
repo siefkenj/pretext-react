@@ -100,17 +100,20 @@ Here's a brief overview of the important files and folders:
 -   `index.tsx` - This is the entry point for the App. It sets up only what is required to get the app started (e.g., stuff that needs to
     be done before the app starts).
 
--   `App.tsx` - This is what renders the app. Every component that you see is a child of a component from here.
+-   `components-for-page/shell.tsx` - This is what renders the app. Every component that you see is a child of a component from here.
 
--   `app/` - Setup for Redux/global state management.
+-   `state-management/` - Setup for Redux/global state management.
 
--   `components/` - This is where the React components go (e.g., buttons, knowl-openers, etc.)
-
--   `features/` - Global state management. Each "piece" of state is broken off into its own features. For instance, state related to caching
+-   `state-management/redux-slices/` - Global state management. Each "piece" of state is broken off into its own features. For instance, state related to caching
     vs. state related to the TOC, etc.
 
--   `utils/` - Utilities used by other scripts. This code should be only TypeScript (i.e., no TSX files). Code in this folder can be
-    tested independently without a fully-loaded page.
+-   `components-for-shell/` - This is where the React components go which are used for the _Shell_, that is the non-text part of the page (e.g., the table of contents, the nav buttons, etc.)
+
+-   `components-for-page/` - This is where the components used in the page's contents go. E.g., the components which render knowls, etc. are located here.
+
+-   `components-common/` - This is where the components that are used in both the shell and the page content are. These are generally more abstract components.
+
+-   `replacers/` - Replacers manipulate the HTML tree and insert React components where needed. See the README in the `replacers/` folder for more details.
 
 ### Testing
 
