@@ -32,6 +32,7 @@ import "./styles/setcolors.css";
 import "./styles/knowls.css";
 import "./styles/permalink.css";
 import { globalActions } from "./features/global/globalSlice";
+import { setMathJaxPreamble } from "./utils/mathjax";
 
 function App() {
     const dispatch = useAppDispatch();
@@ -58,6 +59,7 @@ function App() {
     }, [dispatch, currentUrl, lastUrl]);
 
     React.useEffect(() => {
+        // Fetch the document manifest, which contains an XML version of the table of contents
         (async () => {
             const resp = await fetch("doc-manifest.xml");
             const content = await resp.text();
@@ -67,6 +69,7 @@ function App() {
             setTocExtracted(true);
         })();
 
+        // Set up media queries to detect if we are in mobile/small-screen mode
         const mediaQuery = window.matchMedia("(max-width: 904px)");
         function mobileModeSwitch(e: Event) {
             const query = e as MediaQueryListEvent;
@@ -74,6 +77,20 @@ function App() {
         }
         dispatch(globalActions.setMobileMode(mediaQuery.matches));
         mediaQuery.addEventListener("change", mobileModeSwitch);
+
+        // Make sure we typeset the LaTeX preamble; this is done only once at page load.
+        // MathJax will remember the data set here in all subsequent typesetting calls.
+        const preambleElm = document.querySelector(
+            "#latex-macros > .process-math"
+        );
+        if (preambleElm) {
+            setMathJaxPreamble(preambleElm);
+        } else {
+            console.warn(
+                'Could not locate the LaTeX preamble element (it should have id="latex-macros"'
+            );
+        }
+
         return () => {
             mediaQuery.removeEventListener("change", mobileModeSwitch);
         };
@@ -92,7 +109,7 @@ function App() {
             </header>
             <nav id="ptx-navbar" className="navbar">
                 <TocVisibilityToggle />
-                <IndexButton/>
+                <IndexButton />
                 <CachingSettingsSelect />
                 <NavButtons />
             </nav>
@@ -114,7 +131,7 @@ function App() {
                     <div className="ptx-content">
                         <ContentPage content={currentPageContents} />
                     </div>
-                    <PageFooter/>
+                    <PageFooter />
                 </main>
             </div>
             <div className="ptx-page-footer">Window footer dummy content</div>

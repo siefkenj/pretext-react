@@ -30,7 +30,7 @@ function getNodeDescription(elm: HastElement, hastDom: HastDom): string {
         const title = select(".title", header);
         if (type && title) {
             let typeText = toText(type);
-            if (typeText == toText(title)) {
+            if (typeText === toText(title)) {
                 const regex = new RegExp(` ${typeText}$`);
                 descr = descr.replace(regex, '');
             }
