@@ -33,6 +33,10 @@ export async function setMathJaxPreamble(e?: Element) {
         resolvePreamblePromise();
     }
     await MathJax.startup.promise;
+    // When we typeset the preamble we want to reset MathJax
+    // so that any old preamble code is unloaded for future typesetting.
+    MathJax.texReset();
+    MathJax.typesetClear();
     await MathJax.typesetPromise([e]);
     resolvePreamblePromise();
 }

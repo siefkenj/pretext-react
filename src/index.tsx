@@ -1,5 +1,5 @@
 import React from "react";
-import ReactDOM from "react-dom";
+import { createRoot } from "react-dom/client";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./state-management/store";
@@ -39,15 +39,15 @@ for (const elm of Array.from(elmsToRemove)) {
 }
 
 const renderTarget = document.getElementById("root");
-ReactDOM.render(
+const root = createRoot(renderTarget!);
+root.render(
     <React.StrictMode>
         <Provider store={store}>
             <CustomBrowserRouter history={history}>
                 <Shell />
             </CustomBrowserRouter>
         </Provider>
-    </React.StrictMode>,
-    renderTarget
+    </React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function
