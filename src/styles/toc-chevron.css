@@ -1,5 +1,6 @@
 .toc-chevron-surround {
     padding-left: 6px;
+    padding-right: 6px;
     display: flex;
     justify-content: space-around;
     flex-grow: 0;
@@ -24,22 +25,4 @@
 .toc-item a:hover ~ .toc-chevron-surround {
     background-color: var(--highlighttoc);
     color: var(--sectiontoctextactive);
-}
-.chevron-rotator {
-    position: relative;
-}
-.chevron-wrapper {
-    box-sizing: border-box;
-    display: block;
-    margin: 0px;
-    text-align: center;
-}
-
-.chevron-wrapper {
-    transform: rotate(0deg);
-    transform-origin: 2px 10px;
-    transition: transform 0.5s;
-}
-.toc-chevron-surround.open .chevron-wrapper {
-    transform: rotate(90deg);
 }

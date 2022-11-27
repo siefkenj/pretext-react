@@ -8,9 +8,9 @@ import {
 import { TocEntryType } from "../utils/extract-toc";
 import { InternalAnchor } from "../../components-for-page/links";
 import { MathJaxOneTimeRenderer } from "../../components-for-page/mathjax";
-import Chevron from "react-chevron";
 import { Accordion } from "../../components-common/accordion";
 import { Button } from "reakit";
+import { Chevron } from "../chevron";
 
 /**
  * Returns whether or not there is a TOC item with id `childId` that is a child of the
@@ -78,9 +78,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                 setHasHadInteraction(true);
             }}
         >
-            <div className="chevron-rotator">
-                <Chevron direction="right" />
-            </div>
+            <Chevron direction={openState ? "down" : "left"} />
         </Button>
     ) : null;
 
