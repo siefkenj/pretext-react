@@ -4,6 +4,7 @@ import { InternalAnchor } from "../components-for-page/links";
 import { useAppDispatch, useAppSelector } from "../state-management/hooks";
 import {
     currentPageIdSelector,
+    indexSelector,
     navActions,
 } from "../state-management/redux-slices/nav/nav-slice";
 
@@ -15,7 +16,12 @@ export function IndexButton() {
     const toolbar = useToolbarState();
     const dispatch = useAppDispatch();
     const currentPage = useAppSelector(currentPageIdSelector);
-    const onIndexPage = currentPage === "index-1";
+    const indexInfo = useAppSelector(indexSelector);
+    const onIndexPage = indexInfo.id && currentPage === indexInfo.id;
+
+    if (!indexInfo.id) {
+        return <div className="empty-index-button" />;
+    }
 
     if (onIndexPage) {
         return <IndexNav />;
@@ -25,12 +31,12 @@ export function IndexButton() {
         <ToolbarItem
             {...toolbar}
             as="a"
-            href="index-1.html"
+            href={indexInfo.url || ""}
             className="index-button button"
             title="Index"
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 e.preventDefault();
-                dispatch(navActions.setCurrentPage("index-1"));
+                dispatch(navActions.setCurrentPage(indexInfo.id));
             }}
         >
             <span className="name">Index</span>

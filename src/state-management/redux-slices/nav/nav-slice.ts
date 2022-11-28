@@ -7,6 +7,7 @@ import { createLoggingAsyncThunk, history } from "../../hooks";
 import { RootState } from "../../store";
 import { extractPageContent } from "../../../components-for-shell/utils/extract-content";
 import {
+    extractTocFromXml,
     findTocItemById,
     flattenToc,
     getParentsInToc,
@@ -33,6 +34,8 @@ export interface NavState {
         previous: { page: string; hash: string };
     };
     pageLoadingStatus: "loading" | "loaded" | "rendered" | null;
+    // Set to an id if the page should have an index button; null otherwise
+    indexId: string | null;
 }
 
 const initialState: NavState = {
@@ -47,6 +50,7 @@ const initialState: NavState = {
         previous: { page: "", hash: "" },
     },
     pageLoadingStatus: null,
+    indexId: null,
 };
 
 // We want to be able to delay until the first time the toc is set.
@@ -217,6 +221,41 @@ const navThunks = {
             }
         }
     ),
+
+    fetchAndInitTocFromManifest: createLoggingAsyncThunk(
+        "nav/fetchAndInitTocFromManifestThunk",
+        async (_: void, { dispatch }) => {
+            // Fetch the doc-manifest and convert it to a JSON object
+            const resp = await fetch("doc-manifest.xml");
+            const content = await resp.text();
+            const toc = extractTocFromXml(content);
+            dispatch(navActions.setToc(toc));
+
+            // Figure out if there is an index page
+            const indices: string[] = [];
+            function walk(entries: TocEntryType[]) {
+                for (const entry of entries) {
+                    if (entry.type === "index") {
+                        indices.push(entry.id!);
+                    }
+                    if (entry.children) {
+                        walk(entry.children);
+                    }
+                }
+            }
+            walk(toc);
+            if (indices.length > 0) {
+                if (indices.length > 1) {
+                    console.log(
+                        "Warning: multiple indices found",
+                        indices,
+                        "picking the first one."
+                    );
+                }
+                dispatch(navActions._setIndexId(indices[0]));
+            }
+        }
+    ),
 };
 
 /**
@@ -285,6 +324,9 @@ export const navSlice = createSlice({
         },
         _cacheUrl(state, action: PayloadAction<{ url: string; body: string }>) {
             state.urlCache[action.payload.url] = action.payload.body;
+        },
+        _setIndexId(state, action: PayloadAction<string | null>) {
+            state.indexId = action.payload;
         },
         setToc(state, action: PayloadAction<TocEntryType[]>) {
             const toc = action.payload;
@@ -360,6 +402,10 @@ export const pageLoadingStatusSelector = createDraftSafeSelector(
     selfSelector,
     (state) => state.pageLoadingStatus
 );
+export const indexSelector = createDraftSafeSelector(selfSelector, (state) => ({
+    id: state.indexId,
+    url: state.indexId && state.pageIdToUrlMap[state.indexId],
+}));
 /**
  * Return the top-level TocEntry corresponding to the currently active page.
  * If the currently active page is a subsection, the parent section's title is returned.

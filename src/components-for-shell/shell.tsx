@@ -47,10 +47,7 @@ function Shell() {
     React.useEffect(() => {
         // Fetch the document manifest, which contains an XML version of the table of contents
         (async () => {
-            const resp = await fetch("doc-manifest.xml");
-            const content = await resp.text();
-            const toc = extractTocFromXml(content);
-            await dispatch(navActions.setToc(toc));
+            await dispatch(navActions.fetchAndInitTocFromManifest());
             await dispatch(navActions.setCurrentPage(extractActiveTocItem()));
             setTocExtracted(true);
         })();
