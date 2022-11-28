@@ -4,7 +4,7 @@ import { useAppSelector } from "../../state-management/hooks";
 import {
     currentPageIdSelector,
     tocSelector,
-} from "../../state-management/redux-slices/nav/nav-slice";
+} from "../../state-management/redux-slices/nav/selectors";
 import { TocEntryType } from "../utils/extract-toc";
 import { InternalAnchor } from "../../components-for-page/links";
 import { MathJaxOneTimeRenderer } from "../../components-for-page/mathjax";
@@ -93,6 +93,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                     <InternalAnchor
                         href={entry.href || "#"}
                         pageId={entry.id || undefined}
+                        origin="toc"
                         className={classNames({
                             active: currentPage === entry.id,
                             "has-chevron": chevron,

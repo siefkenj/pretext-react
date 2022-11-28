@@ -1,16 +1,9 @@
-import {
-    createDraftSafeSelector,
-    createSlice,
-    PayloadAction,
-} from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { createLoggingAsyncThunk, history } from "../../hooks";
 import { RootState } from "../../store";
 import { extractPageContent } from "../../../components-for-shell/utils/extract-content";
 import {
     extractTocFromXml,
-    findTocItemById,
-    flattenToc,
-    getParentsInToc,
     TocEntryType,
 } from "../../../components-for-shell/utils/extract-toc";
 import {
@@ -21,6 +14,14 @@ import { inMobileModeSelector } from "../global/global-slice";
 import { tocActions } from "../toc/toc-slice";
 import { mapToc } from "./map-toc";
 import { scrollThunks } from "./scroll-thunks";
+import {
+    selfSelector,
+    pageLoadingStatusSelector,
+    historySelector,
+    currentPageTopLevelTocInfoSelector,
+} from "./selectors";
+
+export type NavigationOrigin = "page" | "toc" | "nav" | "url-change";
 
 export interface NavState {
     currentPageId: string | null;
@@ -30,8 +31,14 @@ export interface NavState {
     urlToPageIdMap: Record<string, string>;
     urlCache: Record<string, string>;
     history: {
-        current: { page: string; hash: string };
-        previous: { page: string; hash: string };
+        current: {
+            page: string;
+            hash: string;
+            // origin is used to compute scroll behavior. If a link was followed from the TOC vs from being clicked
+            // in the body text, there should be different scroll behavior.
+            origin?: NavigationOrigin;
+        };
+        previous: { page: string; hash: string; origin?: NavigationOrigin };
     };
     pageLoadingStatus: "loading" | "loaded" | "rendered" | null;
     // Set to an id if the page should have an index button; null otherwise
@@ -86,7 +93,13 @@ export function queueUntilPageRenderedCancel(func: () => void) {
 const navThunks = {
     setCurrentPage: createLoggingAsyncThunk(
         "nav/setCurrentPageThunk",
-        async (currentPage: string | null, { dispatch, getState }) => {
+        async (
+            {
+                id: currentPage,
+                origin,
+            }: { id: string | null; origin?: NavigationOrigin },
+            { dispatch, getState }
+        ) => {
             if (!currentPage) {
                 dispatch(navSlice.actions._setCurrentPageId(currentPage));
                 await dispatch(navThunks.updateWindowTitleToMatchPage());
@@ -105,13 +118,24 @@ const navThunks = {
             ) {
                 // Pushing to the history will automatically trigger the
                 // `setCurrentPageByUrl` thunk, which handles the page loading.
-                history.push(pageToUrlMap[currentPage]);
+                await dispatch(
+                    navThunks.setCurrentPageByUrl({
+                        url: pageToUrlMap[currentPage],
+                        origin,
+                    })
+                );
             }
         }
     ),
     setCurrentPageByUrl: createLoggingAsyncThunk(
         "nav/setCurrentPageByUrlThunk",
-        async (targetPageUrl: string | null, { dispatch, getState }) => {
+        async (
+            {
+                url: targetPageUrl,
+                origin,
+            }: { url: string | null; origin?: NavigationOrigin },
+            { dispatch, getState }
+        ) => {
             if (!targetPageUrl) {
                 dispatch(navSlice.actions._setCurrentPageId(targetPageUrl));
                 return;
@@ -145,6 +169,7 @@ const navThunks = {
                 navSlice.actions._setPage({
                     page: targetUrl.pathname,
                     hash: targetUrl.hash,
+                    origin,
                 })
             );
             await dispatch(navThunks.updateWindowTitleToMatchPage());
@@ -291,15 +316,23 @@ export const navSlice = createSlice({
          */
         _setPage(
             state,
-            action: PayloadAction<{ page: string | null; hash: string | null }>
+            action: PayloadAction<{
+                page: string | null;
+                hash: string | null;
+                origin?: NavigationOrigin;
+            }>
         ) {
-            const { page, hash } = action.payload;
+            const { page, hash, origin } = action.payload;
             const normalized = normalizePageAndHash({ page, hash });
 
             // Have we changed history states?
             if (normalizePageAndHash(state.history.current) !== normalized) {
                 state.history.previous = state.history.current;
-                state.history.current = { page: page || "", hash: hash || "" };
+                state.history.current = {
+                    page: page || "",
+                    hash: hash || "",
+                    origin,
+                };
             }
 
             const targetUrl = new URL(normalized, window.location.href);
@@ -342,23 +375,6 @@ export const navSlice = createSlice({
             tocIsSetResolve();
         },
     },
-    /*
-    // The `extraReducers` field lets the slice handle actions defined elsewhere,
-    // including actions generated by createAsyncThunk or in other slices.
-    extraReducers: (builder) => {
-        builder
-            .addCase(incrementAsync.pending, (state) => {
-                state.status = "loading";
-            })
-            .addCase(incrementAsync.fulfilled, (state, action) => {
-                state.status = "idle";
-                state.value += action.payload;
-            })
-            .addCase(incrementAsync.rejected, (state) => {
-                state.status = "failed";
-            });
-    },
-    */
 });
 
 export const navActions = {
@@ -366,107 +382,3 @@ export const navActions = {
     ...navThunks,
     ...scrollThunks,
 };
-
-const selfSelector = (state: RootState) => state.nav;
-
-export const currentPageIdSelector = createDraftSafeSelector(
-    selfSelector,
-    (state) => state.currentPageId
-);
-/**
- * Return a cached version of the current page, if available. Otherwise an empty
- * string is returned. This cached version contains just the contents of the
- * `<div id="content">...</div>` node.
- */
-export const currentPageContentSelector = createDraftSafeSelector(
-    [selfSelector, currentPageIdSelector],
-    (state, currentPage) => {
-        if (!currentPage) {
-            return "";
-        }
-        return (
-            state.urlCache[normalizeUrl(state.pageIdToUrlMap[currentPage])] ||
-            ""
-        );
-    }
-);
-export const tocSelector = createDraftSafeSelector(
-    selfSelector,
-    (state) => state.toc
-);
-export const historySelector = createDraftSafeSelector(
-    selfSelector,
-    (state) => state.history
-);
-export const pageLoadingStatusSelector = createDraftSafeSelector(
-    selfSelector,
-    (state) => state.pageLoadingStatus
-);
-export const indexSelector = createDraftSafeSelector(selfSelector, (state) => ({
-    id: state.indexId,
-    url: state.indexId && state.pageIdToUrlMap[state.indexId],
-}));
-/**
- * Return the top-level TocEntry corresponding to the currently active page.
- * If the currently active page is a subsection, the parent section's title is returned.
- */
-export const currentPageTopLevelTocInfoSelector = createDraftSafeSelector(
-    [currentPageIdSelector, tocSelector],
-    (currentPage, toc) => {
-        // Recursively search the table of contents for an entry
-        // with id matching the currently active page.
-        function recursiveFind(toc: TocEntryType[]): TocEntryType | null {
-            for (const entry of toc) {
-                if (
-                    entry.id === currentPage ||
-                    (entry.children && recursiveFind(entry.children))
-                ) {
-                    return entry;
-                }
-            }
-            return null;
-        }
-        return recursiveFind(toc);
-    }
-);
-
-/**
- * Return the TOC entries for the next/prev/up navigation directions
- * relative to the current page.
- */
-export const nextPrevParentSelector = createDraftSafeSelector(
-    [currentPageIdSelector, tocSelector],
-    (currentPage, toc) => {
-        let prev: TocEntryType | null = null,
-            next: TocEntryType | null = null,
-            up: TocEntryType | null = null;
-        if (!currentPage) {
-            return { prev, next, up };
-        }
-        const currentTocEntry = findTocItemById(toc, currentPage);
-        if (!currentTocEntry) {
-            return { prev, next, up };
-        }
-        const currentBaseUrl = normalizeUrl(currentTocEntry.href || "");
-        // We only care about the items with a different URL.
-        const flatToc = flattenToc(toc).filter(
-            (entry) =>
-                normalizeUrl(entry.href || "") !== currentBaseUrl ||
-                entry === currentTocEntry
-        );
-        const currentPageIndex = flatToc.findIndex(
-            (entry) => entry === currentTocEntry
-        );
-
-        prev = flatToc[currentPageIndex - 1] || null;
-        next = flatToc[currentPageIndex + 1] || null;
-
-        // Now for the parent
-        const parents = getParentsInToc(toc, currentTocEntry).filter(
-            (item) => normalizeUrl(item.href || "") !== currentBaseUrl
-        );
-        up = parents[parents.length - 1] || null;
-
-        return { prev, next, up };
-    }
-);

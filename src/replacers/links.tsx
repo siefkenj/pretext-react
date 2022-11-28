@@ -23,6 +23,7 @@ export const replaceInternalLinks: ReplacerFunc = (
                 href={href || ""}
                 className={className}
                 title={title}
+                origin="page"
             >
                 {processContent(node.children)}
             </InternalAnchor>

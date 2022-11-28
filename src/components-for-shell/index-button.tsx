@@ -2,11 +2,11 @@ import React from "react";
 import { ToolbarItem, useToolbarState } from "reakit";
 import { InternalAnchor } from "../components-for-page/links";
 import { useAppDispatch, useAppSelector } from "../state-management/hooks";
+import { navActions } from "../state-management/redux-slices/nav/nav-slice";
 import {
     currentPageIdSelector,
     indexSelector,
-    navActions,
-} from "../state-management/redux-slices/nav/nav-slice";
+} from "../state-management/redux-slices/nav/selectors";
 
 /**
  * A button to take you to the index page. It renders an "Index" page when on other pages
@@ -14,7 +14,6 @@ import {
  */
 export function IndexButton() {
     const toolbar = useToolbarState();
-    const dispatch = useAppDispatch();
     const currentPage = useAppSelector(currentPageIdSelector);
     const indexInfo = useAppSelector(indexSelector);
     const onIndexPage = indexInfo.id && currentPage === indexInfo.id;
@@ -30,14 +29,11 @@ export function IndexButton() {
     return (
         <ToolbarItem
             {...toolbar}
-            as="a"
+            as={InternalAnchor}
             href={indexInfo.url || ""}
             className="index-button button"
             title="Index"
-            onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
-                e.preventDefault();
-                dispatch(navActions.setCurrentPage(indexInfo.id));
-            }}
+            origin="nav"
         >
             <span className="name">Index</span>
         </ToolbarItem>
@@ -60,6 +56,7 @@ function IndexNav() {
                     const ret = (
                         <InternalAnchor
                             href={`#indexletter-${letter}`}
+                            origin="nav"
                             key={letter}
                         >
                             {letter.toUpperCase()}

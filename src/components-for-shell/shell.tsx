@@ -3,10 +3,8 @@ import classNames from "classnames";
 import { extractActiveTocItem, extractTocFromXml } from "./utils/extract-toc";
 import { Toc } from "./toc";
 import { useAppDispatch, useAppSelector } from "../state-management/hooks";
-import {
-    currentPageContentSelector,
-    navActions,
-} from "../state-management/redux-slices/nav/nav-slice";
+import { navActions } from "../state-management/redux-slices/nav/nav-slice";
+import { currentPageContentSelector } from "../state-management/redux-slices/nav/selectors";
 import { useLocation } from "react-router";
 import { normalizeUrlWithHash } from "./utils/normalize";
 import { ContentPage } from "../components-for-page/content-page";
@@ -38,9 +36,17 @@ function Shell() {
                 setLastUrl(currentUrl);
                 // By dispatching a page set every time the URL changes, we are able to keep in sync with
                 // the browser's forward/back button without needing a page reload
-                await dispatch(navActions.setCurrentPageByUrl(currentUrl));
+                await dispatch(
+                    navActions.setCurrentPageByUrl({
+                        url: currentUrl,
+                        origin: "url-change",
+                    })
+                );
             }
-            await dispatch(navActions.scrollViewportIfNeeded());
+            await Promise.all([
+                dispatch(navActions.scrollTocIfNeeded()),
+                dispatch(navActions.scrollViewportIfNeeded()),
+            ]);
         })();
     }, [dispatch, currentUrl, lastUrl]);
 
@@ -48,7 +54,12 @@ function Shell() {
         // Fetch the document manifest, which contains an XML version of the table of contents
         (async () => {
             await dispatch(navActions.fetchAndInitTocFromManifest());
-            await dispatch(navActions.setCurrentPage(extractActiveTocItem()));
+            await dispatch(
+                navActions.setCurrentPage({
+                    id: extractActiveTocItem(),
+                    origin: "url-change",
+                })
+            );
             setTocExtracted(true);
         })();
 
