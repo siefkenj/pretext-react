@@ -1,13 +1,19 @@
 import { createLoggingAsyncThunk } from "../../hooks";
 import { RootState } from "../../store";
+import { awaitElement } from "./dom-utils";
 import {
-    historySelector,
-    pageLoadingStatusSelector,
     queueUntilPageRendered,
     queueUntilPageRenderedCancel,
 } from "./nav-slice";
+import {
+    currentPageIdSelector,
+    currentPageTocInfoSelector,
+    historySelector,
+    pageLoadingStatusSelector,
+} from "./selectors";
 
 let lastScrolledTo = "";
+let lastTocScrolledTo = "";
 
 /**
  * Returns the space occupied at the top of the page by header elements + some padding.
@@ -29,6 +35,7 @@ function getHeaderHeight() {
 }
 
 const previouslyQueued: (() => void)[] = [];
+const previouslyQueuedForToc: (() => void)[] = [];
 
 export const scrollThunks = {
     /**
@@ -87,6 +94,79 @@ export const scrollThunks = {
 
             if (pageLoadingStatus !== "rendered") {
                 previouslyQueued.push(doScroll);
+                queueUntilPageRendered(doScroll);
+            } else {
+                doScroll();
+            }
+        }
+    ),
+    /**
+     * Scrolls the TOC viewport as needed so the active TOC item is
+     * always in view.
+     */
+    scrollTocIfNeeded: createLoggingAsyncThunk(
+        "nav/scrollTocIfNeededThunk",
+        async (_: void, { dispatch, getState }) => {
+            async function doScroll() {
+                const sidebarRoot = await awaitElement("#ptx-sidebar");
+                if (!sidebarRoot) {
+                    console.warn(
+                        "Trying to scroll TOC, but cannot find `nav#ptx-sidebar`"
+                    );
+                    return;
+                }
+                const state = getState() as RootState;
+                const history = historySelector(state);
+                const origin = history.current.origin;
+
+                if (origin === "toc") {
+                    // If the page change happened because we clicked an entry in the
+                    // TOC, then no scrolling should occur.
+                    return;
+                }
+
+                const tocItemInfo = currentPageTocInfoSelector(state);
+                if (!tocItemInfo || !tocItemInfo.id) {
+                    console.warn(
+                        "Could not find TOC item info for current page with id",
+                        currentPageIdSelector(state)
+                    );
+                    return;
+                }
+
+                // Debounce the scroll action if needed.
+                if (lastTocScrolledTo === tocItemInfo.id) {
+                    return;
+                }
+                lastTocScrolledTo = tocItemInfo.id;
+
+                // Find the TOC DOM node we want to scroll into view.
+                const query = `a[href^="${tocItemInfo.href}"]`;
+                const tocNode = sidebarRoot.querySelector(query);
+                if (!tocNode) {
+                    console.warn(
+                        "Cannot scroll current TOC item into view because the corresponding DOM node cannot be found matching query",
+                        query
+                    );
+                    return;
+                }
+
+                const behavior =
+                    origin === "page" || origin === "nav" ? "smooth" : "auto";
+                tocNode.scrollIntoView({ behavior, block: "nearest" });
+            }
+            const pageLoadingStatus = pageLoadingStatusSelector(
+                getState() as RootState
+            );
+
+            // If we have made it here, we'd better un-queue any previous scroll requests
+            for (const func of previouslyQueuedForToc) {
+                queueUntilPageRenderedCancel(func);
+            }
+            previouslyQueuedForToc.length = 0;
+
+            if (pageLoadingStatus !== "rendered") {
+                previouslyQueuedForToc.push(doScroll);
                 queueUntilPageRendered(doScroll);
             } else {
                 doScroll();

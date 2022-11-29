@@ -5,9 +5,12 @@ declare const MathJax: MathJaxObject;
 
 const globalCurrentlyTypesetting = new WeakMap<object, boolean>();
 let resolvePreamblePromise: Function;
-const preambleHasBeenTypeset = new Promise((resolve, _) => {
+const preambleHasBeenTypeset: Promise<void> & {
+    setMathJaxPreambleWasCalled?: boolean;
+} = new Promise((resolve, _) => {
     resolvePreamblePromise = resolve;
 });
+preambleHasBeenTypeset.setMathJaxPreambleWasCalled = false;
 
 function ensureMathJax() {
     if (typeof MathJax === "undefined") {
@@ -26,6 +29,13 @@ export async function setMathJaxPreamble(e?: Element) {
         console.warn("Tried to typeset math, but MathJax was not loaded");
         return;
     }
+
+    // This function cannot be called concurrently, so wait for the last call to finish
+    if (preambleHasBeenTypeset.setMathJaxPreambleWasCalled) {
+        await preambleHasBeenTypeset;
+    }
+    preambleHasBeenTypeset.setMathJaxPreambleWasCalled = true;
+
     if (!e) {
         // Even if we don't need to typeset any preamble,
         // we don't want to resolve the preamble promise until MathJax has fully loaded.

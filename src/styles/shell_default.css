@@ -53,7 +53,7 @@
     width: var(--sidebar-width);
     min-width: calc(0.8 * var(--sidebar-width));
     border-right: 1px solid var(--tocborder);
-    direction: rtl;  /* Put the scroll bar on the left */
+    direction: rtl; /* Put the scroll bar on the left */
 }
 
 .sidebar-hidden {
@@ -216,6 +216,10 @@
 }
 .ptx-page-footer .mathjax-logo img {
     height: 2.5em;
+}
+
+.empty-index-button {
+    border-left: 1px solid #bababa;
 }
 
 @media screen and (max-width: 904px) {

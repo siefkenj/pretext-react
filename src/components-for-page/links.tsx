@@ -2,11 +2,15 @@ import React from "react";
 import { Button } from "reakit";
 import { useAppDispatch } from "../state-management/hooks";
 import { globalActions } from "../state-management/redux-slices/global/global-slice";
-import { navActions } from "../state-management/redux-slices/nav/nav-slice";
+import {
+    navActions,
+    NavigationOrigin,
+} from "../state-management/redux-slices/nav/nav-slice";
 
 type InternalAnchorParams = {
     href: string;
     pageId?: string;
+    origin?: NavigationOrigin;
 } & React.ComponentProps<"a">;
 
 /**
@@ -23,6 +27,7 @@ export const InternalAnchor = React.forwardRef<
         children,
         className,
         onClick,
+        origin,
         ...rest
     }: InternalAnchorParams,
     ref
@@ -51,9 +56,11 @@ export const InternalAnchor = React.forwardRef<
 
                 e.preventDefault();
                 if (pageId) {
-                    dispatch(navActions.setCurrentPage(pageId));
+                    dispatch(navActions.setCurrentPage({ id: pageId, origin }));
                 } else {
-                    dispatch(navActions.setCurrentPageByUrl(href));
+                    dispatch(
+                        navActions.setCurrentPageByUrl({ url: href, origin })
+                    );
                 }
                 if (onClick) {
                     onClick(e);

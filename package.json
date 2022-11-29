@@ -35,7 +35,6 @@
         "puppeteer": "^17.1.3",
         "react": "18.2.0",
         "react-app-rewired": "^2.2.1",
-        "react-chevron": "^1.1.1",
         "react-dom": "18.2.0",
         "react-medium-image-zoom": "^4.4.3",
         "react-redux": "^8.0.5",

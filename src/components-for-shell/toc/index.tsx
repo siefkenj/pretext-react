@@ -4,13 +4,13 @@ import { useAppSelector } from "../../state-management/hooks";
 import {
     currentPageIdSelector,
     tocSelector,
-} from "../../state-management/redux-slices/nav/nav-slice";
+} from "../../state-management/redux-slices/nav/selectors";
 import { TocEntryType } from "../utils/extract-toc";
 import { InternalAnchor } from "../../components-for-page/links";
 import { MathJaxOneTimeRenderer } from "../../components-for-page/mathjax";
-import Chevron from "react-chevron";
 import { Accordion } from "../../components-common/accordion";
 import { Button } from "reakit";
+import { Chevron } from "../chevron";
 
 /**
  * Returns whether or not there is a TOC item with id `childId` that is a child of the
@@ -78,9 +78,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                 setHasHadInteraction(true);
             }}
         >
-            <div className="chevron-rotator">
-                <Chevron direction="right" />
-            </div>
+            <Chevron direction={openState ? "down" : "left"} />
         </Button>
     ) : null;
 
@@ -95,6 +93,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                     <InternalAnchor
                         href={entry.href || "#"}
                         pageId={entry.id || undefined}
+                        origin="toc"
                         className={classNames({
                             active: currentPage === entry.id,
                             "has-chevron": chevron,
