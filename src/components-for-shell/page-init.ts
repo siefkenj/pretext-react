@@ -21,6 +21,12 @@ function extractBannerContent() {
     if (innerElm) {
         elm = innerElm;
     }
+    // XXX We strip away the "placeholder" for search results, since we will be building that ourself.
+    // This should be removed when React is made the default frontend
+    const placeholder = elm.querySelector("#searchresultsplaceholder");
+    if (placeholder) {
+        placeholder.parentElement?.removeChild(placeholder);
+    }
     return elm.innerHTML;
 }
 function extractCurrentPageContent() {
