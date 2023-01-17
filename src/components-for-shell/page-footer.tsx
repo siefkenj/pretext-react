@@ -1,46 +1,101 @@
 import React from "react";
-import { useAppSelector } from "../state-management/hooks";
-import { nextPrevParentSelector } from "../state-management/redux-slices/nav/selectors";
-import { InternalAnchor } from "../components-for-page/links";
 
 export function PageFooter() {
-    const navTargets = useAppSelector(nextPrevParentSelector);
-
     return (
-        <div className="ptx-content-footer">
-            <InternalAnchor
-                href={navTargets.prev?.href || "#"}
-                className="previous-button button"
-                origin="nav"
-                title={
-                    navTargets.prev
-                        ? `Previous (${navTargets.prev.title})`
-                        : "Previous"
-                }
+        <div className="ptx-page-footer">
+            <a
+                className="feedback-link"
+                href="not-implemented.html"
+                target="_blank"
             >
-                <span className="icon">&lt;</span>
-                <span className="name">Prev</span>
-            </InternalAnchor>
-            <InternalAnchor
-                href={"#"}
-                title="Top"
-                className="top-button button"
-                origin="nav"
-            >
-                <span className="icon">^</span>
-                <span className="name">Top</span>
-            </InternalAnchor>
-            <InternalAnchor
-                href={navTargets.next?.href || "#"}
-                title={
-                    navTargets.next ? `Next (${navTargets.next.title})` : "Next"
-                }
-                className="next-button button"
-                origin="nav"
-            >
-                <span className="name">Next</span>
-                <span className="icon">&gt;</span>
-            </InternalAnchor>
+                Feedback
+            </a>
+            <a className="pretext-link" href="https://pretextbook.org">
+                <div className="name">Authored in PreTeXt</div>
+                <div className="logo">
+                    <PretextIcon />
+                </div>
+            </a>
+            <a className="mathjax-logo" href="https://www.mathjax.org">
+                <img
+                    title="Powered by MathJax"
+                    src="https://www.mathjax.org/badge/badge.gif"
+                    alt="Powered by MathJax"
+                />
+            </a>
         </div>
+    );
+}
+
+function PretextIcon() {
+    return (
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="100%"
+            height="100%"
+            viewBox="338 3000 8772 6866"
+            dangerouslySetInnerHTML={{
+                __html: `
+            <g style="stroke-width:.025in; stroke:black; fill:none">
+                <polyline
+                    points="472,3590 472,9732 "
+                    style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "
+                ></polyline>
+                <path
+                    style="stroke:#000000;stroke-width:126;stroke-linecap:butt;"
+                    d="M 4724,9448 A 4660 4660  0  0  1  8598  9259 "
+                ></path>
+                <path
+                    style="stroke:#000000;stroke-width:174;stroke-linecap:butt;"
+                    d="M 4488,9685 A 4228 4228  0  0  0  472  9732 "
+                ></path>
+                <path
+                    style="stroke:#000000;stroke-width:126;stroke-linecap:butt;"
+                    d="M 4724,3590 A 4241 4241  0  0  1  8598  3496 "
+                ></path>
+                <path
+                    style="stroke:#000000;stroke-width:126;stroke-linecap:round;"
+                    d="M 850,3496 A 4241 4241  0  0  1  4724  3590 "
+                ></path>
+                <path
+                    style="stroke:#000000;stroke-width:126;stroke-linecap:round;"
+                    d="M 850,9259 A 4507 4507  0  0  1  4724  9448 "
+                ></path>
+                <polyline
+                    points="5385,4299 4062,8125 "
+                    style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "
+                ></polyline>
+                <polyline
+                    points="8598,3496 8598,9259 "
+                    style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "
+                ></polyline>
+                <polyline
+                    points="850,3496 850,9259 "
+                    style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round; "
+                ></polyline>
+                <polyline
+                    points="4960,9685 4488,9685 "
+                    style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "
+                ></polyline>
+                <polyline
+                    points="3070,4582 1889,6141 3070,7700 "
+                    style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "
+                ></polyline>
+                <polyline
+                    points="6418,4582 7600,6141 6418,7700 "
+                    style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round; "
+                ></polyline>
+                <polyline
+                    points="8976,3590 8976,9732 "
+                    style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "
+                ></polyline>
+                <path
+                    style="stroke:#000000;stroke-width:174;stroke-linecap:butt;"
+                    d="M 4960,9685 A 4228 4228  0  0  1  8976  9732 "
+                ></path>
+            </g>
+            `,
+            }}
+        ></svg>
     );
 }

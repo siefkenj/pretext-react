@@ -11,12 +11,13 @@ import { ContentPage } from "../components-for-page/content-page";
 import { Banner } from "./banner";
 import { NavButtons } from "./nav-buttons";
 import { IndexButton } from "./index-button";
-import { PageFooter } from "./page-footer";
+import { ContentFooter } from "./content-footer";
 import { TocVisibilityToggle } from "./toc/toggle";
 import { tocIsVisibleSelector } from "../state-management/redux-slices/toc/toc-slice";
 
 import { globalActions } from "../state-management/redux-slices/global/global-slice";
 import { setMathJaxPreamble } from "./utils/mathjax";
+import { PageFooter } from "./page-footer";
 
 function Shell() {
     const dispatch = useAppDispatch();
@@ -124,10 +125,10 @@ function Shell() {
                     <div className="ptx-content">
                         <ContentPage content={currentPageContents} />
                     </div>
-                    <PageFooter />
+                    <ContentFooter />
                 </main>
             </div>
-            <div className="ptx-page-footer">Window footer dummy content</div>
+            <PageFooter />
         </React.Fragment>
     );
 }

@@ -194,10 +194,7 @@
 }
 .ptx-page-footer .pretext-link .logo {
     width: 6em;
-}
-.ptx-page-footer .pretext-link .name {
-    margin-top: 1.5em;
-    margin-right: 1em;
+    margin-left: 1em;
 }
 .ptx-page-footer .feedback-link {
     cursor: pointer;
