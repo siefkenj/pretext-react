@@ -149,7 +149,13 @@ export const hastReactTransformer: Plugin<
     }
 
     function process(
-        node: HastRoot | HastElement | HastText | HastComment | HastDocType,
+        node:
+            | HastRoot
+            | HastElement
+            | HastText
+            | HastComment
+            | HastDocType
+            | HastElementContent,
         key: number = 0,
         file: VFile
     ): React.ReactNode[] {
