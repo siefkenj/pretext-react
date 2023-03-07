@@ -1,4 +1,5 @@
-import type { MathJaxObject } from "mathjax-full/ts/components/startup";
+// @ts-ignore
+import type { MathJaxObject } from "mathjax-full/components/startup";
 
 // MathJax is loaded globally and should be available when React starts.
 declare const MathJax: MathJaxObject;

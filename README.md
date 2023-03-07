@@ -2,13 +2,13 @@
 
 A ReactJS version of the Pretext UI
 
-This interface is a prototype to investigate whether React would provide a suitable
-replacement for the current jquery-based UI for Pretext books when rendered on the web.
+This interface is a replacement for the current jquery-based UI for Pretext
+books when rendered on the web.
 
 ## Development
 
 To get started, make sure you have `nodejs` and `npm` (Node Package Manager; should
-be installed by default with Node) installed. Then, in the `pretext-react` director, run
+be installed by default with Node) installed. Then, in the `pretext-react` directory, run
 
 ```
 git submodule init
@@ -16,9 +16,22 @@ npm install
 npm run start
 ```
 
-to make a live dev-server. After this, when you update code, your node will tell your
+to make a live dev-server. After this, when you update code, `node` will tell your
 web browser to automatically reload with the new code. However, this may cause issues with
 internally-cached data, so you may have to refresh the web browser.
+
+### Testing Different Pretext Content
+
+By default, `pretext-react` has a copy of precompiled versions of the pretext sample article and book, symbolically
+linked from the `pretext-react-compiled-article` subdirectory. By default `public/` is refers to the pretext sample article.
+
+To view the sample book, navigate to `/pretext-react-compiled-article/html-book-dev/index.html`. To view the testing document (used for unit tests),
+navigate to `/pretext-react-compiled-article/html-testing/index.html`.
+
+**To test out your own content**, create a folder or symbolic link in the root project directory with your
+compiled pretext (make sure you have `debug.react.local` set to `yes`). Then, run `npm run start` and navigate to
+`/your-folder/index.html`. (By default, you will be sent to `/public/index.html`, which points to the pre-compiled sample
+article.)
 
 ### Build
 
@@ -33,13 +46,11 @@ at `build/static/js/main.js` and the css will be located at `build/static/css/ma
 scripts assume that all of your _Pretext_ `html` files have
 
 ```html
-<script defer="defer" src="/static/js/bundle.js"></script>
-<script defer="defer" src="/static/js/main.js"></script>
+<script type="module" defer="defer" src="/static/js/main.js"></script>
 <link href="./static/css/main.css" rel="stylesheet" />
 ```
 
-in their `<header>`. (The reference to `bundle.js` is strictly for development/hot-reloading. It
-isn't needed in a production build.)
+in their `<header>`.
 
 #### Building Pretext Source for Debugging
 

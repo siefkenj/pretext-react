@@ -16,8 +16,9 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+        "composite": true
     },
     "include": ["src"],
-    "typeRoots": ["./src/types"]
+    "exclude": ["node_modules", "./node_modules"],
 }
