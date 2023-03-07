@@ -6,6 +6,7 @@
 const http = require("http"),
     path = require("path"),
     fs = require("fs"),
+    mime = require("mime-types"),
     port = process.argv[2] || 30001;
 
 const CWD = process.cwd();
@@ -31,7 +32,9 @@ http.createServer(function (request, response) {
                     return;
                 }
 
-                response.writeHead(200);
+                response.writeHead(200, {
+                    "Content-Type": mime.lookup(fileName) || "text/plain",
+                });
                 response.write(file, "binary");
                 response.end();
                 console.log("   Serving ", path.relative(CWD, fileName));
