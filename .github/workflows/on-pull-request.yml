@@ -33,9 +33,9 @@ jobs:
 
             - name: "End to End Tests"
               run: npm run test:e2e-with-setup-and-teardown
-                
+
             - name: "Deploy"
-              if: ${{ success() && github.event.push }}
+              if: ${{ success() && github.event_name == "push" }}
               uses: crazy-max/ghaction-github-pages@v3
               with:
                   target_branch: gh-pages
