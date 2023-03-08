@@ -10,17 +10,33 @@ export function PageFooter() {
             >
                 Feedback
             </a>
-            <a className="pretext-link" href="https://pretextbook.org">
-                <div className="name">Authored in PreTeXt</div>
+            <a
+                className="runestone-link"
+                href="https://runestone.academy"
+                title="Runestone Academy"
+            >
+                <img
+                    className="logo"
+                    src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"
+                />
+            </a>
+            <a
+                className="pretext-link"
+                href="https://pretextbook.org"
+                title="PreTeXt"
+            >
                 <div className="logo">
                     <PretextIcon />
                 </div>
             </a>
-            <a className="mathjax-logo" href="https://www.mathjax.org">
+            <a
+                className="mathjax-logo"
+                href="https://www.mathjax.org"
+                title="MathJax"
+            >
                 <img
-                    title="Powered by MathJax"
-                    src="https://www.mathjax.org/badge/badge.gif"
-                    alt="Powered by MathJax"
+                    className="logo"
+                    src="https://www.mathjax.org/badge/badge-square-2.png"
                 />
             </a>
         </div>

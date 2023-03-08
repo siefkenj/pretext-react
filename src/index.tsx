@@ -68,7 +68,7 @@ extractInitInfo();
 // be in the body, so we need to manually clean up and prepare a spot for the main app.
 document.body.innerHTML += `<div id="root"></div>`;
 const elmsToRemove = document.body.querySelectorAll(
-    "body > header, body > nav, body > .ptx-page, body > .ptx-page-footer"
+    "body > header, body > nav, body > .ptx-page, body > .ptx-page-footer, body > #ptx-page-footer"
 );
 for (const elm of Array.from(elmsToRemove)) {
     try {
