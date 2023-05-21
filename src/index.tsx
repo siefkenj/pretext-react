@@ -40,7 +40,7 @@ extractInitInfo();
 // XXX: Temporary workaround; Pretext upstream CSS messes us up
 {
     const elmsToRemove = document.head.querySelectorAll(
-        `link[href*="pretext"]`
+        `link[href*="pretextbook"]`
     );
     for (const elm of Array.from(elmsToRemove)) {
         try {
