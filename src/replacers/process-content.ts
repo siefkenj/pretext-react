@@ -13,6 +13,7 @@ import { replaceInternalLinks } from "./links";
 import { replaceMathKnowl } from "./math";
 import { replaceRunestone } from "./runestone";
 import { replaceSageKnowl } from "./sage-knowls";
+import { replaceListings } from "./listing";
 
 const processHtmlContentViaUnified = unified()
     .use(hastFromStringNative)
@@ -29,6 +30,7 @@ const processHtmlContentViaUnified = unified()
             replaceImages,
             replaceAsides,
             replaceRunestone,
+            replaceListings,
         ],
     })
     .freeze();

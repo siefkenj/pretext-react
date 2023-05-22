@@ -5,6 +5,7 @@ import viteTsconfigPaths from "vite-tsconfig-paths";
 import svgrPlugin from "vite-plugin-svgr";
 import { JSDOM } from "jsdom";
 import { directoryPlugin } from "vite-plugin-list-directory-contents";
+import { viteStaticCopy } from "vite-plugin-static-copy";
 import checker from "vite-plugin-checker";
 
 /**
@@ -31,6 +32,14 @@ export default defineConfig(({ command, mode }) => {
             viteTsconfigPaths(),
             svgrPlugin(),
             directoryPlugin({ baseDir: __dirname }),
+            viteStaticCopy({
+                targets: [
+                    {
+                        src: "node_modules/prismjs/components/*.min.js",
+                        dest: "static/prismjs",
+                    },
+                ],
+            }),
             ...additionalPlugins,
         ],
         base: "./",
