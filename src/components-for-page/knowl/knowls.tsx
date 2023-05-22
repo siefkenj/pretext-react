@@ -1,6 +1,6 @@
 import React from "react";
 import classNames from "classnames";
-import { Button } from "reakit";
+import { Button } from "@ariakit/react";
 import { useAppDispatch, useAppSelector } from "../../state-management/hooks";
 import {
     knowlActions,
@@ -63,7 +63,10 @@ export function Knowl({
     className,
     ...rest
 }: React.PropsWithChildren<
-    { url: string; containerId: string } & React.ComponentProps<"a">
+    { url: string; containerId: string } & Pick<
+        React.ComponentProps<"a">,
+        "title" | "className" | "id"
+    >
 >) {
     const visibleKnowls = useAppSelector(visibleKnowlsSelector);
     const contentVisible = visibleKnowls[containerId];
@@ -143,7 +146,10 @@ export function PreloadedKnowl({
     className,
     refId,
     ...rest
-}: { refId: string } & React.ComponentProps<"a">) {
+}: { refId: string } & Pick<
+    React.ComponentProps<"a">,
+    "title" | "className" | "id" | "children"
+>) {
     const visibleKnowls = useAppSelector(visibleKnowlsSelector);
     const contentVisible = visibleKnowls[refId];
     const dispatch = useAppDispatch();

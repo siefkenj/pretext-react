@@ -1,21 +1,20 @@
 import React from "react";
-import { Toolbar, ToolbarItem, useToolbarState } from "reakit";
+import { Toolbar, ToolbarItem, useToolbarStore } from "@ariakit/react";
 import { useAppSelector } from "../state-management/hooks";
 import { nextPrevParentSelector } from "../state-management/redux-slices/nav/selectors";
 import { InternalAnchor } from "../components-for-page/links";
 
 export function NavButtons() {
-    const toolbar = useToolbarState();
+    const toolbar = useToolbarStore();
     const navTargets = useAppSelector(nextPrevParentSelector);
 
     return (
         <Toolbar
-            {...toolbar}
+            store={toolbar}
             aria-label="Previous/Next Section"
             className="treebuttons"
         >
             <ToolbarItem
-                {...toolbar}
                 as={InternalAnchor}
                 href={navTargets.prev?.href || "#"}
                 origin="nav"
@@ -31,7 +30,6 @@ export function NavButtons() {
                 <span className="name">Prev</span>
             </ToolbarItem>
             <ToolbarItem
-                {...toolbar}
                 as={InternalAnchor}
                 href={navTargets.up?.href || "#"}
                 origin="nav"
@@ -43,7 +41,6 @@ export function NavButtons() {
                 <span className="name">Up</span>
             </ToolbarItem>
             <ToolbarItem
-                {...toolbar}
                 as={InternalAnchor}
                 href={navTargets.next?.href || "#"}
                 origin="nav"

@@ -9,7 +9,7 @@ import { TocEntryType } from "../utils/extract-toc";
 import { InternalAnchor } from "../../components-for-page/links";
 import { MathJaxOneTimeRenderer } from "../../components-for-page/mathjax";
 import { Accordion } from "../../components-common/accordion";
-import { Button } from "reakit";
+import { Button } from "@ariakit/react";
 import { Chevron } from "../chevron";
 
 /**
