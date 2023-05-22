@@ -52,6 +52,7 @@ function ensureInstantAnimations(page) {
 
 describe("UI Tests", () => {
     let browser;
+    /** @type puppeteer.Page */
     let page;
 
     beforeAll(async () => {
@@ -226,6 +227,31 @@ describe("UI Tests", () => {
         const openKnowls = await page.waitForSelector("[data-for-knowl-url]");
 
         expect(openKnowls).not.toBeNull();
+    });
+
+    it("test-8: listings get syntax highlighted", async () => {
+        await page.goto(`${DEBUG_URL}/test-8.html`);
+        await page.waitForSelector("#test-8");
+
+        // MathJax must be loaded before this test can happen
+        await page.evaluate(async () => {
+            await window.MathJax.startup.promise;
+            await window.MathJax.typesetPromise();
+        });
+        await page.waitForSelector("#test-8-listing-c");
+
+        // The c-code should be highlighted via a dynamically-loaded plugin
+        // There should be exactly one comment in the c code
+        let listing1 = await page.$$(
+            "#test-8-listing-c code > span.token.comment"
+        );
+        expect(listing1.length).toBe(1);
+
+        // Get all of the highlighted operators
+        let listing2 = await page.$$(
+            "pre.program.language-matlab code > span.token.operator"
+        );
+        expect(listing2.length).toBe(15);
     });
 
     afterAll(() => browser.close());
