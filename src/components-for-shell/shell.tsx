@@ -18,6 +18,8 @@ import { tocIsVisibleSelector } from "../state-management/redux-slices/toc/toc-s
 import { globalActions } from "../state-management/redux-slices/global/global-slice";
 import { setMathJaxPreamble } from "./utils/mathjax";
 import { PageFooter } from "./page-footer";
+import { SettingsButton } from "./settings/settings-button";
+import { InfoDialog } from "./settings/info-dialog";
 
 function Shell() {
     const dispatch = useAppDispatch();
@@ -102,10 +104,12 @@ function Shell() {
                     <Banner />
                 </div>
             </header>
+            <InfoDialog />
             <nav id="ptx-navbar" className="navbar">
                 <TocVisibilityToggle />
                 <IndexButton />
                 <NavButtons />
+                <SettingsButton />
             </nav>
             <div className="ptx-page">
                 <div

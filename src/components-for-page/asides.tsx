@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import React from "react";
-import { Button } from "reakit";
+import { Button } from "@ariakit/react";
 
 /**
  * A wrapper for an `<aside>` element.

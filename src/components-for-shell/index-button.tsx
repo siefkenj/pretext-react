@@ -1,8 +1,7 @@
 import React from "react";
-import { ToolbarItem, useToolbarState } from "reakit";
+import { Button } from "@ariakit/react";
 import { InternalAnchor } from "../components-for-page/links";
-import { useAppDispatch, useAppSelector } from "../state-management/hooks";
-import { navActions } from "../state-management/redux-slices/nav/nav-slice";
+import { useAppSelector } from "../state-management/hooks";
 import {
     currentPageIdSelector,
     indexSelector,
@@ -13,7 +12,6 @@ import {
  * and an index navigator (the letters of the alphabet so that you can click on them) otherwise.
  */
 export function IndexButton() {
-    const toolbar = useToolbarState();
     const currentPage = useAppSelector(currentPageIdSelector);
     const indexInfo = useAppSelector(indexSelector);
     const onIndexPage = indexInfo.id && currentPage === indexInfo.id;
@@ -27,8 +25,7 @@ export function IndexButton() {
     }
 
     return (
-        <ToolbarItem
-            {...toolbar}
+        <Button
             as={InternalAnchor}
             href={indexInfo.url || ""}
             className="index-button button"
@@ -36,7 +33,7 @@ export function IndexButton() {
             origin="nav"
         >
             <span className="name">Index</span>
-        </ToolbarItem>
+        </Button>
     );
 }
 

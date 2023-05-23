@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "reakit";
+import { Button } from "@ariakit/react";
 import { useAppDispatch } from "../state-management/hooks";
 import { globalActions } from "../state-management/redux-slices/global/global-slice";
 import {
@@ -37,7 +37,10 @@ export const InternalAnchor = React.forwardRef<
     return (
         <Button
             as="a"
-            ref={ref}
+            ref={
+                // XXX Not sure why Typescript doesn't like this type, but it should be correct...
+                ref as any
+            }
             href={href}
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 // We take over navigation with cached async loading,
@@ -88,7 +91,10 @@ export function PermalinkAnchor({
 }: {
     href: string;
     pageId?: string;
-} & React.ComponentProps<"a">) {
+} & Pick<
+    React.ComponentProps<"a">,
+    "title" | "className" | "children" | "onClick"
+>) {
     const dispatch = useAppDispatch();
 
     const url = "" + new URL(href, window.location.href);

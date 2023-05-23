@@ -1,5 +1,5 @@
 import React from "react";
-import { Button } from "reakit";
+import { Button } from "@ariakit/react";
 import { useAppDispatch, useAppSelector } from "../../state-management/hooks";
 import {
     tocActions,

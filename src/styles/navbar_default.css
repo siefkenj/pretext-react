@@ -14,7 +14,6 @@
     border-left: unset;
     font-family: "Open Sans", sans;
     height: var(--ptx-navbar-height);
-    overflow: hidden;
     display: flex;
     position: sticky;
     top: 0px;

@@ -19,6 +19,7 @@ import "./styles/colors_blue_red.css";
 import "./styles/setcolors.css";
 import "./styles/knowls.css";
 import "./styles/permalink.css";
+import "./styles/widgets.css";
 import { Shell } from "./components-for-shell/shell";
 
 // Must be called before the app renders.
