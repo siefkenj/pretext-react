@@ -12,11 +12,13 @@ import { tocActions, tocIsVisibleSelector } from "../toc/toc-slice";
 export interface GlobalState {
     domCaching: boolean;
     inMobileMode: boolean;
+    infoDialogOpen: boolean;
 }
 
 const initialState: GlobalState = {
     domCaching: true,
     inMobileMode: false,
+    infoDialogOpen: false,
 };
 
 export interface PermalinkDetails {
@@ -98,6 +100,9 @@ export const globalSlice = createSlice({
         _setInMobileMode(state, action: PayloadAction<boolean>) {
             state.inMobileMode = action.payload;
         },
+        setInfoDialogOpen(state, action: PayloadAction<boolean>) {
+            state.infoDialogOpen = action.payload;
+        },
     },
 });
 
@@ -112,4 +117,8 @@ export const domCachingSelector = createDraftSafeSelector(
 export const inMobileModeSelector = createDraftSafeSelector(
     selfSelector,
     (state) => state.inMobileMode
+);
+export const infoDialogOpenSelector = createDraftSafeSelector(
+    selfSelector,
+    (state) => state.infoDialogOpen
 );
