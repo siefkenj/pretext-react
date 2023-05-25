@@ -63,10 +63,7 @@ export function Knowl({
     className,
     ...rest
 }: React.PropsWithChildren<
-    { url: string; containerId: string } & Pick<
-        React.ComponentProps<"a">,
-        "title" | "className" | "id"
-    >
+    { url: string; containerId: string } & React.ComponentPropsWithoutRef<"a">
 >) {
     const visibleKnowls = useAppSelector(visibleKnowlsSelector);
     const contentVisible = visibleKnowls[containerId];
@@ -146,10 +143,7 @@ export function PreloadedKnowl({
     className,
     refId,
     ...rest
-}: { refId: string } & Pick<
-    React.ComponentProps<"a">,
-    "title" | "className" | "id" | "children"
->) {
+}: { refId: string } & React.ComponentPropsWithoutRef<"a">) {
     const visibleKnowls = useAppSelector(visibleKnowlsSelector);
     const contentVisible = visibleKnowls[refId];
     const dispatch = useAppDispatch();

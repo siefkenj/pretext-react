@@ -88,10 +88,7 @@ export function PermalinkAnchor({
 }: {
     href: string;
     pageId?: string;
-} & Pick<
-    React.ComponentProps<"a">,
-    "title" | "className" | "children" | "onClick"
->) {
+} & React.ComponentPropsWithoutRef<"a">) {
     const dispatch = useAppDispatch();
 
     const url = "" + new URL(href, window.location.href);
