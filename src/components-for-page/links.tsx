@@ -11,7 +11,7 @@ type InternalAnchorParams = {
     href: string;
     pageId?: string;
     origin?: NavigationOrigin;
-} & React.ComponentProps<"a">;
+} & React.ComponentPropsWithoutRef<"a">;
 
 /**
  * An anchor element for internal links. Instead of redirecting to a new page,
@@ -37,10 +37,7 @@ export const InternalAnchor = React.forwardRef<
     return (
         <Button
             as="a"
-            ref={
-                // XXX Not sure why Typescript doesn't like this type, but it should be correct...
-                ref as any
-            }
+            ref={ref}
             href={href}
             onClick={(e: React.MouseEvent<HTMLAnchorElement>) => {
                 // We take over navigation with cached async loading,
