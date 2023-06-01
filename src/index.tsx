@@ -25,19 +25,6 @@ import { Shell } from "./components-for-shell/shell";
 // Must be called before the app renders.
 extractInitInfo();
 
-// XXX: Temporary workaround; Runestone CSS messes us up
-{
-    const elmsToRemove = document.head.querySelectorAll(
-        `link[href*="runestone"]`
-    );
-    for (const elm of Array.from(elmsToRemove)) {
-        try {
-            document.head.removeChild(elm);
-        } catch (e) {
-            console.warn("Tried to remove", elm, "but couldn't");
-        }
-    }
-}
 // XXX: Temporary workaround; Pretext upstream CSS messes us up
 {
     const elmsToRemove = document.head.querySelectorAll(
