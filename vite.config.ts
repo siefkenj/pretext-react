@@ -163,8 +163,7 @@ function stripLegacyTags(dom: JSDOM) {
     // XXX: Temporary workaround; Runestone CSS messes us up
     {
         const elmsToRemove = document.head.querySelectorAll(
-            `link[href*="runestone"],
-             link[href*="pretext"],
+            `link[href*="pretext"],
              link[href*="developer.css"],
              noscript
             `
