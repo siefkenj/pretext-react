@@ -13,12 +13,14 @@ export interface GlobalState {
     domCaching: boolean;
     inMobileMode: boolean;
     infoDialogOpen: boolean;
+    sageCellOpen: boolean;
 }
 
 const initialState: GlobalState = {
     domCaching: true,
     inMobileMode: false,
     infoDialogOpen: false,
+    sageCellOpen: false,
 };
 
 export interface PermalinkDetails {
@@ -103,6 +105,9 @@ export const globalSlice = createSlice({
         setInfoDialogOpen(state, action: PayloadAction<boolean>) {
             state.infoDialogOpen = action.payload;
         },
+        setSageCellOpen(state, action: PayloadAction<boolean>) {
+            state.sageCellOpen = action.payload;
+        },
     },
 });
 
@@ -121,4 +126,8 @@ export const inMobileModeSelector = createDraftSafeSelector(
 export const infoDialogOpenSelector = createDraftSafeSelector(
     selfSelector,
     (state) => state.infoDialogOpen
+);
+export const sageCellSelector = createDraftSafeSelector(
+    selfSelector,
+    (state) => state.sageCellOpen
 );

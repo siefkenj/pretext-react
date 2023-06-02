@@ -20,6 +20,8 @@ import { setMathJaxPreamble } from "./utils/mathjax";
 import { PageFooter } from "./page-footer";
 import { SettingsButton } from "./settings/settings-button";
 import { InfoDialog } from "./settings/info-dialog";
+import { SageCellButton } from "./sagecell-button";
+import { SageCellDialog } from "./settings/sage-cell-dialog";
 
 function Shell() {
     const dispatch = useAppDispatch();
@@ -105,9 +107,11 @@ function Shell() {
                 </div>
             </header>
             <InfoDialog />
+            <SageCellDialog />
             <nav id="ptx-navbar" className="navbar">
                 <TocVisibilityToggle />
                 <IndexButton />
+                <SageCellButton />
                 <NavButtons />
                 <SettingsButton />
             </nav>
