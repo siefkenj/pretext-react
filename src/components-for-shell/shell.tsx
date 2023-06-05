@@ -20,6 +20,9 @@ import { setMathJaxPreamble } from "./utils/mathjax";
 import { PageFooter } from "./page-footer";
 import { SettingsButton } from "./settings/settings-button";
 import { InfoDialog } from "./settings/info-dialog";
+import { RunestoneHeaderButtons } from "./runestone/nav-buttons";
+import { runestoneActions } from "../state-management/redux-slices/runestone/runestone-slice";
+import { ScratchActiveCodeDialog } from "./runestone/scratch-active-code-dialog";
 
 function Shell() {
     const dispatch = useAppDispatch();
@@ -66,6 +69,9 @@ function Shell() {
             setTocExtracted(true);
         })();
 
+        // Initialize Runestone if present
+        dispatch(runestoneActions.runestoneInit());
+
         // Set up media queries to detect if we are in mobile/small-screen mode
         const mediaQuery = window.matchMedia("(max-width: 904px)");
         function mobileModeSwitch(e: Event) {
@@ -105,9 +111,11 @@ function Shell() {
                 </div>
             </header>
             <InfoDialog />
+            <ScratchActiveCodeDialog />
             <nav id="ptx-navbar" className="navbar">
                 <TocVisibilityToggle />
                 <IndexButton />
+                <RunestoneHeaderButtons />
                 <NavButtons />
                 <SettingsButton />
             </nav>

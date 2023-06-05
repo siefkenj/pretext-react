@@ -1,5 +1,6 @@
 import React from "react";
 import {
+    Checkbox,
     Dialog,
     DialogDismiss,
     DialogHeading,
@@ -13,6 +14,12 @@ import {
     inMobileModeSelector,
 } from "../../state-management/redux-slices/global/global-slice";
 import { currentPageIdSelector } from "../../state-management/redux-slices/nav/selectors";
+import {
+    runestoneActions,
+    runestoneEbookConfigSelector,
+    runestoneEnabledSelector,
+    runestoneIsInstructorSelector,
+} from "../../state-management/redux-slices/runestone/runestone-slice";
 
 export function InfoDialog() {
     const infoDialogOpen = useAppSelector(infoDialogOpenSelector);
@@ -24,6 +31,11 @@ export function InfoDialog() {
     const domCaching = useAppSelector(domCachingSelector);
     const inMobileMode = useAppSelector(inMobileModeSelector);
     const urlCache = useAppSelector((state) => state.nav.urlCache);
+    const runestoneEnabled = useAppSelector(runestoneEnabledSelector);
+    const runestoneInstructor = useAppSelector(runestoneIsInstructorSelector);
+    const runestoneActiveCodeEnabled = useAppSelector(
+        runestoneEbookConfigSelector
+    ).enableScratchAC;
 
     return (
         <Dialog
@@ -52,15 +64,53 @@ export function InfoDialog() {
                         </td>
                     </tr>
                     <tr>
+                        <th>Runestone</th>
+                        <td>
+                            Enabled:{" "}
+                            <ToggleSwitch
+                                state={runestoneEnabled}
+                                dispatchAction={
+                                    runestoneActions.setRunestoneEnabled
+                                }
+                            />
+                            <br />
+                            Instructor:{" "}
+                            <ToggleSwitch
+                                state={runestoneInstructor}
+                                dispatchAction={(state: boolean) =>
+                                    runestoneActions.setActiveEbookConfig({
+                                        isInstructor: state,
+                                    })
+                                }
+                            />
+                            <br />
+                            Scratch ActiveCode Enabled:{" "}
+                            <ToggleSwitch
+                                state={runestoneActiveCodeEnabled}
+                                dispatchAction={(state: boolean) =>
+                                    runestoneActions.setActiveEbookConfig({
+                                        enableScratchAC: state,
+                                    })
+                                }
+                            />
+                        </td>
+                    </tr>
+                    <tr>
                         <th>In Mobile Mode</th>
                         <td>
-                            <code>{inMobileMode.toString()}</code>
+                            <ToggleSwitch
+                                state={inMobileMode}
+                                dispatchAction={globalActions.setMobileMode}
+                            />
                         </td>
                     </tr>
                     <tr>
                         <th>DOM Caching Enabled</th>
                         <td>
-                            <code>{domCaching.toString()}</code>
+                            <ToggleSwitch
+                                state={domCaching}
+                                dispatchAction={globalActions.setDomCaching}
+                            />
                         </td>
                     </tr>
                     <tr>
@@ -88,5 +138,29 @@ export function InfoDialog() {
                 </tbody>
             </table>
         </Dialog>
+    );
+}
+
+/**
+ * Simple toggle switch that shows the boolean state as a checkbox and a string.
+ */
+function ToggleSwitch({
+    state,
+    dispatchAction,
+}: {
+    state: boolean;
+    dispatchAction: Function;
+}) {
+    const dispatch = useAppDispatch();
+    return (
+        <label>
+            <Checkbox
+                checked={state}
+                onChange={() => {
+                    dispatch(dispatchAction(!state));
+                }}
+            />
+            <code>{state.toString()}</code>
+        </label>
     );
 }

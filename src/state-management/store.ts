@@ -2,6 +2,7 @@ import { configureStore, ThunkAction, Action } from "@reduxjs/toolkit";
 import { globalSlice } from "./redux-slices/global/global-slice";
 import { knowlSlice } from "./redux-slices/knowl/knowl-slice";
 import { navSlice } from "./redux-slices/nav/nav-slice";
+import { runestoneSlice } from "./redux-slices/runestone/runestone-slice";
 import { tocSlice } from "./redux-slices/toc/toc-slice";
 
 export const store = configureStore({
@@ -10,6 +11,7 @@ export const store = configureStore({
         nav: navSlice.reducer,
         toc: tocSlice.reducer,
         global: globalSlice.reducer,
+        runestone: runestoneSlice.reducer,
     },
 });
 
