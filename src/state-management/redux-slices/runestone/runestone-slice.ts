@@ -103,9 +103,6 @@ const runestoneThunks = {
                         })
                     );
                 }
-                //           const createdDiv = document.getElementById(newId)
-                //         console.log(newId, createdDiv)
-
                 const container = document.getElementById(
                     "runestone-scratch-active-code-container-id"
                 );
