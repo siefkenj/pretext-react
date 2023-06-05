@@ -50,6 +50,13 @@ export async function setMathJaxPreamble(e?: Element) {
     MathJax.typesetClear();
     await MathJax.typesetPromise([e]);
     resolvePreamblePromise();
+    // If Runestone is active, there is a `rsMathReady` global resolve function
+    // Call this if it exists.
+    // @ts-ignore
+    if (typeof window.rsMathReady !== "undefined") {
+        // @ts-ignore
+        window.rsMathReady();
+    }
 }
 
 /**
