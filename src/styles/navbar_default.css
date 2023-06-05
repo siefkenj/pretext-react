@@ -39,7 +39,7 @@
     outline: thin dotted #333;
     outline-offset: -2px;
 }
-.navbar .button:active {
+.navbar .button:active, .navbar .button.active {
     box-shadow: rgba(0, 0, 0, 0.5) 0 2px 5px inset;
 }
 .navbar .button:hover {

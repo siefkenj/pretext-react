@@ -5,6 +5,17 @@
     background-color: #d0d0d0;
 }
 
+.menu hr {
+    margin-top: 0.5rem;
+    margin-bottom: 0.5rem;
+    height: 3px;
+    width: calc(100% - 1rem);
+    border: none;
+    border-top: 1px solid;
+    border-color: hsl(0 0% 70%);
+    color: inherit;
+}
+
 .menu {
     position: relative;
     z-index: 50;
@@ -36,6 +47,7 @@
     padding-left: 1rem;
     padding-right: 1rem;
     outline: none !important;
+    cursor: pointer;
 }
 .menu-item[data-active-item] {
     color: var(--highlighttoctext);
