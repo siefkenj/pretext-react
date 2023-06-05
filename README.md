@@ -7,11 +7,12 @@ books when rendered on the web.
 
 ## Development
 
-To get started, make sure you have `nodejs` and `npm` (Node Package Manager; should
+To get started, make sure you have `nodejs` (>= v16) and `npm` (Node Package Manager; should
 be installed by default with Node) installed. Then, in the `pretext-react` directory, run
 
 ```
 git submodule init
+git submodule update
 npm install
 npm run start
 ```
@@ -19,6 +20,14 @@ npm run start
 to make a live dev-server. After this, when you update code, `node` will tell your
 web browser to automatically reload with the new code. However, this may cause issues with
 internally-cached data, so you may have to refresh the web browser.
+
+#### Notes for Windows users
+
+Windows file systems do not have symbolic links, and so the `public/` directory, which should be
+a symbolic link, will show as a file rather than a link. The easiest workaround is to use WSL2
+(Windows Subsystem for Linux 2), which will emulate a Linux environment and file system, and to run
+`nodejs` inside of that environment. Alternatively, you can explicitly copy a PreTeXt output folder
+to `public/` (thereby avoiding the symbolic link issue).
 
 ### Testing Different Pretext Content
 
