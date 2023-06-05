@@ -160,13 +160,11 @@ function stripStaticJavascript(dom: JSDOM): boolean {
  */
 function stripLegacyTags(dom: JSDOM) {
     const document = dom.window.document;
-    // XXX: Temporary workaround; Runestone CSS messes us up
+    // XXX: Temporary workaround; there is an invalid `<noscript>` tag that sometimes shows
+    // up in <head> with invalid children
     {
         const elmsToRemove = document.head.querySelectorAll(
-            `link[href*="pretext"],
-             link[href*="developer.css"],
-             noscript
-            `
+            `noscript`
         );
         for (const elm of Array.from(elmsToRemove)) {
             try {
