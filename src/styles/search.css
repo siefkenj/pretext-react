@@ -1,0 +1,43 @@
+.search-results {
+    list-style: none;
+}
+.search-results .codenumber {
+    display: inline-block;
+    min-width: 5ex;
+    margin-right: 1ex;
+}
+.search-results .title {
+    font-weight: bold;
+}
+.search-results .heading .period {
+    display: none;
+}
+.body-search-results {
+    margin-left: 5ex;
+}
+.search-results h1,
+.search-results h2,
+.search-results h3,
+.search-results h4,
+.search-results h5,
+.search-results h6,
+.search-results h7 {
+    font-weight: normal;
+    font-size: 100%;
+    margin: 0px;
+    padding: 0px;
+}
+.search-results a {
+    display: block;
+    border-radius: 1ex;
+    padding-left: .5ex;
+    padding-right: .5ex;
+}
+.search-results a:hover {
+    background-color: #ececec;
+}
+
+.search-input {
+    width: 100%;
+    font-size: larger;
+}

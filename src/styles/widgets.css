@@ -97,3 +97,7 @@ div[data-backdrop] {
     margin: 0;
     font-size: 1.5rem;
 }
+
+div.CodeMirror-fullscreen {
+    z-index: 100;
+}

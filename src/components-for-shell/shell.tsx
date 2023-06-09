@@ -23,6 +23,8 @@ import { InfoDialog } from "./settings/info-dialog";
 import { RunestoneHeaderButtons } from "./runestone/nav-buttons";
 import { runestoneActions } from "../state-management/redux-slices/runestone/runestone-slice";
 import { ScratchActiveCodeDialog } from "./runestone/scratch-active-code-dialog";
+import { SearchButton } from "./search/search-button";
+import { SearchDialog } from "./search/search-dialog";
 
 function Shell() {
     const dispatch = useAppDispatch();
@@ -112,11 +114,13 @@ function Shell() {
             </header>
             <InfoDialog />
             <ScratchActiveCodeDialog />
+            <SearchDialog />
             <nav id="ptx-navbar" className="navbar">
                 <TocVisibilityToggle />
                 <IndexButton />
                 <RunestoneHeaderButtons />
                 <NavButtons />
+                <SearchButton />
                 <SettingsButton />
             </nav>
             <div className="ptx-page">

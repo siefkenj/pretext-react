@@ -128,7 +128,7 @@ const runestoneThunks = {
 };
 
 export const runestoneSlice = createSlice({
-    name: "global",
+    name: "runestone",
     initialState,
     // The `reducers` field lets us define reducers and generate associated actions
     reducers: {
