@@ -70,7 +70,11 @@ export function segmentPage(
                 }
             }
         }
-        if (id && Array.isArray(className) && className.includes("para")) {
+        if (
+            id &&
+            Array.isArray(className) &&
+            (className.includes("para") || className.includes("poem"))
+        ) {
             ret.push({
                 id: String(id),
                 pageId,

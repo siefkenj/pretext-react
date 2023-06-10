@@ -23,9 +23,6 @@ import { Highlighter } from "./highlighter";
 import "../../styles/search.css";
 import { InternalAnchor } from "../../components-for-page/links";
 
-//@ts-ignore
-window.MiniSearch = MiniSearch;
-
 export function SearchDialog() {
     const form = useFormStore({});
     const dialogOpen = useAppSelector(searchDialogVisibleSelector);
@@ -59,6 +56,7 @@ export function SearchDialog() {
             <DialogHeading>Search</DialogHeading>
             <Form store={form}>
                 <FormInput
+                    autoFocus
                     className="search-input"
                     value={searchString}
                     name="search-text"

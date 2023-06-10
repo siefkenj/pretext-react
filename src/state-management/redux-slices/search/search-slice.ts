@@ -69,7 +69,6 @@ const bodyTextSearcher = new MiniSearch({
     searchOptions: { fuzzy: 0.1, prefix: true },
 });
 
-const defaultTokenize = MiniSearch.getDefault("tokenize");
 /**
  * Split text on whitespace and punctuation, as long as there is space on one side
  * of the punctuation. In particular, this avoids splitting numbers like `4.6` but
@@ -88,7 +87,6 @@ const tocSearcher = new MiniSearch({
     },
     tokenize: tokenizeButKeepNumbers,
 });
-(window as any).tocSearcher = tocSearcher;
 
 const searchThunks = {
     initSearch: createLoggingAsyncThunk(
