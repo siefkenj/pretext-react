@@ -221,6 +221,38 @@ const navThunks = {
         }
     ),
 
+    /**
+     * Fetches all pages from the server and loads them into the cache
+     */
+    cacheAllPages: createLoggingAsyncThunk(
+        "nav/cacheAllPages",
+        async (_: void, { dispatch, getState }) => {
+            const state = selfSelector(getState() as RootState);
+            const { pageIdToUrlMap, urlCache } = state;
+
+            const allUrls = new Set(
+                Object.values(pageIdToUrlMap).map((v) => normalizeUrl(v))
+            );
+
+            const promises = Array.from(allUrls).map(async (url) => {
+                if (urlCache[url]) {
+                    // No need to refetch
+                    return;
+                }
+                const resp = await fetch(url);
+                const body = extractPageContent(await resp.text()).innerHTML;
+                dispatch(
+                    navSlice.actions._cacheUrl({
+                        url,
+                        body,
+                    })
+                );
+            });
+
+            await Promise.all(promises);
+        }
+    ),
+
     updateWindowTitleToMatchPage: createLoggingAsyncThunk(
         "nav/updateWindowTitleToMatchPage",
         async (_: void, { getState }) => {

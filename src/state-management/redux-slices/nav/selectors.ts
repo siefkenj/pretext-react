@@ -10,16 +10,26 @@ import { normalizeUrl } from "../../../components-for-shell/utils/normalize";
 
 export const selfSelector = (state: RootState) => state.nav;
 
+export const urlCacheSelector = createDraftSafeSelector(
+    selfSelector,
+    (state) => state.urlCache
+);
+
+export const urlToPageIdMapSelector = createDraftSafeSelector(
+    selfSelector,
+    (state) => state.urlToPageIdMap
+);
+
 export const currentPageIdSelector = createDraftSafeSelector(
     selfSelector,
     (state) => state.currentPageId
 );
+
 /**
  * Return a cached version of the current page, if available. Otherwise an empty
  * string is returned. This cached version contains just the contents of the
  * `<div id="content">...</div>` node.
  */
-
 export const currentPageContentSelector = createDraftSafeSelector(
     [selfSelector, currentPageIdSelector],
     (state, currentPage) => {
@@ -32,34 +42,34 @@ export const currentPageContentSelector = createDraftSafeSelector(
         );
     }
 );
+
 /**
  * Returns the TOC data structure
  */
-
 export const tocSelector = createDraftSafeSelector(
     selfSelector,
     (state) => state.toc
 );
+
 /**
  * Returns the recorded browsing history
  */
-
 export const historySelector = createDraftSafeSelector(
     selfSelector,
     (state) => state.history
 );
+
 /**
  * The status of the current page: loading, etc.
  */
-
 export const pageLoadingStatusSelector = createDraftSafeSelector(
     selfSelector,
     (state) => state.pageLoadingStatus
 );
+
 /**
  * Information about the Index page, a special page among other pages.
  */
-
 export const indexSelector = createDraftSafeSelector(selfSelector, (state) => ({
     id: state.indexId,
     url: state.indexId && state.pageIdToUrlMap[state.indexId],
@@ -88,10 +98,10 @@ export const currentPageTopLevelTocInfoSelector = createDraftSafeSelector(
         return recursiveFind(toc);
     }
 );
+
 /**
  * Return the TocEntry corresponding to the currently active page.
  */
-
 export const currentPageTocInfoSelector = createDraftSafeSelector(
     [currentPageIdSelector, tocSelector],
     (currentPage, toc) => {
@@ -114,11 +124,11 @@ export const currentPageTocInfoSelector = createDraftSafeSelector(
         return recursiveFind(toc);
     }
 );
+
 /**
  * Return the TOC entries for the next/prev/up navigation directions
  * relative to the current page.
  */
-
 export const nextPrevParentSelector = createDraftSafeSelector(
     [currentPageIdSelector, tocSelector],
     (currentPage, toc) => {

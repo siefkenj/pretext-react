@@ -61,7 +61,6 @@ export function SageDisplayKnowl({
             setSageCellHasRun(true);
         }
     }, [sageCellHasRun, id, languages]);
-    console.log("display sage", id);
 
     return (
         <div id={id} {...rest}>

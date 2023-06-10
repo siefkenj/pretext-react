@@ -41,6 +41,7 @@
 .ptx-main {
     max-width: 600px;
     margin: 0px 32px;
+    height: fit-content;
 }
 
 #ptx-sidebar {

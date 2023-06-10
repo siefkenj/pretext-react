@@ -10,8 +10,8 @@ export type EBookConfig = {
     logLevel: number;
     ajaxURL: string;
     username: string;
-    readings: unknown[];
-    activities: Record<string, number>;
+    readings: unknown[] | null;
+    activities: Record<string, number> | null;
     downloadsEnabled: boolean;
     allow_pairs: boolean;
     enableScratchAC: boolean;
