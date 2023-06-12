@@ -35,3 +35,7 @@ export interface ACFactory {
     createScratchActivecode: () => {};
     toggleScratchActivecode: () => {};
 }
+export interface RunestoneComponentsGlobal {
+    renderOneComponent: (node: HTMLElement) => void;
+    runestone_import: (component_name: string) => Promise<void>;
+}
