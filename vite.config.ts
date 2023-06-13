@@ -163,9 +163,7 @@ function stripLegacyTags(dom: JSDOM) {
     // XXX: Temporary workaround; there is an invalid `<noscript>` tag that sometimes shows
     // up in <head> with invalid children
     {
-        const elmsToRemove = document.head.querySelectorAll(
-            `noscript`
-        );
+        const elmsToRemove = document.head.querySelectorAll(`noscript`);
         for (const elm of Array.from(elmsToRemove)) {
             try {
                 document.head.removeChild(elm);
