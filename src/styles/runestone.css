@@ -1,0 +1,8 @@
+/*
+  Some Runestone components need style fixes when working in a PreTeXt context.
+  Those fixes are found here.
+ */
+
+ .runestone.parsons_section {
+    width: max-content;
+ }
