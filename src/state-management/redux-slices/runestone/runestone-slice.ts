@@ -6,12 +6,17 @@ import {
 
 import { createLoggingAsyncThunk } from "../../hooks";
 import { RootState } from "../../store";
-import { ACFactory as ACFactoryType, EBookConfig } from "./types";
+import {
+    ACFactory as ACFactoryType,
+    EBookConfig,
+    RunestoneComponentsGlobal,
+} from "./types";
 
 // Some globals may exist from Runestone
 declare const eBookConfig: EBookConfig | undefined;
 declare const ACFactory: ACFactoryType | undefined;
 declare const rsMathReady: Function | undefined;
+declare const runestoneComponents: RunestoneComponentsGlobal;
 
 export interface RunestoneState {
     runestoneEnabled: boolean;
@@ -74,6 +79,7 @@ const runestoneThunks = {
     runestonePopupScratchActiveCode: createLoggingAsyncThunk(
         "runestone/popupScratchActiveCode",
         async (_: void, { dispatch, getState }) => {
+            await runestoneComponents.runestone_import("activecode");
             if (
                 typeof ACFactory === "undefined" ||
                 typeof eBookConfig === "undefined"
@@ -85,7 +91,7 @@ const runestoneThunks = {
             }
             dispatch(runestoneActions.setScratchActiveCodeVisible(true));
             const localEbookConfig = runestoneEbookConfigSelector(
-                getState() as any
+                getState() as RootState
             );
 
             // If this function is called, we force the scratch active code window to be enabled.

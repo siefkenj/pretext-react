@@ -1,8 +1,7 @@
 import React from "react";
+import { RunestoneComponentsGlobal } from "../state-management/redux-slices/runestone/types";
 
-declare const runestoneComponents: {
-    renderOneComponent: (node: HTMLElement) => void;
-};
+declare const runestoneComponents: RunestoneComponentsGlobal;
 
 /**
  * Render a component and then call Runestone's handler on the children. The
