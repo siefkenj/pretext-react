@@ -25,6 +25,11 @@ export const currentPageIdSelector = createDraftSafeSelector(
     (state) => state.currentPageId
 );
 
+export const currentPageUrlSelector = createDraftSafeSelector(
+    selfSelector,
+    (state) => normalizeUrl(state.pageIdToUrlMap[state.currentPageId || ""])
+);
+
 /**
  * Return a cached version of the current page, if available. Otherwise an empty
  * string is returned. This cached version contains just the contents of the
