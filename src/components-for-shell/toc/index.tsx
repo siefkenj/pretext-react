@@ -11,6 +11,7 @@ import { MathJaxOneTimeRenderer } from "../../components-for-page/mathjax";
 import { Accordion } from "../../components-common/accordion";
 import { Button } from "@ariakit/react";
 import { Chevron } from "../chevron";
+import { TocRunestoneStatusIndicator } from "../runestone/toc-runestone-status-indicator";
 
 /**
  * Returns whether or not there is a TOC item with id `childId` that is a child of the
@@ -118,6 +119,7 @@ function TocEntry({ entry }: { entry: TocEntryType }) {
                                 __html: entry.title || "",
                             }}
                         ></span>
+                        <TocRunestoneStatusIndicator pageId={entry.id} />
                     </InternalAnchor>
                     {chevron}
                 </div>

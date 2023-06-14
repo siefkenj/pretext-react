@@ -20,6 +20,10 @@ import {
     historySelector,
     currentPageTopLevelTocInfoSelector,
 } from "./selectors";
+import {
+    runestoneActions,
+    runestoneEnabledSelector,
+} from "../runestone/runestone-slice";
 
 export type NavigationOrigin = "page" | "toc" | "nav" | "url-change";
 
@@ -105,9 +109,14 @@ const navThunks = {
                 await dispatch(navThunks.updateWindowTitleToMatchPage());
                 return;
             }
+            const rootState = getState() as RootState;
+            // Let Runestone know about the page change, if needed.
+            if (runestoneEnabledSelector(rootState)) {
+                dispatch(runestoneActions.runestonePageWillChanged());
+            }
 
             // Retrieve the page
-            const state = selfSelector(getState() as RootState);
+            const state = selfSelector(rootState);
             const { pageIdToUrlMap: pageToUrlMap } = state;
 
             // If we've navigated to a new location, push the change to the history.

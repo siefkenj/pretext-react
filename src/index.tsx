@@ -6,6 +6,7 @@ import { store } from "./state-management/store";
 import { history } from "./state-management/hooks";
 import { CustomBrowserRouter } from "./components-for-shell/router";
 import { extractInitInfo } from "./components-for-shell/page-init";
+import { Shell } from "./components-for-shell/shell";
 
 import "./styles/pretext.css";
 import "./styles/pretext_add_on.css";
@@ -20,7 +21,7 @@ import "./styles/setcolors.css";
 import "./styles/knowls.css";
 import "./styles/permalink.css";
 import "./styles/widgets.css";
-import { Shell } from "./components-for-shell/shell";
+import "./styles/runestone.css";
 
 // Must be called before the app renders.
 extractInitInfo();
