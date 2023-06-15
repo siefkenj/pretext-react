@@ -1,3 +1,4 @@
+
 /*******************************************************************************
  * pretext.css handles structure which (should be) common to all styles
  *******************************************************************************
@@ -8,6 +9,10 @@
  */
 
 @import url("https://fonts.googleapis.com/css?family=PT+Serif:400,700,400italic,700italic|Open+Sans:400italic,700italic,400,700");
+
+* {
+    box-sizing: border-box;
+}
 
 body.pretext {
     font-family: "Open Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -31,25 +36,110 @@ a {
     color: inherit;
     text-decoration: none;
 }
+a:hover,
+a:focus {
+    text-decoration: none;
+}
+
 
 body.pretext > a.assistive {
-        padding:6px;
-        position: absolute;
-        top:-40px;
-        left:0px;
-        color:white;
-        border-right:1px solid white;
-        border-bottom:1px solid white;
-        border-bottom-right-radius:8px;
-        background:transparent;
-    z-index: 100;
+    padding:6px;
+    position: absolute;
+    top:-40px;
+    left:0px;
+    color:white;
+    border-right:1px solid white;
+    border-bottom:1px solid white;
+    border-bottom-right-radius:8px;
+    background:transparent;
+    z-index: 10000;
 }
 
 body.pretext > a.assistive:focus {
-        top:0px;
-        background:#BF1722;
-        outline:0;
+    top:0px;
+    background:#BF1722;
+    outline:0;
     transition: top .1s ease-in, background .5s linear;
+}
+
+/* over-write bootstrap (in Runestone, for example) */
+nav .ptx-navbar {
+  border-top: none;
+  border-right: none;
+  border-left: none;
+  min-height: unset;
+}
+/* next three: runestone hack for the bust nemu */
+.ptx-navbar .dropdown-content {
+  left: 250px;
+  position: absolute;
+  left: unset;
+  min-width: 200px;
+/*
+  right: 150px;
+*/
+}
+.ptx-navbar hr {
+  margin-bottom: 4px;
+  margin-top: 4px;
+  border-width: 3px;
+  border-color: #600;
+}
+/* next for the Activecode popup */
+/*
+.modal-backdrop.fade.in {
+   display: none;
+}
+*/
+.ptx-navbar .activecode-toggle {
+  padding: 3px 5px;
+  float: left;
+  border-right: 1px solid #bababa;
+  border-top: 1px solid #bababa;
+  border-bottom: 1px solid #bababa;
+  background: #eee;
+}
+.ptx-navbar .activecode-toggle .icon {
+  display: inline-block;
+  font-size: larger;
+  transform: rotate(130deg);
+}
+
+/* Runestone nav for Runestone-wide features */
+.pretext #brand-navbar,
+.pretext .brand-navbar {
+  left: 0;
+  position: fixed;
+  right: 0;
+  z-index: 1030;
+  height: 50px;
+  border-width: 0 0 1px;
+  top: 0;
+  margin-bottom: 0;
+}
+.pretext #brand-navbar > .container::before,
+.pretext .brand-navbar > .container::before,
+.pretext #brand-navbar > .container::after,
+.pretext .brand-navbar > .container::after {
+  display: none;
+}
+.pretext #brand-navbar + .ptx-masthead,
+.pretext .brand-navbar + .ptx-masthead {
+  margin-top: 50px;
+}
+.pretext #brand-navbar .navbar-collapse.collapse,
+.pretext .brand-navbar .navbar-collapse.collapse {
+  overflow: hidden !important;
+}
+.pretext #brand-navbar ~ .ptx-navbar,
+.pretext .brand-navbar ~ .ptx-navbar {
+  top: 50px;
+}
+@media screen and (max-width: 800px) {
+  .pretext #brand-navbar ~ .ptx-navbar,
+  .pretext .brand-navbar ~ .ptx-navbar {
+    top: auto;
+  }
 }
 
 /* so that we can position things (like .autopermalink) absolutely wrt these items */
@@ -58,13 +148,15 @@ body.pretext > a.assistive:focus {
 .ptx-content figure,
 .ptx-content figcaption,
 .ptx-content .exercisegroup,
+.ptx-content .discussion-like,
 .ptx-content .para {
     position: relative;
 }
 
 /* we use .para as a wrapper around some "compound" p, so the
    first p in .para is block-like because of the .pare */
-.ptx-content .para > p:first-child {
+.ptx-content .para > p:first-child,
+.ptx-content .para > .para:first-child {
     display: inline;
 }
 
@@ -84,6 +176,12 @@ so that we can set our own later */
     padding: 0;
     border: none;
 }
+/* these are to over-ride "pre" styling in code.less */
+.ptx-content pre {
+    background: inherit;
+    border-radius: 0;
+}
+
 .ptx-content textarea {
     padding: 0;
 }
@@ -91,6 +189,11 @@ so that we can set our own later */
 /* .para and other block-level elements should have space at the top, and not the bottom */
 .ptx-content h1, .ptx-content h2, .ptx-content h3, .ptx-content h4, .ptx-content h5, .ptx-content h6 {
     margin: 0;
+    font-size: unset;
+}
+.pretext h1, .pretext h2, .pretext h3, .pretext h4, .pretext h5, .pretext h6 {
+    margin: 0;
+    font-size: unset;
 }
 
 .ptx-content .heading {
@@ -106,7 +209,9 @@ so that we can set our own later */
 .ptx-content .para.continuation {
     margin-top: 0;
 }
-.ptx-content pre + .para.continuation {
+.ptx-content pre + .para.continuation,
+.ptx-content pre + form,
+.ptx-content div + form {
     margin-top: 1em;
 }
 .ptx-content ul + .para.continuation,
@@ -153,7 +258,7 @@ so that we can set our own later */
 }
 
 /* 1.25 = ol top + li top ?  looked too big with 0.75 below */
-.ptx-content .exercise-like .para + ol {  
+.ptx-content .exercise-like .para + ol {
     margin-top: 0.5em;
 }
 
@@ -279,11 +384,19 @@ so that we can set our own later */
     margin-top: 1.25em;
 }
 .ptx-content section article + article,
+.ptx-content section .introduction + article,
 .ptx-content section .para + article,
 .ptx-content section .posterior + article {
     margin-top: 1.75em;
 }
 .ptx-content section article > .introduction + article {
+    margin-top: 1em;
+}
+
+.ptx-content section article > .discussion-like {
+    margin-top: 1em;
+}
+.ptx-content section article > .discussion-like .para {
     margin-top: 1em;
 }
 
@@ -305,8 +418,8 @@ so that we can set our own later */
     margin-top: 1em;
 }
 
-/* see Ex 29 https://yoshiwarabooks.org/linear-functions.html 
-and ex 2.91 in 
+/* see Ex 29 https://yoshiwarabooks.org/linear-functions.html
+and ex 2.91 in
 https://yoshiwarabooks.org/mfg/MathModels.html */
 .ptx-content .introduction + .sidebyside,
 .ptx-content .para + .sidebyside,
@@ -361,7 +474,43 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
 .ptx-content .paragraphs > .heading {
     font-size: 1.125em;
     line-height: 1.125em;
+    display: inline;
 }
+/*
+.ptx-content .paragraphs .heading {
+    display: inline;
+}
+*/
+
+.ptx-content .paragraphs .heading + .para {
+    display: inline;
+}
+.ptx-content .para.logical > .para:first-child {
+    display: inline;
+}
+
+/* next is for runestone multiple choice */
+.ptx-content  .runestone label > .para {
+    display: inline;
+}
+/* the next are to avoid stlping a .para as inline, because
+ * inline styling messes up the meaning of line-height.
+ * */
+
+.ptx-content .paragraphs .para .title {
+    font-family: "PT Serif", "Times New Roman", Times, serif;
+    font-size: 1.125em;
+    font-weight: 700;
+}
+
+.ptx-content .paragraphs > .heading {
+    margin-top: 0;
+}
+
+.ptx-content .paragraphs + .paragraphs {
+    margin-top: 3em;
+}
+
 .ptx-content article .paragraphs > .heading {
     font-size: 1.05em;
 }
@@ -386,18 +535,57 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
     }
 }
 
+.ptx-content .abstract {
+    margin: 4em 2em;
+}
+.ptx-content .abstract > .title {
+    font-size: 1.125em;
+    font-weight: 600;
+    line-height: 1.125em;
+    display: inline;
+}
+.ptx-content .abstract > .title::after {
+    content: ".\2009\2009\2009";
+}
+.ptx-content .abstract > .title + .para {
+    display: inline;
+}
 .ptx-content article > .heading,
-.ptx-content article > a .heading,
-.ptx-content .abstract > .heading {
+.ptx-content article > a .heading {
     font-size: 1.125em;
     line-height: 1.125em;
     margin-top: 0;
     display: inline;
 }
+.ptx-content .discussion-like > .heading {
+    font-size: 1.0em;
+    line-height: 1.125em;
+    margin-top: 0;
+    display: inline;
+}
+.ptx-content .discussion-like.discussion > .heading .codenumber,
+.ptx-content .discussion-like.discussion > .heading .space,
+.ptx-content .discussion-like.discussion > .heading .period {
+    display: none;
+}
+.ptx-content .discussion-like.discussion > .heading .type::after {
+    content: ". ";
+}
+.ptx-content .discussion-like.status > .heading {
+    display: none;
+}
+.ptx-content .discussion-like.status > .heading + .para,
+.ptx-content .discussion-like.status > .para {
+    font-style: italic;
+    display: block;
+    padding-left: 1em;
+}
+
+
 .ptx-content article > .heading::after,
+.ptx-content .discussion-like > .heading::after,
 .ptx-content .paragraphs > .heading::after,
-.ptx-content article > a > .heading::after,
-.ptx-content .abstract > .heading::after {
+.ptx-content article > a > .heading::after {
     content: "\2009";
 }
 /* Currently only for Solution to example */
@@ -412,6 +600,7 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
  * Contents of articles
  */
 .ptx-content article > .heading + .para,
+.ptx-content .discussion-like > .heading + .para,
 .ptx-content article > .heading + .introduction,
 .ptx-content article > .heading + .introduction > .para:first-child {
     display: inline;
@@ -526,6 +715,9 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
     margin-top: 2em;
     text-align: center;
 }
+.ptx-content .frontmatter > .author .author-name {
+    font-size: 120%;
+}
 .ptx-content .frontmatter .date {
     display: block;
     margin-top: 2em;
@@ -545,15 +737,31 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
     white-space: pre;
 }
 
+button {
+   font: inherit;
+}
+
+.print-button {
+	position: relative;
+	right: 2px;
+	top: 66px;
+	background-color: LightGreen;
+	z-index: 1;
+	margin-top: -4em;
+	float: right;
+}
+
 @media print {
-    .pretext #ptx-masthead,
-    .pretext #ptx-navbar,
-    .pretext .ptx-page > #ptx-sidebar,
-    .pretext .ptx-page > .ptx-page-footer {
+    .pretext .ptx-masthead,
+    .pretext .ptx-navbar,
+     body.pretext > a.assistive,
+    .pretext .ptx-page > .ptx-sidebar,
+    .pretext  .ptx-page-footer,
+    .pretext .ptx-main > div.ptx-content-footer {
        display:none;
         border:none;
     }
-    .pretext .ptx-page .ptx-main {
+    .pretext .ptx-page main.ptx-main {
         margin-left:0;
         left:auto;
         border:none;
@@ -563,15 +771,34 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
     .pretext .ptx-page .ptx-main .ptx-content { margin-top:0 }
     .pretext .ptx-page .ptx-main .ptx-content.ptx-content section { margin-top:1em }
     .pretext .ptx-page .ptx-main .ptx-content.ptx-content section .heading { margin-top:0 }
+
+    /* over-ride print.less */
+    .pretext a[href]::after {
+         content: "";
+     }
+
+	/* don't print the print-button */
+	.print-button {
+		display: none;
+	}
 }
 
 /* printing for one-page worksheets */
 
 @media print {
-    body.standalone .ptx-content .worksheet {
+    body.standalone.worksheet .ptx-page > .ptx-main .ptx-content {
+       width: 820px;
+       max-width: 820px;
+       font-size: 12.5px;
+    }
+    body.standalone.worksheet {
+        margin: 0;
+    }
+    body.standalone .ptx-content section.worksheet {
         border: none;
     }
-    body.standalone.worksheet #ptx-masthead {
+    body.standalone.worksheet .ptx-masthead,
+    body.standalone.worksheet .ptx-page-footer {
         display: none;
     }
 
@@ -582,7 +809,7 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
     body.standalone.worksheet .ptx-page > .ptx-main .ptx-content {
         margin: 0;
     }
-    body.standalone.worksheet .ptx-content .onepage {
+    body.standalone.worksheet .ptx-content section.onepage {
         max-height: 100%;
         max-width: 100%;
         overflow: hidden;
@@ -593,7 +820,8 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
         border: none;
         page-break-inside: avoid;
      }
-     body.standalone.worksheet .ptx-content .onepage.lastpage {
+    body.standalone.worksheet .ptx-content .onepage.lastpage {
+        margin-bottom: -2em;  /* to avoid blank space overflow causing an extra blank page */
         page-break-after: auto;
      }
     body.standalone.worksheet.a4 .ptx-content .onepage {
@@ -601,8 +829,8 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
         height: 1320px;
 */
     }
-    body.standalone.worksheet .ptx-content .onepage .workspace,
-    body.standalone.worksheet .ptx-content .onepage .workspace.squashed.tight {
+    body.standalone.worksheet .ptx-content .onepage div.workspace,
+    body.standalone.worksheet .ptx-content .onepage div.workspace.squashed.tight {
         border: none;
         padding: 0;
         background: none !important;
@@ -630,28 +858,29 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
   display: none;
 }
 
-#ptx-navbar #preferences_menu_holder .active  > li {
+.ptx-navbar .preferences_menu_holder .active  > li {
   color: #ddd;
 }
-#ptx-navbar #preferences_menu_holder > ol > li:focus {
+.ptx-navbar .preferences_menu_holder > ol > li:focus {
   background: #eef;
   border: 2px solid #909;
   padding: 2px 24px 2px 8px;
 }
-#ptx-navbar #preferences_menu_holder > ol > li > ol > li:focus {
+.ptx-navbar .preferences_menu_holder > ol > li > ol > li:focus {
   background: #eef;
   border: 2px solid #909;
   padding: 4px 4px 2px 4px;
 }
 
-#ptx-navbar #preferences_menu_holder .active .selected {
+.ptx-navbar .preferences_menu_holder .active .selected {
   background: #eef;
   color: #111;
 }
-#ptx-navbar .button.user-preferences-button {
+.ptx-navbar .button.user-preferences-button {
   overflow: visible;
+  display: none;
 }
-#preferences_menu_holder {
+.preferences_menu_holder {
   z-index: 30;
   background: #fee;
   color: #222;
@@ -659,73 +888,70 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
   left: -11em;
   top: 4em;
 }
-#preferences_menu_holder ol {
+.preferences_menu_holder ol {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-#preferences_menu_holder > ol {
+.preferences_menu_holder > ol {
   width: 12.5em;
 }
-#preferences_menu_holder > ol > li {
+.preferences_menu_holder > ol > li {
   padding: 4px 26px 4px 10px;
 }
-#preferences_menu_holder ol li ol {
+.preferences_menu_holder ol li ol {
   z-index: 40;
   position: absolute;
   left: 13em;
   top: -2em;
   background: #fee;
 }
-#preferences_menu_holder ol li ol li {
+.preferences_menu_holder ol li ol li {
   padding: 6px 6px 4px 6px;
-  display: flex; 
+  display: flex;
   align-items: center;
 }
-#preferences_menu_holder ol.fonts:not(.hidden) {
+.preferences_menu_holder ol.fonts:not(.hidden) {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
 }
-#preferences_menu_holder ol.fonts li:nth-child(8n+1),
-#preferences_menu_holder ol.fonts li:nth-child(8n+2),
-#preferences_menu_holder ol.fonts li:nth-child(8n+3),
-#preferences_menu_holder ol.fonts li:nth-child(8n+4) {
+.preferences_menu_holder ol.fonts li:nth-child(8n+1),
+.preferences_menu_holder ol.fonts li:nth-child(8n+2),
+.preferences_menu_holder ol.fonts li:nth-child(8n+3),
+.preferences_menu_holder ol.fonts li:nth-child(8n+4) {
     background-color: #eff;
 }
-#preferences_menu_holder ol.fonts li:nth-child(4n+2) {
+.preferences_menu_holder ol.fonts li:nth-child(4n+2) {
  width: 4em;
  justify-content: center;
  text-align: center;
  align-items: center;
 }
-#preferences_menu_holder ol.fonts li:nth-child(4n+1) {
+.preferences_menu_holder ol.fonts li:nth-child(4n+1) {
   padding-left: 14px;
 }
 
-#preferences_menu_holder .wrap_to_submenu {
+.preferences_menu_holder .wrap_to_submenu {
   float: right;
   line-height: 0.95em;
   margin-right: -7px;
 }
-#preferences_menu_holder .to_submenu {
+.preferences_menu_holder .to_submenu {
   position: absolute;
 }
-#preferences_menu_holder .avatars li {
+.preferences_menu_holder .avatars li {
   font-size: 200%;
   text-align: center;
 }
-#preferences_menu_holder .fontfamily .name {
+.preferences_menu_holder .fontfamily .name {
   margin-right: 2em;
 }
-#preferences_menu_holder .fontfamily .sample {
+.preferences_menu_holder .fontfamily .sample {
   margin-left: auto;
 }
-#preferences_menu_holder .fonts .byunits {
+.preferences_menu_holder .fonts .byunits {
   font-size: 80%;
   margin-bottom: -0.3em;
-}
-#ptx-navbar #theavatarbutton {
-  font-size: 1.3em;
 }
 #choose_topic {
   background: #eef;
@@ -741,12 +967,12 @@ https://yoshiwarabooks.org/mfg/MathModels.html */
   font-size: 11pt;
 }
 
-#preferences_menu_holder .moveQ {
+.preferences_menu_holder .moveQ {
   padding-top: 0.5em;
   border-top: 0.3em solid #eef;
 }
-#preferences_menu_holder .moveQ,
-#preferences_menu_holder .moveQ ~ li {
+.preferences_menu_holder .moveQ,
+.preferences_menu_holder .moveQ ~ li {
   background: #efe;
 }
 
