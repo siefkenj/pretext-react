@@ -5,6 +5,18 @@ A ReactJS version of the Pretext UI
 This interface is a replacement for the current jquery-based UI for Pretext
 books when rendered on the web.
 
+# Using the React interface in your PreTeXt project
+
+To enable the react interface for your PreTeXt project, you need to set the `react.debug.global`
+(or `react.debug.local`) to `yes`. You can do this by adding the following inside a your html `<target>` element.
+
+```
+<stringparam key="debug.react.global" value="yes"/>
+```
+
+and recompile your book. The recompiled version will be using the React css and Javascript served directly from github.
+
+
 ## Development
 
 To get started, make sure you have `nodejs` (>= v16) and `npm` (Node Package Manager; should
@@ -20,6 +32,9 @@ npm run start
 to make a live dev-server. After this, when you update code, `node` will tell your
 web browser to automatically reload with the new code. However, this may cause issues with
 internally-cached data, so you may have to refresh the web browser.
+
+If you want to run your book to use the local version of your react build, set the `debug.react.local` to `yes`
+instead of of `debug.react.global`.
 
 #### Notes for Windows users
 
