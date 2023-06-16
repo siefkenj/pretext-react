@@ -4,11 +4,8 @@
 .ptx-content .proof {
   border-right: 1px solid #666;
   padding-right: 0.625em;
+  margin-right: -0.725em;
 }
-:not(.proof .displaymath).displaymath {
-  margin-right: .85em;
-}
-
 .ptx-content .proof:after {
   content: '';
   border-bottom: 1px solid #666;
@@ -38,6 +35,8 @@
 .ptx-content article.example-like,
 .ptx-content article.project-like,
 .ptx-content article.remark-like,
+.ptx-content article.openproblem-like,
+.ptx-content article.openproblems-like,  /* delete once markup is fixed */
 .ptx-content article.computation-like {
     padding-left: 0.4em;
     border-left: 1px solid #569;
@@ -48,6 +47,8 @@
 .ptx-content.epub article.example-like,
 .ptx-content.epub article.project-like,
 .ptx-content.epub article.remark-like,
+.ptx-content article.openproblem-like,
+.ptx-content article.openproblems-like,  /* delete once markup is fixed */
 .ptx-content.epub article.computation-like {
     margin-left: 1px;
 }
@@ -58,6 +59,8 @@
 .ptx-content article.example-like::after,
 .ptx-content article.project-like::after,
 .ptx-content article.remark-like::after,
+.ptx-content article.openproblem-like::after,
+.ptx-content article.openproblems-like::after,  /* delete once markup is fixed */
 .ptx-content article.computation-like::after {
     content:'';
     border-bottom: 1px solid #569;
@@ -105,7 +108,7 @@
 .ptx-content .assemblage-like + .sidebyside {
     margin-top: 1.25em;
 }
-.ptx-content section article.assemblage-like .heading + p {
+.ptx-content section article.assemblage-like .heading + .para {
     display: block;
 }
 
@@ -137,7 +140,6 @@
 .ptx-content .aside-like {
     position: absolute;
     margin-left: 45%;
-    z-index: -10;
     overflow-x: hidden;
     max-width: 495px;
     max-height: 7em;
@@ -145,7 +147,6 @@
     border: none;
     padding: 4px 10px 0 10px;
     color: #888;
-    z-index: 100;
 }
 .ptx-content .example-like .aside-like {
     margin-top: 0;
@@ -159,7 +160,7 @@
   background-color: #f5faff;
   box-shadow: 0 0 1.0em 0.2em #fff inset;
 }
-.ptx-content .aside-like p {
+.ptx-content .aside-like .para {
     overflow-x: auto;
 }
 .ptx-content .aside-like:first-child {
@@ -265,7 +266,8 @@
   /* previous and next point to the need to rethink asides:  structurally they are
      in the midts of the other elements, so they affect neighbor selectors.
      but visually they often are off to the side */
-  .ptx-content .aside-like + .solutions {
+  .ptx-content .aside-like + .solutions,
+  .ptx-content .aside-like + .instructions {
       margin-top: 0;
   }
 
