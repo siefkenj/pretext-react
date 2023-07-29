@@ -14,6 +14,7 @@ import { replaceMathKnowl } from "./math";
 import { replaceRunestone } from "./runestone";
 import { replaceSageKnowl } from "./sage-knowls";
 import { replaceListings } from "./listing";
+import { VFile } from "vfile";
 
 const processHtmlContentViaUnified = unified()
     .use(hastFromStringNative)
@@ -45,7 +46,10 @@ export function htmlToComponent(
     content: string,
     existingIds: Set<string> = new Set(),
     currentPageId = ""
-) {
+): {
+    component: React.ReactElement;
+    data: VFile["data"];
+} {
     const file = processHtmlContentViaUnified.processSync({
         value: content,
         data: {
@@ -61,6 +65,6 @@ export function htmlToComponent(
             null,
             file.result
         ),
-        data: file.data,
+        data: file.data as any,
     };
 }

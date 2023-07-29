@@ -4,6 +4,7 @@ import { select } from "hast-util-select";
 import { toHtml } from "hast-util-to-html";
 import { HastDom } from "./hast-dom";
 import { fromSelector } from "hast-util-from-selector";
+import { VFile } from "vfile";
 
 /**
  * Place the `knowlContentNode` in the correct position in hastDom based on
@@ -68,7 +69,15 @@ function positionKnowlContent(
 export const rehypeInsertKnowlExpandStubs: Plugin<void[], HastRoot, HastRoot> =
     function () {
         return (ast, file) => {
-            const hastDom = new HastDom(ast, file.data.existingIds);
+            if (!file.data.existingIds) {
+                throw new Error(
+                    "Missing `existingIds` attribute on `file.data`"
+                );
+            }
+            const hastDom = new HastDom(
+                ast,
+                (file as any as VFile).data.existingIds
+            );
             file.data.hastDom = hastDom;
 
             const knowlContainersMap: Map<
