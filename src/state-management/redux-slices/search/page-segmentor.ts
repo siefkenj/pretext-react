@@ -7,6 +7,14 @@ import { hastFromStringNative } from "../../../replacers/html-manipulation/hast-
 import { TocEntryType } from "../../../components-for-shell/utils/extract-toc";
 import { HastDom } from "../../../replacers/html-manipulation/hast-dom";
 
+const INDEXABLE_CLASSES = new Set([
+    "para",
+    "poem",
+    "bib",
+    "ptx-sagecell",
+    "code-box",
+]);
+
 export type SearchablePageSegment = {
     id: string;
     pageId: string;
@@ -51,6 +59,17 @@ export function segmentPage(
         }
     });
 
+    // Any <script> tags should be converted to <pre> tags. This handles cases like sage cells.
+    visit(root, isElement, (node: HastElement) => {
+        if (node.tagName === "script") {
+            node.tagName = "pre";
+            node.properties = {};
+            // If we have valid HTML, there should be no <a> descendants of an <a> tag.
+            // So it's safe to ignore any children.
+            return SKIP;
+        }
+    });
+
     const hastDom = new HastDom(root);
 
     let closestHeadingHtml = "";
@@ -73,7 +92,7 @@ export function segmentPage(
         if (
             id &&
             Array.isArray(className) &&
-            (className.includes("para") || className.includes("poem"))
+            className.some((c) => INDEXABLE_CLASSES.has("" + c))
         ) {
             ret.push({
                 id: String(id),
