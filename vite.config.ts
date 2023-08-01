@@ -71,7 +71,7 @@ export default defineConfig(({ command, mode }) => {
                 },
             },
         },
-        test: { globals: true },
+        test: { globals: true, environment: "jsdom" },
     };
 });
 
