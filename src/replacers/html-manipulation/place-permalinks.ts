@@ -5,6 +5,7 @@ import { HastDom } from "./hast-dom";
 import { fromSelector } from "hast-util-from-selector";
 import { toText } from "hast-util-to-text";
 import { select } from "hast-util-select";
+import { VFile } from "vfile";
 
 /**
  * Returns a text-only description of the Hast Element.
@@ -107,8 +108,9 @@ export const rehypeInsertPermalinks: Plugin<void[], HastRoot, HastRoot> =
     function () {
         return (ast, file) => {
             file.data.hastDom =
-                file.data.hastDom || new HastDom(ast, file.data.existingIds);
-            const hastDom = file.data.hastDom;
+                file.data.hastDom ||
+                new HastDom(ast, (file as any as VFile).data.existingIds);
+            const hastDom = (file as any as VFile).data.hastDom!;
 
             // Full list of elements that get permalinks.
             for (const elm of hastDom.querySelectorAll(

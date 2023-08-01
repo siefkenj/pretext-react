@@ -22,6 +22,7 @@ import { Highlighter } from "./highlighter";
 
 import "../../styles/search.css";
 import { InternalAnchor } from "../../components-for-page/links";
+import { useMathJaxDebounce } from "../utils/use-mathjax-debounce";
 
 export function SearchDialog() {
     const form = useFormStore({});
@@ -32,7 +33,10 @@ export function SearchDialog() {
         open: dialogOpen,
     });
     const searchString = useAppSelector(searchStringSelector);
-    const searchResults = useAppSelector(searchResultsSelector);
+    const searchResults = useMathJaxDebounce(
+        useAppSelector(searchResultsSelector),
+        250
+    );
     const isIndexing = useAppSelector(searchIsIndexingSelector);
 
     const closeDialog = React.useCallback(() => {
@@ -64,6 +68,12 @@ export function SearchDialog() {
                         const value = e.currentTarget.value;
                         dispatch(searchActions.search(value));
                     }}
+                    onKeyUp={(e) => {
+                        // Close the dialog if the user presses escape
+                        if (e.key === "Escape") {
+                            closeDialog();
+                        }
+                    }}
                 />
             </Form>
             <SearchResultsDisplay
@@ -84,7 +94,7 @@ function SearchResultsDisplay({
     return (
         <ul className="search-results">
             {results.map((result, i) => (
-                <React.Fragment key={i}>
+                <React.Fragment key={result.href || result.parentDivisionHref}>
                     {!!result.parentDivisionHtml && (
                         <li>
                             <InternalAnchor

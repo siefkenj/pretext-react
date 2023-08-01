@@ -12,6 +12,7 @@ const preambleHasBeenTypeset: Promise<void> & {
     resolvePreamblePromise = resolve;
 });
 preambleHasBeenTypeset.setMathJaxPreambleWasCalled = false;
+export let globalNumberItemsBeingTypeset = 0;
 
 function ensureMathJax() {
     if (typeof MathJax === "undefined") {
@@ -90,7 +91,9 @@ export async function typesetElement(e: Element) {
     // MathJax doesn't like being called while it's already running,
     // so we keep a record of whether we are currently typesetting.
     globalCurrentlyTypesetting.set(e, true);
+    globalNumberItemsBeingTypeset += 1;
     await MathJax.typesetPromise([e]);
+    globalNumberItemsBeingTypeset -= 1;
     globalCurrentlyTypesetting.delete(e);
 }
 

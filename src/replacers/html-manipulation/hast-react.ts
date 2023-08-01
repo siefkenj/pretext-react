@@ -200,7 +200,7 @@ export const hastReactTransformer: Plugin<
 
     const compiler: CompilerFunction<HastRoot, React.ReactNode> =
         function compiler(node, file) {
-            return process(node, 0, file);
+            return process(node, 0, file as any as VFile);
         };
 
     Object.assign(this, { Compiler: compiler });
