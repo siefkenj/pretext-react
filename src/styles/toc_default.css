@@ -14,7 +14,7 @@
 /* After 10, the code number takes two digits, so we
 need more room for it! */
 .ptx-toc > ul > li.section:nth-child(n + 11) li {
-    --toc-codenumber-width: 40px;
+    --toc-codenumber-width: 50px;
 }
 
 .ptx-toc a:focus-visible {
@@ -31,8 +31,139 @@ need more room for it! */
 
 .ptx-toc {
     font-weight: bold;
-    font-family: "PT Serif", "Times New Roman", Times, serif;
+    font-family: sans-serif;
 }
+
+.toc-item {
+    display: flex;
+    font-weight: normal;
+    background-color: unset;
+}
+.toc-item > a {
+    display: flex;
+    flex-grow: 1;
+    padding-top: 2px;
+    padding-bottom: 2px;
+    padding-right: 2px;
+}
+.ptx-toc .codenumber {
+    display: block;
+    text-align: left;
+    align-self: center;
+    padding-left: 4px;
+    min-width: var(--toc-codenumber-width);
+    flex-shrink: 0;
+}
+
+.ptx-toc ul.structural li a.internal {
+    background-color: unset;
+    color: var(--sectiontoctext);
+}
+
+.mainmatter > .toc-item,
+.frontmatter > .toc-item,
+.backmatter > .toc-item {
+    color: var(--sectiontoctext);
+    background-color: #f0f8ff;
+    font-family: sans-serif;
+    font-weight: bold;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+
+.frontmatter > .toc-item > a:hover,
+.backmatter > .toc-item > a:hover,
+.mainmatter > .toc-item > a:hover {
+    color: white;
+    background-color: var(--highlighttoc);
+}
+.frontmatter > .toc-item > a.active,
+.backmatter > .toc-item > a.active,
+.mainmatter > .toc-item > a.active {
+    color: white;
+    background-color: var(--chaptertocactive);
+}
+
+.frontmatter > .toc-item .codenumber,
+.backmatter > .toc-item .codenumber,
+.mainmatter > .toc-item .codenumber {
+    display: none;
+}
+
+.frontmatter > .toc-item > a,
+.backmatter > .toc-item > a,
+.mainmatter > .toc-item > a {
+    display: block;
+    text-align: center;
+}
+
+.ptx-toc .codenumber {
+    display: block;
+    text-align: left;
+    padding-left: 4px;
+    min-width: var(--toc-codenumber-width);
+    flex-shrink: 0;
+}
+.ptx-toc .title {
+    flex-grow: 1;
+}
+.division-level-2 .codenumber {
+    font-size: smaller;
+    font-weight: lighter;
+}
+.backmatter .division-level-2 .codenumber {
+    font-size: inherit;
+    font-weight: inherit;
+}
+.backmatter .division-level-3 .codenumber {
+    font-size: smaller;
+    font-weight: lighter;
+}
+.ptx-toc .division-level-3 .title {
+    margin-left: 10px;
+}
+.ptx-toc .division-level-4 .title {
+    margin-left: 20px;
+}
+.ptx-toc .title:first-of-type {
+    margin-left: var(--toc-codenumber-width);
+}
+.ptx-toc .division-level-3 .title:first-of-type {
+    margin-left: calc(var(--toc-codenumber-width) + 10px);
+}
+.ptx-toc .division-level-4 .title:first-of-type {
+    margin-left: calc(var(--toc-codenumber-width) + 20px);
+}
+
+.division-level-3 .toc-item {
+    background-color: #f4f4f4;
+}
+.ptx-toc ul.structural li ul.structural .toc-item a {
+    background-color: unset;
+}
+.division-level-3 {
+    position: relative;
+}
+.division-level-3:before, .division-level-3:after {
+    box-shadow: inset 0px 10px 5px -10px rgba(0,0,0,0.5);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 10px;
+    z-index: 100;
+    user-select: none;
+    pointer-events: none;
+}
+.division-level-3:after {
+    box-shadow: inset 0px -10px 5px -10px rgba(0,0,0,0.5);
+    top: unset;
+    bottom: 0;
+}
+
+
+/*
 
 .ptx-toc li {
     margin-top: 3px;
@@ -82,7 +213,6 @@ need more room for it! */
     font-weight: lighter;
 }
 
-/* Adjust the display of nested items */
 .ptx-toc li li {
     margin-top: 0px;
 }
@@ -91,9 +221,6 @@ need more room for it! */
     border-color: rgb(209, 209, 209);
 }
 
-/* Deeply nested items get extra indentation.
-   This indentation is done *inside* of the <a> tag
-   so that the entire link is clickable */
 .ptx-toc .division-level-3 .title {
     margin-left: 10px;
 }
@@ -174,3 +301,4 @@ need more room for it! */
 .backmatter li a {
     padding: 2.8px 0px;
 }
+*/
