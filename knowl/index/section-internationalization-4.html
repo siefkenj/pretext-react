@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<section class="paragraphs"><h3 class="heading"><span class="title">Unicode Characters for HTML Output.</span></h3> <div class="para logical">
+<div class="para">First, we discuss HTML output.  If you include Unicode characters in your PreTeXt source, they should survive just fine <i class="foreign" lang="fr-FR">en route</i> to a web browser or e-reader.  Here are the caveats for HTML output:</div>
+<ul class="disc">
+<li><div class="para">So that you can continue to get the best results with print and PDF output, use available empty elements for obscure characters, even if targeting HTML output, before resorting to a Unicode character.  For example, use <code class="code-inline tex2jax_ignore">&lt;copyright/&gt;</code> for the copyright symbol in text before resorting to the Unicode character <code class="code-inline tex2jax_ignore">U+00A9</code>.  It is a bit more work, but you will get better results with other conversions, even if you initially are only fascinated by <abbr class="initialism">HTML</abbr>.</div></li>
+<li><div class="para">How you actually enter Unicode characters into your source file is dependent on your editor and operating system, and is therefore outside the scope of our documentation.  You can cut-and-paste characters and text from the source of our examples for initial testing and experimentation.</div></li>
+<li><div class="para logical">
+<div class="para">Always, always identify your source as having Unicode characters by including the incantation</div>
+<pre class="code-display tex2jax_ignore">&lt;?xml version="1.0" encoding="UTF-8" ?&gt;</pre>
+<div class="para">as the first line of your source file. (You <em class="emphasis">may</em> be able to accurately cut-and-paste this version here.  But if the copy has non-standard characters in it, go back to the top of this source file for a copy.)</div>
+</div></li>
+<li><div class="para">Alan Wood’s <a class="external" href="http://www.alanwood.net/unicode/unicode_samples.html" target="_blank">Unicode Resources</a><details class="ptx-footnote" aria-live="polite" id="section-internationalization-4-2-4-4-1-2"><summary class="ptx-footnote__number" title="Footnote 20.1"><sup> 1 </sup></summary><div class="ptx-footnote__contents" id="section-internationalization-4-2-4-4-1-2"><code class="code-inline tex2jax_ignore">www.alanwood.net/unicode/unicode_samples.html</code></div></details> has a plethora of samples of various groups of Unicode characters.  If you, or your readers, are “missing” characters in a web browser, this is a good place to start testing the local setup.</div></li>
+</ul>
+</div></section><span class="incontext"><a class="internal" href="section-internationalization.html#section-internationalization-4">in-context</a></span>
+</body>
+</html>

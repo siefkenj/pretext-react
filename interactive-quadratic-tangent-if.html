@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    "typeset": false
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraph.css">
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jsxgraph/0.99.6/jsxgraphcore.js"></script>
+</head>
+<body class="ptx-content ignore-math" id="pretext-SA" data-react-in-use="yes"><div style="width:480px; height:480px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;">
+<div id="quadratic-tangent-plot" class="jxgbox" style="width:480px; height:480px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"></div>
+<script type="text/jessiecode" container="quadratic-tangent-plot" axis="true" grid="false">a = slider([-4.5,4], [-1.5,4], [-2,1,2])
+    <<
+        name:"a",
+        snapWidth:0.25,
+        point1: << frozen: true >>,
+        point2: << frozen: true >>
+    >>;
+b = slider([-4.5,3.5], [-1.5,3.5], [-4,-1,4])
+    <<
+        name:"b",
+        snapWidth:0.5,
+        point1: << frozen: true >>,
+        point2: << frozen: true >>
+    >>;
+c = slider([-4.5,3], [-1.5,3], [-4,0,4])
+    <<
+        name:"c",
+        snapWidth:0.5,
+        point1: << frozen: true >>,
+        point2: << frozen: true >>
+    >>;
+fGraph = functiongraph(function(x) {
+  return a.Value()*x^2 + b.Value()*x + c.Value();
+});
+P = glider(1,0, fGraph);
+Q = point(2,2)
+    << name:"P" >>;
+secant = line(P,Q)
+  << color: (function() {
+          m = (Q.Y() - P.Y())/(Q.X() - P.X());
+          dydx = 2*a.Value()*P.X() + b.Value();
+          cVal = "red";
+          if (abs(m-dydx) < 0.001) {
+              cVal = "blue";
+          }
+          return cVal;
+      })
+  >>;
+dydxValue = text(-4, 1.5, function() {
+        m = 2*a.Value()*P.X() + b.Value();
+        return ("dy/dx = " + trunc(m,3));
+    })
+    << frozen: true >>;
+mValue = text(-4, 1, function() {
+      m = (Q.Y() - P.Y())/(Q.X() - P.X());
+      return ("m = " + trunc(m,3));
+  })
+  << frozen: true >>;
+</script>
+</div></body>
+</html>

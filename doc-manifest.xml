@@ -1,0 +1,633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<toc>
+  <division type="article" number="" id="derivatives" url="derivatives.html#derivatives">
+    <title>Derivatives and Integrals</title>
+    <division type="frontmatter" number="" id="frontmatter" url="frontmatter.html#frontmatter">
+      <title>Front Matter</title>
+    </division>
+    <division type="mainmatter" number="" id="mainmatter" url="derivatives.html#derivatives">
+      <title>Main Matter</title>
+      <division type="section" number="1" id="section-introduction" url="section-introduction.html#section-introduction">
+        <title>Introduction</title>
+      </division>
+      <division type="section" number="2" id="section-fundamental-theorem" url="section-fundamental-theorem.html#section-fundamental-theorem">
+        <title>The Fundamental Theorem</title>
+      </division>
+      <division type="section" number="3" id="Abc" url="section-sage-cells.html#Abc">
+        <title>Computing Integrals with Sage (<span class="process-math">\(\int\)</span>)</title>
+      </division>
+      <division type="section" number="4" id="section-interesting-corollary" url="section-interesting-corollary.html#section-interesting-corollary">
+        <title>An Interesting Corollary</title>
+        <division type="subsection" number="4.1" id="subsection-second-FTC" url="section-interesting-corollary.html#subsection-second-FTC">
+          <title>Second Version of <abbr class="acronym">FTC</abbr></title>
+        </division>
+        <division type="subsection" number="4.2" id="section-interesting-corollary-5" url="section-interesting-corollary.html#section-interesting-corollary-5">
+          <title>A Pedagogical Note about Subsection 4.1</title>
+          <division type="subsubsection" number="4.2.1" id="subsubsection-different-integrals" url="section-interesting-corollary.html#subsubsection-different-integrals">
+            <title>Symbolic and Numerical Integrals</title>
+          </division>
+          <division type="subsubsection" number="4.2.2" id="section-interesting-corollary-5-3" url="section-interesting-corollary.html#section-interesting-corollary-5-3">
+            <title>Advice</title>
+          </division>
+          <division type="exercises" number="4.2.3" id="exercises-subsection-solo" url="section-interesting-corollary.html#exercises-subsection-solo">
+            <title>Exercises</title>
+          </division>
+          <division type="reading-questions" number="4.2.4" id="section-interesting-corollary-5-5" url="section-interesting-corollary.html#section-interesting-corollary-5-5">
+            <title>Reading Questions</title>
+          </division>
+          <division type="glossary" number="4.2.5" id="glossary-specialized" url="section-interesting-corollary.html#glossary-specialized">
+            <title>Glossary</title>
+          </division>
+          <division type="solutions" number="4.2.6" id="solutions-subsection" url="section-interesting-corollary.html#solutions-subsection">
+            <title>Solutions for This Subsection</title>
+          </division>
+        </division>
+        <division type="subsection" number="4.3" id="section-interesting-corollary-6" url="section-interesting-corollary.html#section-interesting-corollary-6">
+          <title>Theorem-Like Environments</title>
+        </division>
+        <division type="subsection" number="4.4" id="section-interesting-corollary-7" url="section-interesting-corollary.html#section-interesting-corollary-7">
+          <title>Linking Sage Cells</title>
+        </division>
+        <division type="subsection" number="4.5" id="section-interesting-corollary-8" url="section-interesting-corollary.html#section-interesting-corollary-8">
+          <title>Hierarchy</title>
+        </division>
+        <division type="subsection" number="4.6" id="subsection-intro-conclude" url="section-interesting-corollary.html#subsection-intro-conclude">
+          <title>Introductions and Conclusions</title>
+          <division type="subsubsection" number="4.6.1" id="subsection-intro-conclude-3" url="section-interesting-corollary.html#subsection-intro-conclude-3">
+            <title>Test One</title>
+          </division>
+          <division type="subsubsection" number="4.6.2" id="subsection-intro-conclude-4" url="section-interesting-corollary.html#subsection-intro-conclude-4">
+            <title>Test Two</title>
+            <division type="reading-questions" number="4.6.2" id="subsection-intro-conclude-4-4" url="section-interesting-corollary.html#subsection-intro-conclude-4-4">
+              <title>What Did You Learn?</title>
+            </division>
+            <division type="exercises" number="4.6.2" id="subsection-intro-conclude-4-5" url="section-interesting-corollary.html#subsection-intro-conclude-4-5">
+              <title>Exercises</title>
+            </division>
+          </division>
+          <division type="subsubsection" number="4.6.3" id="subsection-intro-conclude-5" url="section-interesting-corollary.html#subsection-intro-conclude-5">
+            <title>Test Three</title>
+          </division>
+        </division>
+        <division type="subsection" number="4.7" id="subsection-paragraph-markup" url="section-interesting-corollary.html#subsection-paragraph-markup">
+          <title>Some Paragraph-Level Markup</title>
+        </division>
+      </division>
+      <division type="section" number="5" id="Bcd" url="section-facts-figures.html#Bcd">
+        <title>Some Facts and Figures</title>
+      </division>
+      <division type="section" number="6" id="derivatives-9" url="derivatives-9.html#derivatives-9">
+        <title>Some Advanced Ideas</title>
+      </division>
+      <division type="section" number="7" id="section-mathematics" url="section-mathematics.html#section-mathematics">
+        <title>Mathematics</title>
+        <division type="subsection" number="7.1" id="section-mathematics-3" url="section-mathematics.html#section-mathematics-3">
+          <title>Basic Mathematics</title>
+        </division>
+        <division type="subsection" number="7.2" id="section-mathematics-4" url="section-mathematics.html#section-mathematics-4">
+          <title>Displayed Mathematics</title>
+        </division>
+        <division type="subsection" number="7.3" id="section-mathematics-5" url="section-mathematics.html#section-mathematics-5">
+          <title><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Packages and MathJax Extensions</title>
+        </division>
+        <division type="subsection" number="7.4" id="section-mathematics-6" url="section-mathematics.html#section-mathematics-6">
+          <title>Advanced Mathematics</title>
+        </division>
+        <division type="subsection" number="7.5" id="section-mathematics-7" url="section-mathematics.html#section-mathematics-7">
+          <title>Local Tags on Equations</title>
+        </division>
+        <division type="subsection" number="7.6" id="commutative-diagrams" url="section-mathematics.html#commutative-diagrams">
+          <title>Commutative Diagrams</title>
+        </division>
+        <division type="subsection" number="7.7" id="line-breaking-math" url="section-mathematics.html#line-breaking-math">
+          <title>Line-Breaking after Mathematics</title>
+        </division>
+        <division type="subsection" number="7.8" id="font-math" url="section-mathematics.html#font-math">
+          <title>Fonts and Mathematics</title>
+        </division>
+        <division type="subsection" number="7.9" id="miscellaneous-math" url="section-mathematics.html#miscellaneous-math">
+          <title>Miscellaneous</title>
+        </division>
+      </division>
+      <division type="section" number="8" id="section-text-paragraphs" url="section-text-paragraphs.html#section-text-paragraphs">
+        <title>Text in Paragraphs</title>
+        <division type="subsection" number="8.1" id="subsection-xml-escape" url="section-text-paragraphs.html#subsection-xml-escape">
+          <title>Special <abbr class="initialism">XML</abbr> characters</title>
+        </division>
+        <division type="subsection" number="8.2" id="section-text-paragraphs-6" url="section-text-paragraphs.html#section-text-paragraphs-6">
+          <title>Quotations</title>
+        </division>
+        <division type="subsection" number="8.3" id="section-text-paragraphs-7" url="section-text-paragraphs.html#section-text-paragraphs-7">
+          <title>Groupings</title>
+        </division>
+        <division type="subsection" number="8.4" id="section-text-paragraphs-8" url="section-text-paragraphs.html#section-text-paragraphs-8">
+          <title>Characters, Symbols, and Constructions</title>
+        </division>
+        <division type="subsection" number="8.5" id="section-text-paragraphs-9" url="section-text-paragraphs.html#section-text-paragraphs-9">
+          <title>Currency</title>
+        </division>
+        <division type="subsection" number="8.6" id="subsection-icons-in-text" url="section-text-paragraphs.html#subsection-icons-in-text">
+          <title>Icons in Text</title>
+        </division>
+        <division type="subsection" number="8.7" id="subsection-keyboard" url="section-text-paragraphs.html#subsection-keyboard">
+          <title>Keyboard Keys</title>
+        </division>
+        <division type="subsection" number="8.8" id="section-urls" url="section-text-paragraphs.html#section-urls">
+          <title>URLs, such as <code class="code-inline tex2jax_ignore">http://example.com</code></title>
+        </division>
+        <division type="subsection" number="8.9" id="section-text-paragraphs-13" url="section-text-paragraphs.html#section-text-paragraphs-13">
+          <title>Biological Names</title>
+        </division>
+        <division type="subsection" number="8.10" id="section-text-paragraphs-14" url="section-text-paragraphs.html#section-text-paragraphs-14">
+          <title>Verbatim in titles, <code class="code-inline tex2jax_ignore">\a&amp;b#c%d~e{f}g$h_i^j</code>, OK</title>
+        </division>
+        <division type="subsection" number="8.11" id="subsection-special-situations" url="section-text-paragraphs.html#subsection-special-situations">
+          <title>Special Situations</title>
+        </division>
+        <division type="subsection" number="8.12" id="subsection-jupyter-dollars" url="section-text-paragraphs.html#subsection-jupyter-dollars">
+          <title>Jupyter Notebook, Markdown, MathJax, Delimiters</title>
+        </division>
+        <division type="subsection" number="8.13" id="section-text-paragraphs-17" url="section-text-paragraphs.html#section-text-paragraphs-17">
+          <title><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Characters, Ligatures, and More</title>
+        </division>
+        <division type="subsection" number="8.14" id="section-text-paragraphs-18" url="section-text-paragraphs.html#section-text-paragraphs-18">
+          <title><abbr class="initialism">HTML</abbr> and accidental mathematics</title>
+        </division>
+      </division>
+      <division type="section" number="9" id="section-graphics" url="section-graphics.html#section-graphics">
+        <title>Graphics</title>
+        <division type="subsection" number="9.1" id="section-graphics-3" url="section-graphics.html#section-graphics-3">
+          <title>Images from External Sources</title>
+        </division>
+        <division type="subsection" number="9.2" id="section-graphics-4" url="section-graphics.html#section-graphics-4">
+          <title><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> images</title>
+        </division>
+        <division type="subsection" number="9.3" id="section-graphics-5" url="section-graphics.html#section-graphics-5">
+          <title>Asymptote, 2D</title>
+        </division>
+        <division type="subsection" number="9.4" id="graphics-asymptote-webgl" url="section-graphics.html#graphics-asymptote-webgl">
+          <title>Asymptote, 3D via WebGL</title>
+        </division>
+        <division type="subsection" number="9.5" id="section-graphics-7" url="section-graphics.html#section-graphics-7">
+          <title>Sage Plots</title>
+        </division>
+        <division type="subsection" number="9.6" id="section-graphics-8" url="section-graphics.html#section-graphics-8">
+          <title>Inkscape Images</title>
+        </division>
+        <division type="subsection" number="9.7" id="section-graphics-9" url="section-graphics.html#section-graphics-9">
+          <title>Copies of Images</title>
+        </division>
+        <division type="subsection" number="9.8" id="section-graphics-10" url="section-graphics.html#section-graphics-10">
+          <title>Caption Testing</title>
+        </division>
+        <division type="subsection" number="9.9" id="captionless-images" url="section-graphics.html#captionless-images">
+          <title>Captionless Images</title>
+        </division>
+        <division type="subsection" number="9.10" id="section-graphics-12" url="section-graphics.html#section-graphics-12">
+          <title>Technical Details</title>
+        </division>
+        <division type="subsection" number="9.11" id="subsection-tactile-graphics" url="section-graphics.html#subsection-tactile-graphics">
+          <title>Experimental Tactile Graphics</title>
+        </division>
+        <division type="subsection" number="9.12" id="section-graphics-14" url="section-graphics.html#section-graphics-14">
+          <title>Accessibility</title>
+        </division>
+      </division>
+      <division type="section" number="10" id="section-further-reading" url="section-further-reading.html#section-further-reading">
+        <title>Further Reading</title>
+        <division type="subsection" number="10.1" id="section-further-reading-2" url="section-further-reading.html#section-further-reading-2">
+          <title>Specialized Subdivisions</title>
+        </division>
+        <division type="exercises" number="10.2" id="section-further-reading-3" url="section-further-reading.html#section-further-reading-3">
+          <title>Exercises</title>
+        </division>
+        <division type="exercises" number="10.3" id="exercises-section-multiple" url="section-further-reading.html#exercises-section-multiple">
+          <title>More Exercises</title>
+        </division>
+        <division type="references" number="10.4" id="references-section" url="section-further-reading.html#references-section">
+          <title>References</title>
+        </division>
+      </division>
+      <division type="section" number="11" id="section-lists" url="section-lists.html#section-lists">
+        <title>List Calisthenics</title>
+        <division type="subsection" number="11.1" id="section-lists-2" url="section-lists.html#section-lists-2">
+          <title>Lists, Generally</title>
+        </division>
+        <division type="subsection" number="11.2" id="section-lists-3" url="section-lists.html#section-lists-3">
+          <title>List Spacing, I</title>
+        </division>
+        <division type="subsection" number="11.3" id="section-lists-4" url="section-lists.html#section-lists-4">
+          <title>List Spacing, II</title>
+        </division>
+        <division type="subsection" number="11.4" id="test-second" url="section-lists.html#test-second">
+          <title>List items containing only inline math</title>
+        </division>
+        <division type="subsection" number="11.5" id="section-lists-6" url="section-lists.html#section-lists-6">
+          <title>Difficult List Items</title>
+        </division>
+        <division type="subsection" number="11.6" id="section-lists-7" url="section-lists.html#section-lists-7">
+          <title>Description Lists</title>
+        </division>
+        <division type="subsection" number="11.7" id="section-lists-8" url="section-lists.html#section-lists-8">
+          <title>Named Lists</title>
+        </division>
+        <division type="subsection" number="11.8" id="section-lists-9" url="section-lists.html#section-lists-9">
+          <title>Testing List Decompositions</title>
+        </division>
+        <division type="exercises" number="11.9" id="section-lists-10" url="section-lists.html#section-lists-10">
+          <title>Exercises (with lists)</title>
+        </division>
+        <division type="references" number="11.10" id="section-lists-11" url="section-lists.html#section-lists-11">
+          <title>References (with lists in Annotations)</title>
+        </division>
+      </division>
+      <division type="section" number="12" id="section-table-calisthenics" url="section-table-calisthenics.html#section-table-calisthenics">
+        <title>Table Calisthenics</title>
+      </division>
+      <division type="section" number="13" id="section-interactive-authored" url="section-interactive-authored.html#section-interactive-authored">
+        <title>Interactive Elements, Authored</title>
+        <division type="subsection" number="13.1" id="interactive-html5-canvas" url="section-interactive-authored.html#interactive-html5-canvas">
+          <title>HTML5 Canvas</title>
+        </division>
+        <division type="subsection" number="13.2" id="section-interactive-authored-8" url="section-interactive-authored.html#section-interactive-authored-8">
+          <title>D3.js</title>
+        </division>
+        <division type="subsection" number="13.3" id="svg-interactives" url="section-interactive-authored.html#svg-interactives">
+          <title>SVG</title>
+        </division>
+        <division type="subsection" number="13.4" id="section-interactive-authored-10" url="section-interactive-authored.html#section-interactive-authored-10">
+          <title>JSXGraph</title>
+        </division>
+        <division type="subsection" number="13.5" id="section-interactive-authored-11" url="section-interactive-authored.html#section-interactive-authored-11">
+          <title>JessieCode</title>
+        </division>
+        <division type="subsection" number="13.6" id="section-interactive-authored-12" url="section-interactive-authored.html#section-interactive-authored-12">
+          <title>Sage Interacts</title>
+        </division>
+        <division type="subsection" number="13.7" id="section-interactive-authored-13" url="section-interactive-authored.html#section-interactive-authored-13">
+          <title>Geogebra</title>
+        </division>
+        <division type="subsection" number="13.8" id="section-interactive-authored-14" url="section-interactive-authored.html#section-interactive-authored-14">
+          <title>CircuitJS</title>
+        </division>
+        <division type="subsection" number="13.9" id="interactive-iframes-local" url="section-interactive-authored.html#interactive-iframes-local">
+          <title>IFrames from Files</title>
+        </division>
+        <division type="subsection" number="13.10" id="interactive-threejs" url="section-interactive-authored.html#interactive-threejs">
+          <title>threejs</title>
+        </division>
+      </division>
+      <division type="section" number="14" id="section-interactive-server" url="section-interactive-server.html#section-interactive-server">
+        <title>Interactive Elements, Server</title>
+        <division type="subsection" number="14.1" id="subsection-geogebra-server" url="section-interactive-server.html#subsection-geogebra-server">
+          <title>GeoGebra</title>
+        </division>
+        <division type="subsection" number="14.2" id="section-interactive-server-6" url="section-interactive-server.html#section-interactive-server-6">
+          <title>Desmos Graphs</title>
+        </division>
+        <division type="subsection" number="14.3" id="section-interactive-server-7" url="section-interactive-server.html#section-interactive-server-7">
+          <title>CalcPlot3D</title>
+        </division>
+        <division type="subsection" number="14.4" id="interactive-iframes-server" url="section-interactive-server.html#interactive-iframes-server">
+          <title>IFrames from Servers</title>
+        </division>
+      </division>
+      <division type="section" number="15" id="section-interactive-exercises" url="section-interactive-exercises.html#section-interactive-exercises">
+        <title>Interactive Exercises</title>
+        <division type="exercises" number="15.1" id="section-interactive-exercises-3" url="section-interactive-exercises.html#section-interactive-exercises-3">
+          <title>True/False</title>
+        </division>
+        <division type="exercises" number="15.2" id="section-interactive-exercises-4" url="section-interactive-exercises.html#section-interactive-exercises-4">
+          <title>Multiple-Choice</title>
+        </division>
+        <division type="exercises" number="15.3" id="section-interactive-exercises-5" url="section-interactive-exercises.html#section-interactive-exercises-5">
+          <title>Parsons Problem, Math Proof</title>
+        </division>
+        <division type="exercises" number="15.4" id="section-interactive-exercises-6" url="section-interactive-exercises.html#section-interactive-exercises-6">
+          <title>Parsons Problem, Code</title>
+        </division>
+        <division type="exercises" number="15.5" id="section-interactive-exercises-7" url="section-interactive-exercises.html#section-interactive-exercises-7">
+          <title>Matching</title>
+        </division>
+        <division type="exercises" number="15.6" id="section-interactive-exercises-8" url="section-interactive-exercises.html#section-interactive-exercises-8">
+          <title>Clickable Area</title>
+        </division>
+        <division type="exercises" number="15.7" id="section-interactive-exercises-9" url="section-interactive-exercises.html#section-interactive-exercises-9">
+          <title>Old-Style Fillin-In</title>
+        </division>
+        <division type="reading-questions" number="15.8" id="section-interactive-exercises-10" url="section-interactive-exercises.html#section-interactive-exercises-10">
+          <title>A Reading Question</title>
+        </division>
+        <division type="subsection" number="15.9" id="section-interactive-exercises-11" url="section-interactive-exercises.html#section-interactive-exercises-11">
+          <title>Faux Subsection</title>
+        </division>
+      </division>
+      <division type="section" number="16" id="section-interactive-code" url="section-interactive-code.html#section-interactive-code">
+        <title>Interactive Coding</title>
+        <division type="exercises" number="16.1" id="section-interactive-code-3" url="section-interactive-code.html#section-interactive-code-3">
+          <title>ActiveCode</title>
+        </division>
+        <division type="exercises" number="16.2" id="section-interactive-code-4" url="section-interactive-code.html#section-interactive-code-4">
+          <title>CodeLens</title>
+        </division>
+        <division type="exercises" number="16.3" id="section-interactive-code-5" url="section-interactive-code.html#section-interactive-code-5">
+          <title>Activity with An ActiveCode</title>
+        </division>
+        <division type="subsection" number="16.4" id="section-interactive-code-6" url="section-interactive-code.html#section-interactive-code-6">
+          <title>YouTube</title>
+        </division>
+      </division>
+      <division type="section" number="17" id="section-audio" url="section-audio.html#section-audio">
+        <title>Audio</title>
+      </division>
+      <division type="section" number="18" id="section-video" url="section-video.html#section-video">
+        <title>Video</title>
+        <division type="subsection" number="18.1" id="section-video-3" url="section-video.html#section-video-3">
+          <title>Video Files</title>
+        </division>
+        <division type="subsection" number="18.2" id="section-video-4" url="section-video.html#section-video-4">
+          <title>YouTube</title>
+        </division>
+        <division type="subsection" number="18.3" id="section-video-5" url="section-video.html#section-video-5">
+          <title>Vimeo</title>
+        </division>
+        <division type="subsection" number="18.4" id="section-video-6" url="section-video.html#section-video-6">
+          <title>Captions and Subtitles</title>
+        </division>
+      </division>
+      <division type="section" number="19" id="section-cross-referencing" url="section-cross-referencing.html#section-cross-referencing">
+        <title>Cross-Referencing</title>
+      </division>
+      <division type="section" number="20" id="section-internationalization" url="section-internationalization.html#section-internationalization">
+        <title>Internationalization</title>
+      </division>
+      <division type="section" number="21" id="section-pre-formatted" url="section-pre-formatted.html#section-pre-formatted">
+        <title>Pre-Formatted Text</title>
+      </division>
+      <division type="section" number="22" id="section-programs" url="section-programs.html#section-programs">
+        <title>Program Listings (with <code class="code-inline tex2jax_ignore">code</code> in the title)</title>
+      </division>
+      <division type="section" number="23" id="section-units-measure" url="section-units-measure.html#section-units-measure">
+        <title>Units of Measure</title>
+      </division>
+      <division type="section" number="24" id="section-side-by-side" url="section-side-by-side.html#section-side-by-side">
+        <title>Side-By-Side Panels</title>
+        <division type="subsection" number="24.1" id="section-side-by-side-3" url="section-side-by-side.html#section-side-by-side-3">
+          <title>Figures with Numbers Side-By-Side</title>
+        </division>
+        <division type="subsection" number="24.2" id="section-side-by-side-4" url="section-side-by-side.html#section-side-by-side-4">
+          <title>Images</title>
+        </division>
+        <division type="subsection" number="24.3" id="section-side-by-side-5" url="section-side-by-side.html#section-side-by-side-5">
+          <title>Common Side-By-Side Constructions</title>
+        </division>
+        <division type="subsection" number="24.4" id="section-side-by-side-6" url="section-side-by-side.html#section-side-by-side-6">
+          <title>Vertical Alignment</title>
+        </division>
+        <division type="subsection" number="24.5" id="section-side-by-side-7" url="section-side-by-side.html#section-side-by-side-7">
+          <title>Text Next to Text and Images</title>
+        </division>
+        <division type="subsection" number="24.6" id="section-side-by-side-8" url="section-side-by-side.html#section-side-by-side-8">
+          <title>Image Formats, Side-by-Sides</title>
+        </division>
+        <division type="subsection" number="24.7" id="section-side-by-side-9" url="section-side-by-side.html#section-side-by-side-9">
+          <title>Tables Side-By-Side</title>
+        </division>
+        <division type="subsection" number="24.8" id="section-side-by-side-10" url="section-side-by-side.html#section-side-by-side-10">
+          <title>Tables Next to Figures</title>
+        </division>
+        <division type="subsection" number="24.9" id="section-side-by-side-11" url="section-side-by-side.html#section-side-by-side-11">
+          <title>Tables Next to Text</title>
+        </division>
+        <division type="subsection" number="24.10" id="section-side-by-side-12" url="section-side-by-side.html#section-side-by-side-12">
+          <title>Tabular Next to Each Other</title>
+        </division>
+        <division type="subsection" number="24.11" id="section-side-by-side-13" url="section-side-by-side.html#section-side-by-side-13">
+          <title>Lists in Side-by-Sides</title>
+        </division>
+        <division type="subsection" number="24.12" id="stacking-side-by-side" url="section-side-by-side.html#stacking-side-by-side">
+          <title>Stacking: Back to Vertical Flow</title>
+        </division>
+        <division type="subsection" number="24.13" id="subsection-sbs-other-panels" url="section-side-by-side.html#subsection-sbs-other-panels">
+          <title>Other Panels</title>
+        </division>
+        <division type="subsection" number="24.14" id="section-side-by-side-16" url="section-side-by-side.html#section-side-by-side-16">
+          <title>Poems as Side-By-Side Panels</title>
+        </division>
+        <division type="subsection" number="24.15" id="subsection-sbsgroup" url="section-side-by-side.html#subsection-sbsgroup">
+          <title>Side-By-Side Groups</title>
+        </division>
+        <division type="subsection" number="24.16" id="section-side-by-side-18" url="section-side-by-side.html#section-side-by-side-18">
+          <title>Testing a Side-By-Side First</title>
+        </division>
+        <division type="subsection" number="24.17" id="section-side-by-side-19" url="section-side-by-side.html#section-side-by-side-19">
+          <title>Testing Styling of Related Elements</title>
+        </division>
+      </division>
+      <division type="section" number="25" id="section-side-by-side-gallery" url="section-side-by-side-gallery.html#section-side-by-side-gallery">
+        <title>Side-by-Side Gallery</title>
+      </division>
+      <division type="section" number="26" id="section-open-problems" url="section-open-problems.html#section-open-problems">
+        <title>Open Problems</title>
+      </division>
+      <division type="section" number="27" id="section-poetry" url="section-poetry.html#section-poetry">
+        <title>Poetry</title>
+      </division>
+      <division type="section" number="28" id="section-atomic-items" url="section-atomic-items.html#section-atomic-items">
+        <title>Atomic Objects</title>
+        <division type="subsection" number="28.1" id="atomic-image" url="section-atomic-items.html#atomic-image">
+          <title>
+            <code class="code-inline tex2jax_ignore">&lt;image&gt;</code>
+          </title>
+          <division type="exercises" number="28.1" id="atomic-image-26" url="section-atomic-items.html#atomic-image-26">
+            <title>Exercises</title>
+          </division>
+        </division>
+        <division type="subsection" number="28.2" id="atomic-video" url="section-atomic-items.html#atomic-video">
+          <title>
+            <code class="code-inline tex2jax_ignore">&lt;video&gt;</code>
+          </title>
+        </division>
+        <division type="subsection" number="28.3" id="atomic-program" url="section-atomic-items.html#atomic-program">
+          <title><code class="code-inline tex2jax_ignore">&lt;program&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;console&gt;</code></title>
+        </division>
+        <division type="subsection" number="28.4" id="atomic-tabular" url="section-atomic-items.html#atomic-tabular">
+          <title>
+            <code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code>
+          </title>
+        </division>
+      </division>
+      <division type="section" number="29" id="section-advanced-numbering" url="section-advanced-numbering.html#section-advanced-numbering">
+        <title>Advanced Numbering</title>
+        <division type="subsection" number="29.1" id="section-advanced-numbering-3" url="section-advanced-numbering.html#section-advanced-numbering-3">
+          <title>One</title>
+        </division>
+        <division type="subsection" number="29.2" id="section-advanced-numbering-4" url="section-advanced-numbering.html#section-advanced-numbering-4">
+          <title>Two</title>
+          <division type="subsubsection" number="29.2.1" id="section-advanced-numbering-4-3" url="section-advanced-numbering.html#section-advanced-numbering-4-3">
+            <title>Uno</title>
+          </division>
+          <division type="subsubsection" number="29.2.2" id="section-advanced-numbering-4-4" url="section-advanced-numbering.html#section-advanced-numbering-4-4">
+            <title>Dos</title>
+          </division>
+        </division>
+        <division type="subsection" number="29.3" id="section-advanced-numbering-5" url="section-advanced-numbering.html#section-advanced-numbering-5">
+          <title>Three</title>
+        </division>
+        <division type="subsection" number="29.4" id="section-advanced-numbering-6" url="section-advanced-numbering.html#section-advanced-numbering-6">
+          <title>Four</title>
+          <division type="subsubsection" number="29.4.1" id="section-advanced-numbering-6-3" url="section-advanced-numbering.html#section-advanced-numbering-6-3">
+            <title>Uno</title>
+          </division>
+          <division type="subsubsection" number="29.4.2" id="section-advanced-numbering-6-4" url="section-advanced-numbering.html#section-advanced-numbering-6-4">
+            <title>Dos</title>
+          </division>
+        </division>
+        <division type="subsection" number="29.5" id="section-advanced-numbering-7" url="section-advanced-numbering.html#section-advanced-numbering-7">
+          <title>Five</title>
+        </division>
+        <division type="subsection" number="29.6" id="subsection-local-theorems" url="section-advanced-numbering.html#subsection-local-theorems">
+          <title>Theorems in This Section</title>
+        </division>
+        <division type="subsection" number="29.7" id="subsection-with-an-exercise" url="section-advanced-numbering.html#subsection-with-an-exercise">
+          <title>A Title with ] a Right Bracket</title>
+        </division>
+        <division type="subsection" number="29.8" id="section-advanced-numbering-10" url="section-advanced-numbering.html#section-advanced-numbering-10">
+          <title>A Title with } a Right Brace</title>
+        </division>
+        <division type="subsection" number="29.9" id="section-advanced-numbering-11" url="section-advanced-numbering.html#section-advanced-numbering-11">
+          <title>A Title with <span class="process-math">\(a]b\)</span> a Math Right Bracket</title>
+        </division>
+        <division type="subsection" number="29.10" id="section-advanced-numbering-12" url="section-advanced-numbering.html#section-advanced-numbering-12">
+          <title>Just an Exercise</title>
+        </division>
+        <division type="solutions" number="29.11" id="section-advanced-numbering-13" url="section-advanced-numbering.html#section-advanced-numbering-13">
+          <title>Solutions</title>
+        </division>
+      </division>
+      <division type="section" number="30" id="section-customizations" url="section-customizations.html#section-customizations">
+        <title>Customizations</title>
+        <division type="subsection" number="30.1" id="rename-facility" url="section-customizations.html#rename-facility">
+          <title>Renaming Document Parts, Plus This Is A Really Long Title So That We Can Test How Well It Reacts To The Right Margin And Wraps Around To Form A Couple Of Lines, Plus How It Sits Relative To The Number Of The Subsection</title>
+        </division>
+        <division type="subsection" number="30.2" id="section-customizations-3" url="section-customizations.html#section-customizations-3">
+          <title>Customizing Phrases</title>
+        </division>
+      </division>
+      <division type="section" number="31" id="section-myopenmath" url="section-myopenmath.html#section-myopenmath">
+        <title>MyOpenMath Interactive Problems</title>
+      </division>
+      <division type="section" number="32" id="section-ancillaries" url="section-ancillaries.html#section-ancillaries">
+        <title>Ancillaries</title>
+      </division>
+      <division type="section" number="33" id="section-worksheets" url="section-worksheets.html#section-worksheets">
+        <title>Worksheets</title>
+        <division type="worksheet" number="33.1" id="worksheet-geometric-prelude" url="section-worksheets.html#worksheet-geometric-prelude">
+          <title>A Geometric Prelude</title>
+        </division>
+        <division type="worksheet" number="33.2" id="worksheet-networks" url="section-worksheets.html#worksheet-networks">
+          <title>Networks Worksheet</title>
+        </division>
+        <division type="worksheet" number="33.3" id="worksheet-testing" url="section-worksheets.html#worksheet-testing">
+          <title>Worksheet</title>
+        </division>
+        <division type="worksheet" number="33.4" id="worksheet-dot-products" url="section-worksheets.html#worksheet-dot-products">
+          <title>Dot products and projection</title>
+        </division>
+      </division>
+      <division type="section" number="34" id="section-exercises-single" url="section-exercises-single.html#section-exercises-single">
+        <title>Exercises, One Subsection</title>
+        <division type="exercises" number="34" id="exercise-collection" url="section-exercises-single.html#exercise-collection">
+          <title>Exercise Collection</title>
+        </division>
+        <division type="references" number="34" id="section-exercises-single-11" url="section-exercises-single.html#section-exercises-single-11">
+          <title>More Reading</title>
+        </division>
+      </division>
+      <division type="exercises" number="35" id="exercises-structured" url="exercises-structured.html#exercises-structured">
+        <title>Exercise Section, Structured</title>
+      </division>
+      <division type="section" number="36" id="section-exercises-multiple" url="section-exercises-multiple.html#section-exercises-multiple">
+        <title>Exercises, Multiple Subsections</title>
+        <division type="subsection" number="36.1" id="section-exercises-multiple-3" url="section-exercises-multiple.html#section-exercises-multiple-3">
+          <title>Faux Subsection</title>
+        </division>
+        <division type="exercises" number="36.2" id="exercises-drill" url="section-exercises-multiple.html#exercises-drill">
+          <title>Drill Exercises</title>
+        </division>
+        <division type="exercises" number="36.3" id="section-exercises-multiple-5" url="section-exercises-multiple.html#section-exercises-multiple-5">
+          <title>Challenging Exercises</title>
+        </division>
+        <division type="exercises" number="36.4" id="section-exercises-multiple-6" url="section-exercises-multiple.html#section-exercises-multiple-6">
+          <title>Impossible Exercises</title>
+        </division>
+        <division type="references" number="36.5" id="section-exercises-multiple-7" url="section-exercises-multiple.html#section-exercises-multiple-7">
+          <title>More Reading</title>
+        </division>
+      </division>
+      <division type="exercises" number="37" id="exercises-top-level" url="exercises-top-level.html#exercises-top-level">
+        <title>Exercises, Top-Level</title>
+      </division>
+    </division>
+    <division type="backmatter" number="" id="backmatter" url="backmatter.html#backmatter">
+      <title>Reference</title>
+      <division type="appendix" number="A" id="appendix-notation" url="appendix-notation.html#appendix-notation">
+        <title>Notation</title>
+      </division>
+      <division type="solutions" number="B" id="solutions-backmatter" url="solutions-backmatter.html#solutions-backmatter">
+        <title>Solutions to Selected Exercises</title>
+      </division>
+      <division type="solutions" number="C" id="solutions-single-exercises" url="solutions-single-exercises.html#solutions-single-exercises">
+        <title>Solutions to a Single Exercises Division</title>
+      </division>
+      <division type="solutions" number="D" id="solutions-answers" url="solutions-answers.html#solutions-answers">
+        <title>All Solutions that are Answers</title>
+      </division>
+      <division type="solutions" number="E" id="solutions-odd-answers" url="solutions-odd-answers.html#solutions-odd-answers">
+        <title>All Solutions that are Answers to Odd Exercises</title>
+      </division>
+      <division type="appendix" number="F" id="appendix-results" url="appendix-results.html#appendix-results">
+        <title>List of Results</title>
+      </division>
+      <division type="appendix" number="G" id="appendix-exercise-lists" url="appendix-exercise-lists.html#appendix-exercise-lists">
+        <title>Lists of Exercises</title>
+      </division>
+      <division type="appendix" number="H" id="appendix-structured" url="appendix-structured.html#appendix-structured">
+        <title>A Structured Appendix</title>
+        <division type="subsection" number="H.1" id="appendix-structured-3" url="appendix-structured.html#appendix-structured-3">
+          <title>A Subsection in an Appendix</title>
+          <division type="subsubsection" number="H.1.1" id="appendix-structured-3-3" url="appendix-structured.html#appendix-structured-3-3">
+            <title>A Subsubsection in a Subsection in an Appendix</title>
+          </division>
+        </division>
+      </division>
+      <division type="appendix" number="I" id="appendix-index" url="appendix-index.html#appendix-index">
+        <title>Index</title>
+      </division>
+      <division type="glossary" number="" id="glossary-backmatter" url="glossary-backmatter.html#glossary-backmatter">
+        <title>Glossary</title>
+      </division>
+      <division type="appendix" number="J" id="appendix-multiple-references" url="appendix-multiple-references.html#appendix-multiple-references">
+        <title>Multiple References</title>
+        <division type="subsection" number="J.1" id="appendix-multiple-references-2" url="appendix-multiple-references.html#appendix-multiple-references-2">
+          <title>Multiple Specialized References</title>
+        </division>
+        <division type="references" number="J.2" id="appendix-multiple-references-3" url="appendix-multiple-references.html#appendix-multiple-references-3">
+          <title>General References</title>
+        </division>
+        <division type="references" number="J.3" id="appendix-multiple-references-4" url="appendix-multiple-references.html#appendix-multiple-references-4">
+          <title>Specialized References</title>
+        </division>
+      </division>
+      <division type="references" number="" id="references-backmatter" url="references-backmatter.html#references-backmatter">
+        <title>References</title>
+      </division>
+      <division type="index" number="" id="the-index" url="the-index.html#the-index">
+        <title>Index</title>
+      </division>
+      <division type="colophon" number="" id="colophon-back" url="colophon-back.html#colophon-back">
+        <title>Colophon</title>
+      </division>
+    </division>
+  </division>
+</toc>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en-US" dir="ltr">
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="robots" content="noindex, nofollow">
+</head>
+<body class="ignore-math">
+<article class="exercise exercise-like"><h4 class="heading">
+<span class="type">Exercise</span><span class="space"> </span><span class="codenumber">1<span class="period">.</span></span><span class="space"> </span><span class="title">Parsons Problem, Programming.</span>
+</h4>
+<div class="ptx-runestone-container"><div class="runestone parsons_section" style="max-width: none;"><div data-component="parsons" class="parsons" id="prime-number-program-indent-yes">
+<div class="parsons_question parsons-text">
+<div class="para" id="prime-number-program-indent-yes-4-1">The Sieve of Eratosthenes computes prime numbers by starting with a finite list of the integers bigger than 1.  The first member of the list is a prime and is saved/recorded.  Then all multiples of that prime (which not a prime, excepting the prime itself!) are removed from the list.  Now the first number remaining in the list is the next prime number.  And the process repeats.</div> <div class="para" id="prime-number-program-indent-yes-4-2">The code blocks below can be rearranged to form one of the many possible programs to implement this algorithm to compute a list of all the primes less than <span class="process-math">\(250\text{.}\)</span> [Ed. this version of this problem requires the reader to provide the necessary indentation.]</div>
+</div>
+<pre class="parsonsblocks" data-question_label="" style="visibility: hidden;" data-language="python" data-adaptive="true" data-noindent="false">n = 250
+---
+primes = []
+candidates = list(range(2,n))
+---
+candidates = []
+primes = list(range(2,n)) #paired
+---
+primes = candidates + [p] #distractor
+---
+while candidates:
+---
+    p = candidates[0]
+    primes.append(p)
+---
+    for nonprime in range(p, n, p):
+---
+        if nonprime in candidates:
+            candidates.remove(nonprime)
+---
+print(primes)</pre>
+</div></div></div></article><span class="incontext"><a class="internal" href="section-interactive-exercises.html#prime-number-program-indent-yes">in-context</a></span>
+</body>
+</html>

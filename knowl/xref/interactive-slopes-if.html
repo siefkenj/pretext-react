@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    "typeset": false
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<link rel="stylesheet" type="text/css" href="external/code/mcclure/slope.css">
+</head>
+<body class="ptx-content ignore-math" id="pretext-SA" data-react-in-use="yes"><div style="width:600px; height:800px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;">
+<div xmlns="http://www.w3.org/1999/xhtml" class="p">
+                            Calculus consists of those problems in mathematics that can be solved with the
+                            following basic approach:
+                            </div><div xmlns="http://www.w3.org/1999/xhtml" class="em_display">
+                            Approximate and take a limit!
+                            </div><div xmlns="http://www.w3.org/1999/xhtml" class="p">
+                            The simplest, standard, geometric example of this process is the approximation
+                            of the slope of a tangent line with a secant line.
+                            Here's an illustration of this basic idea.
+                            </div><div xmlns="http://www.w3.org/1999/xhtml" id="function_list" style="text-align: center">
+                                Choose <span class="process-math">\(f\)</span>:
+                                <span class="function_radio_container" style="padding-left: 10px">
+                                    <input type="radio" class="radio" name="function" value="f1" id="f1"></input>
+                                    <span class="process-math">\(f(x)=x^2\)</span>
+                                </span>
+                                <span class="function_radio_container">
+                                    <input type="radio" class="radio" name="function" value="f2"></input>
+                                    <span class="process-math">\(f(x)=\frac{1}{3}e^x\)</span>
+                                </span>
+                                <span class="function_radio_container">
+                                    <input type="radio" class="radio" name="function" value="f3"></input>
+                                    <span class="process-math">\(f(x)=\sin(2x^2)+x/4\)</span>
+                                </span>
+                            </div><svg id="the_graph"></svg><div xmlns="http://www.w3.org/1999/xhtml" id="h_info_container">
+                            <table>
+                                <tr>
+                                    <td><table>
+                                        <tr><td><input id="show_secant_checkbox" type="checkbox"></input> Show secant line</td></tr>
+                                        <tr><td><input id="h_slider" type="range" min="-0.5" max="0.5" step="0.01"></input></td></tr>
+                                    </table></td>
+                                    <td><table>
+                                        <tr><td class="dimit" style="text-align: left;"><span class="process-math">\(h\)</span> = <span id="h_value_display"></span></td></tr>
+                                        <tr><td class="dimit" style="text-align: left;">secant slope = <span id="secant_value_display"></span></td></tr>
+                                        <tr><td style="text-align: left;">tangent slope = <span id="tangent_value_display"></span></td></tr>
+                                    </table></td>
+                                </tr>
+                            </table>
+                            </div><script src="https://code.jquery.com/jquery-1.11.3.min.js"></script><script src="https://d3js.org/d3.v3.min.js"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjs/3.2.1/math.min.js"></script><script src="external/code/mcclure/slope.js"></script>
+</div></body>
+</html>

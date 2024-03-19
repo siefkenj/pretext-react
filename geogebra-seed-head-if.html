@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    "typeset": false
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<script type="text/javascript" src="https://cdn.geogebra.org/apps/deployggb.js"></script>
+</head>
+<body class="ptx-content ignore-math" id="pretext-SA" data-react-in-use="yes"><div style="width:300px; height:300px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;">
+<script>var seed__head_onload = function(seed__head_applet) {
+seed__head_applet.setRounding("3s");
+seed__head_applet.setCoordSystem(-1,1,-1,1);
+seed__head_applet.setGridVisible(false);
+seed__head_applet.setAxesVisible(false, false);
+seed__head_applet.evalCommand("f(x)=If(x>0,sqrt(x),0)");
+seed__head_applet.setVisible("f", false);
+seed__head_applet.evalCommand("T=20");
+seed__head_applet.evalCommand("t=Slider(0,T)");
+seed__head_applet.setAnimating("t", true);
+seed__head_applet.evalCommand("v=Vector((cos(t),sin(t)))");
+seed__head_applet.evalCommand("r=Slider(0,1)");
+seed__head_applet.evalCommand("r=(sqrt(5)-1)/2");
+seed__head_applet.evalCommand("r=Slider(0,1,0.001)");
+seed__head_applet.evalCommand("N=Min(100,floor(T/r))");
+seed__head_applet.evalCommand("Seeds = Sequence(f(t - n r) / sqrt(T) (cos(n r 2 pi), sin(n r 2 pi)), n, 0, N)");
+seed__head_applet.setFixed("v", false, false);
+seed__head_applet.setFixed("Seeds", false, false);
+};
+var seed__head_params = {
+perspective:"G",
+width:300,
+height:300,
+appletOnLoad:seed__head_onload};
+var seed__head = new GGBApplet(seed__head_params, true);
+window.onload = function() { seed__head.inject('seed-head-container'); }
+</script><div class="geogebra-applet" id="seed-head-container" style="width:300px; height:300px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"></div>
+</div></body>
+</html>

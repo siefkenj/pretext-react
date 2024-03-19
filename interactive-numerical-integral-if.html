@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    "typeset": false
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>sagecell.makeSagecell({
+  "inputLocation": ".sage-interact",
+  "autoeval": true,
+  "hide": [
+    "editor",
+    "evalButton",
+    "permalink"
+  ]
+});
+</script><link rel="stylesheet" type="text/css" href="https://sagecell.sagemath.org/static/sagecell_embed.css">
+</head>
+<body class="ptx-content ignore-math" id="pretext-SA" data-react-in-use="yes"><div style="width:600px; height:750px; display: block; box-sizing: border-box; -moz-box-sizing: border-box; -webkit-box-sizing: border-box;"><pre class="ptx-sagecell sage-interact"><script type="text/x-sage">var('x')
+@interact
+def midpoint(n = slider(1,100,1,4), f = input_box(default = "x^2", type = str, width=40), start = input_box(default = "0", type = str, width=6), end = input_box(default = "1", type = str,width=6)):
+    a = N(start)
+    b = N(end)
+    func = sage_eval(f, locals={'x':x})
+    dx = (b-a)/n
+    midxs = [q*dx+dx/2 + a for q in range(n)]
+    midys = [func(x=x_val) for x_val in midxs]
+    rects = Graphics()
+    for q in range(n):
+        xm = midxs[q]
+        ym = midys[q]
+        rects = rects + line([[xm-dx/2,0],[xm-dx/2,ym],[xm+dx/2,ym],[xm+dx/2,0]], rgbcolor = (1,0,0)) + point((xm,ym), rgbcolor = (1,0,0))
+    min_y = min(0, find_local_minimum(func,a,b)[0])
+    max_y = max(0, find_local_maximum(func,a,b)[0])
+    pretty_print(html('<h3>Numerical integrals with the midpoint rule</h3>'))
+    pretty_print(html('$\\int_{a}^{b}{f(x) dx} {\\approx} \\sum_i{f(x_i) \\Delta x}$'))
+    print("\n\nSage numerical answer: " + str(integral_numerical(func,a,b,max_points = 200)[0]))
+    print("Midpoint estimated answer: " + str(RDF(dx*sum([midys[q] for q in range(n)]))))
+    show(plot(func,a,b) + rects, xmin = a, xmax = b, ymin = min_y, ymax = max_y,figsize=5)
+</script></pre></div></body>
+</html>

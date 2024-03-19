@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SA An Interesting Corollary</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://pretextbook.org/examples/sample-article/html/external/misc/book-cover-google-art-project.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="external/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="external/favicon/favicon-16x16.png">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    "typeset": false
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script>// Make *any* pre with class 'sagecell-sage' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": false,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)"
+});
+</script><script>// Make *any* pre with class 'sagecell-sage-autoeval' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-sage-autoeval",
+  "linked": true,
+  "linkKey": "linked-sage",
+  "autoeval": true,
+  "languages": [
+    "sage"
+  ],
+  "evalButtonText": "Evaluate (Sage)",
+  "hide": [
+    "evalButton"
+  ]
+});
+</script><script>// Make *any* pre with class 'sagecell-python' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-python",
+  "linked": true,
+  "linkKey": "linked-python",
+  "autoeval": false,
+  "languages": [
+    "python"
+  ],
+  "evalButtonText": "Evaluate (Python)"
+});
+</script><script>// Make *any* pre with class 'sagecell-python-autoeval' an executable Sage cell
+// Their results will be linked, only within language type
+sagecell.makeSagecell({
+  "inputLocation": "pre.sagecell-python-autoeval",
+  "linked": true,
+  "linkKey": "linked-python",
+  "autoeval": true,
+  "languages": [
+    "python"
+  ],
+  "evalButtonText": "Evaluate (Python)",
+  "hide": [
+    "evalButton"
+  ]
+});
+</script><script type="module" defer src="./static/js/main.js"></script><link href="./static/css/main.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.2.15';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.2.15/prefix-runtime.d30f9fb21d6c7b70.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.2.15/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.2.15/prefix-runestone.aeac7cf9ad5c07ef.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.2.15/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.2.15/prefix-runestone.f64dcc3632d7a0c3.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+<body id="pretext-SA" data-react-in-use="yes" class="pretext article ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href="https://pretextbook.org"><img src="external/misc/book-cover-google-art-project.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="derivatives.html"><span class="title">Derivatives and Integrals:</span> <span class="subtitle">An Annotated Discourse</span></a></h1>
+<p class="byline">Robert Beezer</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="the-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="calculator-toggle" class="calculator-toggle button" title="Show calculator" aria-expanded="false" aria-controls="calculator-container"><span class="icon material-symbols-outlined" aria-hidden="true">&#xea5f;</span><span class="name">Calc</span></button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "classic",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script></span><span class="treebuttons"><a class="previous-button button" href="section-sage-cells.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="derivatives.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="section-facts-figures.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{cancel}\require{extpfeil}\newcommand{\definiteintegral}[4]{\int_{#1}^{#2}\,#3\,d#4} 
+\newcommand{\myequation}[2]{#1\amp =#2} 
+\newcommand{\indefiniteintegral}[2]{\int#1\,d#2}
+\newcommand{\testingescapedpercent}{ \% } 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\newcommand{\sfrac}[2]{{#1}/{#2}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural contains-active toc-item-list">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-abstract"><div class="toc-title-box"><a href="frontmatter.html#frontmatter-2" class="internal"><span class="title">Abstract</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-introduction.html" class="internal"><span class="codenumber">1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-fundamental-theorem.html" class="internal"><span class="codenumber">2</span> <span class="title">The Fundamental Theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-sage-cells.html" class="internal"><span class="codenumber">3</span> <span class="title">Computing Integrals with Sage (<span class="process-math">\(\int\)</span>)</span></a></div></li>
+<li class="toc-item toc-section active">
+<div class="toc-title-box"><a href="section-interesting-corollary.html" class="internal"><span class="codenumber">4</span> <span class="title">An Interesting Corollary</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-second-FTC" class="internal"><span class="codenumber">4.1</span> <span class="title">Second Version of <abbr class="acronym">FTC</abbr></span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-5" class="internal"><span class="codenumber">4.2</span> <span class="title">A Pedagogical Note about Subsection 4.1</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsubsection-different-integrals" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Symbolic and Numerical Integrals</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-5-3" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Advice</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interesting-corollary.html#exercises-subsection-solo" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-5-5" class="internal"><span class="codenumber">4.2.4</span> <span class="title">Reading Questions</span></a></div></li>
+<li class="toc-item toc-glossary"><div class="toc-title-box"><a href="section-interesting-corollary.html#glossary-specialized" class="internal"><span class="codenumber">4.2.5</span> <span class="title">Glossary</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="section-interesting-corollary.html#solutions-subsection" class="internal"><span class="codenumber">4.2.6</span> <span class="title">Solutions for This Subsection</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-6" class="internal"><span class="codenumber">4.3</span> <span class="title">Theorem-Like Environments</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-7" class="internal"><span class="codenumber">4.4</span> <span class="title">Linking Sage Cells</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-8" class="internal"><span class="codenumber">4.5</span> <span class="title">Hierarchy</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude" class="internal"><span class="codenumber">4.6</span> <span class="title">Introductions and Conclusions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-3" class="internal"><span class="codenumber">4.6.1</span> <span class="title">Test One</span></a></div></li>
+<li class="toc-item toc-subsubsection">
+<div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-4" class="internal"><span class="codenumber">4.6.2</span> <span class="title">Test Two</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-4-4" class="internal"><span class="codenumber">4.6.2</span> <span class="title">What Did You Learn?</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-4-5" class="internal"><span class="codenumber">4.6.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-5" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Test Three</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-paragraph-markup" class="internal"><span class="codenumber">4.7</span> <span class="title">Some Paragraph-Level Markup</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-facts-figures.html" class="internal"><span class="codenumber">5</span> <span class="title">Some Facts and Figures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="derivatives-9.html" class="internal"><span class="codenumber">6</span> <span class="title">Some Advanced Ideas</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-mathematics.html" class="internal"><span class="codenumber">7</span> <span class="title">Mathematics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-3" class="internal"><span class="codenumber">7.1</span> <span class="title">Basic Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-4" class="internal"><span class="codenumber">7.2</span> <span class="title">Displayed Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-5" class="internal"><span class="codenumber">7.3</span> <span class="title"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Packages and MathJax Extensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-6" class="internal"><span class="codenumber">7.4</span> <span class="title">Advanced Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-7" class="internal"><span class="codenumber">7.5</span> <span class="title">Local Tags on Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#commutative-diagrams" class="internal"><span class="codenumber">7.6</span> <span class="title">Commutative Diagrams</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#line-breaking-math" class="internal"><span class="codenumber">7.7</span> <span class="title">Line-Breaking after Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#font-math" class="internal"><span class="codenumber">7.8</span> <span class="title">Fonts and Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#miscellaneous-math" class="internal"><span class="codenumber">7.9</span> <span class="title">Miscellaneous</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-text-paragraphs.html" class="internal"><span class="codenumber">8</span> <span class="title">Text in Paragraphs</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-xml-escape" class="internal"><span class="codenumber">8.1</span> <span class="title">Special <abbr class="initialism">XML</abbr> characters</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-6" class="internal"><span class="codenumber">8.2</span> <span class="title">Quotations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-7" class="internal"><span class="codenumber">8.3</span> <span class="title">Groupings</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-8" class="internal"><span class="codenumber">8.4</span> <span class="title">Characters, Symbols, and Constructions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-9" class="internal"><span class="codenumber">8.5</span> <span class="title">Currency</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-icons-in-text" class="internal"><span class="codenumber">8.6</span> <span class="title">Icons in Text</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-keyboard" class="internal"><span class="codenumber">8.7</span> <span class="title">Keyboard Keys</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-urls" class="internal"><span class="codenumber">8.8</span> <span class="title">URLs, such as <code class="code-inline tex2jax_ignore">http://example.com</code></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-13" class="internal"><span class="codenumber">8.9</span> <span class="title">Biological Names</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-14" class="internal"><span class="codenumber">8.10</span> <span class="title">Verbatim in titles, <code class="code-inline tex2jax_ignore">\a&amp;b#c%d~e{f}g$h_i^j</code>, OK</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-special-situations" class="internal"><span class="codenumber">8.11</span> <span class="title">Special Situations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-jupyter-dollars" class="internal"><span class="codenumber">8.12</span> <span class="title">Jupyter Notebook, Markdown, MathJax, Delimiters</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-17" class="internal"><span class="codenumber">8.13</span> <span class="title"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Characters, Ligatures, and More</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-18" class="internal"><span class="codenumber">8.14</span> <span class="title"><abbr class="initialism">HTML</abbr> and accidental mathematics</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-graphics.html" class="internal"><span class="codenumber">9</span> <span class="title">Graphics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-3" class="internal"><span class="codenumber">9.1</span> <span class="title">Images from External Sources</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-4" class="internal"><span class="codenumber">9.2</span> <span class="title"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-5" class="internal"><span class="codenumber">9.3</span> <span class="title">Asymptote, 2D</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#graphics-asymptote-webgl" class="internal"><span class="codenumber">9.4</span> <span class="title">Asymptote, 3D via WebGL</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-7" class="internal"><span class="codenumber">9.5</span> <span class="title">Sage Plots</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-8" class="internal"><span class="codenumber">9.6</span> <span class="title">Inkscape Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-9" class="internal"><span class="codenumber">9.7</span> <span class="title">Copies of Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-10" class="internal"><span class="codenumber">9.8</span> <span class="title">Caption Testing</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#captionless-images" class="internal"><span class="codenumber">9.9</span> <span class="title">Captionless Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-12" class="internal"><span class="codenumber">9.10</span> <span class="title">Technical Details</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#subsection-tactile-graphics" class="internal"><span class="codenumber">9.11</span> <span class="title">Experimental Tactile Graphics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-14" class="internal"><span class="codenumber">9.12</span> <span class="title">Accessibility</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-further-reading.html" class="internal"><span class="codenumber">10</span> <span class="title">Further Reading</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-further-reading.html#section-further-reading-2" class="internal"><span class="codenumber">10.1</span> <span class="title">Specialized Subdivisions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-further-reading.html#section-further-reading-3" class="internal"><span class="codenumber">10.2</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-further-reading.html#exercises-section-multiple" class="internal"><span class="codenumber">10.3</span> <span class="title">More Exercises</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="section-further-reading.html#references-section" class="internal"><span class="codenumber">10.4</span> <span class="title">References</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-lists.html" class="internal"><span class="codenumber">11</span> <span class="title">List Calisthenics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-2" class="internal"><span class="codenumber">11.1</span> <span class="title">Lists, Generally</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-3" class="internal"><span class="codenumber">11.2</span> <span class="title">List Spacing, I</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-4" class="internal"><span class="codenumber">11.3</span> <span class="title">List Spacing, II</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#test-second" class="internal"><span class="codenumber">11.4</span> <span class="title">List items containing only inline math</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-6" class="internal"><span class="codenumber">11.5</span> <span class="title">Difficult List Items</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-7" class="internal"><span class="codenumber">11.6</span> <span class="title">Description Lists</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-8" class="internal"><span class="codenumber">11.7</span> <span class="title">Named Lists</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-9" class="internal"><span class="codenumber">11.8</span> <span class="title">Testing List Decompositions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-lists.html#section-lists-10" class="internal"><span class="codenumber">11.9</span> <span class="title">Exercises (with lists)</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="section-lists.html#section-lists-11" class="internal"><span class="codenumber">11.10</span> <span class="title">References (with lists in Annotations)</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-table-calisthenics.html" class="internal"><span class="codenumber">12</span> <span class="title">Table Calisthenics</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-interactive-authored.html" class="internal"><span class="codenumber">13</span> <span class="title">Interactive Elements, Authored</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#interactive-html5-canvas" class="internal"><span class="codenumber">13.1</span> <span class="title">HTML5 Canvas</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-8" class="internal"><span class="codenumber">13.2</span> <span class="title">D3.js</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#svg-interactives" class="internal"><span class="codenumber">13.3</span> <span class="title">SVG</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-10" class="internal"><span class="codenumber">13.4</span> <span class="title">JSXGraph</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-11" class="internal"><span class="codenumber">13.5</span> <span class="title">JessieCode</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-12" class="internal"><span class="codenumber">13.6</span> <span class="title">Sage Interacts</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-13" class="internal"><span class="codenumber">13.7</span> <span class="title">Geogebra</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-14" class="internal"><span class="codenumber">13.8</span> <span class="title">CircuitJS</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#interactive-iframes-local" class="internal"><span class="codenumber">13.9</span> <span class="title">IFrames from Files</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#interactive-threejs" class="internal"><span class="codenumber">13.10</span> <span class="title">threejs</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-interactive-server.html" class="internal"><span class="codenumber">14</span> <span class="title">Interactive Elements, Server</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-server.html#subsection-geogebra-server" class="internal"><span class="codenumber">14.1</span> <span class="title">GeoGebra</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-server.html#section-interactive-server-6" class="internal"><span class="codenumber">14.2</span> <span class="title">Desmos Graphs</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-server.html#section-interactive-server-7" class="internal"><span class="codenumber">14.3</span> <span class="title">CalcPlot3D</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-server.html#interactive-iframes-server" class="internal"><span class="codenumber">14.4</span> <span class="title">IFrames from Servers</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-interactive-exercises.html" class="internal"><span class="codenumber">15</span> <span class="title">Interactive Exercises</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-3" class="internal"><span class="codenumber">15.1</span> <span class="title">True/False</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-4" class="internal"><span class="codenumber">15.2</span> <span class="title">Multiple-Choice</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-5" class="internal"><span class="codenumber">15.3</span> <span class="title">Parsons Problem, Math Proof</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-6" class="internal"><span class="codenumber">15.4</span> <span class="title">Parsons Problem, Code</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-7" class="internal"><span class="codenumber">15.5</span> <span class="title">Matching</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-8" class="internal"><span class="codenumber">15.6</span> <span class="title">Clickable Area</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-9" class="internal"><span class="codenumber">15.7</span> <span class="title">Old-Style Fillin-In</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-10" class="internal"><span class="codenumber">15.8</span> <span class="title">A Reading Question</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-11" class="internal"><span class="codenumber">15.9</span> <span class="title">Faux Subsection</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-interactive-code.html" class="internal"><span class="codenumber">16</span> <span class="title">Interactive Coding</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-code.html#section-interactive-code-3" class="internal"><span class="codenumber">16.1</span> <span class="title">ActiveCode</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-code.html#section-interactive-code-4" class="internal"><span class="codenumber">16.2</span> <span class="title">CodeLens</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-code.html#section-interactive-code-5" class="internal"><span class="codenumber">16.3</span> <span class="title">Activity with An ActiveCode</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-code.html#section-interactive-code-6" class="internal"><span class="codenumber">16.4</span> <span class="title">YouTube</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-audio.html" class="internal"><span class="codenumber">17</span> <span class="title">Audio</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-video.html" class="internal"><span class="codenumber">18</span> <span class="title">Video</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-video.html#section-video-3" class="internal"><span class="codenumber">18.1</span> <span class="title">Video Files</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-video.html#section-video-4" class="internal"><span class="codenumber">18.2</span> <span class="title">YouTube</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-video.html#section-video-5" class="internal"><span class="codenumber">18.3</span> <span class="title">Vimeo</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-video.html#section-video-6" class="internal"><span class="codenumber">18.4</span> <span class="title">Captions and Subtitles</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-cross-referencing.html" class="internal"><span class="codenumber">19</span> <span class="title">Cross-Referencing</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-internationalization.html" class="internal"><span class="codenumber">20</span> <span class="title">Internationalization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-pre-formatted.html" class="internal"><span class="codenumber">21</span> <span class="title">Pre-Formatted Text</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-programs.html" class="internal"><span class="codenumber">22</span> <span class="title">Program Listings (with <code class="code-inline tex2jax_ignore">code</code> in the title)</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-units-measure.html" class="internal"><span class="codenumber">23</span> <span class="title">Units of Measure</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-side-by-side.html" class="internal"><span class="codenumber">24</span> <span class="title">Side-By-Side Panels</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-3" class="internal"><span class="codenumber">24.1</span> <span class="title">Figures with Numbers Side-By-Side</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-4" class="internal"><span class="codenumber">24.2</span> <span class="title">Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-5" class="internal"><span class="codenumber">24.3</span> <span class="title">Common Side-By-Side Constructions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-6" class="internal"><span class="codenumber">24.4</span> <span class="title">Vertical Alignment</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-7" class="internal"><span class="codenumber">24.5</span> <span class="title">Text Next to Text and Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-8" class="internal"><span class="codenumber">24.6</span> <span class="title">Image Formats, Side-by-Sides</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-9" class="internal"><span class="codenumber">24.7</span> <span class="title">Tables Side-By-Side</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-10" class="internal"><span class="codenumber">24.8</span> <span class="title">Tables Next to Figures</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-11" class="internal"><span class="codenumber">24.9</span> <span class="title">Tables Next to Text</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-12" class="internal"><span class="codenumber">24.10</span> <span class="title">Tabular Next to Each Other</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-13" class="internal"><span class="codenumber">24.11</span> <span class="title">Lists in Side-by-Sides</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#stacking-side-by-side" class="internal"><span class="codenumber">24.12</span> <span class="title">Stacking: Back to Vertical Flow</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#subsection-sbs-other-panels" class="internal"><span class="codenumber">24.13</span> <span class="title">Other Panels</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-16" class="internal"><span class="codenumber">24.14</span> <span class="title">Poems as Side-By-Side Panels</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#subsection-sbsgroup" class="internal"><span class="codenumber">24.15</span> <span class="title">Side-By-Side Groups</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-18" class="internal"><span class="codenumber">24.16</span> <span class="title">Testing a Side-By-Side First</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-19" class="internal"><span class="codenumber">24.17</span> <span class="title">Testing Styling of Related Elements</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-side-by-side-gallery.html" class="internal"><span class="codenumber">25</span> <span class="title">Side-by-Side Gallery</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-open-problems.html" class="internal"><span class="codenumber">26</span> <span class="title">Open Problems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-poetry.html" class="internal"><span class="codenumber">27</span> <span class="title">Poetry</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-atomic-items.html" class="internal"><span class="codenumber">28</span> <span class="title">Atomic Objects</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-atomic-items.html#atomic-image" class="internal"><span class="codenumber">28.1</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;image&gt;</code></span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-atomic-items.html#atomic-image-26" class="internal"><span class="codenumber">28.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-atomic-items.html#atomic-video" class="internal"><span class="codenumber">28.2</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;video&gt;</code></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-atomic-items.html#atomic-program" class="internal"><span class="codenumber">28.3</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;program&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;console&gt;</code></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-atomic-items.html#atomic-tabular" class="internal"><span class="codenumber">28.4</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code></span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-advanced-numbering.html" class="internal"><span class="codenumber">29</span> <span class="title">Advanced Numbering</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-3" class="internal"><span class="codenumber">29.1</span> <span class="title">One</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-4" class="internal"><span class="codenumber">29.2</span> <span class="title">Two</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-4-3" class="internal"><span class="codenumber">29.2.1</span> <span class="title">Uno</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-4-4" class="internal"><span class="codenumber">29.2.2</span> <span class="title">Dos</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-5" class="internal"><span class="codenumber">29.3</span> <span class="title">Three</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-6" class="internal"><span class="codenumber">29.4</span> <span class="title">Four</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-6-3" class="internal"><span class="codenumber">29.4.1</span> <span class="title">Uno</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-6-4" class="internal"><span class="codenumber">29.4.2</span> <span class="title">Dos</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-7" class="internal"><span class="codenumber">29.5</span> <span class="title">Five</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#subsection-local-theorems" class="internal"><span class="codenumber">29.6</span> <span class="title">Theorems in This Section</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#subsection-with-an-exercise" class="internal"><span class="codenumber">29.7</span> <span class="title">A Title with ] a Right Bracket</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-10" class="internal"><span class="codenumber">29.8</span> <span class="title">A Title with } a Right Brace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-11" class="internal"><span class="codenumber">29.9</span> <span class="title">A Title with <span class="process-math">\(a]b\)</span> a Math Right Bracket</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-12" class="internal"><span class="codenumber">29.10</span> <span class="title">Just an Exercise</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-13" class="internal"><span class="codenumber">29.11</span> <span class="title">Solutions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-customizations.html" class="internal"><span class="codenumber">30</span> <span class="title">Customizations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-customizations.html#rename-facility" class="internal"><span class="codenumber">30.1</span> <span class="title">Renaming Document Parts, Plus This Is A Really Long Title So That We Can Test How Well It Reacts To The Right Margin And Wraps Around To Form A Couple Of Lines, Plus How It Sits Relative To The Number Of The Subsection</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-customizations.html#section-customizations-3" class="internal"><span class="codenumber">30.2</span> <span class="title">Customizing Phrases</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-myopenmath.html" class="internal"><span class="codenumber">31</span> <span class="title">MyOpenMath Interactive Problems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-ancillaries.html" class="internal"><span class="codenumber">32</span> <span class="title">Ancillaries</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-worksheets.html" class="internal"><span class="codenumber">33</span> <span class="title">Worksheets</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="section-worksheets.html#worksheet-geometric-prelude" class="internal"><span class="codenumber">33.1</span> <span class="title">A Geometric Prelude</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="section-worksheets.html#worksheet-networks" class="internal"><span class="codenumber">33.2</span> <span class="title">Networks Worksheet</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="section-worksheets.html#worksheet-testing" class="internal"><span class="codenumber">33.3</span> <span class="title">Worksheet</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="section-worksheets.html#worksheet-dot-products" class="internal"><span class="codenumber">33.4</span> <span class="title">Dot products and projection</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-exercises-single.html" class="internal"><span class="codenumber">34</span> <span class="title">Exercises, One Subsection</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-exercises-single.html#exercise-collection" class="internal"><span class="codenumber">34</span> <span class="title">Exercise Collection</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="section-exercises-single.html#section-exercises-single-11" class="internal"><span class="codenumber">34</span> <span class="title">More Reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-structured.html" class="internal"><span class="codenumber">35</span> <span class="title">Exercise Section, Structured</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-exercises-multiple.html" class="internal"><span class="codenumber">36</span> <span class="title">Exercises, Multiple Subsections</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-exercises-multiple.html#section-exercises-multiple-3" class="internal"><span class="codenumber">36.1</span> <span class="title">Faux Subsection</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-exercises-multiple.html#exercises-drill" class="internal"><span class="codenumber">36.2</span> <span class="title">Drill Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-exercises-multiple.html#section-exercises-multiple-5" class="internal"><span class="codenumber">36.3</span> <span class="title">Challenging Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-exercises-multiple.html#section-exercises-multiple-6" class="internal"><span class="codenumber">36.4</span> <span class="title">Impossible Exercises</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="section-exercises-multiple.html#section-exercises-multiple-7" class="internal"><span class="codenumber">36.5</span> <span class="title">More Reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-top-level.html" class="internal"><span class="codenumber">37</span> <span class="title">Exercises, Top-Level</span></a></div></li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Reference</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-notation.html" class="internal"><span class="codenumber">A</span> <span class="title">Notation</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="solutions-backmatter.html" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="solutions-single-exercises.html" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to a Single Exercises Division</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="solutions-answers.html" class="internal"><span class="codenumber">D</span> <span class="title">All Solutions that are Answers</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="solutions-odd-answers.html" class="internal"><span class="codenumber">E</span> <span class="title">All Solutions that are Answers to Odd Exercises</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-results.html" class="internal"><span class="codenumber">F</span> <span class="title">List of Results</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-exercise-lists.html" class="internal"><span class="codenumber">G</span> <span class="title">Lists of Exercises</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="appendix-structured.html" class="internal"><span class="codenumber">H</span> <span class="title">A Structured Appendix</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="appendix-structured.html#appendix-structured-3" class="internal"><span class="codenumber">H.1</span> <span class="title">A Subsection in an Appendix</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="appendix-structured.html#appendix-structured-3-3" class="internal"><span class="codenumber">H.1.1</span> <span class="title">A Subsubsection in a Subsection in an Appendix</span></a></div></li></ul>
+</li></ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-index.html" class="internal"><span class="codenumber">I</span> <span class="title">Index</span></a></div></li>
+<li class="toc-item toc-glossary"><div class="toc-title-box"><a href="glossary-backmatter.html" class="internal"><span class="title">Glossary</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="appendix-multiple-references.html" class="internal"><span class="codenumber">J</span> <span class="title">Multiple References</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="appendix-multiple-references.html#appendix-multiple-references-2" class="internal"><span class="codenumber">J.1</span> <span class="title">Multiple Specialized References</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="appendix-multiple-references.html#appendix-multiple-references-3" class="internal"><span class="codenumber">J.2</span> <span class="title">General References</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="appendix-multiple-references.html#appendix-multiple-references-4" class="internal"><span class="codenumber">J.3</span> <span class="title">Specialized References</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="references-backmatter.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="the-index.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="colophon-back.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="section-interesting-corollary"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">4</span><span class="space"> </span><span class="title">An Interesting Corollary</span>
+</h2>
+<article class="objectives goal-like" id="dEf" data-permid="dEf"><h3 class="heading">
+<span class="type">Objectives:</span><span class="space"> </span><span class="title">Fundamental Structures</span>
+</h3>
+<div class="introduction" id="objectives-structures-2"><div class="para" id="objectives-structures-2-1">This is an <code class="code-inline tex2jax_ignore">&lt;objectives&gt;</code> element you are reading, and this is its introduction.  This early section has really grown and tries to accomplish many things.  Not all of them are listed here.</div></div>
+<ol class="decimal">
+<li id="objective-structure"><div class="para" id="p-derived-objective-structure">Display various “blocks”, fundamental units of the flow.</div></li>
+<li id="objectives-structures-3-2"><div class="para" id="p-derived-objectives-structures-3-2">More.</div></li>
+<li id="objectives-structures-3-3"><div class="para" id="p-derived-objectives-structures-3-3">Evermore.</div></li>
+</ol>
+<div class="conclusion" id="objectives-structures-4"><div class="para" id="objectives-structures-4-1">This concludes the (incomplete) objectives for this section, so now we can carry-on as before.</div></div></article><section class="introduction" id="section-interesting-corollary-3"><div class="para" id="section-interesting-corollary-3-1">This is a cross-reference to one of the objectives above, forced to use the <code class="code-inline tex2jax_ignore">phrase-global</code> form of the text.  It should describe the objective as belonging to the <em class="emphasis">section</em> (rather than the <em class="emphasis">objectives</em>), since objectives are one-per-subdivision and are numbered based upon the containing division: <a href="section-interesting-corollary.html#objective-structure" class="xref" data-knowl="./knowl/xref/objective-structure.html" data-reveal-label="Reveal" data-close-label="Close" title="Objective 4.1">Objective 1 of Section 4</a>.  For comparison this is the (forced) <code class="code-inline tex2jax_ignore">type-global</code> cross-reference: <a href="section-interesting-corollary.html#objective-structure" class="xref" data-knowl="./knowl/xref/objective-structure.html" data-reveal-label="Reveal" data-close-label="Close" title="Objective 4.1">Objective 4.1</a>.</div> <div class="para" id="section-interesting-corollary-3-2">The Fundamental Theorem comes in two flavors, where usually one is a corollary of the other.</div></section><section class="subsection" id="subsection-second-FTC"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">4.1</span><span class="space"> </span><span class="title">Second Version of <abbr class="acronym">FTC</abbr></span>
+</h3>
+<article class="corollary theorem-like" id="ghI" data-permid="ghI"><h4 class="heading">
+<span class="type">Corollary</span><span class="space"> </span><span class="codenumber">4.1</span><span class="space"> </span><span class="creator">(Leibniz, Newton)</span><span class="period">.</span>
+</h4>
+<div class="para logical" id="corollary-FTC-derivative-3-1">
+<div class="para">Suppose <span class="process-math">\(f(x)\)</span> is a continuous function.  Then</div>
+<div class="displaymath process-math" id="equation-alternate-FTC">
+\begin{equation}
+\frac{d}{dx}\definiteintegral{a}{x}{f(t)}{t}=f(x)\text{.}\tag{4.1}
+\end{equation}
+</div>
+</div></article><article class="proof" id="Jkl" data-permid="Jkl"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4>
+<div class="para logical" id="proof-FTC-corollary-1">
+<div class="para">We simply take the indicated derivative, applying Theorem <a href="section-fundamental-theorem.html#theorem-FTC" class="xref" data-knowl="./knowl/xref/theorem-FTC.html" data-reveal-label="Reveal" data-close-label="Close" title="Theorem 2.1: The Fundamental Theorem of Calculus">2.1</a> at <a href="section-interesting-corollary.html#proof-FTC-corollary-1-4" class="xref" data-knowl="./knowl/xref/equation-use-FTC.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 4.2">(4.2)</a>
+</div>
+<div class="displaymath process-math" data-contains-math-knowls="./knowl/xref/theorem-FTC.html ./knowl/xref/equation-use-FTC.html" id="proof-FTC-corollary-1-4">
+\begin{align}
+\frac{d}{dx}\definiteintegral{a}{x}{f(t)}{t}&amp;=\frac{d}{dx}\left(F(x)-F(a)\right)\tag{4.2}\\
+&amp;=\frac{d}{dx}F(x)-\frac{d}{dx}F(a)\notag\\
+&amp;=f(x)-0 = f(x)\text{.}\tag{4.3}
+\end{align}
+</div>
+</div></article><article class="proof" id="corollary-FTC-derivative-5"><h4 class="heading"><span class="type">Justification<span class="period">.</span></span></h4>
+<div class="para" id="corollary-FTC-derivative-5-1">A justification, which is one of the variants of a proof.</div></article><article class="proof" id="corollary-FTC-derivative-6"><h4 class="heading"><span class="title">Alternate Proof.</span></h4> <div class="para logical" id="corollary-FTC-derivative-6-2">
+<div class="para">You can have multiple proofs, and they can have titles which replace the word “Proof” as a heading.  Here we just exercise displayed math with no automatic numbering, and an elective number on the middle equation.</div>
+<div class="displaymath process-math" id="corollary-FTC-derivative-6-2-2">
+\begin{align}
+\frac{d}{dx}\definiteintegral{a}{x}{f(t)}{t}&amp;=\frac{d}{dx}\left(F(x)-F(a)\right)\notag\\
+&amp;=\frac{d}{dx}F(x)-\frac{d}{dx}F(a)\tag{4.4}\\
+&amp;=f(x)-0 = f(x)\notag
+\end{align}
+</div>
+</div></article><div class="para" id="subsection-second-FTC-3">The alternative version of the Fundamental Theorem (<abbr class="acronym">FTC</abbr>) in <a href="section-interesting-corollary.html#equation-alternate-FTC" class="xref" data-knowl="./knowl/xref/equation-alternate-FTC.html" data-reveal-label="Reveal" data-close-label="Close" title="Equation 4.1">(4.1)</a> is a compact way to express the result.</div>
+<div class="para" id="subsection-second-FTC-4">For testing purposes, there is a simple bare Sage Cell here.</div>
+<pre id="subsection-second-FTC-5" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">c = 832
+c
+</script></pre>
+<article class="example example-like" id="mNo" data-permid="mNo"><h4 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.2</span><span class="period">.</span><span class="space"> </span><span class="title">A Mysterious Derivative!</span>
+</h4> <div class="para logical" id="example-mysterious-2">
+<div class="para">So if we define a function with its variable employed as a limit of integration, like so</div>
+<div class="displaymath process-math">
+\begin{equation*}
+K(z)=\definiteintegral{345}{z}{x^4\sin(x^2)}{x}
+\end{equation*}
+</div>
+<div class="para">then we get the derivative of that function so easily it seems like a mystery,</div>
+<div class="displaymath process-math">
+\begin{equation*}
+\frac{d}{dz}K(z)=z^4\sin(z^2)\text{.}
+\end{equation*}
+</div>
+<div class="para">That’s it.</div>
+</div> <div class="para" id="example-mysterious-3">For testing purposes, there is a simple Sage Cell here, buried inside an example that should be a knowl (embedded in the page).</div> <pre id="example-mysterious-4" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">2+2
+</script></pre> <div class="para" id="example-mysterious-5">We test a Sage cell inside a knowl, which should set the value of a variable that will be available to subsequent cells within the knowl.</div> <pre id="example-mysterious-6" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">a = 6
+a
+</script></pre> <pre id="example-mysterious-7" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">b = a + 10
+b
+</script></pre> <div class="para" id="example-mysterious-8">Even if you ran the cell at the top of this page, within this knowl the value of the variable <code class="code-inline tex2jax_ignore">c</code> is not known, so the next cell will cause an error.</div> <pre id="example-mysterious-9" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">c + 400
+</script></pre></article><div class="para" id="subsection-second-FTC-7">The Sage cells on a page will “remember” results computed elsewhere on the page.  If you rely on this feature, remind your readers to evaluate all the necessary cells and that they perhaps need to be evaluated in a certain order.</div>
+<pre id="subsection-second-FTC-8" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">c/2
+</script></pre>
+<div class="para" id="subsection-second-FTC-9">There are some Sage cells in the previous (knowled) <code class="code-inline tex2jax_ignore">&lt;example&gt;</code>.  The results there are restricted to the knowl.  In other words, the scope of those cells is the knowl.  So if you opened the example and executed the Sage cells there, or if you skipped the example entirely, the next cell should not “know” the values of those variables and will raise an error.</div>
+<pre id="subsection-second-FTC-10" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">a + b
+</script></pre>
+<div class="para" id="subsection-second-FTC-11">We cross-reference the example just prior, <a href="section-interesting-corollary.html#mNo" class="xref" data-knowl="./knowl/xref/example-mysterious.html" data-reveal-label="Reveal" data-close-label="Close" title="Example 4.2: A Mysterious Derivative!">Example 4.2</a>, to test the simple Sage cells that will now be part of a cross-reference knowl (an external file).</div>
+<article class="claim theorem-like" id="claim-with-cases"><h4 class="heading">
+<span class="type">Claim</span><span class="space"> </span><span class="codenumber">4.3</span><span class="period">.</span><span class="space"> </span><span class="title">An Equivalent Claim.</span>
+</h4>
+<div class="para" id="claim-with-cases-2-1">This claim is an equivalence: it is true if and only if it is correct.</div></article><article class="proof" id="claim-with-cases-3"><h4 class="heading"><span class="type">Proof<span class="period">.</span></span></h4>
+<div class="para" id="claim-with-cases-3-1">Our purpose here is to show how you can structure a proof with cases, such as an equivalence structured with the arrows typically used to demonstrate the two “directions” involved in the proof, by using the <code class="code-inline tex2jax_ignore">direction</code> attribute on a <code class="code-inline tex2jax_ignore">case</code> element.</div> <article class="case" id="claim-with-cases-3-2"><h5 class="heading">
+<!--Style arrows in CSS?-->(⇒) </h5>
+<div class="para" id="claim-with-cases-3-2-1">Nulla non lectus suscipit, bibendum leo quis, dignissim justo. In urna turpis, tincidunt id elementum id, faucibus ac tellus.</div></article> <article class="case" id="claim-with-cases-3-3"><h5 class="heading">
+<!--Style arrows in CSS?-->(⇐) </h5>
+<div class="para" id="claim-with-cases-3-3-1">Quisque auctor ligula turpis, ut aliquam urna consectetur hendrerit. Aenean porta dolor et justo facilisis feugiat in sed sapien. Nullam porta ex et commodo semper.</div></article> <article class="case" id="inductive-step"><h5 class="heading">Case 3b: The inductive step.</h5> <div class="para" id="inductive-step-2">A case may also have a <code class="code-inline tex2jax_ignore">title</code>, whose formatting and structure is entirely up to the author.  This then becomes the text of a cross-reference, as well.</div></article> <article class="case" id="pqR" data-permid="pqR"><h5 class="heading">
+<!--Style arrows in CSS?-->(⇒) Necessity.</h5> <div class="para" id="forward-2">If you like, you can have both indications.</div></article> <article class="case" id="empty-case"><h5 class="heading">Case.</h5>
+<div class="para" id="empty-case-1">No direction, no title, then just a generic title.</div></article></article><article class="proof" id="claim-with-cases-4"><h4 class="heading"><span class="title">Exciting Proof!</span></h4> <div class="para" id="claim-with-cases-4-2">We test here that punctuation at the end of the title of a proof is handled correctly.</div></article><article class="proof" id="claim-with-cases-5"><h4 class="heading"><span class="title">Exact Proof.</span></h4> <div class="para" id="claim-with-cases-5-2">This proof should fill exactly three lines (as of defaults in place 2018-12-31) and so the tombstone/Halmos should be on a fourth line, and then <em class="emphasis">flush right</em>. xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx xxx.</div></article></section><section class="subsection" id="section-interesting-corollary-5"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">4.2</span><span class="space"> </span><span class="title">A Pedagogical Note about Subsection 4.1</span>
+</h3>
+<section class="subsubsection" id="subsubsection-different-integrals"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span><span class="space"> </span><span class="codenumber">4.2.1</span><span class="space"> </span><span class="title">Symbolic and Numerical Integrals</span>
+</h4>
+<div class="para" id="subsubsection-different-integrals-2">The Fundamental Theorem explains why we use the same notation for a definite integral, which is a numerical calculation,<details class="ptx-footnote" aria-live="polite" id="subsubsection-different-integrals-2-1"><summary class="ptx-footnote__number" title="Footnote 4.1"><sup> 1 </sup></summary><div class="ptx-footnote__contents" id="subsubsection-different-integrals-2-1">Which I think sometimes students lose sight of.</div></details> and an antiderivative, which is a symbolic expression.</div>
+<details id="Stu" data-permid="Stu" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h5 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.4</span><span class="period">.</span><span class="space"> </span><span class="title">Essay Question: Compare and Contrast.</span>
+</h5></summary><article class="exercise exercise-like knowl__content"><div class="para" id="exercise-essay-2-1">Write a short paragraph which compares, and contrasts, the definite and indefinite integral. This is an exercise which sits in the midst of the narrative, so is formatted more like an example or a remark.  It can have a hint and a solution, but this one does not.  It can have a title, which this one does.</div>
+<div class="solutions"><details id="exercise-essay-3" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para" id="exercise-essay-3-1">Start writing!</div></div></details></div></article></details></section><section class="subsubsection" id="section-interesting-corollary-5-3"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span><span class="space"> </span><span class="codenumber">4.2.2</span><span class="space"> </span><span class="title">Advice</span>
+</h4>
+<div class="para" id="section-interesting-corollary-5-3-2">Using an “integral sign” for an antiderivative (aka indefinite integral) would seem to make the Fundamental Theorem a <i class="foreign" lang="fr-FR">fait accompli</i>.  So I would suggest not conflating the notation for two very different things until the Fundamental Theorem exposes them as being highly related.</div>
+<article class="example example-like" id="example-structured"><h5 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.5</span><span class="period">.</span><span class="space"> </span><span class="title">An Example of Structure.</span>
+</h5>
+<div class="para" id="example-structured-2-1">This is an example of an example with a bit more structure.  Specifically, the example has a <code class="code-inline tex2jax_ignore">title</code>, as usual, but then has a <code class="code-inline tex2jax_ignore">statement</code>, which is separate from the <code class="code-inline tex2jax_ignore">solution</code>.  Why did we implement an example in two ways?</div>
+<div class="solution solution-like" id="example-structured-3">
+<h5 class="heading">
+<span class="type">Solution</span><span class="period">.</span>
+</h5>
+<div class="para" id="example-structured-3-1">Authors asked for it and it seemed a very natural thing to do, even if we only had an unstructured version for a long time.</div>
+</div></article><article class="question example-like" id="sample-question"><h5 class="heading">
+<span class="type">Question</span><span class="space"> </span><span class="codenumber">4.6</span><span class="period">.</span><span class="space"> </span><span class="title">An Example of a Question.</span>
+</h5>
+<div class="para" id="sample-question-2-1">Any kind of question can be marked as such with <code class="code-inline tex2jax_ignore">&lt;question&gt;</code>.  Or similarly, as a <code class="code-inline tex2jax_ignore">&lt;problem&gt;</code>.  They behave identically to <code class="code-inline tex2jax_ignore">example</code>s, such as the one preceding and are numbered along with theorems, examples. etc.</div>
+<div class="solution solution-like" id="sample-question-3">
+<h5 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span>
+</h5>
+<div class="para" id="sample-question-3-1">You can have a solution. Or several, even if you don’t ask a question.</div>
+</div>
+<div class="solution solution-like" id="sample-question-4">
+<h5 class="heading">
+<span class="type">Solution</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span>
+</h5>
+<div class="para" id="sample-question-4-1">See?</div>
+</div></article><details id="inline-exercise" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h5 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.7</span><span class="period">.</span><span class="space"> </span><span class="title">An Inline Exercise.</span>
+</h5></summary><article class="exercise exercise-like knowl__content"><div class="para" id="inline-exercise-2-1">There are lots of exercises in this sample article, but mostly they are in special exercise sections.  Sometimes you just want to sprinkle some exercises through the narrative.  We call these <dfn class="terminology">inline exercises</dfn>, in contrast to <dfn class="terminology">divisional exercises</dfn>.  The inline exercises look a bit more like a theorem or definition, with titles and fully-qualified numbers.</div> <div class="para" id="inline-exercise-2-2">These may also have hints, answers and solutions.</div>
+<div class="solutions">
+<details id="inline-exercise-3" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para" id="inline-exercise-3-1">A good hint.</div></div></details><details id="Vwx" data-permid="Vwx" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="Xyz" data-permid="Xyz">42.</div></div></details><details id="inline-exercise-5" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="para" id="inline-exercise-5-1">If your exercise feels like proving a theorem, then you might want to make some comments, but also clearly delineate which part of the solution is a the complete proof.</div> <article class="proof" id="inline-exercise-5-2"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6>
+<div class="para" id="inline-exercise-5-2-1">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lorem diam, convallis in nulla sed, accumsan fermentum urna. Pellentesque aliquet leo elit, ut consequat nunc dapibus ac. Sed lobortis leo tincidunt, vulputate nunc at, ultricies leo. Vivamus purus diam, tristique laoreet purus eget, mollis gravida sapien. Nunc vulputate nisl ac mauris hendrerit cursus. Sed vel molestie velit. Suspendisse sem sem, elementum at vehicula id, volutpat ac mi. Nullam ullamcorper fringilla purus in accumsan. Mauris at nunc accumsan orci dictum vulputate id id augue. Suspendisse at dignissim elit, non euismod nunc. Aliquam faucibus magna ac molestie semper. Aliquam hendrerit sem sit amet metus congue tempor. Donec laoreet laoreet metus, id interdum purus mattis vulputate. Proin condimentum vitae erat varius mollis. Donec venenatis libero sed turpis pretium tempor.</div> <div class="para" id="inline-exercise-5-2-2">Praesent rutrum scelerisque felis sit amet adipiscing. Phasellus in mollis velit. Nunc malesuada felis sit amet massa cursus, eget elementum neque viverra. Integer sagittis dictum turpis vel aliquet. Fusce ut suscipit dolor, nec tristique nisl. Aenean luctus, leo et ornare fermentum, nibh dui vulputate leo, nec tincidunt augue ipsum sed odio. Nunc non erat sollicitudin, iaculis eros consequat, dapibus eros.</div></article>
+</div></details>
+</div></article></details><article class="example example-like" id="example-math-title"><h5 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.8</span><span class="period">.</span><span class="space"> </span><span class="title">An Example of with <span class="process-math">\(\frac12\)</span> math formula <span class="process-math">\(\displaystyle{\int e^x \, dx}\)</span> in the title.</span>
+</h5>
+<div class="para" id="example-math-title-2-1">Just for testing math in knowls, and also extra whitespace in a <code class="code-inline tex2jax_ignore">&lt;p&gt;</code>.</div></article><div class="para" id="section-interesting-corollary-5-3-7">There are many different blocks you can employ, and they mostly behave the same way.  A <code class="code-inline tex2jax_ignore">&lt;project&gt;</code> is very similar to a <code class="code-inline tex2jax_ignore">&lt;question&gt;</code> or <code class="code-inline tex2jax_ignore">&lt;problem&gt;</code>
+</div>
+<article class="project project-like" id="section-interesting-corollary-5-3-8"><h5 class="heading">
+<span class="type">Project</span><span class="space"> </span><span class="codenumber">4.1</span><span class="period">.</span><span class="space"> </span><span class="title">Start Exploring PreTeXt.</span>
+</h5> <div class="para" id="section-interesting-corollary-5-3-8-2">You could grab the <code class="code-inline tex2jax_ignore">minimal.xml</code> file from the <code class="code-inline tex2jax_ignore">examples/minimal</code> directory and experiment with that.</div> <div class="para" id="section-interesting-corollary-5-3-8-3">Projects get their own independent numbering scheme, since they may be central to your textbook, workbook, or lab manual.  If you process this sample article with level for project numbering set to <code class="code-inline tex2jax_ignore">0</code> then you will get consecutive numbers from the beginning of your book, starting with 1.</div></article><article class="exploration project-like" id="section-interesting-corollary-5-3-9"><h5 class="heading">
+<span class="type">Exploration</span><span class="space"> </span><span class="codenumber">4.2</span><span class="period">.</span><span class="space"> </span><span class="title">Exploring Explorations.</span>
+</h5>
+<div class="para" id="section-interesting-corollary-5-3-9-2-1">This is an <code class="code-inline tex2jax_ignore">&lt;exploration&gt;</code>.  Other similar possibilities are <code class="code-inline tex2jax_ignore">&lt;project&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;activity&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;task&gt;</code>, and <code class="code-inline tex2jax_ignore">&lt;investigation&gt;</code>.</div> <div class="para" id="section-interesting-corollary-5-3-9-2-2">Note that projects, activities, explorations, tasks and investigations <em class="emphasis">share</em> the independent numbering scheme, so it is really only intended you use one of these.  If you want a variant of the name (e.g. “Directed Activity”) you can use the <code class="code-inline tex2jax_ignore">&lt;rename&gt;</code> facility (<a href="section-customizations.html#rename-facility" class="internal" title="Subsection 30.1: Renaming Document Parts, Plus This Is A Really Long Title So That We Can Test How Well It Reacts To The Right Margin And Wraps Around To Form A Couple Of Lines, Plus How It Sits Relative To The Number Of The Subsection">Subsection 30.1</a>).</div>
+<div class="solutions"><details id="section-interesting-corollary-5-3-9-3" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para" id="section-interesting-corollary-5-3-9-3-1">This is a “solution” to the exploration.  In practice, you might choose to not make this visible for students, but instead include it as part of some guidance you might provide to instructors (e.g. an <span class="booktitle">Instructor’s Manual</span>).</div></div></details></div></article><div class="para prelude" id="activity-with-hint-answer-solution-2-1">This is quite the activity upcoming.  This is a <code class="code-inline tex2jax_ignore">prelude</code> authored within the <code class="code-inline tex2jax_ignore">activity</code> element, but visually just prior.</div>
+<article class="activity project-like" id="activity-with-hint-answer-solution"><h5 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Hints, Answers, Solutions.</span>
+</h5>
+<div class="para" id="activity-with-hint-answer-solution-3-1">Another variant of these project-like items is to possibly include a <code class="code-inline tex2jax_ignore">&lt;hint&gt;</code> and an <code class="code-inline tex2jax_ignore">&lt;answer&gt;</code> before the <code class="code-inline tex2jax_ignore">&lt;solution&gt;</code>.</div>
+<div class="solutions">
+<details id="activity-with-hint-answer-solution-4" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para" id="activity-with-hint-answer-solution-4-1">Just a little help.</div></div></details><details id="activity-with-hint-answer-solution-5" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="activity-with-hint-answer-solution-5-1">The result, but no help in getting there.</div></div></details><details id="activity-with-hint-answer-solution-6" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para" id="activity-with-hint-answer-solution-6-1">Everything to get it all done, in detail.</div></div></details>
+</div></article><div class="para postlude" id="activity-with-hint-answer-solution-7-1">This was quite the activity just now.  This is a <code class="code-inline tex2jax_ignore">postlude</code> authored within the <code class="code-inline tex2jax_ignore">activity</code> element, but visually just after.</div>
+<article class="note remark-like" id="note-remark"><h5 class="heading">
+<span class="type">Note</span><span class="space"> </span><span class="codenumber">4.9</span><span class="period">.</span><span class="space"> </span><span class="title">A Note on Remarks.</span>
+</h5> <div class="para" id="note-remark-2">
+<code class="code-inline tex2jax_ignore">&lt;remark&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;convention&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;note&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;observation&gt;</code> and <code class="code-inline tex2jax_ignore">&lt;warning&gt;</code> are designed to hold very simple contents, with no additional structure (no proofs, no solutions, etc.).</div> <div class="para" id="note-remark-3">But they do carry a title and a number, can be the target of a cross-reference, and may be optionally knowlized in HTML with the <code class="code-inline tex2jax_ignore">html.knowl.remark</code> processing switch.</div> <div class="para" id="note-remark-4">And distinctly different from a <code class="code-inline tex2jax_ignore">&lt;note&gt;</code> in a <code class="code-inline tex2jax_ignore">&lt;biblio&gt;</code><details class="ptx-footnote" aria-live="polite" id="note-remark-4-3"><summary class="ptx-footnote__number" title="Footnote 4.2"><sup> 2 </sup></summary><div class="ptx-footnote__contents" id="note-remark-4-3">A gratuitous footnote to test prior bug confusing this with a <code class="code-inline tex2jax_ignore">&lt;note&gt;</code> in a <code class="code-inline tex2jax_ignore">&lt;biblio&gt;</code>.</div></details>.</div></article><aside class="aside aside-like" id="an-aside"><h5 class="heading"><span class="title">An Aside with a <em class="emphasis">Formatted</em> Title.</span></h5>
+<div class="para" id="an-aside-3">An <code class="code-inline tex2jax_ignore">&lt;aside&gt;</code> is similar to a remark, but is not as critical to the narrative.  It is not numbered, and so requires a title.  It can be the target of a cross-reference.  They are meant to be short, and so are not knowlized at their first appearance.  If the content is appropriate, these can be marked as <code class="code-inline tex2jax_ignore">&lt;historical&gt;</code> or <code class="code-inline tex2jax_ignore">&lt;biographical&gt;</code>, though longer items should use subdivisions (e.g. sections, subsections) instead.</div></aside><div class="para" id="section-interesting-corollary-5-3-13">An <code class="code-inline tex2jax_ignore">&lt;exercise&gt;</code> can be structured with <code class="code-inline tex2jax_ignore">&lt;task&gt;</code>.</div>
+<details id="exercise-structured" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h5 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.10</span><span class="period">.</span><span class="space"> </span><span class="title">A very structured exercise.</span>
+</h5></summary><article class="exercise exercise-like knowl__content"><div class="introduction" id="exercise-structured-2"><div class="para" id="exercise-structured-2-1">This is an over-arching introduction to the whole exercise.  We follow with some tasks.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div>
+<article class="task exercise-like" id="exercise-structured-3"><h6 class="heading">
+<span class="codenumber">(a)</span><span class="space"> </span><span class="title">A super-simple task.</span>
+</h6>
+<div class="para" id="exercise-structured-3-2">This first task is very simple, just a paragraph.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><article class="task exercise-like" id="exercise-structured-4"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<div class="para" id="exercise-structured-4-1">Now three paragraphs.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="para" id="exercise-structured-4-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="para" id="exercise-structured-4-3">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><article class="task exercise-like" id="exercise-structured-5"><h6 class="heading">
+<span class="codenumber">(c)</span><span class="space"> </span><span class="title">A title of a task that has a subtask with an <code class="code-inline tex2jax_ignore">&lt;answer&gt;</code> for the Solutions.</span>
+</h6>
+<div class="introduction" id="exercise-structured-5-2">
+<div class="para" id="exercise-structured-5-2-1">This second task is further divided by more tasks.  This is its introduction.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="exercise-structured-5-2-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div>
+<article class="task exercise-like" id="exercise-structured-5-3"><h6 class="heading">
+<span class="codenumber">(i)</span><span class="space"> </span><span class="title">A task with a title and an <code class="code-inline tex2jax_ignore">&lt;answer&gt;</code> for the Solutions.</span>
+</h6>
+<div class="para" id="exercise-structured-5-3-2-1">A really simple subtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="exercise-structured-5-3-2-2">A short paragraph, before an answer.</div>
+<div class="solutions"><details id="exercise-structured-5-3-3" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content">
+<div class="para" id="exercise-structured-5-3-3-1">With a proof.</div> <article class="proof" id="exercise-structured-5-3-3-2"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6>
+<div class="para" id="exercise-structured-5-3-3-2-1">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article> <div class="para" id="exercise-structured-5-3-3-3">And a bit more to say.</div>
+</div></details></div></article><article class="task exercise-like" id="exercise-structured-5-4"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
+<div class="para" id="exercise-structured-5-4-1-1">A subtask with an answer.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="solutions"><details id="exercise-structured-5-4-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="exercise-structured-5-4-2-1">Right!  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></details></div></article><article class="task exercise-like" id="exercise-structured-5-5"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
+<div class="introduction" id="exercise-structured-5-5-1"><div class="para" id="exercise-structured-5-5-1-1">Three simple sub-sub-tasks.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div>
+<article class="task exercise-like" id="exercise-structured-5-5-2"><h6 class="heading"><span class="codenumber">(A)</span></h6>
+<div class="para" id="exercise-structured-5-5-2-1">First subsubtask.  Short paragraph.</div></article><article class="task exercise-like" id="exercise-structured-5-5-3"><h6 class="heading">
+<span class="codenumber">(B)</span><span class="space"> </span><span class="title">A second three-deep subsubtask!</span>
+</h6>
+<div class="para" id="exercise-structured-5-5-3-2">Second subsubtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="para" id="exercise-structured-5-5-3-3">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><article class="task exercise-like" id="exercise-structured-5-5-4"><h6 class="heading"><span class="codenumber">(C)</span></h6>
+<div class="para" id="exercise-structured-5-5-4-1">Third subsubtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="para" id="exercise-structured-5-5-4-2">In interdum suscipit ullamcorper</div>
+<div class="para" id="exercise-structured-5-5-4-3">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><div class="conclusion" id="exercise-structured-5-5-5"><div class="para" id="exercise-structured-5-5-5-1">The conclusion of the structured subtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></article><article class="task exercise-like" id="exercise-structured-5-6"><h6 class="heading"><span class="codenumber">(iv)</span></h6>
+<div class="para" id="exercise-structured-5-6-1">A simple task as the last subtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><div class="conclusion" id="exercise-structured-5-7"><div class="para" id="exercise-structured-5-7-1">This concludes our structured second task.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></article><article class="task exercise-like" id="exercise-structured-6"><h6 class="heading"><span class="codenumber">(d)</span></h6>
+<div class="para" id="exercise-structured-6-1-1">This third top-level task is intermediate in complexity, you are reading the <code class="code-inline tex2jax_ignore">statement</code>, which is followed by more items. In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="solutions">
+<details id="exercise-structured-6-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content">
+<div class="para" id="exercise-structured-6-2-1">One hint.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="exercise-structured-6-2-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div></details><details id="exercise-structured-6-3" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="exercise-structured-6-3-1">First answer.  In interdum suscipit ullamcorper.</div></div></details><details id="exercise-structured-6-4" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span></summary><div class="answer solution-like knowl__content">
+<div class="para" id="exercise-structured-6-4-1">Second answer.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="exercise-structured-6-4-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="exercise-structured-6-4-3">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div></details><details id="exercise-structured-6-5" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para" id="exercise-structured-6-5-1">At last, the solution.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></details>
+</div></article><div class="conclusion" id="exercise-structured-7"><div class="para" id="exercise-structured-7-1">This is a conclusion where you could summarize the exercise.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></article></details><div class="para" id="section-interesting-corollary-5-3-15">The following <code class="code-inline tex2jax_ignore">&lt;project&gt;</code> is nearly identical to the preceding <code class="code-inline tex2jax_ignore">&lt;exercise&gt;</code>.</div>
+<div class="para prelude" id="project-structured-2-1">The next block is a project, demonstrating the use of the <code class="code-inline tex2jax_ignore">task</code> element to structure its parts.  You are reading the <code class="code-inline tex2jax_ignore">prelude</code> now.  The project has lots of nonsense words, so we can test spacing the nested items.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="para prelude" id="project-structured-2-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<article class="project project-like" id="aBc" data-permid="aBc"><h5 class="heading">
+<span class="type">Project</span><span class="space"> </span><span class="codenumber">4.4</span><span class="period">.</span><span class="space"> </span><span class="title">A very structured project.</span>
+</h5>
+<div class="introduction" id="project-structured-3"><div class="para" id="project-structured-3-1">This is an over-arching introduction to the whole project.  We follow with some tasks.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div>
+<article class="task exercise-like" id="project-structured-4"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<div class="para" id="project-structured-4-1">This first task is very simple, just a paragraph.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><article class="task exercise-like" id="abC" data-permid="abC"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<div class="para" id="project-structured-5-1">Now three paragraphs.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="para" id="project-structured-5-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="para" id="project-structured-5-3">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><article class="task exercise-like" id="project-structured-6"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<div class="introduction" id="project-structured-6-1">
+<div class="para" id="project-structured-6-1-1">This second task is further divided by more tasks.  This is its introduction.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="project-structured-6-1-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div>
+<article class="task exercise-like" id="project-structured-6-2"><h6 class="heading"><span class="codenumber">(i)</span></h6>
+<div class="para" id="project-structured-6-2-1-1">A really simple subtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="project-structured-6-2-1-2">A short paragraph, before an answer.</div>
+<div class="solutions"><details id="project-structured-6-2-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content">
+<div class="para" id="project-structured-6-2-2-1">With a proof.</div> <article class="proof" id="project-structured-6-2-2-2"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6>
+<div class="para" id="project-structured-6-2-2-2-1">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article> <div class="para" id="project-structured-6-2-2-3">And a bit more to say.</div>
+</div></details></div></article><article class="task exercise-like" id="project-structured-6-3"><h6 class="heading"><span class="codenumber">(ii)</span></h6>
+<div class="para" id="project-structured-6-3-1-1">A subtask with an answer.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="solutions"><details id="project-structured-6-3-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="project-structured-6-3-2-1">Right!  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></details></div></article><article class="task exercise-like" id="project-task-level-two"><h6 class="heading"><span class="codenumber">(iii)</span></h6>
+<div class="introduction" id="project-task-level-two-1"><div class="para" id="project-task-level-two-1-1">Two simple sub-sub-tasks.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div>
+<article class="task exercise-like" id="project-task-level-two-2"><h6 class="heading"><span class="codenumber">(A)</span></h6>
+<div class="para" id="project-task-level-two-2-1">First subsubtask.  Short paragraph.</div></article><article class="task exercise-like" id="project-task-level-two-3"><h6 class="heading"><span class="codenumber">(B)</span></h6>
+<div class="para" id="project-task-level-two-3-1">Second subsubtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="para" id="project-task-level-two-3-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><article class="task exercise-like" id="deep-terminal-task"><h6 class="heading"><span class="codenumber">(C)</span></h6>
+<div class="para" id="deep-terminal-task-1-1">Third subsubtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="deep-terminal-task-1-2">In interdum suscipit ullamcorper</div> <div class="para" id="deep-terminal-task-1-3">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><div class="conclusion" id="project-task-level-two-5"><div class="para" id="project-task-level-two-5-1">The conclusion of the structured subtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></article><article class="task exercise-like" id="project-structured-6-5"><h6 class="heading"><span class="codenumber">(iv)</span></h6>
+<div class="para" id="project-structured-6-5-1">A simple task as the last subtask.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article><div class="conclusion" id="project-structured-6-6"><div class="para" id="project-structured-6-6-1">This concludes our structured second task.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></article><article class="task exercise-like" id="project-structured-7"><h6 class="heading"><span class="codenumber">(d)</span></h6>
+<div class="para" id="project-structured-7-1-1">This third top-level task is intermediate in complexity, you are reading the <code class="code-inline tex2jax_ignore">statement</code>, which is followed by more items. In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="solutions">
+<details id="project-structured-7-2" class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content">
+<div class="para" id="project-structured-7-2-1">One hint.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="project-structured-7-2-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div></details><details id="project-structured-7-3" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="project-structured-7-3-1">First answer.  In interdum suscipit ullamcorper.</div></div></details><details id="project-structured-7-4" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span></summary><div class="answer solution-like knowl__content">
+<div class="para" id="project-structured-7-4-1">Second answer.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="project-structured-7-4-2">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para" id="project-structured-7-4-3">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div></details><details id="project-structured-7-5" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para" id="project-structured-7-5-1">At last, the solution.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></details>
+</div></article><div class="conclusion" id="project-structured-8"><div class="para" id="project-structured-8-1">This is a conclusion where you could summarize the project.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></article><div class="para postlude" id="project-structured-9-1">This postlude appears visually outside the project, but is authored within, to make clear its attachment to the project.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+<div class="para prelude" id="example-structured-with-task-2-1">The following <code class="code-inline tex2jax_ignore">&lt;example&gt;</code>, from Elise Desgreniers, is structured with <code class="code-inline tex2jax_ignore">&lt;task&gt;</code>.</div>
+<article class="example example-like" id="example-structured-with-task"><h5 class="heading">
+<span class="type">Example</span><span class="space"> </span><span class="codenumber">4.11</span><span class="period">.</span><span class="space"> </span><span class="title">Notation mathématique 2.</span>
+</h5>
+<div class="introduction" id="example-structured-with-task-3"><div class="para" id="example-structured-with-task-3-1">Écrivez chacun des exemples suivants avec les conditions pertinentes.</div></div>
+<article class="task exercise-like" id="example-structured-with-task-4"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<div class="para" id="example-structured-with-task-4-1-1">Soit l’ensemble <span class="process-math">\(A=\lbrace 1,2,3,4,5\rbrace\text{.}\)</span>
+</div> <div class="para" id="example-structured-with-task-4-1-2">On constate que cet ensemble contient uniquement des entiers positifs allant de 1 à 5.</div> <div class="para" id="example-structured-with-task-4-1-3">Donc, on peut écrire <span class="process-math">\(A=\lbrace x\mid x\in\mathbb{N}\text{ et } 1\leq x\leq 5\rbrace\text{.}\)</span>
+</div></article><article class="task exercise-like" id="example-structured-with-task-5"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<div class="para" id="example-structured-with-task-5-1-1"><span class="process-math">\(\{3,6,9,12,15,\ldots,27,30\}\)</span></div>
+<div class="hint solution-like" id="example-structured-with-task-5-2">
+<h6 class="heading">
+<span class="type">Hint</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-5-2-1">Ce sont des multiples de 3.</div>
+</div>
+<div class="answer solution-like" id="example-structured-with-task-5-3">
+<h6 class="heading">
+<span class="type">Answer</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-5-3-1"><span class="process-math">\(\{x\mid x=3y \text{ et } 1\leq y\leq 10 \text{ et } y\in\mathbb{N}\}\)</span></div>
+</div></article><article class="task exercise-like" id="example-structured-with-task-6"><h6 class="heading"><span class="codenumber">(c)</span></h6>
+<div class="para" id="example-structured-with-task-6-1-1"><span class="process-math">\(\{1,3,5,7,9,11,\ldots\}\)</span></div>
+<div class="hint solution-like" id="example-structured-with-task-6-2">
+<h6 class="heading">
+<span class="type">Hint</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-6-2-1">Ce sont des nombres impairs.</div>
+</div>
+<div class="answer solution-like" id="example-structured-with-task-6-3">
+<h6 class="heading">
+<span class="type">Answer</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-6-3-1"><span class="process-math">\(\{x\mid x\mod 2=1 \text{ et } x\in\mathbb{N}\}\)</span></div>
+</div></article><article class="task exercise-like" id="example-structured-with-task-7"><h6 class="heading"><span class="codenumber">(d)</span></h6>
+<div class="para" id="example-structured-with-task-7-1-1"><span class="process-math">\(\{2,3,5,7,11,13,17,19,23,\ldots\}\)</span></div>
+<div class="hint solution-like" id="example-structured-with-task-7-2">
+<h6 class="heading">
+<span class="type">Hint</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-7-2-1">Ce sont des nombres premiers.</div>
+</div>
+<div class="answer solution-like" id="example-structured-with-task-7-3">
+<h6 class="heading">
+<span class="type">Answer</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-7-3-1"><span class="process-math">\(\{x\mid x\text{ est un nombre premier positif}\}\)</span></div>
+</div></article><article class="task exercise-like" id="example-structured-with-task-8"><h6 class="heading"><span class="codenumber">(e)</span></h6>
+<div class="para" id="example-structured-with-task-8-1-1"><span class="process-math">\(\{1,4,9,16,25,36,\ldots,961\}\)</span></div>
+<div class="hint solution-like" id="example-structured-with-task-8-2">
+<h6 class="heading">
+<span class="type">Hint</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-8-2-1">Ce sont des carrés parfaits.</div>
+</div>
+<div class="answer solution-like" id="example-structured-with-task-8-3">
+<h6 class="heading">
+<span class="type">Answer</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-8-3-1"><span class="process-math">\(\{x\mid x=y^2 \text{ et } 1\leq y\leq 31\text{ et } y\in\mathbb{N}\}\)</span></div>
+</div></article><article class="task exercise-like" id="example-structured-with-task-9"><h6 class="heading"><span class="codenumber">(f)</span></h6>
+<div class="para" id="example-structured-with-task-9-1-1"><span class="process-math">\(\{1,8,27,64,125,\ldots\}\)</span></div>
+<div class="hint solution-like" id="example-structured-with-task-9-2">
+<h6 class="heading">
+<span class="type">Hint</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-9-2-1">Ce sont des cubes parfaits.</div>
+</div>
+<div class="answer solution-like" id="example-structured-with-task-9-3">
+<h6 class="heading">
+<span class="type">Answer</span><span class="period">.</span>
+</h6>
+<div class="para" id="example-structured-with-task-9-3-1"><span class="process-math">\(\{x\mid x=y^3 \text{ et } y\in\mathbb{N^*}\}\)</span></div>
+</div></article></article><div class="para" id="section-interesting-corollary-5-3-18">Notes or examples related to computation or technology can go in blocks of the same name.</div>
+<article class="technology computation-like" id="section-interesting-corollary-5-3-19"><h5 class="heading">
+<span class="type">Technology</span><span class="space"> </span><span class="codenumber">4.12</span><span class="period">.</span><span class="space"> </span><span class="title">Sample Use of Sage.</span>
+</h5> <div class="para" id="section-interesting-corollary-5-3-19-2">This would be a good place to talk about Sage, including a cell or two.</div> <pre id="section-interesting-corollary-5-3-19-3" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">diff(x^4, x)
+</script></pre> <div class="para" id="section-interesting-corollary-5-3-19-4">But you might want to describe how to use some other calculator, or maybe some numerical method.</div></article><section class="paragraphs" id="section-interesting-corollary-5-3-20"><h5 class="heading"><span class="title">A <code class="code-inline tex2jax_ignore">&lt;paragraphs&gt;</code> with a <code class="code-inline tex2jax_ignore">&lt;project&gt;</code> with an <code class="code-inline tex2jax_ignore">&lt;answer&gt;</code>.</span></h5> <div class="para" id="section-interesting-corollary-5-3-20-2">The solutions to a project (and similar) once did not migrate to the automatically-generated solutions.</div> <article class="project project-like" id="section-interesting-corollary-5-3-20-3"><h6 class="heading">
+<span class="type">Project</span><span class="space"> </span><span class="codenumber">4.5</span><span class="period">.</span>
+</h6>
+<div class="para" id="section-interesting-corollary-5-3-20-3-1-1">A simple project, no tasks, just an answer.</div>
+<div class="solutions"><details id="section-interesting-corollary-5-3-20-3-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="section-interesting-corollary-5-3-20-3-2-1">Here’s the answer we are looking for.</div></div></details></div></article></section></section><section class="exercises" id="exercises-subsection-solo"><h4 class="heading hide-type">
+<span class="type">Exercises</span><span class="space"> </span><span class="codenumber">4.2.3</span><span class="space"> </span><span class="title">Exercises</span>
+</h4>
+<article class="exercise exercise-like" id="exercise-test-number"><h5 class="heading"><span class="codenumber">1<span class="period">.</span></span></h5>
+<div class="para" id="exercise-test-number-1-1">This is an exercise in an “Exercises” subdivision at the level of a subsubsection.  There is no question other than if the numbering is appropriate.  Here is a self-referential link: Exercise <a href="section-interesting-corollary.html#exercise-test-number" class="xref" data-knowl="./knowl/xref/exercise-test-number.html" data-reveal-label="Reveal" data-close-label="Close" title="Exercise 4.2.3.1">4.2.3.1</a>.</div> <div class="para" id="exercise-test-number-1-2">The subsubsection has no title in the source, so one is provided automatically, and will adjust according to the language of the document.</div>
+<div class="solutions"><details id="exercise-test-number-2" class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="para" id="exercise-test-number-2-1">This solution will migrate to a list of solutions in the backmatter.  We include a <code class="code-inline tex2jax_ignore">sidebyside</code> as a test.</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:10%;margin-right:10%;">
+<div class="sbspanel top" style="width:37.5%;"><div class="para" id="exercise-test-number-2-2-1">This is a skinny paragraph which should be just 30% of the width.</div></div>
+<div class="sbspanel top" style="width:37.5%;"><div class="para" id="exercise-test-number-2-2-2">And another skinny paragraph which should also be just 30% of the width.</div></div>
+</div></div>
+</div></details></div></article><article class="exercise exercise-like" id="exercise-with-tasks"><h5 class="heading"><span class="codenumber">2<span class="period">.</span></span></h5>
+<div class="introduction" id="exercise-with-tasks-1"><div class="para" id="exercise-with-tasks-1-1">An <code class="code-inline tex2jax_ignore">&lt;exercise&gt;</code> can be structured with parts, called <code class="code-inline tex2jax_ignore">&lt;task&gt;</code>.  This is the <code class="code-inline tex2jax_ignore">&lt;introduction&gt;</code>.</div></div>
+<article class="task exercise-like" id="exercise-with-tasks-2"><h6 class="heading"><span class="codenumber">(a)</span></h6>
+<div class="para" id="exercise-with-tasks-2-1">Do this.</div></article><article class="task exercise-like" id="exercise-with-tasks-3"><h6 class="heading"><span class="codenumber">(b)</span></h6>
+<div class="para" id="exercise-with-tasks-3-1">And the other thing.</div></article></article></section><section class="reading-questions" id="section-interesting-corollary-5-5"><h4 class="heading hide-type">
+<span class="type">Reading Questions</span><span class="space"> </span><span class="codenumber">4.2.4</span><span class="space"> </span><span class="title">Reading Questions</span>
+</h4>
+<section class="introduction" id="section-interesting-corollary-5-5-1"> <div class="para" id="section-interesting-corollary-5-5-1-2">A set of reading questions may have an <code class="code-inline tex2jax_ignore">&lt;introduction&gt;</code>, perhaps for preparatory explanation.</div> <div class="para" id="section-interesting-corollary-5-5-1-3">If a student has logged in to the HTML version, then they can answer the reading questions directly in the book. Inline math LaTeX can be entered using <code class="code-inline tex2jax_ignore">$</code>...<code class="code-inline tex2jax_ignore">$</code> or <code class="code-inline tex2jax_ignore">\(</code>...<code class="code-inline tex2jax_ignore">\)</code> delimiters, and inline AsciiMath using backticks <code class="code-inline tex2jax_ignore">`</code>...<code class="code-inline tex2jax_ignore">`</code> as delimiters. Here are some `gratuitous backticks` to check that AsciiMath is only active in the answers to reading questions.</div></section><article class="exercise exercise-like" id="first-reading"><h5 class="heading"><span class="codenumber">1<span class="period">.</span></span></h5>
+<div class="para" id="first-reading-1">This is a <dfn class="terminology">reading question</dfn> that you might have a student answer prior to a class session, based on reading part of the book. A quick glance before class can help you tailor class time to the specific needs of your students. The perfect reading question will reveal whether the student has read and understood the material, and will be difficult to answer if they have not. What do you think of that?</div></article><article class="exercise exercise-like" id="section-interesting-corollary-5-5-3"><h5 class="heading"><span class="codenumber">2<span class="period">.</span></span></h5>
+<div class="para" id="section-interesting-corollary-5-5-3-1">And a second one, with a cross-reference to the first, as a check on numbering: <a href="section-interesting-corollary.html#first-reading" class="xref" data-knowl="./knowl/xref/first-reading.html" data-reveal-label="Reveal" data-close-label="Close" title="Reading Question 4.2.4.1">Reading Question 4.2.4.1</a>. Reading questions are allowed to have answers, but providing answers misses the point of a reading question, and the answer knowl interacts poorly with the mechanism used to allow students to answer directly in the book. Do you think the schema should ban answers to reading questions?</div></article><section class="conclusion" id="section-interesting-corollary-5-5-4"><div class="para" id="section-interesting-corollary-5-5-4-1">And for symmetry, a <code class="code-inline tex2jax_ignore">&lt;conclusion&gt;</code>.</div></section></section><section class="glossary" id="glossary-specialized"><h4 class="heading hide-type">
+<span class="type">Glossary</span><span class="space"> </span><span class="codenumber">4.2.5</span><span class="space"> </span><span class="title">Glossary</span>
+</h4>
+<section class="headnote" id="glossary-specialized-2"><div class="para" id="glossary-specialized-2-1">A glossary may have a <code class="code-inline tex2jax_ignore">&lt;headnote&gt;</code>, perhaps with some explanation.  This glossary is a specialized division within a section.  Placement in the back matter is another option, see the <a href="glossary-backmatter.html" class="internal" title="Glossary">Glossary</a>.</div></section><dl class="glossary">
+<dt id="glossary-specialized-3">bar.</dt>
+<dd> <div class="para" id="glossary-specialized-3-2">A part of <dfn class="terminology">foobar</dfn>.  See <a href="section-interesting-corollary.html#foobar-defined" class="xref" data-knowl="./knowl/xref/foobar-defined.html" data-reveal-label="Reveal" data-close-label="Close" title="Term: foobar">foobar</a>.</div>
+</dd>
+<dt id="foobar-defined">foobar.</dt>
+<dd> <div class="para" id="foobar-defined-2">A synonym for the acronym <abbr class="acronym">FUBAR</abbr>.</div>
+</dd>
+</dl></section><section class="solutions" id="solutions-subsection"><h4 class="heading hide-type">
+<span class="type">Solutions</span><span class="space"> </span><span class="codenumber">4.2.6</span><span class="space"> </span><span class="title">Solutions for This Subsection</span>
+</h4>
+<section class="introduction" id="solutions-subsection-3"><div class="para" id="solutions-subsection-3-1">This is an introduction, where you might explain that this division of this subsection contains various hints, answers, solutions of inline exercises, divisional exercises, and/or project-like blocks.  See the source to see just how this solutions division was built.</div></section><h5 class="heading hide-type" title="Subsubsection 4.2.1: Symbolic and Numerical Integrals">
+<span class="codenumber">4.2.1</span><span class="space"> </span><span class="title">Symbolic and Numerical Integrals</span>
+</h5>
+<article class="exercise-like"><h6 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.4</span><span class="period">.</span><span class="space"> </span><span class="title">Essay Question: Compare and Contrast.</span>
+</h6>
+<div class="solutions"><details class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para">Start writing!</div></div></details></div></article><h5 class="heading hide-type" title="Subsubsection 4.2.2: Advice">
+<span class="codenumber">4.2.2</span><span class="space"> </span><span class="title">Advice</span>
+</h5>
+<article class="exercise-like"><h6 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.7</span><span class="period">.</span><span class="space"> </span><span class="title">An Inline Exercise.</span>
+</h6>
+<div class="solutions">
+<details class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para">A good hint.</div></div></details><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para">42.</div></div></details><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="para">If your exercise feels like proving a theorem, then you might want to make some comments, but also clearly delineate which part of the solution is a the complete proof.</div> <article class="proof"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6>
+<div class="para">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin lorem diam, convallis in nulla sed, accumsan fermentum urna. Pellentesque aliquet leo elit, ut consequat nunc dapibus ac. Sed lobortis leo tincidunt, vulputate nunc at, ultricies leo. Vivamus purus diam, tristique laoreet purus eget, mollis gravida sapien. Nunc vulputate nisl ac mauris hendrerit cursus. Sed vel molestie velit. Suspendisse sem sem, elementum at vehicula id, volutpat ac mi. Nullam ullamcorper fringilla purus in accumsan. Mauris at nunc accumsan orci dictum vulputate id id augue. Suspendisse at dignissim elit, non euismod nunc. Aliquam faucibus magna ac molestie semper. Aliquam hendrerit sem sit amet metus congue tempor. Donec laoreet laoreet metus, id interdum purus mattis vulputate. Proin condimentum vitae erat varius mollis. Donec venenatis libero sed turpis pretium tempor.</div> <div class="para">Praesent rutrum scelerisque felis sit amet adipiscing. Phasellus in mollis velit. Nunc malesuada felis sit amet massa cursus, eget elementum neque viverra. Integer sagittis dictum turpis vel aliquet. Fusce ut suscipit dolor, nec tristique nisl. Aenean luctus, leo et ornare fermentum, nibh dui vulputate leo, nec tincidunt augue ipsum sed odio. Nunc non erat sollicitudin, iaculis eros consequat, dapibus eros.</div></article>
+</div></details>
+</div></article><article class="project-like"><h6 class="heading">
+<span class="type">Exploration</span><span class="space"> </span><span class="codenumber">4.2</span><span class="period">.</span><span class="space"> </span><span class="title">Exploring Explorations.</span>
+</h6>
+<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para">This is a “solution” to the exploration.  In practice, you might choose to not make this visible for students, but instead include it as part of some guidance you might provide to instructors (e.g. an <span class="booktitle">Instructor’s Manual</span>).</div></div></details></div></article><article class="project-like"><h6 class="heading">
+<span class="type">Activity</span><span class="space"> </span><span class="codenumber">4.3</span><span class="period">.</span><span class="space"> </span><span class="title">Hints, Answers, Solutions.</span>
+</h6>
+<div class="solutions">
+<details class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content"><div class="para">Just a little help.</div></div></details><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para">The result, but no help in getting there.</div></div></details><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para">Everything to get it all done, in detail.</div></div></details>
+</div></article><article class="exercise-like"><h6 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.10</span><span class="period">.</span><span class="space"> </span><span class="title">A very structured exercise.</span>
+</h6>
+<article class="exercise-like"><h6 class="heading hide-type" title="Task 4.10.c: A title of a task that has a subtask with an &lt;answer&gt; for the Solutions">
+<span class="codenumber">4.10.c</span><span class="space"> </span><span class="title">A title of a task that has a subtask with an <code class="code-inline tex2jax_ignore">&lt;answer&gt;</code> for the Solutions.</span>
+</h6>
+<article class="exercise-like"><h6 class="heading hide-type" title="Task 4.10.c.i: A task with a title and an &lt;answer&gt; for the Solutions">
+<span class="codenumber">4.10.c.i</span><span class="space"> </span><span class="title">A task with a title and an <code class="code-inline tex2jax_ignore">&lt;answer&gt;</code> for the Solutions.</span>
+</h6>
+<div class="solutions"><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content">
+<div class="para">With a proof.</div> <article class="proof"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6>
+<div class="para">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article> <div class="para">And a bit more to say.</div>
+</div></details></div></article><article class="exercise-like"><h6 class="heading hide-type" title="Task 4.10.c.ii"><span class="codenumber">4.10.c.ii</span></h6>
+<div class="solutions"><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para">Right!  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></details></div></article></article><article class="exercise-like"><h6 class="heading hide-type" title="Task 4.10.d"><span class="codenumber">4.10.d</span></h6>
+<div class="solutions">
+<details class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content">
+<div class="para">One hint.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div></details><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para">First answer.  In interdum suscipit ullamcorper.</div></div></details><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span></summary><div class="answer solution-like knowl__content">
+<div class="para">Second answer.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div></details><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para">At last, the solution.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></details>
+</div></article></article><article class="project-like"><h6 class="heading">
+<span class="type">Project</span><span class="space"> </span><span class="codenumber">4.4</span><span class="period">.</span><span class="space"> </span><span class="title">A very structured project.</span>
+</h6>
+<article class="exercise-like"><h6 class="heading hide-type" title="Task 4.4.c"><span class="codenumber">4.4.c</span></h6>
+<article class="exercise-like"><h6 class="heading hide-type" title="Task 4.4.c.i"><span class="codenumber">4.4.c.i</span></h6>
+<div class="solutions"><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content">
+<div class="para">With a proof.</div> <article class="proof"><h6 class="heading"><span class="type">Proof<span class="period">.</span></span></h6>
+<div class="para">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></article> <div class="para">And a bit more to say.</div>
+</div></details></div></article><article class="exercise-like"><h6 class="heading hide-type" title="Task 4.4.c.ii"><span class="codenumber">4.4.c.ii</span></h6>
+<div class="solutions"><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para">Right!  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></details></div></article></article><article class="exercise-like"><h6 class="heading hide-type" title="Task 4.4.d"><span class="codenumber">4.4.d</span></h6>
+<div class="solutions">
+<details class="hint solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Hint</span><span class="period">.</span></summary><div class="hint solution-like knowl__content">
+<div class="para">One hint.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div></details><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="space"> </span><span class="codenumber">1</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para">First answer.  In interdum suscipit ullamcorper.</div></div></details><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="space"> </span><span class="codenumber">2</span><span class="period">.</span></summary><div class="answer solution-like knowl__content">
+<div class="para">Second answer.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div> <div class="para">In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div>
+</div></details><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content"><div class="para">At last, the solution.  In interdum suscipit ullamcorper. Morbi sit amet malesuada augue, id vestibulum magna. Nulla blandit dui metus, malesuada mollis sapien ullamcorper sit amet. Nulla at neque nisi. Integer vel porta felis.</div></div></details>
+</div></article></article><article class="project-like"><h6 class="heading">
+<span class="type">Project</span><span class="space"> </span><span class="codenumber">4.5</span><span class="period">.</span>
+</h6>
+<div class="solutions"><details class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para">Here’s the answer we are looking for.</div></div></details></div></article><h5 class="heading hide-type" title="Exercises 4.2.3">
+<span class="codenumber">4.2.3</span><span class="space"> </span><span class="title">Exercises</span>
+</h5>
+<article class="exercise-like"><h6 class="heading"><span class="codenumber">4.2.3.1<span class="period">.</span></span></h6>
+<div class="solutions"><details class="solution solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Solution</span><span class="period">.</span></summary><div class="solution solution-like knowl__content">
+<div class="para">This solution will migrate to a list of solutions in the backmatter.  We include a <code class="code-inline tex2jax_ignore">sidebyside</code> as a test.</div> <div class="sidebyside"><div class="sbsrow" style="margin-left:10%;margin-right:10%;">
+<div class="sbspanel top" style="width:37.5%;"><div class="para">This is a skinny paragraph which should be just 30% of the width.</div></div>
+<div class="sbspanel top" style="width:37.5%;"><div class="para">And another skinny paragraph which should also be just 30% of the width.</div></div>
+</div></div>
+</div></details></div></article><section class="conclusion" id="deF" data-permid="deF"><div class="para" id="solutions-subsection-4-1">And a conclusion to this solutions division, which may not be readily apparent as distinct from the final division’s worth of solutions, but since it is not prefixed with a number, it may be different enough.</div></section></section></section><section class="subsection" id="section-interesting-corollary-6"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">4.3</span><span class="space"> </span><span class="title">Theorem-Like Environments</span>
+</h3>
+<div class="para" id="section-interesting-corollary-6-2">There are a variety of pre-defined environments in PreTeXt.  All take a title, and must have a statement.  Some have proofs (theorems, corollaries, etc.), while some do not have proofs (conjectures, axioms, principles).</div>
+<article class="principle theorem-like" id="principle-principle"><h4 class="heading">
+<span class="type">Principle</span><span class="space"> </span><span class="codenumber">4.13</span><span class="period">.</span><span class="space"> </span><span class="title">The Title Principle.</span>
+</h4>
+<div class="para" id="principle-principle-2-1">It is a fundamental principle that many elements can have a title.  Try it and see. If you get better formatting, then it is being recognized.  If it looks very plain, check the documentation and perhaps make a feature request.</div></article><div class="para" id="section-interesting-corollary-6-4">More precisely, <code class="code-inline tex2jax_ignore">&lt;theorem&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;corollary&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;lemma&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;algorithm&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;proposition&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;claim&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;fact&gt;</code>, and <code class="code-inline tex2jax_ignore">&lt;identity&gt;</code>, all behave exactly the same, requiring a statement (as a sequence of paragraphs) followed by an optional proof, and may have an optional title.  The elements <code class="code-inline tex2jax_ignore">&lt;axiom&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;conjecture&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;principle&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;heuristic&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;hypothesis&gt;</code>, and <code class="code-inline tex2jax_ignore">&lt;assumption&gt;</code> are functionally the same, barring a proof (since they would never have one!).  Definitions are an exception, as it is natural to place <code class="code-inline tex2jax_ignore">&lt;notation&gt;</code> within—see the source for Definition <a href="section-fundamental-theorem.html#definition-indefinite-integral" class="xref" data-knowl="./knowl/xref/definition-indefinite-integral.html" data-reveal-label="Reveal" data-close-label="Close" title="Definition 2.2">2.2</a> for an example.</div></section><section class="subsection" id="section-interesting-corollary-7"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">4.4</span><span class="space"> </span><span class="title">Linking Sage Cells</span>
+</h3>
+<div class="para" id="section-interesting-corollary-7-3">Sage cells share their results on a per-webpage basis, or a per-knowl basis, so if you move to a new chapter, section, or subsection that happens to be on another webpage, your Sage computations are gone and you start fresh.  But maybe you need some results from elsewhere.  As an author, you can make an exact copy of a cell in another location by placing the code in an external file, which is pure text, freed from any need to format for XML processing.  So, in particular, there is no need to escape ampersands and angle brackets, nor is there employment of the <code class="code-inline tex2jax_ignore">CDATA</code> mechanism.  But the real value is that there is just one version to edit, and any changes will be reflected in both copies.  We demonstrate this in the sample book, since it has the <code class="code-inline tex2jax_ignore">xinclude</code> mechanism in place.  In the chapter on groups, find the section on Sage and then find the discussion of subgroups, and you will find an example of two identical Sage cells produced from one source file.</div>
+<div class="para" id="section-interesting-corollary-7-4">You can also specify certain cells to be auto-evaluated, by setting the <code class="code-inline tex2jax_ignore">@auto-evaluate</code> attribute to <code class="code-inline tex2jax_ignore">yes</code>.  The resulting cell will not have a button for evaluation (so editing it would be pointless).  See the source of this sample article for the two examples below.</div>
+<div class="para" id="section-interesting-corollary-7-5">2023-08-17: support just now is for the use case of a small portion of code, not a huge library of helper routines.</div>
+<div class="para" id="section-interesting-corollary-7-6">Two cells with the default language <code class="code-inline tex2jax_ignore">sage</code>.</div>
+<pre id="section-interesting-corollary-7-7" class="ptx-sagecell sagecell-sage-autoeval"><script type="text/x-sage">k = 404
+</script></pre>
+<pre id="section-interesting-corollary-7-8" class="ptx-sagecell sagecell-sage"><script type="text/x-sage">2*k
+</script></pre>
+<div class="para" id="section-interesting-corollary-7-9">Two cells with language <code class="code-inline tex2jax_ignore">python</code>.</div>
+<pre id="section-interesting-corollary-7-10" class="ptx-sagecell sagecell-python-autoeval"><script type="text/x-sage">k = 4112
+print("Assigned an initial value to the variable k")
+</script></pre>
+<pre id="section-interesting-corollary-7-11" class="ptx-sagecell sagecell-python"><script type="text/x-sage">k = 2*k
+print(k)
+</script></pre></section><section class="subsection" id="section-interesting-corollary-8"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">4.5</span><span class="space"> </span><span class="title">Hierarchy</span>
+</h3>
+<section class="paragraphs" id="hierarchy-structure"><h4 class="heading"><span class="title">Structure.</span></h4> <div class="para" id="hierarchy-structure-2">This section of this article has subsections and subsubsections.  In a book you can have chapters enclosing multiple sections.  There is one finer subdivision, it is achieved with the <code class="code-inline tex2jax_ignore">paragraphs</code> element.</div> <div class="para" id="hierarchy-structure-3">It is basically a sequence of paragraphs, where the first one gets an inline title.  You are reading the second, and final, paragraph of one right now. It is useful for organizing very short documents, where numbered subdivisions might be overkill.</div></section><section class="paragraphs" id="section-interesting-corollary-8-3"><h4 class="heading"><span class="title">A Second Paragraphs.</span></h4> <div class="para" id="section-interesting-corollary-8-3-2">This is a second consecutive <code class="code-inline tex2jax_ignore">paragraphs</code> element, so should seem related to its title, but distinct from the two paragraphs in the grouping with the title “Structure” immediately prior.</div></section><article class="assemblage assemblage-like" id="Ghi" data-permid="Ghi"><h4 class="heading"><span class="title">Assemblages: Collections and Summaries.</span></h4>
+<div class="para" id="assemblage-basics-2">An <code class="code-inline tex2jax_ignore">&lt;assemblage&gt;</code> is a collection, or summary, that does not have much structure to it.  So you are limited to paragraphs and friends (<code class="code-inline tex2jax_ignore">p</code>, <code class="code-inline tex2jax_ignore">blockquote</code>, <code class="code-inline tex2jax_ignore">pre</code>) and side-by-sides that do not contain captioned items (<code class="code-inline tex2jax_ignore">sidebyside</code>, <code class="code-inline tex2jax_ignore">sbsgroup</code>).  The intent is that contents are not numbered, so cannot be cross-referenced individually, and so also do not become knowls.  You may place <code class="code-inline tex2jax_ignore">&lt;image&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code>, and <code class="code-inline tex2jax_ignore">&lt;program&gt;</code> inside a <code class="code-inline tex2jax_ignore">&lt;sidebyside&gt;</code>, in addition to other objects that do not have captions.  Note that <code class="code-inline tex2jax_ignore">p</code> may by extension contain lists (<code class="code-inline tex2jax_ignore">ol</code>, <code class="code-inline tex2jax_ignore">ul</code>, <code class="code-inline tex2jax_ignore">dl</code>).  Despite limited structure, the presentation should draw attention to it, because the contents should be seen as more important in some way.  It should be “highlighted” in some manner.  If you need to connect the entire assemblage with material elsewhere, you can do that with the usual <code class="code-inline tex2jax_ignore">xref/xml:id</code> mechanism.</div>
+<div class="para logical" id="assemblage-basics-3">
+<div class="para">What have we seen so far in this (disorganized) sample?</div>
+<ul class="disc">
+<li id="assemblage-basics-3-1-1"><div class="para" id="assemblage-basics-3-1-1-1">Theorems, definitions and corollaries. (<a href="section-fundamental-theorem.html" class="internal" title="Section 2: The Fundamental Theorem">Section 2</a>)</div></li>
+<li id="assemblage-basics-3-1-2"><div class="para" id="assemblage-basics-3-1-2-1">Sage cells, including with R. (<a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section 3</a>)</div></li>
+<li id="assemblage-basics-3-1-3"><div class="para" id="assemblage-basics-3-1-3-1">Lots of document structure, like introductions and conclusions (next). (<a href="section-interesting-corollary.html" class="internal" title="Section 4: An Interesting Corollary">Section 4</a>)</div></li>
+</ul>
+</div>
+<div class="para" id="assemblage-basics-4">A sample table, as a <code class="code-inline tex2jax_ignore">tabular</code> inside a <code class="code-inline tex2jax_ignore">sidebyside</code> with no caption, follows.</div>
+<div class="tabular-box natural-width"><table class="tabular">
+<tr>
+<td class="l m b0 r0 l0 t0 lines">A</td>
+<td class="l m b0 r0 l0 t0 lines">B</td>
+<td class="l m b0 r0 l0 t0 lines">C</td>
+</tr>
+<tr>
+<td class="l m b0 r0 l0 t0 lines">Uno</td>
+<td class="l m b0 r0 l0 t0 lines">Dos</td>
+<td class="l m b0 r0 l0 t0 lines">Tres</td>
+</tr>
+</table></div></article><article class="assemblage assemblage-like" id="section-interesting-corollary-8-5"><div class="para" id="section-interesting-corollary-8-5-1">This is a small <code class="code-inline tex2jax_ignore">assemblage</code> with no title, simply to make sure the surrounding box behaves properly, especially for <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> output.</div></article><article class="assemblage assemblage-like" id="section-interesting-corollary-8-6"><h4 class="heading"><span class="title">Assemblages containing <span class="process-math">\(\mu \forall \tau \mathbb{H} = \emptyset \kappa\)</span>.</span></h4>
+<div class="para" id="section-interesting-corollary-8-6-2">It is acceptable for an assemblage to contain mathematical content, even in its title.</div></article></section><section class="subsection" id="subsection-intro-conclude"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">4.6</span><span class="space"> </span><span class="title">Introductions and Conclusions</span>
+</h3>
+<section class="introduction" id="subsection-intro-conclude-2"><h4 class="heading">An Introductory Introduction.<span></span>
+</h4> <div class="para" id="subsection-intro-conclude-2-2">Any subdivision may have a sequence of paragraphs within an <code class="code-inline tex2jax_ignore">&lt;introduction&gt;</code> that precedes subsequent further subdivisions.  You are reading one now.  They are always leaves of the document structure, so are rendered on some pages that reference the following subdivisions.</div> <div class="para" id="subsection-intro-conclude-2-3">An introduction or conclusion is an extremely restrictive container with simple presentation.  A title is optional (and probably not advisable).  Content is meant to be short and unstructured, in particular, nothing that can be numbered is allowed.  If this feels <em class="emphasis">too</em> restrictive, then place your content in an initial numbered subdivision and perhaps title it “Introduction”.  Or make your entire subdivion unstructured and place whatever you want into it.</div> <div class="para" id="subsection-intro-conclude-2-4">This ends this introduction to introductions.</div></section><section class="subsubsection" id="subsection-intro-conclude-3"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span><span class="space"> </span><span class="codenumber">4.6.1</span><span class="space"> </span><span class="title">Test One</span>
+</h4>
+<div class="para" id="subsection-intro-conclude-3-2">An intervening subsubsection just after an introduction.</div></section><section class="subsubsection" id="subsection-intro-conclude-4"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span><span class="space"> </span><span class="codenumber">4.6.2</span><span class="space"> </span><span class="title">Test Two</span>
+</h4>
+<div class="para" id="subsection-intro-conclude-4-2">An intervening subsection section which contains an <code class="code-inline tex2jax_ignore">&lt;exercises&gt;</code> division which must be at the level of a Subsubsubsection.</div>
+<details id="subsection-intro-conclude-4-3" class="exercise exercise-like born-hidden-knowl"><summary class="knowl__link"><h5 class="heading">
+<span class="type">Checkpoint</span><span class="space"> </span><span class="codenumber">4.14</span><span class="period">.</span>
+</h5></summary><article class="exercise exercise-like knowl__content"><div class="para" id="subsection-intro-conclude-4-3-1-1">An inline exercise to examine any clash with divisional exercises below.</div>
+<div class="solutions"><details id="subsection-intro-conclude-4-3-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="subsection-intro-conclude-4-3-2-1">An answer so there is something to appear in a <code class="code-inline tex2jax_ignore">&lt;solutions&gt;</code>.</div></div></details></div></article></details><section class="reading-questions" id="subsection-intro-conclude-4-4"><h5 class="heading hide-type">
+<span class="type">Reading Questions</span><span class="space"> </span><span class="codenumber"></span><span class="space"> </span><span class="title">What Did You Learn?</span>
+</h5>
+<article class="exercise exercise-like" id="subsection-intro-conclude-4-4-2"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<div class="para" id="subsection-intro-conclude-4-4-2-1-1">A mock exercise to appease validation.</div>
+<div class="solutions"><details id="subsection-intro-conclude-4-4-2-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="subsection-intro-conclude-4-4-2-2-1">An answer so there is something to appear in a <code class="code-inline tex2jax_ignore">&lt;solutions&gt;</code>.</div></div></details></div></article><article class="exercise exercise-like" id="subsection-intro-conclude-4-4-3"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<div class="para" id="subsection-intro-conclude-4-4-3-1-1">And a second to help with formatting the division heading.</div></article></section><section class="exercises" id="subsection-intro-conclude-4-5"><h5 class="heading hide-type">
+<span class="type">Exercises</span><span class="space"> </span><span class="codenumber"></span><span class="space"> </span><span class="title">Exercises</span>
+</h5>
+<article class="exercise exercise-like" id="subsection-intro-conclude-4-5-1"><h6 class="heading"><span class="codenumber">1<span class="period">.</span></span></h6>
+<div class="para" id="subsection-intro-conclude-4-5-1-1-1">A mock exercise to appease validation.</div>
+<div class="solutions"><details id="subsection-intro-conclude-4-5-1-2" class="answer solution-like born-hidden-knowl"><summary class="knowl__link"><span class="type">Answer</span><span class="period">.</span></summary><div class="answer solution-like knowl__content"><div class="para" id="subsection-intro-conclude-4-5-1-2-1">An answer so there is something to appear in a <code class="code-inline tex2jax_ignore">&lt;solutions&gt;</code>.</div></div></details></div></article><article class="exercise exercise-like" id="subsection-intro-conclude-4-5-2"><h6 class="heading"><span class="codenumber">2<span class="period">.</span></span></h6>
+<div class="para" id="subsection-intro-conclude-4-5-2-1-1">And a second to help with formatting the division heading.</div></article></section></section><section class="subsubsection" id="subsection-intro-conclude-5"><h4 class="heading hide-type">
+<span class="type">Subsubsection</span><span class="space"> </span><span class="codenumber">4.6.3</span><span class="space"> </span><span class="title">Test Three</span>
+</h4>
+<div class="para" id="subsection-intro-conclude-5-2">An intervening subsubsection just before a conclusion.</div></section><section class="conclusion" id="subsection-intro-conclude-6"><div class="para" id="subsection-intro-conclude-6-1">Entirely analogous to introductions are conclusions.  Any subdivision may have a sequence of paragraphs within a <code class="code-inline tex2jax_ignore">&lt;conclusion&gt;</code> that follows previous further subdivisions.  You are reading one now.  They are always leaves of the document structure, so are rendered on some pages that reference the preceding subdivisions.</div> <div class="para" id="subsection-intro-conclude-6-2">This concludes this conclusion (and this subsection and this section).</div></section></section><section class="subsection" id="subsection-paragraph-markup"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">4.7</span><span class="space"> </span><span class="title">Some Paragraph-Level Markup</span>
+</h3>
+<div class="para" id="subsection-paragraph-markup-2">Text within a paragraph may be <em class="emphasis">emphasized</em> with <code class="code-inline tex2jax_ignore">&lt;em&gt;</code> or if you want to take it to the next level you can identify the text as an <em class="alert">alert</em> with <code class="code-inline tex2jax_ignore">&lt;alert&gt;</code>.</div>
+<div class="para" id="subsection-paragraph-markup-3">Similarly, within a paragraph, you can identify edits between versions as <ins class="insert">inserted text that has been added</ins> with <code class="code-inline tex2jax_ignore">&lt;insert&gt;</code> or as <del class="delete">deleted text that has been removed</del> with <code class="code-inline tex2jax_ignore">&lt;delete&gt;</code>.  Note that these identified edits are slightly different than <s class="stale">stale text that you want to retain, but which is no longer relevant</s>, which is accomplished with <code class="code-inline tex2jax_ignore">&lt;stale&gt;</code>.  The original request for stale text came from an instructor with an online list of student topics for presentations, and as students claimed topics they were marked as no longer available for other students.</div>
+<div class="para" id="subsection-paragraph-markup-4">If you need a “fill-in blank”, like this <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span>, it can be obtained with an empty <code class="code-inline tex2jax_ignore">&lt;fillin&gt;</code> element that defaults to roughly a 10-character width.  You can use the <code class="code-inline tex2jax_ignore">&lt;characters&gt;</code> attribute to make the rule longer or shorter, such as a 40-character blank: <span class="fillin underline" role="img" aria-label="40-character blank" style="width: 18.1818181818182em;"></span>.  The character count is approximate, based on typical character widths within a proportional font carrying English language text.  Adjust to suit, or request a language-specific adjustment if it is critical.</div>
+<div class="para" id="subsection-paragraph-markup-5">This paragraph is intended to make a <code class="code-inline tex2jax_ignore">&lt;fillin&gt;</code> appear right at the start of <span class="fillin underline" role="img" aria-label="20-character blank" style="width: 9.090909090909092em;"></span> the second line  in print and then the next paragraph has nothing but a <code class="code-inline tex2jax_ignore">&lt;fillin&gt;</code>. Both are for testing purposes.</div>
+<div class="para" id="subsection-paragraph-markup-6"><span class="fillin underline" role="img" aria-label="5-character blank" style="width: 2.272727272727273em;"></span></div>
+<div class="para" id="subsection-paragraph-markup-7">The following are <code class="code-inline tex2jax_ignore">&lt;fillin&gt;</code> with <code class="code-inline tex2jax_ignore">@rows</code> and/or <code class="code-inline tex2jax_ignore">@cols</code> attributes (at least one of which is greater than 1): <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> (2 <span class="times-sign">×</span> 1 array), <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> (1 <span class="times-sign">×</span> 3 array), <span class="fillin underline" role="img" aria-label="10-character blank" style="width: 4.545454545454546em;"></span> (2 <span class="times-sign">×</span> 3 array).</div>
+<div class="para" id="subsection-paragraph-markup-8">Long after we started this mess, we added PreTeXt tags to mark up tags and attributes.  The elements are: <code class="code-inline tex2jax_ignore">&lt;tag&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;tage&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;attr&gt;</code>.  Examples of how these render are (respectively): <code class="code-inline tex2jax_ignore">&lt;section&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;hash/&gt;</code>, <code class="code-inline tex2jax_ignore">@width</code>.  Perhaps this document will make greater use of these tags.</div>
+<div class="para" id="subsection-paragraph-markup-9">We supply two provisional cross-references for testing purposes only: <code class="code-inline tex2jax_ignore">[provisional cross-reference: a first incomplete cross-reference]</code>, <code class="code-inline tex2jax_ignore">[provisional cross-reference: a second incomplete cross-reference]</code>.</div></section><section class="conclusion" id="section-interesting-corollary-11"><div class="para" id="section-interesting-corollary-11-1">A conclusion here, which we fill with some numbering tests.</div> <div class="para" id="section-interesting-corollary-11-2">This is a cross-reference to one of the outcomes, forced to use the <code class="code-inline tex2jax_ignore">type-global</code> form of the text.  It should describe the outcome as belonging to the <em class="emphasis">section</em> (rather than the <em class="emphasis">outcomes</em>), since outcomes are one-per-subdivision and are numbered based upon the containing division: <a href="section-interesting-corollary.html#outcome-structure" class="xref" data-knowl="./knowl/xref/outcome-structure.html" data-reveal-label="Reveal" data-close-label="Close" title="Outcome 4.2">Outcome 2 of Section 4</a>.  For comparison this is the (forced) <code class="code-inline tex2jax_ignore">type-global</code> cross-reference: <a href="section-interesting-corollary.html#outcome-structure" class="xref" data-knowl="./knowl/xref/outcome-structure.html" data-reveal-label="Reveal" data-close-label="Close" title="Outcome 4.2">Outcome 4.2</a>.</div></section><article class="outcomes goal-like" id="outcomes-structures"><h3 class="heading">
+<span class="type">Outcomes:</span><span class="space"> </span><span class="title">Fundamental Structures, Revisited</span>
+</h3>
+<div class="introduction" id="outcomes-structures-2"><div class="para" id="outcomes-structures-2-1">This is a <code class="code-inline tex2jax_ignore">&lt;outcomes&gt;</code> element you are reading, and this is its introduction.  This early section has really grown and we have tried to accomplish many things.  Not all of them are listed here.</div></div>
+<ol class="decimal">
+<li id="outcomes-structures-3-1"><div class="para" id="p-derived-outcomes-structures-3-1">Display various “blocks”, fundamental units of the flow.</div></li>
+<li id="outcome-structure"><div class="para" id="p-derived-outcome-structure">More, and this is what the cross-references above are pointing to.</div></li>
+<li id="outcomes-structures-3-3"><div class="para" id="p-derived-outcomes-structures-3-3">Evermore.</div></li>
+</ol>
+<div class="conclusion" id="outcomes-structures-4"><div class="para" id="outcomes-structures-4-1">This concludes the (incomplete) outcomes for this section, so now we can carry-on to the next section.</div></div></article></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="section-sage-cells.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="section-facts-figures.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="feedback-link" href="http://example.com/not-implemented.html" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>
+<!--Start: StatCounter code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***        GET YOUR OWN FROM STATCOUNTER           ***--><script>
+var sc_project=9664088;
+var sc_invisible=1;
+var sc_security="6e60c510";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/9664088/0/6e60c510/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-48811660-1"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-48811660-1');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>

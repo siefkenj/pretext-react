@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<!--********************************************-->
+<!--*       Generated from PreTeXt source      *-->
+<!--*                                          *-->
+<!--*         https://pretextbook.org          *-->
+<!--*                                          *-->
+<!--********************************************-->
+<html lang="en-US" dir="ltr">
+<head xmlns:og="http://ogp.me/ns#" xmlns:book="https://ogp.me/ns/book#">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>SA Interactive Elements, Server</title>
+<meta name="Keywords" content="Authored in PreTeXt">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta property="og:type" content="article">
+<meta property="og:image" content="https://pretextbook.org/examples/sample-article/html/external/misc/book-cover-google-art-project.jpg">
+<link rel="icon" type="image/png" sizes="32x32" href="external/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="external/favicon/favicon-16x16.png">
+<script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script><script>
+var runestoneMathReady = new Promise((resolve) => window.rsMathReady = resolve);
+window.MathJax = {
+  "tex": {
+    "inlineMath": [
+      [
+        "\\(",
+        "\\)"
+      ]
+    ],
+    "tags": "none",
+    "tagSide": "right",
+    "tagIndent": ".8em",
+    "packages": {
+      "[+]": [
+        "base",
+        "ams",
+        "amscd",
+        "color",
+        "newcommand",
+        "knowl"
+      ]
+    }
+  },
+  "options": {
+    "ignoreHtmlClass": "tex2jax_ignore|ignore-math",
+    "processHtmlClass": "process-math",
+    "renderActions": {
+      "findScript": [
+        10,
+        function (doc) {
+            document.querySelectorAll('script[type^="math/tex"]').forEach(function(node) {
+                var display = !!node.type.match(/; *mode=display/);
+                var math = new doc.options.MathItem(node.textContent, doc.inputJax[0], display);
+                var text = document.createTextNode('');
+                node.parentNode.replaceChild(text, node);
+                math.start = {node: text, delim: '', n: 0};
+                math.end = {node: text, delim: '', n: 0};
+                doc.math.push(math);
+            });
+        },
+        ""
+      ]
+    }
+  },
+  "chtml": {
+    "scale": 0.98,
+    "mtextInheritFont": true
+  },
+  "loader": {
+    "load": [
+      "input/asciimath",
+      "[tex]/extpfeil",
+      "[tex]/amscd",
+      "[tex]/color",
+      "[tex]/newcommand",
+      "[pretext]/mathjaxknowl3.js"
+    ],
+    "paths": {
+      "pretext": "_static/pretext/js/lib"
+    }
+  },
+  "startup": {
+    "typeset": false
+  }
+};
+</script><script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js"></script><script type="module" defer src="./static/js/main.js"></script><link href="./static/css/main.css" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Inconsolata:wght@400;700&amp;family=Noto+Serif:ital,wght@0,400;0,700;1,400;1,700&amp;family=Tinos:ital,wght@0,400;0,700;1,400;1,700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.cdnfonts.com/css/dejavu-serif" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Roboto+Serif:opsz,wdth,wght@8..144,50..150,100..900&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Open+Sans:wdth,wght@75..100,300..800&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200">
+<script src="https://cdn.geogebra.org/apps/deployggb.js"></script><!--** eBookCongig is necessary to configure interactive       **-->
+<!--** Runestone components to run locally in reader's browser **-->
+<!--** No external communication:                              **-->
+<!--**     log level is 0, Runestone Services are disabled     **-->
+<script type="text/javascript">
+eBookConfig = {};
+eBookConfig.useRunestoneServices = false;
+eBookConfig.host = 'http://127.0.0.1:8000';
+eBookConfig.course = 'PTX_Course_Title_Here';
+eBookConfig.basecourse = 'PTX_Base_Course';
+eBookConfig.isLoggedIn = false;
+eBookConfig.email = '';
+eBookConfig.isInstructor = false;
+eBookConfig.logLevel = 0;
+eBookConfig.username = '';
+eBookConfig.readings = null;
+eBookConfig.activities = null;
+eBookConfig.downloadsEnabled = false;
+eBookConfig.allow_pairs = false;
+eBookConfig.enableScratchAC = false;
+eBookConfig.build_info = "";
+eBookConfig.python3 = null;
+eBookConfig.runestone_version = '7.2.15';
+eBookConfig.jobehost = '';
+eBookConfig.proxyuri_runs = '';
+eBookConfig.proxyuri_files = '';
+eBookConfig.enable_chatcodes =  false;
+</script>
+<!--*** Runestone Services ***-->
+<script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.2.15/prefix-runtime.d30f9fb21d6c7b70.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.2.15/prefix-347.8328b60515045466.bundle.js"></script><script type="text/javascript" src="https://runestone.academy/cdn/runestone/7.2.15/prefix-runestone.aeac7cf9ad5c07ef.bundle.js"></script><link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.2.15/prefix-347.f9add1ca35d5ad93.css">
+<link rel="stylesheet" type="text/css" href="https://runestone.academy/cdn/runestone/7.2.15/prefix-runestone.f64dcc3632d7a0c3.css">
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+</head>
+<body id="pretext-SA" data-react-in-use="yes" class="pretext article ignore-math">
+<a class="assistive" href="#ptx-content">Skip to main content</a><header id="ptx-masthead" class="ptx-masthead"><div class="ptx-banner">
+<a id="logo-link" class="logo-link" target="_blank" href="https://pretextbook.org"><img src="external/misc/book-cover-google-art-project.jpg" alt="Logo image"></a><div class="title-container">
+<h1 class="heading"><a href="derivatives.html"><span class="title">Derivatives and Integrals:</span> <span class="subtitle">An Annotated Discourse</span></a></h1>
+<p class="byline">Robert Beezer</p>
+</div>
+</div></header><nav id="ptx-navbar" class="ptx-navbar navbar"><button class="toc-toggle button" title="Contents"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5d2;</span><span class="name">Contents</span></button><a class="index-button button" href="the-index.html" title="Index"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe88e;</span><span class="name">Index</span></a><div class="searchbox">
+<div class="searchwidget"><button id="searchbutton" class="searchbutton button" type="button" title="Search book"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe8b6;</span><span class="name">Search Book</span></button></div>
+<div id="searchresultsplaceholder" class="searchresultsplaceholder" style="display: none">
+<div class="search-results-controls">
+<input aria-label="Search term" id="ptxsearch" class="ptxsearch" type="text" name="terms" placeholder="Search term"><button title="Close search" id="closesearchresults" class="closesearchresults"><span class="material-symbols-outlined">close</span></button>
+</div>
+<h2 class="search-results-heading">Search Results: </h2>
+<div id="searchempty" class="searchempty"><span>No results.</span></div>
+<ol id="searchresults" class="searchresults"></ol>
+</div>
+</div>
+<span class="nav-other-controls"><button id="calculator-toggle" class="calculator-toggle button" title="Show calculator" aria-expanded="false" aria-controls="calculator-container"><span class="icon material-symbols-outlined" aria-hidden="true">&#xea5f;</span><span class="name">Calc</span></button><div id="calculator-container" class="calculator-container" style="display: none; z-index:100;"><div id="geogebra-calculator"></div></div>
+<script>
+var ggbApp = new GGBApplet({"appName": "classic",
+    "width": 330,
+    "height": 600,
+    "showToolBar": true,
+    "showAlgebraInput": true,
+    "perspective": "G/A",
+    "algebraInputPosition": "bottom",
+    "scaleContainerClass": "calculator-container",
+    "allowUpscale": true,
+    "autoHeight": true,
+    "disableAutoScale": false},
+true);
+</script></span><span class="treebuttons"><a class="previous-button button" href="section-interactive-authored.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="up-button button" href="derivatives.html" title="Up"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Up</span></a><a class="next-button button" href="section-interactive-exercises.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a></span></nav><div id="latex-macros" class="hidden-content process-math" style="display:none"><span class="process-math">\(\require{cancel}\require{extpfeil}\newcommand{\definiteintegral}[4]{\int_{#1}^{#2}\,#3\,d#4} 
+\newcommand{\myequation}[2]{#1\amp =#2} 
+\newcommand{\indefiniteintegral}[2]{\int#1\,d#2}
+\newcommand{\testingescapedpercent}{ \% } 
+\newcommand{\lt}{&lt;}
+\newcommand{\gt}{&gt;}
+\newcommand{\amp}{&amp;}
+\definecolor{fillinmathshade}{gray}{0.9}
+\newcommand{\fillinmath}[1]{\mathchoice{\colorbox{fillinmathshade}{$\displaystyle     \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\textstyle        \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptstyle      \phantom{\,#1\,}$}}{\colorbox{fillinmathshade}{$\scriptscriptstyle\phantom{\,#1\,}$}}}
+\newcommand{\sfrac}[2]{{#1}/{#2}}
+\)</span></div>
+<div class="ptx-page">
+<div id="ptx-sidebar" class="ptx-sidebar"><nav id="ptx-toc" class="ptx-toc depth2"><ul class="structural contains-active toc-item-list">
+<li class="toc-item toc-frontmatter">
+<div class="toc-title-box"><a href="frontmatter.html" class="internal"><span class="title">Front Matter</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-abstract"><div class="toc-title-box"><a href="frontmatter.html#frontmatter-2" class="internal"><span class="title">Abstract</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-introduction.html" class="internal"><span class="codenumber">1</span> <span class="title">Introduction</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-fundamental-theorem.html" class="internal"><span class="codenumber">2</span> <span class="title">The Fundamental Theorem</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-sage-cells.html" class="internal"><span class="codenumber">3</span> <span class="title">Computing Integrals with Sage (<span class="process-math">\(\int\)</span>)</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-interesting-corollary.html" class="internal"><span class="codenumber">4</span> <span class="title">An Interesting Corollary</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-second-FTC" class="internal"><span class="codenumber">4.1</span> <span class="title">Second Version of <abbr class="acronym">FTC</abbr></span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-5" class="internal"><span class="codenumber">4.2</span> <span class="title">A Pedagogical Note about Subsection 4.1</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsubsection-different-integrals" class="internal"><span class="codenumber">4.2.1</span> <span class="title">Symbolic and Numerical Integrals</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-5-3" class="internal"><span class="codenumber">4.2.2</span> <span class="title">Advice</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interesting-corollary.html#exercises-subsection-solo" class="internal"><span class="codenumber">4.2.3</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-5-5" class="internal"><span class="codenumber">4.2.4</span> <span class="title">Reading Questions</span></a></div></li>
+<li class="toc-item toc-glossary"><div class="toc-title-box"><a href="section-interesting-corollary.html#glossary-specialized" class="internal"><span class="codenumber">4.2.5</span> <span class="title">Glossary</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="section-interesting-corollary.html#solutions-subsection" class="internal"><span class="codenumber">4.2.6</span> <span class="title">Solutions for This Subsection</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-6" class="internal"><span class="codenumber">4.3</span> <span class="title">Theorem-Like Environments</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-7" class="internal"><span class="codenumber">4.4</span> <span class="title">Linking Sage Cells</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#section-interesting-corollary-8" class="internal"><span class="codenumber">4.5</span> <span class="title">Hierarchy</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude" class="internal"><span class="codenumber">4.6</span> <span class="title">Introductions and Conclusions</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-3" class="internal"><span class="codenumber">4.6.1</span> <span class="title">Test One</span></a></div></li>
+<li class="toc-item toc-subsubsection">
+<div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-4" class="internal"><span class="codenumber">4.6.2</span> <span class="title">Test Two</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-4-4" class="internal"><span class="codenumber">4.6.2</span> <span class="title">What Did You Learn?</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-4-5" class="internal"><span class="codenumber">4.6.2</span> <span class="title">Exercises</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-intro-conclude-5" class="internal"><span class="codenumber">4.6.3</span> <span class="title">Test Three</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interesting-corollary.html#subsection-paragraph-markup" class="internal"><span class="codenumber">4.7</span> <span class="title">Some Paragraph-Level Markup</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-facts-figures.html" class="internal"><span class="codenumber">5</span> <span class="title">Some Facts and Figures</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="derivatives-9.html" class="internal"><span class="codenumber">6</span> <span class="title">Some Advanced Ideas</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-mathematics.html" class="internal"><span class="codenumber">7</span> <span class="title">Mathematics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-3" class="internal"><span class="codenumber">7.1</span> <span class="title">Basic Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-4" class="internal"><span class="codenumber">7.2</span> <span class="title">Displayed Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-5" class="internal"><span class="codenumber">7.3</span> <span class="title"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Packages and MathJax Extensions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-6" class="internal"><span class="codenumber">7.4</span> <span class="title">Advanced Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#section-mathematics-7" class="internal"><span class="codenumber">7.5</span> <span class="title">Local Tags on Equations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#commutative-diagrams" class="internal"><span class="codenumber">7.6</span> <span class="title">Commutative Diagrams</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#line-breaking-math" class="internal"><span class="codenumber">7.7</span> <span class="title">Line-Breaking after Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#font-math" class="internal"><span class="codenumber">7.8</span> <span class="title">Fonts and Mathematics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-mathematics.html#miscellaneous-math" class="internal"><span class="codenumber">7.9</span> <span class="title">Miscellaneous</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-text-paragraphs.html" class="internal"><span class="codenumber">8</span> <span class="title">Text in Paragraphs</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-xml-escape" class="internal"><span class="codenumber">8.1</span> <span class="title">Special <abbr class="initialism">XML</abbr> characters</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-6" class="internal"><span class="codenumber">8.2</span> <span class="title">Quotations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-7" class="internal"><span class="codenumber">8.3</span> <span class="title">Groupings</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-8" class="internal"><span class="codenumber">8.4</span> <span class="title">Characters, Symbols, and Constructions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-9" class="internal"><span class="codenumber">8.5</span> <span class="title">Currency</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-icons-in-text" class="internal"><span class="codenumber">8.6</span> <span class="title">Icons in Text</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-keyboard" class="internal"><span class="codenumber">8.7</span> <span class="title">Keyboard Keys</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-urls" class="internal"><span class="codenumber">8.8</span> <span class="title">URLs, such as <code class="code-inline tex2jax_ignore">http://example.com</code></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-13" class="internal"><span class="codenumber">8.9</span> <span class="title">Biological Names</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-14" class="internal"><span class="codenumber">8.10</span> <span class="title">Verbatim in titles, <code class="code-inline tex2jax_ignore">\a&amp;b#c%d~e{f}g$h_i^j</code>, OK</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-special-situations" class="internal"><span class="codenumber">8.11</span> <span class="title">Special Situations</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#subsection-jupyter-dollars" class="internal"><span class="codenumber">8.12</span> <span class="title">Jupyter Notebook, Markdown, MathJax, Delimiters</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-17" class="internal"><span class="codenumber">8.13</span> <span class="title"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> Characters, Ligatures, and More</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-text-paragraphs.html#section-text-paragraphs-18" class="internal"><span class="codenumber">8.14</span> <span class="title"><abbr class="initialism">HTML</abbr> and accidental mathematics</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-graphics.html" class="internal"><span class="codenumber">9</span> <span class="title">Graphics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-3" class="internal"><span class="codenumber">9.1</span> <span class="title">Images from External Sources</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-4" class="internal"><span class="codenumber">9.2</span> <span class="title"><span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-5" class="internal"><span class="codenumber">9.3</span> <span class="title">Asymptote, 2D</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#graphics-asymptote-webgl" class="internal"><span class="codenumber">9.4</span> <span class="title">Asymptote, 3D via WebGL</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-7" class="internal"><span class="codenumber">9.5</span> <span class="title">Sage Plots</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-8" class="internal"><span class="codenumber">9.6</span> <span class="title">Inkscape Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-9" class="internal"><span class="codenumber">9.7</span> <span class="title">Copies of Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-10" class="internal"><span class="codenumber">9.8</span> <span class="title">Caption Testing</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#captionless-images" class="internal"><span class="codenumber">9.9</span> <span class="title">Captionless Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-12" class="internal"><span class="codenumber">9.10</span> <span class="title">Technical Details</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#subsection-tactile-graphics" class="internal"><span class="codenumber">9.11</span> <span class="title">Experimental Tactile Graphics</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-graphics.html#section-graphics-14" class="internal"><span class="codenumber">9.12</span> <span class="title">Accessibility</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-further-reading.html" class="internal"><span class="codenumber">10</span> <span class="title">Further Reading</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-further-reading.html#section-further-reading-2" class="internal"><span class="codenumber">10.1</span> <span class="title">Specialized Subdivisions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-further-reading.html#section-further-reading-3" class="internal"><span class="codenumber">10.2</span> <span class="title">Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-further-reading.html#exercises-section-multiple" class="internal"><span class="codenumber">10.3</span> <span class="title">More Exercises</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="section-further-reading.html#references-section" class="internal"><span class="codenumber">10.4</span> <span class="title">References</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-lists.html" class="internal"><span class="codenumber">11</span> <span class="title">List Calisthenics</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-2" class="internal"><span class="codenumber">11.1</span> <span class="title">Lists, Generally</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-3" class="internal"><span class="codenumber">11.2</span> <span class="title">List Spacing, I</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-4" class="internal"><span class="codenumber">11.3</span> <span class="title">List Spacing, II</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#test-second" class="internal"><span class="codenumber">11.4</span> <span class="title">List items containing only inline math</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-6" class="internal"><span class="codenumber">11.5</span> <span class="title">Difficult List Items</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-7" class="internal"><span class="codenumber">11.6</span> <span class="title">Description Lists</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-8" class="internal"><span class="codenumber">11.7</span> <span class="title">Named Lists</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-lists.html#section-lists-9" class="internal"><span class="codenumber">11.8</span> <span class="title">Testing List Decompositions</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-lists.html#section-lists-10" class="internal"><span class="codenumber">11.9</span> <span class="title">Exercises (with lists)</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="section-lists.html#section-lists-11" class="internal"><span class="codenumber">11.10</span> <span class="title">References (with lists in Annotations)</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-table-calisthenics.html" class="internal"><span class="codenumber">12</span> <span class="title">Table Calisthenics</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-interactive-authored.html" class="internal"><span class="codenumber">13</span> <span class="title">Interactive Elements, Authored</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#interactive-html5-canvas" class="internal"><span class="codenumber">13.1</span> <span class="title">HTML5 Canvas</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-8" class="internal"><span class="codenumber">13.2</span> <span class="title">D3.js</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#svg-interactives" class="internal"><span class="codenumber">13.3</span> <span class="title">SVG</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-10" class="internal"><span class="codenumber">13.4</span> <span class="title">JSXGraph</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-11" class="internal"><span class="codenumber">13.5</span> <span class="title">JessieCode</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-12" class="internal"><span class="codenumber">13.6</span> <span class="title">Sage Interacts</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-13" class="internal"><span class="codenumber">13.7</span> <span class="title">Geogebra</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#section-interactive-authored-14" class="internal"><span class="codenumber">13.8</span> <span class="title">CircuitJS</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#interactive-iframes-local" class="internal"><span class="codenumber">13.9</span> <span class="title">IFrames from Files</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-authored.html#interactive-threejs" class="internal"><span class="codenumber">13.10</span> <span class="title">threejs</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section active">
+<div class="toc-title-box"><a href="section-interactive-server.html" class="internal"><span class="codenumber">14</span> <span class="title">Interactive Elements, Server</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-server.html#subsection-geogebra-server" class="internal"><span class="codenumber">14.1</span> <span class="title">GeoGebra</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-server.html#section-interactive-server-6" class="internal"><span class="codenumber">14.2</span> <span class="title">Desmos Graphs</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-server.html#section-interactive-server-7" class="internal"><span class="codenumber">14.3</span> <span class="title">CalcPlot3D</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-server.html#interactive-iframes-server" class="internal"><span class="codenumber">14.4</span> <span class="title">IFrames from Servers</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-interactive-exercises.html" class="internal"><span class="codenumber">15</span> <span class="title">Interactive Exercises</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-3" class="internal"><span class="codenumber">15.1</span> <span class="title">True/False</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-4" class="internal"><span class="codenumber">15.2</span> <span class="title">Multiple-Choice</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-5" class="internal"><span class="codenumber">15.3</span> <span class="title">Parsons Problem, Math Proof</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-6" class="internal"><span class="codenumber">15.4</span> <span class="title">Parsons Problem, Code</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-7" class="internal"><span class="codenumber">15.5</span> <span class="title">Matching</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-8" class="internal"><span class="codenumber">15.6</span> <span class="title">Clickable Area</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-9" class="internal"><span class="codenumber">15.7</span> <span class="title">Old-Style Fillin-In</span></a></div></li>
+<li class="toc-item toc-reading-questions"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-10" class="internal"><span class="codenumber">15.8</span> <span class="title">A Reading Question</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-exercises.html#section-interactive-exercises-11" class="internal"><span class="codenumber">15.9</span> <span class="title">Faux Subsection</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-interactive-code.html" class="internal"><span class="codenumber">16</span> <span class="title">Interactive Coding</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-code.html#section-interactive-code-3" class="internal"><span class="codenumber">16.1</span> <span class="title">ActiveCode</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-code.html#section-interactive-code-4" class="internal"><span class="codenumber">16.2</span> <span class="title">CodeLens</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-interactive-code.html#section-interactive-code-5" class="internal"><span class="codenumber">16.3</span> <span class="title">Activity with An ActiveCode</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-interactive-code.html#section-interactive-code-6" class="internal"><span class="codenumber">16.4</span> <span class="title">YouTube</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-audio.html" class="internal"><span class="codenumber">17</span> <span class="title">Audio</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-video.html" class="internal"><span class="codenumber">18</span> <span class="title">Video</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-video.html#section-video-3" class="internal"><span class="codenumber">18.1</span> <span class="title">Video Files</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-video.html#section-video-4" class="internal"><span class="codenumber">18.2</span> <span class="title">YouTube</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-video.html#section-video-5" class="internal"><span class="codenumber">18.3</span> <span class="title">Vimeo</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-video.html#section-video-6" class="internal"><span class="codenumber">18.4</span> <span class="title">Captions and Subtitles</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-cross-referencing.html" class="internal"><span class="codenumber">19</span> <span class="title">Cross-Referencing</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-internationalization.html" class="internal"><span class="codenumber">20</span> <span class="title">Internationalization</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-pre-formatted.html" class="internal"><span class="codenumber">21</span> <span class="title">Pre-Formatted Text</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-programs.html" class="internal"><span class="codenumber">22</span> <span class="title">Program Listings (with <code class="code-inline tex2jax_ignore">code</code> in the title)</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-units-measure.html" class="internal"><span class="codenumber">23</span> <span class="title">Units of Measure</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-side-by-side.html" class="internal"><span class="codenumber">24</span> <span class="title">Side-By-Side Panels</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-3" class="internal"><span class="codenumber">24.1</span> <span class="title">Figures with Numbers Side-By-Side</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-4" class="internal"><span class="codenumber">24.2</span> <span class="title">Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-5" class="internal"><span class="codenumber">24.3</span> <span class="title">Common Side-By-Side Constructions</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-6" class="internal"><span class="codenumber">24.4</span> <span class="title">Vertical Alignment</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-7" class="internal"><span class="codenumber">24.5</span> <span class="title">Text Next to Text and Images</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-8" class="internal"><span class="codenumber">24.6</span> <span class="title">Image Formats, Side-by-Sides</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-9" class="internal"><span class="codenumber">24.7</span> <span class="title">Tables Side-By-Side</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-10" class="internal"><span class="codenumber">24.8</span> <span class="title">Tables Next to Figures</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-11" class="internal"><span class="codenumber">24.9</span> <span class="title">Tables Next to Text</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-12" class="internal"><span class="codenumber">24.10</span> <span class="title">Tabular Next to Each Other</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-13" class="internal"><span class="codenumber">24.11</span> <span class="title">Lists in Side-by-Sides</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#stacking-side-by-side" class="internal"><span class="codenumber">24.12</span> <span class="title">Stacking: Back to Vertical Flow</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#subsection-sbs-other-panels" class="internal"><span class="codenumber">24.13</span> <span class="title">Other Panels</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-16" class="internal"><span class="codenumber">24.14</span> <span class="title">Poems as Side-By-Side Panels</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#subsection-sbsgroup" class="internal"><span class="codenumber">24.15</span> <span class="title">Side-By-Side Groups</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-18" class="internal"><span class="codenumber">24.16</span> <span class="title">Testing a Side-By-Side First</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-side-by-side.html#section-side-by-side-19" class="internal"><span class="codenumber">24.17</span> <span class="title">Testing Styling of Related Elements</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-side-by-side-gallery.html" class="internal"><span class="codenumber">25</span> <span class="title">Side-by-Side Gallery</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-open-problems.html" class="internal"><span class="codenumber">26</span> <span class="title">Open Problems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-poetry.html" class="internal"><span class="codenumber">27</span> <span class="title">Poetry</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-atomic-items.html" class="internal"><span class="codenumber">28</span> <span class="title">Atomic Objects</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-atomic-items.html#atomic-image" class="internal"><span class="codenumber">28.1</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;image&gt;</code></span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-atomic-items.html#atomic-image-26" class="internal"><span class="codenumber">28.1</span> <span class="title">Exercises</span></a></div></li></ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-atomic-items.html#atomic-video" class="internal"><span class="codenumber">28.2</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;video&gt;</code></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-atomic-items.html#atomic-program" class="internal"><span class="codenumber">28.3</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;program&gt;</code>, <code class="code-inline tex2jax_ignore">&lt;console&gt;</code></span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-atomic-items.html#atomic-tabular" class="internal"><span class="codenumber">28.4</span> <span class="title"><code class="code-inline tex2jax_ignore">&lt;tabular&gt;</code></span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-advanced-numbering.html" class="internal"><span class="codenumber">29</span> <span class="title">Advanced Numbering</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-3" class="internal"><span class="codenumber">29.1</span> <span class="title">One</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-4" class="internal"><span class="codenumber">29.2</span> <span class="title">Two</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-4-3" class="internal"><span class="codenumber">29.2.1</span> <span class="title">Uno</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-4-4" class="internal"><span class="codenumber">29.2.2</span> <span class="title">Dos</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-5" class="internal"><span class="codenumber">29.3</span> <span class="title">Three</span></a></div></li>
+<li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-6" class="internal"><span class="codenumber">29.4</span> <span class="title">Four</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-6-3" class="internal"><span class="codenumber">29.4.1</span> <span class="title">Uno</span></a></div></li>
+<li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-6-4" class="internal"><span class="codenumber">29.4.2</span> <span class="title">Dos</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-7" class="internal"><span class="codenumber">29.5</span> <span class="title">Five</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#subsection-local-theorems" class="internal"><span class="codenumber">29.6</span> <span class="title">Theorems in This Section</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#subsection-with-an-exercise" class="internal"><span class="codenumber">29.7</span> <span class="title">A Title with ] a Right Bracket</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-10" class="internal"><span class="codenumber">29.8</span> <span class="title">A Title with } a Right Brace</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-11" class="internal"><span class="codenumber">29.9</span> <span class="title">A Title with <span class="process-math">\(a]b\)</span> a Math Right Bracket</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-12" class="internal"><span class="codenumber">29.10</span> <span class="title">Just an Exercise</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="section-advanced-numbering.html#section-advanced-numbering-13" class="internal"><span class="codenumber">29.11</span> <span class="title">Solutions</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-customizations.html" class="internal"><span class="codenumber">30</span> <span class="title">Customizations</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-customizations.html#rename-facility" class="internal"><span class="codenumber">30.1</span> <span class="title">Renaming Document Parts, Plus This Is A Really Long Title So That We Can Test How Well It Reacts To The Right Margin And Wraps Around To Form A Couple Of Lines, Plus How It Sits Relative To The Number Of The Subsection</span></a></div></li>
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-customizations.html#section-customizations-3" class="internal"><span class="codenumber">30.2</span> <span class="title">Customizing Phrases</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-myopenmath.html" class="internal"><span class="codenumber">31</span> <span class="title">MyOpenMath Interactive Problems</span></a></div></li>
+<li class="toc-item toc-section"><div class="toc-title-box"><a href="section-ancillaries.html" class="internal"><span class="codenumber">32</span> <span class="title">Ancillaries</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-worksheets.html" class="internal"><span class="codenumber">33</span> <span class="title">Worksheets</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="section-worksheets.html#worksheet-geometric-prelude" class="internal"><span class="codenumber">33.1</span> <span class="title">A Geometric Prelude</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="section-worksheets.html#worksheet-networks" class="internal"><span class="codenumber">33.2</span> <span class="title">Networks Worksheet</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="section-worksheets.html#worksheet-testing" class="internal"><span class="codenumber">33.3</span> <span class="title">Worksheet</span></a></div></li>
+<li class="toc-item toc-worksheet"><div class="toc-title-box"><a href="section-worksheets.html#worksheet-dot-products" class="internal"><span class="codenumber">33.4</span> <span class="title">Dot products and projection</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-exercises-single.html" class="internal"><span class="codenumber">34</span> <span class="title">Exercises, One Subsection</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-exercises-single.html#exercise-collection" class="internal"><span class="codenumber">34</span> <span class="title">Exercise Collection</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="section-exercises-single.html#section-exercises-single-11" class="internal"><span class="codenumber">34</span> <span class="title">More Reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-structured.html" class="internal"><span class="codenumber">35</span> <span class="title">Exercise Section, Structured</span></a></div></li>
+<li class="toc-item toc-section">
+<div class="toc-title-box"><a href="section-exercises-multiple.html" class="internal"><span class="codenumber">36</span> <span class="title">Exercises, Multiple Subsections</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="section-exercises-multiple.html#section-exercises-multiple-3" class="internal"><span class="codenumber">36.1</span> <span class="title">Faux Subsection</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-exercises-multiple.html#exercises-drill" class="internal"><span class="codenumber">36.2</span> <span class="title">Drill Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-exercises-multiple.html#section-exercises-multiple-5" class="internal"><span class="codenumber">36.3</span> <span class="title">Challenging Exercises</span></a></div></li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="section-exercises-multiple.html#section-exercises-multiple-6" class="internal"><span class="codenumber">36.4</span> <span class="title">Impossible Exercises</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="section-exercises-multiple.html#section-exercises-multiple-7" class="internal"><span class="codenumber">36.5</span> <span class="title">More Reading</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-exercises"><div class="toc-title-box"><a href="exercises-top-level.html" class="internal"><span class="codenumber">37</span> <span class="title">Exercises, Top-Level</span></a></div></li>
+<li class="toc-item toc-backmatter">
+<div class="toc-title-box"><a href="backmatter.html" class="internal"><span class="title">Reference</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-notation.html" class="internal"><span class="codenumber">A</span> <span class="title">Notation</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="solutions-backmatter.html" class="internal"><span class="codenumber">B</span> <span class="title">Solutions to Selected Exercises</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="solutions-single-exercises.html" class="internal"><span class="codenumber">C</span> <span class="title">Solutions to a Single Exercises Division</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="solutions-answers.html" class="internal"><span class="codenumber">D</span> <span class="title">All Solutions that are Answers</span></a></div></li>
+<li class="toc-item toc-solutions"><div class="toc-title-box"><a href="solutions-odd-answers.html" class="internal"><span class="codenumber">E</span> <span class="title">All Solutions that are Answers to Odd Exercises</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-results.html" class="internal"><span class="codenumber">F</span> <span class="title">List of Results</span></a></div></li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-exercise-lists.html" class="internal"><span class="codenumber">G</span> <span class="title">Lists of Exercises</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="appendix-structured.html" class="internal"><span class="codenumber">H</span> <span class="title">A Structured Appendix</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsection">
+<div class="toc-title-box"><a href="appendix-structured.html#appendix-structured-3" class="internal"><span class="codenumber">H.1</span> <span class="title">A Subsection in an Appendix</span></a></div>
+<ul class="structural toc-item-list"><li class="toc-item toc-subsubsection"><div class="toc-title-box"><a href="appendix-structured.html#appendix-structured-3-3" class="internal"><span class="codenumber">H.1.1</span> <span class="title">A Subsubsection in a Subsection in an Appendix</span></a></div></li></ul>
+</li></ul>
+</li>
+<li class="toc-item toc-appendix"><div class="toc-title-box"><a href="appendix-index.html" class="internal"><span class="codenumber">I</span> <span class="title">Index</span></a></div></li>
+<li class="toc-item toc-glossary"><div class="toc-title-box"><a href="glossary-backmatter.html" class="internal"><span class="title">Glossary</span></a></div></li>
+<li class="toc-item toc-appendix">
+<div class="toc-title-box"><a href="appendix-multiple-references.html" class="internal"><span class="codenumber">J</span> <span class="title">Multiple References</span></a></div>
+<ul class="structural toc-item-list">
+<li class="toc-item toc-subsection"><div class="toc-title-box"><a href="appendix-multiple-references.html#appendix-multiple-references-2" class="internal"><span class="codenumber">J.1</span> <span class="title">Multiple Specialized References</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="appendix-multiple-references.html#appendix-multiple-references-3" class="internal"><span class="codenumber">J.2</span> <span class="title">General References</span></a></div></li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="appendix-multiple-references.html#appendix-multiple-references-4" class="internal"><span class="codenumber">J.3</span> <span class="title">Specialized References</span></a></div></li>
+</ul>
+</li>
+<li class="toc-item toc-references"><div class="toc-title-box"><a href="references-backmatter.html" class="internal"><span class="title">References</span></a></div></li>
+<li class="toc-item toc-index"><div class="toc-title-box"><a href="the-index.html" class="internal"><span class="title">Index</span></a></div></li>
+<li class="toc-item toc-colophon"><div class="toc-title-box"><a href="colophon-back.html" class="internal"><span class="title">Colophon</span></a></div></li>
+</ul>
+</li>
+</ul></nav></div>
+<main class="ptx-main"><div id="ptx-content" class="ptx-content"><section class="section" id="section-interactive-server"><h2 class="heading hide-type">
+<span class="type">Section</span><span class="space"> </span><span class="codenumber">14</span><span class="space"> </span><span class="title">Interactive Elements, Server</span>
+</h2>
+<section class="introduction" id="section-interactive-server-4"> <div class="para" id="section-interactive-server-4-1">When outputting Web page versions, it is possible to embed a variety of dynamic interactive elements.  In a <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span>/PDF version, these will necessarily need to be replaced by some static substitute, such as a screenshot.  See <a href="section-sage-cells.html" class="internal" title="Section 3: Computing Integrals with Sage (∫)">Section 3</a> for the specifics of embedding instances of the Sage Cell Server, which is more elaborate, and not entirely similar.</div> <div class="para" id="section-interactive-server-4-2">Interactives in this section have code that lives on a server somewhere (in the “cloud”).  So maybe you uploaded an interactive demonstration, or maybe somebody else did.  In this sense, these are easier to create or use.  But pay attention, the code may come with restrictive licenses, even if you are the author originally.  See <a href="section-interactive-authored.html" class="internal" title="Section 13: Interactive Elements, Authored">Section 13</a> for more interactives that can be free as in “freedom” or <i class="foreign" lang="fr-FR">liberté</i>.  CalcPlot3D is the notable exception here.</div> <div class="para" id="section-interactive-server-4-3">(2018-06-22) Almost everything in this section is under active development and not stable yet.  Feel free to experiment and make suggestions and requests.  This page takes a while to completely load, so be patient.</div></section><section class="subsection" id="subsection-geogebra-server"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">14.1</span><span class="space"> </span><span class="title">GeoGebra</span>
+</h3>
+<div class="para" id="subsection-geogebra-server-4">A Geogebra <dfn class="terminology">material</dfn> is something you might use in a class.  It could also be called an interactive demonstration.  Go browsing at <a class="external" href="https://www.geogebra.org/materials/" target="_blank"><code class="code-inline tex2jax_ignore">www.geogebra.org/materials/</code></a> and find something appropriate for your project.  Or make an account and create your own.</div>
+<div class="para logical" id="subsection-geogebra-server-5">
+<div class="para">Once you find a material that looks instructive, it will be at a <abbr class="initialism">URL</abbr> such as</div>
+<pre class="code-display tex2jax_ignore">https://www.geogebra.org/m/KGn2d4Qd</pre>
+<div class="para">and you want to pick off the identifier on the end, in this case <code class="code-inline tex2jax_ignore">KGn2d4Qd</code>.  Then author</div>
+<pre class="code-display tex2jax_ignore">&lt;interactive geogebra="KGn2d4Qd" /&gt;</pre>
+<div class="para">At this writing (2018-02-04) you will want to place this inside a <code class="code-inline tex2jax_ignore">figure</code>, with a caption, as we do right now with material <code class="code-inline tex2jax_ignore">KGn2d4Qd</code>.</div>
+</div>
+<div class="para" id="subsection-geogebra-server-6">The shape of the material will be fixed, so guess (or measure with an on-screen ruler), the aspect ratio and use that in the <code class="code-inline tex2jax_ignore">&lt;interactive&gt;</code> element. If the width of the original material is anything other than 800 pixels, you should add <code class="code-inline tex2jax_ignore">@material-width</code> with the actual material width (units are pixels).</div>
+<figure class="figure figure-like" id="subsection-geogebra-server-7"><iframe src="https://www.geogebra.org/material/iframe/id/KGn2d4Qd/width/800/height/444/border/888888/smb/false/stb/false/stbh/false/ai/false/asb/false/sri/true/rc/false/ld/false/sdz/false/ctl/false" id="geogebra-right-triangle" width="420" height="233"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.1<span class="period">.</span></span><span class="space"> </span>Right Triangle Paradox</figcaption></figure><div class="para logical" id="subsection-geogebra-server-8">
+<div class="para">There are some optional control elements that Geogebra provides, such as the presence of the toolbar and the reset button. These can be controlled by adding the following additional attributes to the <code class="code-inline tex2jax_ignore">interactive</code>.</div>
+<ul class="disc">
+<li id="subsection-geogebra-server-8-2-1"><div class="para" id="subsection-geogebra-server-8-2-1-1">
+<code class="code-inline tex2jax_ignore">toolbar="yes"</code>: add the Geogebra toolbar above the material</div></li>
+<li id="subsection-geogebra-server-8-2-2"><div class="para" id="subsection-geogebra-server-8-2-2-1">
+<code class="code-inline tex2jax_ignore">algebra-input="yes"</code>: add an entry box below the material to add graphical objects using algebra formulas or Geogebra graphical commands</div></li>
+<li id="subsection-geogebra-server-8-2-3"><div class="para" id="subsection-geogebra-server-8-2-3-1">
+<code class="code-inline tex2jax_ignore">reset-icon="yes"</code>: enable the reset icon</div></li>
+<li id="subsection-geogebra-server-8-2-4"><div class="para" id="subsection-geogebra-server-8-2-4-1">
+<code class="code-inline tex2jax_ignore">shift-drag-zoom="yes"</code>: enable ability to drag and zoom the viewing context</div></li>
+</ul>
+</div>
+<div class="para" id="subsection-geogebra-server-9">Note that materials hosted at <code class="code-inline tex2jax_ignore">geogebra.org</code> have a non-standard, non-commercial license you must agree to before you can download them as source code.  Perhaps you must forfeit your copyright when you upload a material?  We have not investigated this thoroughly.</div></section><section class="subsection" id="section-interactive-server-6"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">14.2</span><span class="space"> </span><span class="title">Desmos Graphs</span>
+</h3>
+<div class="para logical" id="section-interactive-server-6-3">
+<div class="para">
+<dfn class="terminology">Desmos</dfn> provides interactive graphing applications.  The following example was created by Ann Cary and made available via the “Share” function of Desmos.  You can make your own Desmos graph, choose the “Share” icon, and the “Embed” option, to get a <abbr class="initialism">URL</abbr> such as</div>
+<pre class="code-display tex2jax_ignore">https://www.desmos.com/calculator/ttox1bvxku</pre>
+<div class="para">You want to pick off the identifier on the end, in this case <code class="code-inline tex2jax_ignore">ttox1bvxku</code>, then author</div>
+<pre class="code-display tex2jax_ignore">&lt;interactive desmos="ttox1bvxku" width="60%" aspect="2:3" /&gt;</pre>
+<div class="para">as we have done here.</div>
+</div>
+<div class="para" id="section-interactive-server-6-4">The static image employed in the <span class="latex-logo">L<span class="A">a</span>T<span class="E">e</span>X</span> version of this article was obtained by viewing the graph at the Desmos site (i.e., not the embedded version in the PreTeXt HTML version), and using the Share button to export a <abbr class="initialism">PNG</abbr> image.  In this case, we used a “Medium Rectangle” and “Thick” lines.</div>
+<figure class="figure figure-like" id="section-interactive-server-6-5"><iframe src="https://www.desmos.com/calculator/ttox1bvxku" id="desmos-natural-log" width="360" height="540"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.2<span class="period">.</span></span><span class="space"> </span>Graph of <span class="process-math">\(ln(x^2+5)-3\)</span></figcaption></figure><div class="para" id="section-interactive-server-6-6">Note that Desmos has extensive <span class="booktitle">Terms of Service</span> which include restrictions on commercial uses.</div></section><section class="subsection" id="section-interactive-server-7"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">14.3</span><span class="space"> </span><span class="title">CalcPlot3D</span>
+</h3>
+<div class="para" id="section-interactive-server-7-3">CalcPlot3D is a Javascript application for creating, visualizing, and understanding plots of 3D surfaces.  So it would be an ideal companion to a book on multivariate calculus, but should be useful in other courses of study.</div>
+<div class="para" id="section-interactive-server-7-4">To use it, start at the <a class="external" href="https://c3d.libretexts.org/CalcPlot3D/index.html" target="_blank">online app version</a><details class="ptx-footnote" aria-live="polite" id="section-interactive-server-7-4-2"><summary class="ptx-footnote__number" title="Footnote 14.1"><sup> 1 </sup></summary><div class="ptx-footnote__contents" id="section-interactive-server-7-4-2"><code class="code-inline tex2jax_ignore">c3d.libretexts.org/CalcPlot3D/index.html</code></div></details>.  Create a plot and adjust the image to a viewpoint and scale if you like.  Then, click the menu/hamburger icon in the upper-left and choose <code class="code-inline tex2jax_ignore">File</code>.  From here you can save a <abbr class="initialism">PNG</abbr> image for the static version, but you also want to select <code class="code-inline tex2jax_ignore">Encode View in URL</code>.  Now your browser address bar is filled with a query string (<em class="emphasis">all</em> the stuff <em class="emphasis">after</em> the question-mark) that has all the information necessary to reproduce your plot (and view).  Copy everything after the first question-mark to the <code class="code-inline tex2jax_ignore">interactive/code</code> element.  Be sure to replace any ampersands by <code class="code-inline tex2jax_ignore">&amp;amp;</code> (see the Author’s Guide for more about certain characters in <abbr class="initialism">URL</abbr>s).  Examine the source for the examples below to see how they are authored.  The <span class="booktitle">Help Manual</span> for CalcPlot3D is also available off the menu/hamburger icon in the upper-left.</div>
+<div class="para" id="section-interactive-server-7-5">In <a href="section-interactive-server.html#figure-intersecting-planes" class="xref" data-knowl="./knowl/xref/figure-intersecting-planes.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 14.3">Figure 14.3</a> grab the image with your mouse and rotate it in various directions.  Then while the image has focus, press the <code class="code-inline tex2jax_ignore">3</code> key (short for “3-D”), to get a 3D view, which will require some red-blue 3D glasses to fully appreciate.  Press the key again to return to a regular view.</div>
+<div class="para" id="section-interactive-server-7-6">When using a version with controls (e.g. <a href="section-interactive-server.html#figure-wavefunction" class="xref" data-knowl="./knowl/xref/figure-wavefunction.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 14.4">Figure 14.4</a>), or the full application (e.g. <a href="section-interactive-server.html#figure-calcplot3d" class="xref" data-knowl="./knowl/xref/figure-calcplot3d.html" data-reveal-label="Reveal" data-close-label="Close" title="Figure 14.5">Figure 14.5</a>), specify an aspect ratio that is wider than it is tall.  Start with <code class="code-inline tex2jax_ignore">aspect="3:2"</code>, and perhaps fine-tune from there.</div>
+<figure class="figure figure-like" id="figure-intersecting-planes"><iframe src="https://c3d.libretexts.org/CalcPlot3D/dynamicFigure/index.html?type=implicit;equation=2x-y+z~0;cubes=16;visible=true;xmin=-2;xmax=2;ymin=-2;ymax=2;zmin=-2;zmax=2;alpha=-1;format=constant;constcol=rgb(61,133,198)&amp;type=parametric;parametric=2;x=-(u+v)/2;y=(u-v)/2;z=v;visible=true;umin=-3;umax=3;usteps=30;vmin=-2;vmax=2;vsteps=15;alpha=193;format=constant;constcol=rgb(255,161,114)&amp;type=text;text=x%20%2B%20y%20%2B%20z%20~%200;visible=true;point=(.5,-2.5,2.1);color=rgb(0,0,0);font=Times%20New%20Roman;fontsize=14pt;bold=false;italic=false;fontmath=true;align=Upper-right&amp;type=text;text=2x%20-%20y%20%2B%20z%20~%200;visible=true;point=(2,2.2,-1.25);color=rgb(0,0,0);font=Times%20New%20Roman;fontsize=14pt;bold=false;italic=false;fontmath=true;align=Upper-right&amp;type=window;hsrmode=0;anaglyph=-1;center=7.006292692220367,5.09036960455127,4.999999999999999,1;focus=0,0,0,1;up=-0.3290568564833397,-0.23907380036690282,0.9135454576426009,1;transparent=true;alpha=140;edgeson=false;faceson=true;showbox=false;showaxes=true;showticks=true;perspective=true;centerxpercent=0.5;centerypercent=0.5;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=true;gridplanes=false;gridcolor=rgb(128,128,128);xmin=-2;xmax=2;ymin=-2;ymax=2;zmin=-2;zmax=2;xscale=1;yscale=1;zscale=1;zcmin=-4;zcmax=4;zoom=0.655294;xscalefactor=1;yscalefactor=1;zscalefactor=1" id="calcplot3d-intersection-planes" width="480" height="480"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.3<span class="period">.</span></span><span class="space"> </span>Intersection of two planes (minimal embedding)</figcaption></figure><figure class="figure figure-like" id="figure-wavefunction"><iframe src="https://c3d.libretexts.org/CalcPlot3D/dynamicFigureWCP/index.html?type=jaxlabel;position=middle;math=%255Cpsi_%257Bn_x%252Cn_y%257D(x%252Cy);textonly=false&amp;type=z;z=sin(api*x)sin(bpi*y);visible=true;umin=0;umax=1;vmin=0;vmax=1;grid=50;format=normal;alpha=200;constcol=rgb(255,0,0);view=0;contourcolor=rgb(255,0,0);contourplot=true;showcontourplot=true;firstvalue=-1;stepsize=0.2;numlevels=11;xnum=75;ynum=75;show2d=false;hidesurface=false;hidelabels=false;showprojections=false;surfacecontours=true;projectioncolor=rgba(51,153,0,1);showxygrid=false;showxygridonbox=false&amp;type=slider;slider=a;value=1;steps=2;pmin=1;pmax=3;repeat=true;bounce=true;waittime=40;careful=true;noanimate=true;name=n_x&amp;type=slider;slider=b;value=1;steps=2;pmin=1;pmax=3;repeat=true;bounce=true;waittime=40;careful=true;noanimate=true;name=n_y&amp;type=text;text=0;visible=true;point=(0,0,0);color=rgb(0,0,0);font=Times%20New%20Roman;fontsize=15pt;bold=true;italic=false;fontmath=true;align=Center-left&amp;type=text;text=L;visible=true;point=(1,-0.025,0);color=rgb(0,0,0);font=Times%20New%20Roman;fontsize=14pt;bold=true;italic=false;fontmath=true;align=Center&amp;type=text;text=L;visible=true;point=(-0.05,1,0);color=rgb(0,0,0);font=Times%20New%20Roman;fontsize=14pt;bold=true;italic=false;fontmath=true;align=Center&amp;type=text;text=x;visible=true;point=(0.5,-0.07,0);color=rgb(0,0,0);font=Times%20New%20Roman;fontsize=14pt;bold=true;italic=false;fontmath=true;align=Center&amp;type=text;text=y;visible=true;point=(-0.08,0.5,0);color=rgb(0,0,0);font=Times%20New%20Roman;fontsize=14pt;bold=true;italic=false;fontmath=true;align=Center&amp;type=window;hsrmode=3;anaglyph=-1;center=-7.447051206708178,-2.790794355991455,3.71998429905919,1;focus=0.5,0.5,0.5,1;up=0.39804763218685024,0.14521777837291014,0.9057979241281567,1;transparent=true;alpha=140;twoviews=false;unlinkviews=false;axisextension=0;xaxislabel=%20;yaxislabel=%20;zaxislabel=%20;edgeson=false;faceson=true;showbox=false;showaxes=false;showticks=false;perspective=true;centerxpercent=0.5;centerypercent=0.4;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=false;gridplanes=true;gridcolor=rgb(128,128,128);xmin=0;xmax=1;ymin=0;ymax=1;zmin=0;zmax=1;xscale=1;yscale=1;zscale=1;zcmin=-4;zcmax=4;zoom=3.543529;xscalefactor=1;yscalefactor=1;zscalefactor=0.5;hidexysliders=true;hidetracevalue=true" id="calcplot3d-probability-wavefunction" width="570" height="380"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.4<span class="period">.</span></span><span class="space"> </span>Probability wavefunction with contours (includes controls)</figcaption></figure><figure class="figure figure-like" id="figure-calcplot3d"><iframe src="https://c3d.libretexts.org/CalcPlot3D/index.html?type=z;z=1/(y-x^2);visible=true;umin=-2;umax=2;vmin=-2;vmax=2;grid=30;format=normal;alpha=-1;constcol=rgb(255,0,0);contourcolor=red&amp;type=window;hsrmode=3;anaglyph=-1;center=5.529712854135209,7.349875454071844,3.9244880634856956,1;focus=0,0,0,1;up=-0.26875302682986874,-0.2884991397174344,0.9189886054528014,1;transparent=true;alpha=140;edgeson=true;faceson=true;showbox=true;showaxes=true;showticks=true;perspective=true;centerxpercent=0.5;centerypercent=0.5;rotationsteps=30;autospin=true;xygrid=false;yzgrid=false;xzgrid=false;gridsonbox=true;gridplanes=false;gridcolor=rgb(128,128,128);xmin=-2;xmax=2;ymin=-2;ymax=2;zmin=-4;zmax=4;xscale=1;yscale=1;zscale=1;zcmin=-4;zcmax=4;zoom=0.468667;xscalefactor=1;yscalefactor=1;zscalefactor=1" id="calcplot3d-full-application" width="570" height="380"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.5<span class="period">.</span></span><span class="space"> </span>Plot of <span class="process-math">\(f(x,y)=\dfrac{1}{y-x^2}\)</span> on <span class="process-math">\([-2,2]\times[-2,2]\)</span> (full application)</figcaption></figure></section><section class="subsection" id="interactive-iframes-server"><h3 class="heading hide-type">
+<span class="type">Subsection</span><span class="space"> </span><span class="codenumber">14.4</span><span class="space"> </span><span class="title">IFrames from Servers</span>
+</h3>
+<div class="para" id="interactive-iframes-server-2">The <code class="code-inline tex2jax_ignore">iFrame</code> versions of interactives can point to a network location, presuming the endpoint is reasonably well-behaved.  If you are using this sytematically, let us know and perhpas it should become a more dedicated PreTeXt construction.  See <a href="section-interactive-authored.html#interactive-iframes-local" class="internal" title="Subsection 13.9: IFrames from Files">Subsection 13.9</a> for the local file version.</div>
+<div class="para" id="interactive-iframes-server-3">This example is from <a class="external" href="https://phet.colorado.edu/" target="_blank">PhET Interactive Simulations</a><details class="ptx-footnote" aria-live="polite" id="interactive-iframes-server-3-2"><summary class="ptx-footnote__number" title="Footnote 14.2"><sup> 2 </sup></summary><div class="ptx-footnote__contents" id="interactive-iframes-server-3-2"><code class="code-inline tex2jax_ignore">phet.colorado.edu</code></div></details>.</div>
+<figure class="figure figure-like" id="figure-phet-fourier"><iframe src="https://phet.colorado.edu/sims/html/fourier-making-waves/latest/fourier-making-waves_en.html" id="interactive-phet-fourier" width="570" height="380"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.6<span class="period">.</span></span><span class="space"> </span>Fourier: Making Waves <code class="code-inline tex2jax_ignore">iframe</code></figcaption></figure><div class="para" id="interactive-iframes-server-5">Anything that suggests you can <dfn class="terminology">embed</dfn> an interactive widget via an iFrame is fair game for this feature.  This is a Google Map of the state of California, for use in a French language document, from Julien Giol.  The necessary <abbr class="initialism">URL</abbr> is obtained by using the “Share” feature, and then the “Embed a map” option has <abbr class="initialism">HTML</abbr> with the <abbr class="initialism">URL</abbr> in a <code class="code-inline tex2jax_ignore">@src</code> attribute.</div>
+<figure class="figure figure-like" id="map-california"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6512739.689202133!2d-124.5931848890628!3d37.151542068971864!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb9fe5f285e3d%3A0x8b5109a227086f55!2sCalifornie%2C%20%C3%89tats-Unis!5e0!3m2!1sfr!2sca!4v1682454368296!5m2!1sfr!2sca" id="interactive-map-california" width="570" height="380"></iframe><figcaption><span class="type">Figure</span><span class="space"> </span><span class="codenumber">14.7<span class="period">.</span></span><span class="space"> </span>California.</figcaption></figure></section></section></div>
+<div class="ptx-content-footer">
+<a class="previous-button button" href="section-interactive-authored.html" title="Previous"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cb;</span><span class="name">Prev</span></a><a class="top-button button" href="#" title="Top"><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5ce;</span><span class="name">Top</span></a><a class="next-button button" href="section-interactive-exercises.html" title="Next"><span class="name">Next</span><span class="icon material-symbols-outlined" aria-hidden="true">&#xe5cc;</span></a>
+</div></main>
+</div>
+<div id="ptx-page-footer" class="ptx-page-footer">
+<a class="feedback-link" href="http://example.com/not-implemented.html" target="_blank">Feedback</a><a class="pretext-link" href="https://pretextbook.org" title="PreTeXt"><div class="logo"><svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="338 3000 8772 6866"><g style="stroke-width:.025in; stroke:black; fill:none"><polyline points="472,3590 472,9732 " style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round; "></polyline><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,9448 A 4660 4660  0  0  1  8598  9259"></path><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4488,9685 A 4228 4228  0  0  0   472  9732"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:butt;" d="M 4724,3590 A 4241 4241  0  0  1  8598  3496"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,3496  A 4241 4241  0  0  1  4724  3590"></path><path style="stroke:#000000;stroke-width:126;stroke-linecap:round;" d="M 850,9259  A 4507 4507  0  0  1  4724  9448"></path><polyline points="5385,4299 4062,8125" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8598,3496 8598,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="850,3496 850,9259" style="stroke:#000000;stroke-width:126; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="4960,9685 4488,9685" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="3070,4582 1889,6141 3070,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="6418,4582 7600,6141 6418,7700" style="stroke:#000000;stroke-width:300; stroke-linejoin:miter; stroke-linecap:round;"></polyline><polyline points="8976,3590 8976,9732" style="stroke:#000000;stroke-width:174; stroke-linejoin:miter; stroke-linecap:round;"></polyline><path style="stroke:#000000;stroke-width:174;stroke-linecap:butt;" d="M 4960,9685 A 4228 4228  0  0  1  8976  9732"></path></g></svg></div></a><a class="runestone-link" href="https://runestone.academy" title="Runestone Academy"><img class="logo" src="https://runestone.academy/runestone/static/images/RAIcon_cropped.png"></a><a class="mathjax-link" href="https://www.mathjax.org" title="MathJax"><img class="logo" src="https://www.mathjax.org/badge/badge-square-2.png"></a>
+</div>
+<!--Start: StatCounter code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***        GET YOUR OWN FROM STATCOUNTER           ***--><script>
+var sc_project=9664088;
+var sc_invisible=1;
+var sc_security="6e60c510";
+var scJsHost = (("https:" == document.location.protocol) ? "https://secure." : "https://www.");
+document.write("<sc"+"ript src='" + scJsHost+ "statcounter.com/counter/counter.js'></"+"script>");
+</script><noscript><div class="statcounter"><a title="web analytics" href="https://statcounter.com/" target="_blank"><img class="statcounter" src="https://c.statcounter.com/9664088/0/6e60c510/1/" alt="web analytics"></a></div></noscript>
+<!--End: StatCounter code-->
+<!--Start: Google Global Site Tag code--><!--*** DO NOT COPY ANOTHER PROJECT'S MAGIC NUMBERS/ID ***--><!--***           GET YOUR OWN FROM GOOGLE             ***-->
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-48811660-1"></script><script>  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-48811660-1');
+</script><!--End: Google Global Site Tag code-->
+</body>
+</html>
