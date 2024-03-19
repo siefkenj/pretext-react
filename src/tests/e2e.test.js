@@ -1,4 +1,5 @@
 /* env jest*/
+import { describe, it, expect, beforeAll, afterAll } from "vitest";
 
 import puppeteer from "puppeteer";
 
@@ -50,7 +51,7 @@ function ensureInstantAnimations(page) {
     });
 }
 
-describe("UI Tests", () => {
+describe("UI Tests", { timeout: 5000 }, () => {
     let browser;
     /** @type puppeteer.Page */
     let page;
@@ -77,7 +78,7 @@ describe("UI Tests", () => {
         await page.goto(`${DEBUG_URL}/test-1.html`);
         await page.waitForSelector("#test-1");
 
-        let knowlsForP = await page.$$("#p-3 a.xref");
+        let knowlsForP = await page.$$("#test-1-4 a.xref");
 
         // Click on the links in order
         let orderClicked = [];
@@ -107,7 +108,7 @@ describe("UI Tests", () => {
         await page.goto(`${DEBUG_URL}/test-1.html`);
         await page.waitForSelector("#test-1");
 
-        knowlsForP = await page.$$("#p-3 a.xref");
+        knowlsForP = await page.$$("#test-1-4 a.xref");
         knowlsForP.reverse();
 
         // Click on the links in order
@@ -139,7 +140,7 @@ describe("UI Tests", () => {
         await page.goto(`${DEBUG_URL}/test-1.html`);
         await page.waitForSelector("#test-1");
 
-        let knowlsForP = await page.$$("#p-3 a.xref");
+        let knowlsForP = await page.$$("#test-1-4 a.xref");
 
         for (const xref of knowlsForP) {
             await xref.click((e) => e.click());
@@ -165,17 +166,21 @@ describe("UI Tests", () => {
         await page.waitForSelector("#test-1");
 
         // Open the knowl. It's the knowl's "Solution" element we're after
-        await page.waitForSelector(`a[href="./knowl/test-1-eg.html"]`);
-        await page.$eval(`a[href="./knowl/test-1-eg.html"]`, (e) => e.click());
+        await page.waitForSelector(`a[href="./knowl/xref/test-1-eg.html"]`);
+        await page.$eval(`a[href="./knowl/xref/test-1-eg.html"]`, (e) =>
+            e.click()
+        );
 
         await page.waitForSelector(`a.solution-knowl`);
         await page.$eval(`a.solution-knowl`, (e) => e.click());
         await page.waitForSelector(
-            `div[data-for-knowl-url="./knowl/solution-1-hidden.html"]`
+            // Used to be an external know. Now it's inlined via a blob-url.
+            // It just happens to be the first such knowl in the document, so it
+            // gets the first anonymous id.
+            `div#anonymous-knowl`
+            //`div[data-for-knowl-url="./knowl/solution-1-hidden.html"]`
         );
-        let solutionElms = await page.$$(
-            `div[data-for-knowl-url="./knowl/solution-1-hidden.html"]`
-        );
+        let solutionElms = await page.$$(`div#anonymous-knowl`);
 
         expect(solutionElms.length).toBe(1);
 
@@ -189,12 +194,8 @@ describe("UI Tests", () => {
 
         // Expand the solution again!
         await page.$eval(`a.solution-knowl`, (e) => e.click());
-        await page.waitForSelector(
-            `div[data-for-knowl-url="./knowl/solution-1-hidden.html"]`
-        );
-        solutionElms = await page.$$(
-            `div[data-for-knowl-url="./knowl/solution-1-hidden.html"]`
-        );
+        await page.waitForSelector(`div#anonymous-knowl`);
+        solutionElms = await page.$$(`div#anonymous-knowl`);
 
         expect(solutionElms.length).toBe(1);
 
