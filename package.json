@@ -3,6 +3,7 @@
     "version": "0.1.0",
     "private": true,
     "homepage": "./",
+    "type": "module",
     "dependencies": {
         "@ariakit/react": "^0.2.17",
         "@mapbox/hast-util-table-cell-style": "^0.2.1",
@@ -89,8 +90,8 @@
         "@vitejs/plugin-react": "^4.2.1",
         "jsdom": "^24.0.0",
         "mime-types": "^2.1.35",
-        "vite": "^4.5.2",
-        "vite-plugin-static-copy": "^0.17.1",
+        "vite": "^5.1.6",
+        "vite-plugin-static-copy": "^1.0.1",
         "vite-plugin-svgr": "^4.2.0",
         "vite-tsconfig-paths": "^4.3.2",
         "vitest": "^1.4.0"
