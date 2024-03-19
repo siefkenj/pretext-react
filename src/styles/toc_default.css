@@ -135,6 +135,17 @@ need more room for it! */
     margin-left: calc(var(--toc-codenumber-width) + 20px);
 }
 
+.division-level-0 .toc-item a,
+.division-level-1 .toc-item a,
+.division-level-2 .toc-item a {
+    padding-top: 0.7em;
+    padding-bottom: 0.7em;
+}
+.division-level-3 .toc-item a {
+    padding-top: 0.3em;
+    padding-bottom: 0.3em;
+}
+
 .division-level-3 .toc-item {
     background-color: #f4f4f4;
 }
@@ -144,8 +155,9 @@ need more room for it! */
 .division-level-3 {
     position: relative;
 }
-.division-level-3:before, .division-level-3:after {
-    box-shadow: inset 0px 10px 5px -10px rgba(0,0,0,0.5);
+.division-level-3:before,
+.division-level-3:after {
+    box-shadow: inset 0px 10px 5px -10px rgba(0, 0, 0, 0.5);
     content: "";
     position: absolute;
     top: 0;
@@ -157,11 +169,10 @@ need more room for it! */
     pointer-events: none;
 }
 .division-level-3:after {
-    box-shadow: inset 0px -10px 5px -10px rgba(0,0,0,0.5);
+    box-shadow: inset 0px -10px 5px -10px rgba(0, 0, 0, 0.5);
     top: unset;
     bottom: 0;
 }
-
 
 /*
 
