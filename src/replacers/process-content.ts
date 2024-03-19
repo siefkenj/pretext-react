@@ -15,9 +15,11 @@ import { replaceRunestone } from "./runestone";
 import { replaceSageKnowl } from "./sage-knowls";
 import { replaceListings } from "./listing";
 import { VFile } from "vfile";
+import { rehypeNormalizeDetailsKnowls } from "./html-manipulation/normalize-details-knowls";
 
 const processHtmlContentViaUnified = unified()
     .use(hastFromStringNative)
+    .use(rehypeNormalizeDetailsKnowls)
     .use(rehypeInsertKnowlExpandStubs)
     .use(rehypeInsertPermalinks)
     .use(hastReactTransformer, {

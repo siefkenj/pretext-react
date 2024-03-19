@@ -59,7 +59,7 @@
     "scripts": {
         "start": "vite",
         "build": "tsc && vite build",
-        "test:serve": "node test-server.js",
+        "test:serve": "node test-server.cjs",
         "test:e2e-watch": "vitest --watch",
         "test:e2e": "vitest --run",
         "test:e2e-with-setup-and-teardown": "npm run test:serve & echo $! > .test-server-pid && CI=true npm run test:e2e; EX=$?; kill $(cat .test-server-pid); exit $EX",
