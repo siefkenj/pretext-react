@@ -1,6 +1,6 @@
-
 /* The Greg's L for theorems, proofs, etc */
 
+/*
 .ptx-content .proof {
   border-right: 1px solid #666;
   padding-right: 0.625em;
@@ -12,7 +12,6 @@
   display: block;
   margin-left: auto;
   margin-right: -0.625em;
-  /* so the corner of the L meets */
   width: 1.5em;
   padding-bottom: 0.25em;
 }
@@ -29,14 +28,16 @@
   border-bottom: 1.5px solid #ddd;
   width: 1em;
 }
+*/
 
+/*
 .ptx-content article.theorem-like,
 .ptx-content article.definition-like,
 .ptx-content article.example-like,
 .ptx-content article.project-like,
 .ptx-content article.remark-like,
 .ptx-content article.openproblem-like,
-.ptx-content article.openproblems-like,  /* delete once markup is fixed */
+.ptx-content article.openproblems-like,
 .ptx-content article.computation-like {
     padding-left: 0.4em;
     border-left: 1px solid #569;
@@ -48,7 +49,7 @@
 .ptx-content.epub article.project-like,
 .ptx-content.epub article.remark-like,
 .ptx-content article.openproblem-like,
-.ptx-content article.openproblems-like,  /* delete once markup is fixed */
+.ptx-content article.openproblems-like,
 .ptx-content.epub article.computation-like {
     margin-left: 1px;
 }
@@ -60,7 +61,7 @@
 .ptx-content article.project-like::after,
 .ptx-content article.remark-like::after,
 .ptx-content article.openproblem-like::after,
-.ptx-content article.openproblems-like::after,  /* delete once markup is fixed */
+.ptx-content article.openproblems-like::after,
 .ptx-content article.computation-like::after {
     content:'';
     border-bottom: 1px solid #569;
@@ -70,6 +71,7 @@
     padding-top: 0.25em;
     width: 1.5em;
 }
+*/
 /* projects get a dotted L */
 .ptx-content article.project-like {
     border-left: 1px dotted #569;
@@ -85,7 +87,7 @@
     border-left: 3px solid #c33;
 }
 .ptx-content article.commentary::after {
-    content:'';
+    content: "";
     border-bottom: 3px solid #c33;
     display: block;
     margin-right: auto;
@@ -95,7 +97,7 @@
 }
 
 .ptx-content .assemblage-like {
-    border: solid 2px #1100AA;
+    border: solid 2px #1100aa;
     border-radius: 12px;
     padding: 10px;
     background-color: #f4f4fe;
@@ -113,29 +115,28 @@
 }
 
 .ptx-content .goal-like {
-  border: solid 3px #999999;
-  padding: 0.7em;
-  margin-bottom: 1em;
+    border: solid 3px #999999;
+    padding: 0.7em;
+    margin-bottom: 1em;
 }
 
 .ptx-content .goal-like > .heading {
-  margin-top: -1.5em;
-  background-color: white;
-  display: table;
-  padding: 5px 1em;
-  margin-left: 5px;
-  font-style: italic;
-  font-size: 120%;
+    margin-top: -1.5em;
+    background-color: white;
+    display: table;
+    padding: 5px 1em;
+    margin-left: 5px;
+    font-style: italic;
+    font-size: 120%;
 }
 
 .ptx-content .goal-like > .heading .codenumber {
-  display:none;
+    display: none;
 }
 
 .ptx-content .goal-like > .heading::after {
-  display:none;
+    display: none;
 }
-
 
 .ptx-content .aside-like {
     position: absolute;
@@ -156,9 +157,9 @@
     font-size: 90%;
 }
 .ptx-content .aside-like {
-  margin-bottom: 5px;
-  background-color: #f5faff;
-  box-shadow: 0 0 1.0em 0.2em #fff inset;
+    margin-bottom: 5px;
+    background-color: #f5faff;
+    box-shadow: 0 0 1em 0.2em #fff inset;
 }
 .ptx-content .aside-like .para {
     overflow-x: auto;
@@ -167,18 +168,20 @@
     margin-top: -2.25em;
 }
 .ptx-content .aside-like:after {
-  content  : "";
-  position : absolute;
-  z-index  : 1;
-  top   : 0em;  
-  bottom   : 0;
-  left     : 0;
-  pointer-events   : none;
-  background-image : linear-gradient(to bottom, 
-                    rgba(255,255,255, 0.4), 
-                    rgba(255,255,255, 1) 90%);
-  width    : 550px;
-  height   : 8em;
+    content: "";
+    position: absolute;
+    z-index: 1;
+    top: 0em;
+    bottom: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: linear-gradient(
+        to bottom,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 1) 90%
+    );
+    width: 550px;
+    height: 8em;
 }
 /* example of where the following is needed? */
 /*
@@ -186,36 +189,36 @@
     background-color: #f5faff !important;
 }
 */
-.ptx-content .aside-like.front, .ptx-content .example-like .aside-like.front {
-  position: relative;
-  z-index: 0;
-  padding: 8px 15px 10px 15px;
-  padding: 2px 10px;
-  margin: 5px 0px 5px 10px;
-  border: 2px solid #dcebfa;
-  max-height: none;
-  max-width: 550px;
-  color: inherit;
-  font-size: 100%;
-  box-shadow: none;
+.ptx-content .aside-like.front,
+.ptx-content .example-like .aside-like.front {
+    position: relative;
+    z-index: 0;
+    padding: 8px 15px 10px 15px;
+    padding: 2px 10px;
+    margin: 5px 0px 5px 10px;
+    border: 2px solid #dcebfa;
+    max-height: none;
+    max-width: 550px;
+    color: inherit;
+    font-size: 100%;
+    box-shadow: none;
 }
-.ptx-content .aside-like.front:after, .ptx-content .example-like .aside-like.front:after {
+.ptx-content .aside-like.front:after,
+.ptx-content .example-like .aside-like.front:after {
     background-image: none;
 }
 .ptx-content .example-like .aside-like.front {
     margin-top: 1.25em;
 }
 
-.ptx-content .aside-like.front + p{
+.ptx-content .aside-like.front + p {
     margin-top: 1.25em !important;
     padding-top: 0;
 }
 
-
-
 .ptx-content .aside-like .aside-like {
-  background-color: #fafff5;
-  border: 1px dotted #aaa;
+    background-color: #fafff5;
+    border: 1px dotted #aaa;
 }
 
 .ptx-content article.aside-like > p:first-child {
@@ -226,7 +229,7 @@
     font-size: 95%;
 }
 
-.ptx-content .aside-like + *{
+.ptx-content .aside-like + * {
     margin-top: 3em; /* !important; */
     margin-right: 3em;
 }
@@ -234,72 +237,81 @@
 /* on sufficiently large screens, there is enough of a margin to see part of the aside */
 
 @media screen and (min-width: 943px) {
-  .ptx-content .aside-like + * {
-      margin-right: 0;
-  }
+    .ptx-content .aside-like + * {
+        margin-right: 0;
+    }
 }
 
 /* on a wide screen, asides should appear in the right margin */
 @media screen and (min-width: 1100px) {
-  .ptx-content .aside-like, .ptx-content .aside-like.front, .ptx-content .example-like .aside-like, .ptx-content .example-like .aside-like.front {
-      position: absolute;
-      margin-top: -2em;
-      margin-left: 660px;
-      max-width: 200px;  /* for some reason the width was too small, so I had to put width (next line) */
-      width: 200px;
-      color: inherit;
-  }
-  .ptx-content .aside-like.front, .ptx-content .example-like .aside-like.front {
-      max-height: none;
-      max-width: 223px;
-      border: 2px solid #dcebfa;
-}
-  .ptx-content .example-like .aside-like, .ptx-content .example-like .aside-like.front {
-      margin-left: 654px;  /* because .example-like has 6px of padding */
-  }
+    .ptx-content .aside-like,
+    .ptx-content .aside-like.front,
+    .ptx-content .example-like .aside-like,
+    .ptx-content .example-like .aside-like.front {
+        position: absolute;
+        margin-top: -2em;
+        margin-left: 660px;
+        max-width: 200px; /* for some reason the width was too small, so I had to put width (next line) */
+        width: 200px;
+        color: inherit;
+    }
+    .ptx-content .aside-like.front,
+    .ptx-content .example-like .aside-like.front {
+        max-height: none;
+        max-width: 223px;
+        border: 2px solid #dcebfa;
+    }
+    .ptx-content .example-like .aside-like,
+    .ptx-content .example-like .aside-like.front {
+        margin-left: 654px; /* because .example-like has 6px of padding */
+    }
 
-  .ptx-content .aside-like + * {
-      margin-top: 1.25em;
-  /*    background: none;  */
-      margin-right: 0;
-  }
-  /* previous and next point to the need to rethink asides:  structurally they are
+    .ptx-content .aside-like + * {
+        margin-top: 1.25em;
+        /*    background: none;  */
+        margin-right: 0;
+    }
+    /* previous and next point to the need to rethink asides:  structurally they are
      in the midts of the other elements, so they affect neighbor selectors.
      but visually they often are off to the side */
-  .ptx-content .aside-like + .solutions,
-  .ptx-content .aside-like + .instructions {
-      margin-top: 0;
-  }
+    .ptx-content .aside-like + .solutions,
+    .ptx-content .aside-like + .instructions {
+        margin-top: 0;
+    }
 
-  .ptx-content .aside-like.front:after, .ptx-content .example-like .aside-like.front:after {
-    background-image: none;
-  }
+    .ptx-content .aside-like.front:after,
+    .ptx-content .example-like .aside-like.front:after {
+        background-image: none;
+    }
 
-  .ptx-content .aside-like:nth-of-type(3n+1) {
-    margin-left: 660px;
-}
-  .ptx-content .aside-like:nth-of-type(3n) {
-    margin-left: 680px;
-}
-  .ptx-content .aside-like:nth-of-type(3n+2) {
-    margin-left: 640px;
-}
+    .ptx-content .aside-like:nth-of-type(3n + 1) {
+        margin-left: 660px;
+    }
+    .ptx-content .aside-like:nth-of-type(3n) {
+        margin-left: 680px;
+    }
+    .ptx-content .aside-like:nth-of-type(3n + 2) {
+        margin-left: 640px;
+    }
 }
 
-.ptx-content .aside-like:hover:after, .ptx-content .aside-like:focus:after {
+.ptx-content .aside-like:hover:after,
+.ptx-content .aside-like:focus:after {
     top: 3em;
     height: auto;
-    background-image : none;
+    background-image: none;
 }
 
-.ptx-content .aside-like:hover, .ptx-content .aside-like:focus {
+.ptx-content .aside-like:hover,
+.ptx-content .aside-like:focus {
     color: inherit;
     padding: 2px 8px 0 8px;
     border: 2px solid #dcebfa;
     height: auto;
     max-height: none;
 }
-.ptx-content .aside-like.front:hover, .ptx-content .aside-like.front:focus {
+.ptx-content .aside-like.front:hover,
+.ptx-content .aside-like.front:focus {
     padding: 4px 10px;
 }
 
@@ -314,18 +326,70 @@
 }
 
 @media screen and (max-width: 1099px) {
-  .ptx-content .aside-like {
-    position: relative;
-    float: right;
-    z-index: 0;
-    overflow-x: hidden;
-    margin-left: 1em;
-    margin-top: 1em;
-    max-width: 195px;
-    max-height: 4em;
-    margin-right: -8em;
+    .ptx-content .aside-like {
+        position: relative;
+        float: right;
+        z-index: 0;
+        overflow-x: hidden;
+        margin-left: 1em;
+        margin-top: 1em;
+        max-width: 195px;
+        max-height: 4em;
+        margin-right: -8em;
+    }
+    .ptx-content li > .aside-like:last-child {
+        position: absolute;
+    }
 }
-  .ptx-content li > .aside-like:last-child {
-    position: absolute;
+
+.ptx-content .theorem-like,
+.ptx-content .definition-like,
+.ptx-content .remark-like,
+.ptx-content .example-like {
+    border-left: 5px solid #32bbf1;
+    background-color: #f0f9ff;
+    padding-top: 0.5em;
+    padding-bottom: 0.5em;
+    padding-left: 0.4em;
+    margin-left: -0.4em;
 }
+
+.ptx-content .theorem-like {
+    border-color: #f1af32;
+    background-color: #fff8f0;
+}
+.ptx-content .theorem-like .title {
+    color: #a06c0a;
+}
+
+.ptx-content .remark-like {
+    border-color: #5ec418;
+    background-color: #f2ffea;
+}
+.ptx-content .remark-like .title,
+.ptx-content .remark-like .type,
+.ptx-content .remark-like .codenumber,
+.ptx-content .remark-like .period {
+    color: #337e00;
+}
+
+.ptx-content .definition-like .title,
+.ptx-content .definition-like .type,
+.ptx-content .definition-like .codenumber,
+.ptx-content .definition-like .period,
+.ptx-content .definition-like dfn,
+.ptx-content .definition-like .emphasis {
+    color: #0071a7;
+}
+
+.ptx-content .example-like {
+    border-color: #666;
+    border-width: 3px;
+    background-color: #f9f9f9;
+}
+.ptx-content .theorem-like .title,
+.ptx-content .theorem-like .type,
+.ptx-content .theorem-like .codenumber,
+.ptx-content .theorem-like .period {
+    color: #a06c0a;
 }
