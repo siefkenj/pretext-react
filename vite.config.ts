@@ -65,6 +65,9 @@ export default defineConfig(({ command, mode }) => {
                             // Override the name of `index.css`, the main CSS entry point
                             return "static/css/main.css";
                         }
+                        if (asset.name === "app.css") {
+                            return "static/css/main.css";
+                        }
                         return "static/[ext]/[name][extname]";
                     },
                     entryFileNames: "static/js/main.js",
