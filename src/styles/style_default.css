@@ -393,3 +393,12 @@
 .ptx-content .theorem-like .period {
     color: #a06c0a;
 }
+
+.title-container .heading .title,
+.title-container .heading .subtitle,
+section > .heading .codenumber,
+section > .heading .title,
+section > .heading .type
+{
+    color: #0071a7;
+}
